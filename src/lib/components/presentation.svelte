@@ -18,6 +18,10 @@
 	onMount(() => {
 		const deck = new Reveal({
 			plugins: [Markdown, Highlight, Math, Notes],
+			highlight: {
+				// beforeHighlight: hljs => hljs.registerLanguage()
+				highlightOnLoad: false,
+			},
 			controls: false,
 			progress: false,
 			transition: 'fade',
@@ -29,7 +33,15 @@
 			$currentSlide = event.indexh
 		})
 
-		deck.initialize()
+		deck.initialize().then(() => {
+			const highlight = deck.getPlugin('highlight')
+			const codeBlocks = document.querySelectorAll('code')
+
+			Array.from(codeBlocks).forEach((block) => {
+				// @ts-ignore
+				highlight.highlightBlock(block)
+			})
+		})
 	})
 </script>
 
