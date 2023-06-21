@@ -3,9 +3,9 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@lib": ["./src/lib"],
-			"@components": ["./src/lib/components"],
-			"@styles": ["./src/lib/styles"]
+			"@lib/*": ["./src/lib/*"],
+			"@components/*": ["./src/lib/components/*"],
+			"@styles/*": ["./src/lib/styles/*"]
 		},
 		"target": "ESNext",
 		"useDefineForClassFields": true,
