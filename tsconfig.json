@@ -3,8 +3,10 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
+			"@components": ["./src/lib/components/index.ts"],
+			"@config": ["./src/config.ts"],
+			"@languages": ["./src/lib/languages/index.ts"],
 			"@lib/*": ["./src/lib/*"],
-			"@components/*": ["./src/lib/components/*"],
 			"@styles/*": ["./src/lib/styles/*"]
 		},
 		"target": "ESNext",
