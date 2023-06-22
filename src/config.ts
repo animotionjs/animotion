@@ -7,7 +7,7 @@ import { registerLanguages } from '@languages'
 
 const options: Reveal.Options = {
 	// plugins
-	plugins: [Markdown, Highlight, Math, Notes],
+	plugins: [Markdown, Highlight, Math.KaTeX, Notes],
 	// syntax highlight options
 	highlight: {
 		// add new languages
