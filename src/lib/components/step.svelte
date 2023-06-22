@@ -1,4 +1,5 @@
 <script lang="ts">
+	export let type = 'p'
 	export let order: string | null = null
 	export let fadeIn = true
 	export let fadeOut = false
@@ -21,7 +22,8 @@
 	export let strike = false
 </script>
 
-<p
+<svelte:element
+	this={type}
 	class="fragment {$$props.class || ''}"
 	class:fade-in={fadeIn}
 	class:fade-out={fadeOut}
@@ -43,6 +45,7 @@
 	class:grow
 	class:shrink
 	class:strike
+	{...$$restProps}
 >
 	<slot />
-</p>
+</svelte:element>
