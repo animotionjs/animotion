@@ -23,6 +23,12 @@ const options: Reveal.Options = {
 	transition: 'fade',
 	// slide numbers
 	hash: true,
+	// bring your own layout
+	disableLayout: false,
+	// display mode used to show slides
+	display: 'grid',
+	// animate unmatched elements
+	autoAnimateUnmatched: true,
 }
 
 export default options
