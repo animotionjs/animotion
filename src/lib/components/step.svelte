@@ -20,6 +20,8 @@
 	export let grow = false
 	export let shrink = false
 	export let strike = false
+
+	delete $$props.class
 </script>
 
 <svelte:element

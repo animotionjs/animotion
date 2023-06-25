@@ -7,7 +7,8 @@
 	--r-main-font-size: 2.5rem;
 	--r-main-color: hsl(226 19% 98%);
 	--r-heading-font: 'Manrope';
-	--r-code-font: 'JetBrains Mono';
+	/* --r-code-font: 'JetBrains Mono'; */
+	--r-code-font: 'MonoLisa';
 }
 
 /* ignore element for Reveal.js to work */
@@ -31,10 +32,10 @@
 	position: relative;
 	width: 90%;
 	margin: var(--r-block-margin) auto;
-	text-align: left;
-	font-size: 0.55em;
 	font-family: var(--r-code-font);
+	font-size: 0.55em;
 	line-height: 1.6em;
+	text-align: left;
 	word-wrap: break-word;
 }
 
@@ -50,10 +51,10 @@
 }
 
 .reveal pre code {
+	max-height: 400px;
 	display: block;
 	padding: 5px;
 	overflow: auto;
-	max-height: 400px;
 	word-wrap: normal;
 }
 
@@ -77,8 +78,8 @@
 
 .reveal table th,
 .reveal table td {
-	text-align: left;
 	padding: 0.2em 0.5em 0.2em 0.5em;
+	text-align: left;
 	border-bottom: 1px solid;
 }
 

@@ -1,5 +1,7 @@
 <script lang="ts">
 	export let type = 'p'
+
+	delete $$restProps.class
 </script>
 
 <svelte:element

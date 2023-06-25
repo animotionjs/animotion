@@ -15,6 +15,13 @@
 	export let video = null
 	export let iframe = null
 	export let interactive = null
+	export let transition:
+		| 'none'
+		| 'fade'
+		| 'slide'
+		| 'convex'
+		| 'concave'
+		| 'zoom' = null
 
 	const slideId = id++
 	const dispatch = createEventDispatcher()
@@ -33,6 +40,7 @@
 	data-background-video={video}
 	data-background-iframe={iframe}
 	data-background-interactive={interactive}
+	data-transition={transition}
 	{...$$props}
 >
 	<slot />

@@ -3,7 +3,7 @@
 	type Offset = string | null
 	type Language = string | null
 
-	export let id = 'animated-code'
+	export let id = 'code-animation'
 	export let lines: Lines = true
 	export let offset: Offset = null
 	export let lang: Language = null
