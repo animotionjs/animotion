@@ -11,9 +11,13 @@
 	--r-code-font: 'MonoLisa';
 }
 
-/* ignore element for Reveal.js to work */
+/* required for Reveal.js to work */
 #app {
 	display: contents;
+}
+
+body {
+	cursor: none;
 }
 
 .reveal-viewport {
