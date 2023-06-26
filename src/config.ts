@@ -6,6 +6,14 @@ import Notes from 'reveal.js/plugin/notes/notes'
 import { registerLanguages } from '@languages'
 
 const options: Reveal.Options = {
+	// default presentation size respecting aspect ratio
+	width: 960,
+	height: 700,
+	// content padding
+	margin: 0.04,
+	// smallest and largest possible scale
+	minScale: 0.2,
+	maxScale: 2.0,
 	// plugins
 	plugins: [Markdown, Highlight, Math.KaTeX, Notes],
 	// syntax highlight options
@@ -20,15 +28,28 @@ const options: Reveal.Options = {
 	// slide progress bar
 	progress: false,
 	// slide transition
-	transition: 'fade',
-	// slide numbers
-	hash: true,
+	transition: 'slide',
 	// bring your own layout
 	disableLayout: false,
 	// display mode used to show slides
 	display: 'grid',
+	// center slides on the screen
+	center: true,
+	// auto-animate duration
+	autoAnimateDuration: 1,
+	// auto-animate easing
+	autoAnimateEasing: 'ease',
 	// animate unmatched elements
 	autoAnimateUnmatched: true,
+
+	/*
+		Shows current slide number in the URL and
+		pushes the slide change to the browser history
+		for listening to the `hashchange` event used
+		to update the store values.
+	*/
+	hash: true,
+	history: true,
 }
 
 export default options
