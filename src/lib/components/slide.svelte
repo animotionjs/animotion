@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
-	let id = 0
+	let index = 0
 </script>
 
 <script lang="ts">
-	import { createEventDispatcher, getContext } from 'svelte'
-	import type { Writable } from 'svelte/store'
+	import { createEventDispatcher } from 'svelte'
+	import { store } from '@store'
 
 	export let animate = false
 	export let animateId = null
@@ -23,11 +23,11 @@
 		| 'concave'
 		| 'zoom' = null
 
-	const slideId = id++
+	const slideIndex = index++
 	const dispatch = createEventDispatcher()
-	const currentSlide = getContext<Writable<number>>('active')
 
-	$: $currentSlide === slideId ? dispatch('active') : dispatch('inactive')
+	$: entered = $store.currentSlideIndex === slideIndex
+	$: entered ? dispatch('entered') : dispatch('left')
 </script>
 
 <section
