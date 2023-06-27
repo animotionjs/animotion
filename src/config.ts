@@ -7,8 +7,8 @@ import { registerLanguages } from '@languages'
 
 const options: Reveal.Options = {
 	// default presentation size respecting aspect ratio
-	width: 960,
-	height: 700,
+	width: 1280,
+	height: 720,
 	// content padding
 	margin: 0.04,
 	// smallest and largest possible scale
@@ -32,7 +32,7 @@ const options: Reveal.Options = {
 	// bring your own layout
 	disableLayout: false,
 	// display mode used to show slides
-	display: 'grid',
+	display: 'block',
 	// center slides on the screen
 	center: true,
 	// auto-animate duration
