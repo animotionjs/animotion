@@ -6,7 +6,9 @@
 	import { createEventDispatcher } from 'svelte'
 	import { store } from '@store'
 
-	export let animate = false
+	export let animate = null
+	export let animateEasing = null
+	export let animateUnmatched = null
 	export let animateId = null
 	export let animateRestart = null
 	export let background = null
@@ -26,12 +28,16 @@
 	const slideIndex = index++
 	const dispatch = createEventDispatcher()
 
-	$: entered = $store.currentSlideIndex === slideIndex
-	$: entered ? dispatch('entered') : dispatch('left')
+	$: enter = $store.currentSlideIndex === slideIndex
+	$: enter ? dispatch('in') : dispatch('out')
+
+	delete $$restProps.css
 </script>
 
 <section
-	data-auto-animate={animate || null}
+	data-auto-animate={animate}
+	data-auto-animate-easing={animateEasing}
+	data-auto-animate-unmatched={animateUnmatched}
 	data-auto-animate-id={animateId}
 	data-auto-animate-restart={animateRestart}
 	data-background-color={background}
@@ -41,7 +47,8 @@
 	data-background-iframe={iframe}
 	data-background-interactive={interactive}
 	data-transition={transition}
-	{...$$props}
+	class={$$props.class || ''}
+	{...$$restProps}
 >
 	<slot />
 </section>

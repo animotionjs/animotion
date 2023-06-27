@@ -3,15 +3,15 @@
 
 	export let type: Element
 	export let src: string
-	export let autoplay = false
-	export let preload = false
+	export let autoplay = null
+	export let preload = null
 </script>
 
 <svelte:element
 	this={type}
 	data-src={src}
-	data-autoplay={autoplay || null}
-	data-prelod={preload || null}
+	data-autoplay={autoplay}
+	data-prelod={preload}
 	{...$$props}
 >
 	<slot />
