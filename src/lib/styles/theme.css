@@ -7,8 +7,7 @@
 	--r-main-font-size: 2.5rem;
 	--r-main-color: hsl(226 19% 98%);
 	--r-heading-font: 'Manrope';
-	/* --r-code-font: 'JetBrains Mono'; */
-	--r-code-font: 'MonoLisa';
+	--r-code-font: 'JetBrains Mono';
 }
 
 /* required for Reveal.js to work */
@@ -34,7 +33,6 @@ body {
 .reveal pre {
 	display: block;
 	position: relative;
-	width: 90%;
 	margin: var(--r-block-margin) auto;
 	font-family: var(--r-code-font);
 	font-size: 0.55em;

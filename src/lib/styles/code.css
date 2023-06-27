@@ -8,6 +8,7 @@
 
 .hljs-keyword,
 .hljs-selector-tag,
+.hljs-selector-class,
 .hljs-literal,
 .hljs-strong,
 .hljs-name,
@@ -42,6 +43,7 @@
 .hljs-addition,
 .hljs-variable,
 .hljs-template-variable,
+.hljs-attribute,
 .hljs-attr {
 	color: #add7ff;
 }
