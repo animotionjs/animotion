@@ -6,30 +6,42 @@
 	import '@styles/theme.css'
 	import '@styles/code.css'
 
-	import { store } from '@store'
+	import { navigation } from '@store'
 	import options from '@config'
 
 	onMount(() => {
 		const deck = new Reveal(options)
 
 		// keep track of current slide
-		deck.on('slidetransitionend', updateSlideStore)
+		deck.on('slidechanged', (event: CustomEvent) => {
+			// update navigation information
+			updateSlideStore(deck)
+		})
 
-		// we pass the language to the `<Code>` block
-		// and higlight code blocks after initialization
-		deck.initialize().then(() => highlightCodeBlocks(deck))
+		deck.initialize().then(() => {
+			// update navigation information
+			updateSlideStore(deck)
+
+			// we pass the language to the `<Code>` block
+			// and higlight code blocks after initialization
+			highlightCodeBlocks(deck)
+		})
 
 		// reload page after update to avoid HMR issues
 		reloadPageAfterUpdate()
 	})
 
-	function updateSlideStore(event: any) {
-		$store = {
-			hash: Number(window.location.hash.split('#/')[1]),
-			currentSlideIndex: event.indexh,
-			previousSlideIndex: event.indexh - 1,
-			nextSlideIndex: event.indexh + 1,
+	function updateSlideStore(deck: Reveal.Api) {
+		$navigation = {
+			hash: window.location.hash,
+			currentSlide: deck.getSlidePastCount(),
+			indices: deck.getIndices(),
+			availableRoutes: deck.availableRoutes(),
 		}
+	}
+
+	function updateHash() {
+		$navigation.hash = window.location.hash
 	}
 
 	function highlightCodeBlocks(deck: Reveal.Api) {
@@ -49,6 +61,8 @@
 		}
 	}
 </script>
+
+<svelte:window on:hashchange={updateHash} />
 
 <div class="reveal">
 	<div class="slides">

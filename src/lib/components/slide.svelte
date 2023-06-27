@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
-	import { store } from '@store'
+	import { navigation } from '@store'
 
 	export let animate = null
 	export let animateEasing = null
@@ -28,7 +28,7 @@
 	const slideIndex = index++
 	const dispatch = createEventDispatcher()
 
-	$: enter = $store.currentSlideIndex === slideIndex
+	$: enter = $navigation.currentSlide === slideIndex
 	$: enter ? dispatch('in') : dispatch('out')
 
 	delete $$restProps.css
