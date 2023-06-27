@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Code, Slide } from '@components'
+	import { Code, Slide } from '@deck'
 
 	let cx = 300
 	let cy = 300
