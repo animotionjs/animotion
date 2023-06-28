@@ -34,11 +34,11 @@
 {#if show}
 	<div
 		transition:fade
-		class="absolute top-[50%] right-[4%] -translate-y-[50%] rounded-2xl
-    z-20"
+		class="absolute right-[4%] top-[50%] z-20 -translate-y-[50%]
+    rounded-2xl"
 		style:background="hsl(226 19% 16%)"
 	>
-		<div class="w-[600px] h-[600px]">
+		<div class="h-[600px] w-[600px]">
 			<svg viewBox="0 0 600 600">
 				{#if showCircle}
 					<circle
@@ -86,7 +86,7 @@
 						font-size="40%"
 						fill="hsl(226 19% 90%)"
 					>
-						x: {$cx.toFixed(0)}, y: {$cy.toFixed(0)}
+						cos: {Math.cos(angle).toFixed(2)}, sin: {Math.sin(angle).toFixed(2)}
 					</text>
 				{/if}
 			</svg>
