@@ -7,7 +7,7 @@
 			"@deck": ["./src/lib/components/index.ts"],
 			"@languages": ["./src/lib/languages/index.ts"],
 			"@lib/*": ["./src/lib/*"],
-			"@store": ["./src/lib/store/index.ts"],
+			"@stores/*": ["./src/lib/stores/*"],
 			"@styles/*": ["./src/lib/styles/*"]
 		},
 		"target": "ESNext",

@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
-	import { navigation } from '@store'
+	import { navigation } from '@stores/navigation'
 
 	export let animate = null
 	export let animateEasing = null

@@ -6,7 +6,7 @@
 	import '@styles/theme.css'
 	import '@styles/code.css'
 
-	import { navigation } from '@store'
+	import { navigation } from '@stores/navigation'
 	import options from '@config'
 
 	onMount(() => {
@@ -14,12 +14,12 @@
 
 		// keep track of current slide
 		deck.on('slidechanged', (event: CustomEvent) => {
-			// update navigation information
+			// update navigation store
 			updateSlideStore(deck)
 		})
 
 		deck.initialize().then(() => {
-			// update navigation information
+			// update navigation store
 			updateSlideStore(deck)
 
 			// we pass the language to the `<Code>` block
