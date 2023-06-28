@@ -25,8 +25,8 @@
 		| 'concave'
 		| 'zoom' = null
 
-	const slideIndex = index++
 	const dispatch = createEventDispatcher()
+	const slideIndex = index++
 
 	$: enter = $navigation.currentSlide === slideIndex
 	$: enter ? dispatch('in') : dispatch('out')

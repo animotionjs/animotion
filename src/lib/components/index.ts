@@ -7,6 +7,7 @@ import Step from './step.svelte'
 import Stack from './stack.svelte'
 import FitText from './fit.svelte'
 import Stretch from './stretch.svelte'
+import Vertical from './vertical.svelte'
 
 export {
 	Presentation,
@@ -18,4 +19,5 @@ export {
 	Stack,
 	FitText,
 	Stretch,
+	Vertical,
 }
