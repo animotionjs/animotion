@@ -1,0 +1,227 @@
+@import '@fontsource/manrope';
+@import '@fontsource/jetbrains-mono';
+
+/* reset */
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	transition: color 0.3s ease;
+
+	&:hover {
+		text-decoration-line: underline;
+		text-decoration-style: wavy;
+		text-decoration-color: aqua;
+	}
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+button {
+	all: unset;
+	cursor: pointer;
+}
+
+code,
+kbd {
+	font-family: var(--font-mono);
+}
+
+/* custom media queries */
+
+@custom-media --sm (min-width: 480px);
+@custom-media --md (min-width: 768px);
+@custom-media --lg (min-width: 1024px);
+@custom-media --xl (min-width: 1440px);
+
+/* global */
+
+:root {
+	color-scheme: 'dark';
+
+	--font-sans: 'Manrope', sans-serif;
+	--font-mono: 'JetBrains Mono', monospace;
+	--bg: var(--bg-dark);
+	--text-1: var(--text-1-dark);
+	--text-2: var(--text-2-dark);
+	--surface-1: var(--surface-1-dark);
+}
+
+html {
+	/* easier to work with rems */
+	/* 62.5% of 16px browser font size is 10px */
+	font-size: 62.5%;
+
+	/* typography */
+	--font-size-1: 0.8rem;
+	--font-size-2: 1.6rem;
+	--font-size-3: 1.8rem;
+	--font-size-4: 2.4rem;
+	--font-size-5: 4.8rem;
+	--font-size-6: 9.6rem;
+
+	/* sizes */
+	--size-1: 0.8rem;
+	--size-2: 1.6rem;
+	--size-3: 2.4rem;
+	--size-4: 3.2rem;
+	--size-5: 4.8rem;
+	--size-6: 9.6rem;
+
+	/* colors */
+	--white-1: hsl(220 14% 98%);
+	--white-2: hsl(220 14% 84%);
+	--blue-1: hsl(220 14% 10%);
+	--blue-2: hsl(200 40% 14%);
+	--blue-3: hsl(220 14% 20%);
+
+	/* radius */
+	--radius-1: 8px;
+	--radius-2: 16px;
+
+	/* shadows */
+	--shadow-1: 1px 1px 10px hsl(220 14% 10% / 20%);
+
+	/* light */
+	--text-1-light: var(--white-1);
+	--text-2-light: var(--white-2);
+	--bg-light: var(--blue-1);
+	--surface-1-light: var(--white-1);
+
+	/* dark */
+	--text-1-dark: var(--white-1);
+	--text-2-dark: var(--white-2);
+	--bg-dark: var(--white-1);
+	--surface-1-dark: var(--blue-1);
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	padding-inline: var(--padding, var(--size-2));
+	font-family: var(--font-sans);
+	font-size: var(--font-size-3);
+	line-height: 1.6;
+	color: var(--text-1);
+	background-image: radial-gradient(var(--blue-2), var(--blue-1));
+	background-attachment: fixed;
+
+	@media (width > 1280px) {
+		--padding: 0rem;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		color-scheme: light;
+
+		--bg: var(--bg-light);
+		--text-1: var(--bg-light);
+		--surface-1: var(--surface-1-light);
+	}
+}
+
+[color-scheme='light'] {
+	color-scheme: light;
+
+	--bg: var(--bg-light);
+	--text-1: var(--bg-light);
+	--surface-1: var(--surface-1-light);
+}
+
+[color-scheme='dark'] {
+	color-scheme: dark;
+
+	--bg: var(--bg-dark);
+	--text-1: var(--bg-dark);
+	--surface-1: var(--surface-1-dark);
+}
+
+/* utils */
+
+.container {
+	max-width: 1280px;
+	margin-inline: auto;
+}
+
+.surface-1 {
+	color: var(--text-1);
+	background-color: var(--surface-1);
+}
+
+.surface-2 {
+	color: var(--text-2);
+	background-color: var(--surface-2);
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.flex {
+	display: flex;
+	gap: var(--gap, 0rem);
+}
+
+.flex-items-center {
+	display: flex;
+	align-items: center;
+}
+
+.gap {
+	display: flex;
+	gap: var(--gap, var(--size-1));
+}
+
+@media (width > 600px) {
+	.space-between {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.center {
+	display: grid;
+	place-content: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.text-center {
+	margin-inline: auto;
+	text-align: center;
+}
+
+.btn {
+	padding: var(--padding, var(--size-2));
+	background: hsl(220 14% 20%);
+	border-radius: var(--radius-1);
+	box-shadow: var(--shadow-1);
+}
