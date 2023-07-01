@@ -11,6 +11,20 @@
 	box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: none;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar);
+	border-radius: var(--radius-1);
+}
+
 a {
 	color: inherit;
 	text-decoration: none;
@@ -19,7 +33,7 @@ a {
 	&:hover {
 		text-decoration-line: underline;
 		text-decoration-style: wavy;
-		text-decoration-color: aqua;
+		text-decoration-color: var(--brand);
 	}
 }
 
@@ -49,13 +63,6 @@ kbd {
 	font-family: var(--font-mono);
 }
 
-/* custom media queries */
-
-@custom-media --sm (min-width: 480px);
-@custom-media --md (min-width: 768px);
-@custom-media --lg (min-width: 1024px);
-@custom-media --xl (min-width: 1440px);
-
 /* global */
 
 :root {
@@ -67,11 +74,14 @@ kbd {
 	--text-1: var(--text-1-dark);
 	--text-2: var(--text-2-dark);
 	--surface-1: var(--surface-1-dark);
+	--scrollbar: var(--scrollbar-dark);
 }
 
 html {
-	/* easier to work with rems */
-	/* 62.5% of 16px browser font size is 10px */
+	/*
+		62.5% of 16px browser font size is 10px
+		making it easier to work with rems
+	*/
 	font-size: 62.5%;
 
 	/* typography */
@@ -83,6 +93,7 @@ html {
 	--font-size-6: 9.6rem;
 
 	/* sizes */
+	--size-0: 0.4rem;
 	--size-1: 0.8rem;
 	--size-2: 1.6rem;
 	--size-3: 2.4rem;
@@ -91,11 +102,14 @@ html {
 	--size-6: 9.6rem;
 
 	/* colors */
+	--brand: hsl(180 100% 50%);
 	--white-1: hsl(220 14% 98%);
 	--white-2: hsl(220 14% 84%);
+	--white-3: hsl(220 14% 60%);
 	--blue-1: hsl(220 14% 10%);
 	--blue-2: hsl(200 40% 14%);
 	--blue-3: hsl(220 14% 20%);
+	--blue-4: hsl(220 14% 28%);
 
 	/* radius */
 	--radius-1: 8px;
@@ -105,33 +119,37 @@ html {
 	--shadow-1: 1px 1px 10px hsl(220 14% 10% / 20%);
 
 	/* light */
-	--text-1-light: var(--white-1);
-	--text-2-light: var(--white-2);
-	--bg-light: var(--blue-1);
+	--bg-light: radial-gradient(var(--white-1), var(--white-2));
+	--text-1-light: var(--blue-1);
+	--text-2-light: var(--blue-2);
 	--surface-1-light: var(--white-1);
+	--scrollbar-light: var(--brand);
 
 	/* dark */
+	--bg-dark: radial-gradient(var(--blue-2), var(--blue-1));
 	--text-1-dark: var(--white-1);
 	--text-2-dark: var(--white-2);
-	--bg-dark: var(--white-1);
 	--surface-1-dark: var(--blue-1);
+	--scrollbar-dark: var(--brand);
 }
 
 html,
 body {
 	height: 100%;
+	scrollbar-color: var(--brand) transparent;
 }
 
 body {
-	padding-inline: var(--padding, var(--size-2));
+	padding-inline: var(--padding, var(--size-3));
 	font-family: var(--font-sans);
 	font-size: var(--font-size-3);
 	line-height: 1.6;
 	color: var(--text-1);
-	background-image: radial-gradient(var(--blue-2), var(--blue-1));
+	background-image: var(--bg);
 	background-attachment: fixed;
+	transition: color 0.3s ease;
 
-	@media (width > 1280px) {
+	@media (width > 1440px) {
 		--padding: 0rem;
 	}
 }
@@ -141,8 +159,10 @@ body {
 		color-scheme: light;
 
 		--bg: var(--bg-light);
-		--text-1: var(--bg-light);
+		--text-1: var(--blue-1);
+		--text-2: var(--blue-2);
 		--surface-1: var(--surface-1-light);
+		--scrollbar: var(--scrollbar-light);
 	}
 }
 
@@ -150,16 +170,20 @@ body {
 	color-scheme: light;
 
 	--bg: var(--bg-light);
-	--text-1: var(--bg-light);
+	--text-1: var(--blue-1);
+	--text-2: var(--blue-2);
 	--surface-1: var(--surface-1-light);
+	--scrollbar: var(--scrollbar-light);
 }
 
 [color-scheme='dark'] {
 	color-scheme: dark;
 
 	--bg: var(--bg-dark);
-	--text-1: var(--bg-dark);
+	--text-1: var(--white-1);
+	--text-2: var(--white-2);
 	--surface-1: var(--surface-1-dark);
+	--scrollbar: var(--scrollbar-dark);
 }
 
 /* utils */
@@ -193,19 +217,20 @@ body {
 	align-items: center;
 }
 
-.gap {
+.space-x * + * {
+	margin-left: var(--margin, var(--size-1));
+}
+
+.space-y * + * {
+	margin-top: var(--margin, var(--size-1));
+}
+
+.space-between {
 	display: flex;
-	gap: var(--gap, var(--size-1));
+	justify-content: space-between;
 }
 
-@media (width > 600px) {
-	.space-between {
-		display: flex;
-		justify-content: space-between;
-	}
-}
-
-.center {
+.place-content-center {
 	display: grid;
 	place-content: center;
 }
@@ -214,7 +239,7 @@ body {
 	font-weight: bold;
 }
 
-.text-center {
+.margin-text-center {
 	margin-inline: auto;
 	text-align: center;
 }
