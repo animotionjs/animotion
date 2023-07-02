@@ -149,10 +149,29 @@ body {
 	background-attachment: fixed;
 	transition: color 0.3s ease;
 
-	@media (width > 1440px) {
+	@media (width > 1280px) {
 		--padding: 0rem;
 	}
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-transform: capitalize;
+}
+
+h1 {
+	font-size: var(--size-5);
+}
+
+p {
+	color: var(--text-2);
+}
+
+/* theme */
 
 @media (prefers-color-scheme: light) {
 	:root {
@@ -217,12 +236,12 @@ body {
 	align-items: center;
 }
 
-.space-x * + * {
-	margin-left: var(--margin, var(--size-1));
+.space-x > * + * {
+	margin-inline-start: var(--margin, var(--size-1));
 }
 
-.space-y * + * {
-	margin-top: var(--margin, var(--size-1));
+.space-y > * + * {
+	margin-block-start: var(--margin, var(--size-1));
 }
 
 .space-between {
@@ -245,6 +264,8 @@ body {
 }
 
 .btn {
+	display: inline-block;
+	margin-block-end: var(--size-4);
 	padding: var(--padding, var(--size-2));
 	background: hsl(220 14% 20%);
 	border-radius: var(--radius-1);

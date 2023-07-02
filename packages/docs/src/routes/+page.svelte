@@ -15,8 +15,7 @@
 		on:finish={() => videoEl.play()}
 		class="subheading margin-text-center"
 	>
-		<a href="{base}/docs/getting-started">Visualize ideas</a> with code using web
-		technologies.
+		<a href="{base}/docs/getting-started">Visualize ideas</a> with code using web technologies.
 	</p>
 
 	<div class="video">

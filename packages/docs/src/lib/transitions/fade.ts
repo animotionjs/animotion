@@ -6,10 +6,7 @@ type Fade = Action<
 	{ 'on:finish': (e: CustomEvent) => void }
 >
 
-export const fade: Fade = (
-	element: HTMLElement,
-	{ duration = 1, delay = 0 } = {}
-) => {
+export const fade: Fade = (element: HTMLElement, { duration = 1, delay = 0 } = {}) => {
 	const keyframes: PropertyIndexedKeyframes = {
 		opacity: [0, 1]
 	}
