@@ -30,8 +30,8 @@
 		"vite": "^4.3.6"
 	},
 	"dependencies": {
-		"@fontsource/jetbrains-mono": "^5.0.3",
-		"@fontsource/manrope": "^5.0.3",
+		"@fontsource-variable/jetbrains-mono": "^5.0.4",
+		"@fontsource-variable/manrope": "^5.0.3",
 		"@melt-ui/svelte": "^0.15.0",
 		"@types/prismjs": "^1.26.0",
 		"lucide-svelte": "^0.257.0",

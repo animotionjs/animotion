@@ -10,10 +10,10 @@ importers:
 
   packages/docs:
     dependencies:
-      '@fontsource/jetbrains-mono':
-        specifier: ^5.0.3
-        version: 5.0.3
-      '@fontsource/manrope':
+      '@fontsource-variable/jetbrains-mono':
+        specifier: ^5.0.4
+        version: 5.0.4
+      '@fontsource-variable/manrope':
         specifier: ^5.0.3
         version: 5.0.3
       '@melt-ui/svelte':
@@ -733,6 +733,14 @@ packages:
     resolution: {integrity: sha512-nB/68NyaQlcdY22L+Fgd1HERQ7UGv7XFN+tPxwrEfQL4nKtAP/jIZnZtpUlXbtV+VEGHh6W/63Gy2C5biWI3sA==}
     dependencies:
       '@floating-ui/core': 1.3.1
+    dev: false
+
+  /@fontsource-variable/jetbrains-mono@5.0.4:
+    resolution: {integrity: sha512-51HqZ089lhPxrmrAMOuyl0EMfWazelFrcEs29fSUwy5DBuUp3uDGY/uiAEyyiSMX1dJIVTS9uq7kSytkq1tW8Q==}
+    dev: false
+
+  /@fontsource-variable/manrope@5.0.3:
+    resolution: {integrity: sha512-8oUbB4cp8JACdqEPI3MtEkF1U0ZqeI6+Bpvxk8CDBqzKNEEOWCaa9AMUvlqxGI5ID6InmpMle0gw4/jZ71ZVOA==}
     dev: false
 
   /@fontsource/jetbrains-mono@5.0.3:

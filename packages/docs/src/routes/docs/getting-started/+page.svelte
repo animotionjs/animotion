@@ -6,8 +6,9 @@
 <h1>Getting started</h1>
 
 <p>
-	The project uses <a href="https://pnpm.io/">pnpm</a> as the package manager — if you don't have pnpm
-	installed the easiest method is using npm.
+	The project uses <a href="https://pnpm.io/">pnpm</a> as the package manager — if you don't have
+	pnpm installed the easiest method to install it is using npm assuming you have
+	<a href="https://nodejs.org/en">Node.js</a> installed.
 </p>
 
 <Code lang="text">
@@ -16,9 +17,9 @@
 	`}
 </Code>
 
-<h3>
-	1. Create a new <b>Keynote</b> project
-</h3>
+<p>
+	Create a new <b>Keynote</b> project.
+</p>
 
 <Code lang="text">
 	{`
@@ -26,7 +27,7 @@
 	`}
 </Code>
 
-<h3>2. Install the dependencies</h3>
+<p>Install the dependencies.</p>
 
 <Code lang="text">
 	{`
@@ -34,7 +35,7 @@
 	`}
 </Code>
 
-<h3>3. Start the development server</h3>
+<p>Start the development server.</p>
 
 <Code lang="text">
 	{`
@@ -46,6 +47,7 @@
 	Visit <a href="http://localhost:5173/">http://localhost:5173/</a>.
 </p>
 
-<p>That's it! 🥳</p>
-
-<a class="btn" href="{base}/docs/creating-slides">Creating Slides</a>
+<nav class="section space-between">
+	<a class="previous" href="{base}/docs">Introduction</a>
+	<a class="next" href="{base}/docs/creating-slides">Creating slides</a>
+</nav>

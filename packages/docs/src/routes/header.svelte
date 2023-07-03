@@ -100,8 +100,17 @@
 		position: sticky;
 		top: 0px;
 		padding-block: var(--size-3);
-		backdrop-filter: saturate(50%) blur(8px);
+		backdrop-filter: blur(8px);
 		z-index: 10;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+
+			:hover {
+				color: var(--brand);
+			}
+		}
 	}
 
 	.icon {

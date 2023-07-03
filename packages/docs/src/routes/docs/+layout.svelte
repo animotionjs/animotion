@@ -30,31 +30,42 @@
 
 <style lang="postcss">
 	.container {
-		margin-top: var(--size-5);
+		margin-block-start: var(--size-5);
 
 		@media (width > 600px) {
 			display: grid;
-			grid-template-columns: 280px 1fr;
+			grid-template-columns: 200px 1fr;
 		}
 	}
 
 	.sections {
 		a {
 			display: block;
+			width: max-content;
+			color: var(--text-1);
+			font-weight: 600;
+			text-decoration: none;
 			text-transform: capitalize;
+
+			&:hover,
+			&.active {
+				color: var(--brand);
+			}
+		}
+
+		@media (width > 600px) {
+			margin-block: var(--size-2);
+			border-right: 1px solid var(--border);
 		}
 	}
 
-	.active {
-		color: var(--brand);
-	}
-
 	.content {
-		margin-top: var(--size-5);
+		margin-block-start: var(--size-5);
 
 		@media (width > 600px) {
 			max-width: 60ch;
-			margin-top: 0rem;
+			margin-block-start: 0rem;
+			margin-inline-start: var(--size-5);
 		}
 	}
 </style>

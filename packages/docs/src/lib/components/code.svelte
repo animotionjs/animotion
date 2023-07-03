@@ -64,6 +64,7 @@
 
 	.copy button {
 		padding: var(--size-1);
+		color: var(--white-2);
 		transition: scale 0.3s ease;
 	}
 

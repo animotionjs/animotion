@@ -27,8 +27,7 @@
 	.heading {
 		max-width: 400px;
 		font-size: var(--font-size-4);
-		line-height: 1.4;
-		letter-spacing: 1.4px;
+		line-height: 1.2;
 		margin-block-start: var(--size-6);
 
 		@media (width > 800px) {
@@ -43,32 +42,28 @@
 		font-size: var(--font-size-3);
 		color: var(--text-2);
 
-		@media (width > 800px) {
-			font-size: var(--font-size-4);
-		}
-	}
-
-	.subheading {
 		a {
+			color: var(--text-2);
 			font-weight: 600;
-			text-decoration-line: underline;
-			text-decoration-style: wavy;
+			text-decoration: underline wavy;
 			text-decoration-color: var(--brand);
 
 			&:hover {
 				color: var(--brand);
 			}
 		}
+
+		@media (width > 800px) {
+			font-size: var(--font-size-4);
+		}
 	}
 
 	.video {
 		max-width: 800px;
-		perspective: 1000px;
 
 		video {
 			aspect-ratio: 16/9;
 			object-fit: cover;
-			transform: rotateX(40deg) translateY(-20%);
 			border-radius: var(--radius-1);
 			box-shadow: var(--shadow-1);
 		}
