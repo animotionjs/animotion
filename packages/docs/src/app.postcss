@@ -177,10 +177,14 @@ p {
 	display: inline-block;
 	margin-block: var(--size-5);
 	color: var(--text-1);
-	font-size: var(--font-size-4);
+	font-size: var(--font-size-2);
 	font-weight: 600;
 	text-transform: capitalize;
 	text-decoration: underline;
+
+	@media (width > 680px) {
+		font-size: var(--font-size-4);
+	}
 
 	&:hover {
 		color: var(--brand);

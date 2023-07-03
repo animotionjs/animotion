@@ -60,12 +60,14 @@
 
 	.video {
 		max-width: 800px;
+		z-index: -10;
 
 		video {
 			aspect-ratio: 16/9;
 			object-fit: cover;
+			border: 1px solid var(--border);
 			border-radius: var(--radius-1);
-			box-shadow: var(--shadow-1);
+			box-shadow: 0px 0px 200px hsl(180 40% 40% / 20%);
 		}
 	}
 </style>
