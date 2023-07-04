@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Prism from 'prismjs'
-	import './theme.postcss'
-	import { ClipboardCopyIcon, ClipboardIcon, SaveIcon } from 'lucide-svelte'
+	import { ClipboardIcon } from 'lucide-svelte'
 
 	export let lang: string
 	let code: string
@@ -18,7 +17,7 @@
 			.map((line) => line.replace(twoTabs, ''))
 			.map(
 				(line, i) =>
-					`<div data-line="${i + 1}"><span class="code">${highlight(line, lang)}</span></div>`
+					`<div data-line="${i + 1}"><span class="code">${highlight(line, lang)}\n</span></div>`
 			)
 			.join('')
 	}
@@ -38,17 +37,15 @@
 	<slot />
 </div>
 
-{#if highlightedCode}
-	<div class="code-block">
-		<div class="copy">
-			<button on:click={copyToClipboard} aria-label="Copy code to clipboard">
-				<ClipboardIcon size="20" aria-hidden="true" />
-			</button>
-		</div>
-
-		<pre class="language-{lang}"><code class="language-{lang}">{@html highlightedCode}</code></pre>
+<div class="code-block">
+	<div class="copy">
+		<button on:click={copyToClipboard} aria-label="Copy code to clipboard">
+			<ClipboardIcon size="20" aria-hidden="true" />
+		</button>
 	</div>
-{/if}
+
+	<pre class="language-{lang}"><code class="language-{lang}">{@html highlightedCode}</code></pre>
+</div>
 
 <style>
 	.code-block {

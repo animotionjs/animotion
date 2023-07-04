@@ -66,7 +66,7 @@
 		margin-block-start: var(--size-5);
 
 		@media (width > 600px) {
-			max-width: 60ch;
+			max-width: 70ch;
 			margin-block-start: 0rem;
 			margin-inline-start: var(--size-5);
 		}

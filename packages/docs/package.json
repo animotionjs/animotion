@@ -15,6 +15,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.20.4",
+		"@types/reveal.js": "^4.4.2",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"eslint": "^8.28.0",
@@ -35,6 +36,7 @@
 		"@melt-ui/svelte": "^0.15.0",
 		"@types/prismjs": "^1.26.0",
 		"lucide-svelte": "^0.257.0",
-		"prismjs": "^1.29.0"
+		"prismjs": "^1.29.0",
+		"reveal.js": "^4.5.0"
 	}
 }
