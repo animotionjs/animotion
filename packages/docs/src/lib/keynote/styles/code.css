@@ -2,7 +2,7 @@
 	display: block;
 	overflow-x: auto;
 	padding: 0.5em;
-	color: #e4f0fb;
+	color: hsl(209 74% 94%);
 	background-color: var(--r-background-color);
 }
 
@@ -13,21 +13,21 @@
 .hljs-strong,
 .hljs-name,
 .hljs-string {
-	color: #5de4c7;
+	color: hsl(167 71% 63%);
 }
 
 .hljs-code {
-	color: #66d9ef;
+	color: hsl(190 81% 67%);
 }
 
 .hljs-class .hljs-title {
-	color: #add7ff;
+	color: hsl(209 100% 84%);
 }
 
 .hljs-symbol,
 .hljs-regexp,
 .hljs-link {
-	color: #e4f0fb;
+	color: hsl(209 74% 94%);
 }
 
 .hljs-bullet,
@@ -45,12 +45,12 @@
 .hljs-template-variable,
 .hljs-attribute,
 .hljs-attr {
-	color: #add7ff;
+	color: hsl(209 100% 84%);
 }
 
 .hljs-comment,
 .hljs-quote,
 .hljs-deletion,
 .hljs-meta {
-	color: #a6accd;
+	color: hsl(231 28% 73%);
 }
