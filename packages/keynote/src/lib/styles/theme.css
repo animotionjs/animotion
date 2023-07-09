@@ -15,10 +15,6 @@
 	display: contents;
 }
 
-body {
-	cursor: none;
-}
-
 .reveal-viewport {
 	background-color: var(--r-background-color);
 }

@@ -42,7 +42,7 @@
 		font-size: var(--font-size-3);
 		color: var(--text-2);
 
-		a {
+		& a {
 			color: var(--text-2);
 			font-weight: 600;
 			text-decoration: underline wavy;
@@ -62,7 +62,7 @@
 		max-width: 800px;
 		z-index: -10;
 
-		video {
+		& video {
 			aspect-ratio: 16/9;
 			object-fit: cover;
 			border: 1px solid var(--border);

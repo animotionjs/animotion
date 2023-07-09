@@ -35,7 +35,7 @@
 
 	.sections {
 		& .section {
-			color: var(--text-2);
+			color: var(--text-3);
 			text-transform: capitalize;
 
 			&:not(:first-of-type) {

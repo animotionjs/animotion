@@ -6,9 +6,9 @@ import Notes from 'reveal.js/plugin/notes/notes'
 import { registerLanguages } from '@languages'
 
 const options: Reveal.Options = {
-	// default presentation size respecting aspect ratio
-	// width: 1280,
-	// height: 720,
+	// presentation size respecting aspect ratio
+	width: 960,
+	height: 700,
 	// content padding
 	margin: 0.04,
 	// smallest and largest possible scale
@@ -41,6 +41,10 @@ const options: Reveal.Options = {
 	autoAnimateEasing: 'ease',
 	// animate unmatched elements
 	autoAnimateUnmatched: true,
+	// hide cursor
+	hideInactiveCursor: true,
+	// time before cursor is hidden (ms)
+	hideCursorTime: 5000,
 
 	/*
 		Shows current slide number in the URL and

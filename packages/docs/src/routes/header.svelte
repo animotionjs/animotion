@@ -103,11 +103,11 @@
 		backdrop-filter: blur(8px);
 		z-index: 10;
 
-		a {
+		& a {
 			color: inherit;
 			text-decoration: none;
 
-			:hover {
+			&:hover {
 				color: var(--brand);
 			}
 		}
