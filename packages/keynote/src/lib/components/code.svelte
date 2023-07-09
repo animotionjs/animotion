@@ -7,14 +7,16 @@
 	export let lines: Lines = true
 	export let offset: Offset = null
 	export let lang: Language = null
+
+	delete $$restProps.class
 </script>
 
-<pre data-id={id} {...$$props}>
+<pre data-id={id} {...$$restProps}>
   <code
 		data-trim
 		data-line-numbers={lines || null}
 		data-ln-start-from={offset}
-		class="language-{lang}">
+		class="language-{lang} {$$props.class || ''}">
 <slot />
   </code>
 </pre>

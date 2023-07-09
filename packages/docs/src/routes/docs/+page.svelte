@@ -1,7 +1,3 @@
-<script lang="ts">
-	import Links from '$lib/navigation/links.svelte'
-</script>
-
 <h1>Introduction</h1>
 
 <h2>What is Keynote?</h2>
@@ -26,5 +22,3 @@
 	If you don't love Tailwind CSS you can write regular CSS but give it a chance because of the speed
 	it gives you when making presentations.
 </p>
-
-<Links />

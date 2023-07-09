@@ -5,7 +5,6 @@
 
 	import { Keynote, Slide } from '$lib/keynote/index'
 	import Code from '$lib/components/code.svelte'
-	import Links from '$lib/navigation/links.svelte'
 
 	let progress = tweened(0, { duration: 2000, easing: quadInOut })
 
@@ -141,7 +140,3 @@
 	<code>progress.svelte</code>
 	but it's useful if you want to use <a href="{base}/docs/events">events</a> to update state.
 </p>
-
-<Links>
-	<!-- leave empty to avoid parsing errors -->
-</Links>

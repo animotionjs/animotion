@@ -2,6 +2,7 @@
 	import { page } from '$app/stores'
 	import { base } from '$app/paths'
 	import { sections } from '$lib/navigation/navigation'
+	import Links from '$lib/navigation/links.svelte'
 </script>
 
 <div class="container">
@@ -18,6 +19,7 @@
 
 	<main class="content space-y" style:--margin="var(--size-4)">
 		<slot />
+		<Links />
 	</main>
 </div>
 

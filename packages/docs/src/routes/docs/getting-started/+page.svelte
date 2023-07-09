@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Code from '$lib/components/code.svelte'
-	import Links from '$lib/navigation/links.svelte'
 </script>
 
 <h1>Getting started</h1>
@@ -46,5 +45,3 @@
 <p>
 	Visit <a href="http://localhost:5173/">http://localhost:5173/</a>.
 </p>
-
-<Links />

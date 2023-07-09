@@ -3,8 +3,8 @@
 	import { base } from '$app/paths'
 	import { getNavigation } from './navigation'
 
-	const path = $page.route.id
-	const { previous, next } = getNavigation(path)
+	$: path = $page.route.id
+	$: ({ previous, next } = getNavigation(path))
 </script>
 
 {#if path}
@@ -12,6 +12,7 @@
 		{#if previous}
 			<a class="previous" href="{base}{previous.path}">{previous.title}</a>
 		{/if}
+
 		{#if next}
 			<a class="next" href="{base}{next.path}">{next.title}</a>
 		{/if}
