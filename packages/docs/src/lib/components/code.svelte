@@ -52,20 +52,24 @@
 		position: relative;
 	}
 
-	.copy {
+	/* .code-block code {
+		white-space: pre-wrap;
+	} */
+
+	.code-block .copy {
 		position: absolute;
 		top: 8px;
 		right: 8px;
 		z-index: 10;
 	}
 
-	.copy button {
+	.code-block .copy button {
 		padding: var(--size-1);
 		color: var(--white-2);
 		transition: scale 0.3s ease;
 	}
 
-	.copy button:active {
+	.code-block .copy button:active {
 		scale: 0.8;
 	}
 </style>

@@ -8,6 +8,12 @@
 	--r-main-color: hsl(226 19% 98%);
 	--r-heading-font: 'Manrope';
 	--r-code-font: 'JetBrains Mono Variable';
+	--r-link-color: hsl(180 100% 50%);
+}
+
+/* required for Reveal.js to work */
+#app {
+	display: contents;
 }
 
 .reveal-viewport {
@@ -24,12 +30,14 @@
 .reveal pre {
 	display: block;
 	position: relative;
-	margin: var(--r-block-margin) auto;
+	margin-inline: auto;
 	font-family: var(--r-code-font);
 	font-size: 0.55em;
 	line-height: 1.6em;
 	text-align: left;
 	word-wrap: break-word;
+
+	outline: 1px solid aqua;
 }
 
 .reveal code {
@@ -44,7 +52,6 @@
 }
 
 .reveal pre code {
-	max-height: 400px;
 	display: block;
 	padding: 5px;
 	overflow: auto;
@@ -110,4 +117,12 @@
 
 .reveal small * {
 	vertical-align: top;
+}
+
+.reveal .controls {
+	color: var(--r-link-color);
+}
+
+.reveal .progress {
+	color: var(--r-link-color);
 }

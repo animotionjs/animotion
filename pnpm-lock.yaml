@@ -65,6 +65,9 @@ importers:
       prettier-plugin-svelte:
         specifier: ^2.10.1
         version: 2.10.1(prettier@2.8.8)(svelte@4.0.1)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.3.0
+        version: 0.3.0(prettier-plugin-svelte@2.10.1)(prettier@2.8.8)
       svelte:
         specifier: ^4.0.0
         version: 4.0.1
@@ -2662,7 +2665,7 @@ packages:
         optional: true
     dependencies:
       prettier: 2.8.8
-      prettier-plugin-svelte: 2.10.1(prettier@2.8.8)(svelte@3.59.2)
+      prettier-plugin-svelte: 2.10.1(prettier@2.8.8)(svelte@4.0.1)
     dev: true
 
   /prettier@2.8.8:

@@ -52,7 +52,6 @@
 }
 
 .reveal pre code {
-	/* max-height: 400px; */
 	display: block;
 	padding: 5px;
 	overflow: auto;
