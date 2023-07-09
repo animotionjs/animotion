@@ -83,15 +83,12 @@ importers:
 
   packages/keynote:
     dependencies:
-      '@fontsource/jetbrains-mono':
+      '@fontsource-variable/jetbrains-mono':
+        specifier: ^5.0.3
+        version: 5.0.4
+      '@fontsource-variable/manrope':
         specifier: ^5.0.3
         version: 5.0.3
-      '@fontsource/manrope':
-        specifier: ^5.0.3
-        version: 5.0.3
-      '@neoconfetti/svelte':
-        specifier: ^1.0.0
-        version: 1.0.0
       reveal.js:
         specifier: ^4.5.0
         version: 4.5.0
@@ -749,14 +746,6 @@ packages:
     resolution: {integrity: sha512-8oUbB4cp8JACdqEPI3MtEkF1U0ZqeI6+Bpvxk8CDBqzKNEEOWCaa9AMUvlqxGI5ID6InmpMle0gw4/jZ71ZVOA==}
     dev: false
 
-  /@fontsource/jetbrains-mono@5.0.3:
-    resolution: {integrity: sha512-0zbVAm0dVaBo7x9Q4ceX4VWe5VSM1Jaonb85bC+LR7fTpPeOpQs1nPDSdR55XMGSghl7ElsL12g8AaJKwXoutw==}
-    dev: false
-
-  /@fontsource/manrope@5.0.3:
-    resolution: {integrity: sha512-MlRhrzpIEcgAB0MFdlQ/LVD5C4XB53Pq13Wxxb3inyEAPG+gSBoHW1NKGOWwOQs22FLlengtbOkmL5br2/YASw==}
-    dev: false
-
   /@humanwhocodes/config-array@0.11.10:
     resolution: {integrity: sha512-KVVjQmNUepDVGXNuoRRdmmEjruj0KfiGSbS8LVc12LMsWDQzRXJ0qdhN8L8uUigKpfEHRhlaQFY0ib1tnUbNeQ==}
     engines: {node: '>=10.10.0'}
@@ -815,10 +804,6 @@ packages:
       focus-trap: 7.4.3
       nanoid: 4.0.2
       svelte: 4.0.1
-    dev: false
-
-  /@neoconfetti/svelte@1.0.0:
-    resolution: {integrity: sha512-SmksyaJAdSlMa9cTidVSIqYo1qti+WTsviNDwgjNVm+KQ3DRP2Df9umDIzC4vCcpEYY+chQe0i2IKnLw03AT8Q==}
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:

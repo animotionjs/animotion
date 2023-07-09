@@ -1,13 +1,13 @@
-@import '@fontsource/manrope';
-@import '@fontsource/jetbrains-mono';
+@import '@fontsource-variable/manrope';
+@import '@fontsource-variable/jetbrains-mono';
 
 :root {
 	--r-background-color: hsl(226 19% 13%);
-	--r-main-font: 'Manrope';
-	--r-main-font-size: 2.5rem;
+	--r-main-font: 'Manrope Variable';
+	--r-main-font-size: 42px;
 	--r-main-color: hsl(226 19% 98%);
 	--r-heading-font: 'Manrope';
-	--r-code-font: 'JetBrains Mono';
+	--r-code-font: 'JetBrains Mono Variable';
 }
 
 /* required for Reveal.js to work */
@@ -39,6 +39,8 @@ body {
 	line-height: 1.6em;
 	text-align: left;
 	word-wrap: break-word;
+
+	outline: 1px solid aqua;
 }
 
 .reveal code {
@@ -53,7 +55,7 @@ body {
 }
 
 .reveal pre code {
-	max-height: 400px;
+	/* max-height: 400px; */
 	display: block;
 	padding: 5px;
 	overflow: auto;
