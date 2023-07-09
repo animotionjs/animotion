@@ -9,7 +9,7 @@
 		FitText,
 		Stretch,
 		Vertical,
-	} from '@deck'
+	} from '@components'
 </script>
 
 <Presentation>

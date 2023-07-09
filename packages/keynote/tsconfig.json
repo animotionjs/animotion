@@ -4,7 +4,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@config": ["./src/config.ts"],
-			"@deck": ["./src/lib/components/index.ts"],
+			"@components": ["./src/lib/components/index.ts"],
 			"@languages": ["./src/lib/languages/index.ts"],
 			"@lib/*": ["./src/lib/*"],
 			"@stores/*": ["./src/lib/stores/*"],
