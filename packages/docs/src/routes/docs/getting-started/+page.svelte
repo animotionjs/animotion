@@ -22,7 +22,7 @@
 
 <Code lang="text">
 	{`
-    pnpm create @magic/keynote
+    pnpm create keynote
 	`}
 </Code>
 

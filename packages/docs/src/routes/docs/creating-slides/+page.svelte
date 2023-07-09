@@ -6,17 +6,21 @@
 	import { Keynote, Slide } from '$lib/keynote/index'
 	import Code from '$lib/components/code.svelte'
 
-	let progress = tweened(0, { duration: 2000, easing: quadInOut })
+	let progress = tweened(0, { duration: 1500, easing: quadInOut })
+	let done = false
 
 	progress.subscribe((value) => {
-		if (value === 1000) {
+		if (value === 10_000) {
+			done = true
+
 			setTimeout(() => {
 				progress.set(0, { duration: 0 })
-			}, 1000)
+			}, 2000)
 		}
 
 		if (value === 0) {
-			setTimeout(() => progress.set(1000), 1000)
+			done = false
+			setTimeout(() => progress.set(10_000), 1000)
 		}
 	})
 </script>
@@ -99,8 +103,11 @@
 
 <Keynote>
 	<Slide>
-		<span style="font-size: 200px; font-weight: 100; margin-top: 2rem;">
-			{$progress.toFixed(0)}
+		<span class="mt-8 text-[100px] font-black">
+			{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
+			<span>
+				{#if done}🎉{/if}
+			</span>
 		</span>
 	</Slide>
 </Keynote>
@@ -112,11 +119,11 @@
 			import { tweened } from 'svelte/motion'
 
 			let progress = tweened(0, { duration: 2000 })
-			$progress = 1000
+			$progress = 10_000
 		</\script>
 
 		<Slide>
-			<span>{$progress.toFixed(0)}</span>
+			{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
 		</Slide>
   `}
 </Code>

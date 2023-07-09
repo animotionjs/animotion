@@ -71,6 +71,9 @@ importers:
       svelte-check:
         specifier: ^3.4.3
         version: 3.4.4(postcss@8.4.24)(svelte@4.0.1)
+      tailwindcss:
+        specifier: ^3.3.1
+        version: 3.3.2
       tslib:
         specifier: ^2.4.1
         version: 2.6.0
