@@ -8,6 +8,7 @@
 	--r-main-color: hsl(226 19% 98%);
 	--r-heading-font: 'Manrope';
 	--r-code-font: 'JetBrains Mono Variable';
+	--r-link-color: hsl(180 100% 50%);
 }
 
 /* required for Reveal.js to work */
@@ -29,7 +30,7 @@
 .reveal pre {
 	display: block;
 	position: relative;
-	margin: var(--r-block-margin) auto;
+	margin-inline: auto;
 	font-family: var(--r-code-font);
 	font-size: 0.55em;
 	line-height: 1.6em;
@@ -117,4 +118,12 @@
 
 .reveal small * {
 	vertical-align: top;
+}
+
+.reveal .controls {
+	color: var(--r-link-color);
+}
+
+.reveal .progress {
+	color: var(--r-link-color);
 }

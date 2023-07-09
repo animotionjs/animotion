@@ -24,9 +24,9 @@ const options: Reveal.Options = {
 		highlightOnLoad: false,
 	},
 	// slide controls
-	controls: false,
+	controls: true,
 	// slide progress bar
-	progress: false,
+	progress: true,
 	// slide transition
 	transition: 'slide',
 	// bring your own layout
