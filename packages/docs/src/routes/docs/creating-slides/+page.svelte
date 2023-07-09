@@ -2,8 +2,10 @@
 	import { tweened } from 'svelte/motion'
 	import { quadInOut } from 'svelte/easing'
 	import { base } from '$app/paths'
+
 	import { Keynote, Slide } from '$lib/keynote/index'
 	import Code from '$lib/components/code.svelte'
+	import Links from '$lib/navigation/links.svelte'
 
 	let progress = tweened(0, { duration: 2000, easing: quadInOut })
 
@@ -140,7 +142,6 @@
 	but it's useful if you want to use <a href="{base}/docs/events">events</a> to update state.
 </p>
 
-<nav class="section space-between">
-	<a class="previous" href="{base}/docs/getting-started">Getting started</a>
-	<a class="next" href="{base}/docs/auto-animate">Auto-animate</a>
-</nav>
+<Links>
+	<!-- leave empty to avoid parsing errors -->
+</Links>

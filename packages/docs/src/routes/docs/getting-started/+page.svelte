@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { base } from '$app/paths'
 	import Code from '$lib/components/code.svelte'
+	import Links from '$lib/navigation/links.svelte'
 </script>
 
 <h1>Getting started</h1>
@@ -47,7 +47,4 @@
 	Visit <a href="http://localhost:5173/">http://localhost:5173/</a>.
 </p>
 
-<nav class="section space-between">
-	<a class="previous" href="{base}/docs">Introduction</a>
-	<a class="next" href="{base}/docs/creating-slides">Creating slides</a>
-</nav>
+<Links />

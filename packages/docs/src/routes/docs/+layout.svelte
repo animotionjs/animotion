@@ -1,28 +1,18 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import { base } from '$app/paths'
-
-	const sections = [
-		{ title: 'Introduction', path: '/docs' },
-		{ title: 'Getting started', path: '/docs/getting-started' },
-		{ title: 'Creating slides', path: '/docs/creating-slides' },
-		{ title: 'Styles', path: '/docs/styles' },
-		{ title: 'Auto-animate', path: '/docs/auto-animate' },
-		{ title: 'Code blocks', path: '/docs/code-blocks' },
-		{ title: 'Steps', path: '/docs/steps' },
-		{ title: 'Media', path: '/docs/media' },
-		{ title: 'Markdown', path: '/docs/markdown' },
-		{ title: 'Events', path: '/docs/events' },
-		{ title: 'Theming', path: '/docs/theming' },
-		{ title: 'Options', path: '/docs/options' }
-	]
+	import { sections } from '$lib/navigation/navigation'
 </script>
 
 <div class="container">
 	<aside class="sections space-y" style:--margin="var(--size-2)">
-		{#each sections as { path, title }}
+		{#each sections as { path, title, section }}
 			{@const active = $page.route.id === path}
-			<a href="{base}{path}" class:active>{title}</a>
+			{#if section}
+				<h4 class="section">{section}</h4>
+			{:else}
+				<a href="{base}{path}" class:active>{title}</a>
+			{/if}
 		{/each}
 	</aside>
 
@@ -42,7 +32,16 @@
 	}
 
 	.sections {
-		a {
+		& .section {
+			color: var(--text-2);
+			text-transform: capitalize;
+
+			&:not(:first-of-type) {
+				margin-block-start: var(--size-4);
+			}
+		}
+
+		& a {
 			display: block;
 			width: max-content;
 			color: var(--text-1);

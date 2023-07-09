@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { base } from '$app/paths'
+	import Links from '$lib/navigation/links.svelte'
 </script>
 
 <h1>Introduction</h1>
@@ -27,6 +27,4 @@
 	it gives you when making presentations.
 </p>
 
-<nav class="section">
-	<a class="next" href="{base}/docs/getting-started">Getting started</a>
-</nav>
+<Links />
