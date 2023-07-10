@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Code, Slide } from '@deck'
+	import { Code, Slide } from '@components'
 
 	let videoEl
 	let show = false

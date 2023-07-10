@@ -2,7 +2,7 @@
 	import { tweened } from 'svelte/motion'
 	import { draw, fade } from 'svelte/transition'
 	import { quadInOut } from 'svelte/easing'
-	import { Slide, Code } from '@deck'
+	import { Slide, Code } from '@components'
 
 	let cx = tweened(300, { duration: 1000, easing: quadInOut })
 	let cy = tweened(300, { duration: 1000, easing: quadInOut })
