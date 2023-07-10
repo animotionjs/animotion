@@ -27,9 +27,9 @@
 	.container {
 		margin-block-start: var(--size-5);
 
-		@media (width > 600px) {
+		@media (width > 1000px) {
 			display: grid;
-			grid-template-columns: 200px 1fr;
+			grid-template-columns: 280px 1fr;
 		}
 	}
 
@@ -57,7 +57,7 @@
 			}
 		}
 
-		@media (width > 600px) {
+		@media (width > 1000px) {
 			margin-block: var(--size-2);
 			border-right: 1px solid var(--border);
 		}
@@ -66,7 +66,7 @@
 	.content {
 		margin-block-start: var(--size-5);
 
-		@media (width > 600px) {
+		@media (width > 1000px) {
 			max-width: 70ch;
 			margin-block-start: 0rem;
 			margin-inline-start: var(--size-5);

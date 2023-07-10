@@ -49,10 +49,10 @@
 	component.
 </p>
 
-<Code lang="html">
+<Code lang="svelte">
 	{`
 		<script lang="ts">
-			import { Presentation, Slide } from '@deck'
+			import { Presentation, Slide } from '@components'
 		</\script>
 
 		<Presentation>
@@ -112,7 +112,7 @@
 	</Slide>
 </Keynote>
 
-<Code lang="html">
+<Code lang="svelte">
 	{`
 		<!-- progress.svelte -->
 		<script lang="ts">
@@ -132,7 +132,7 @@
 	{`
 		<!-- slides.svelte -->
 		<script lang="ts">
-			import { Presentation } from '@deck'
+			import { Presentation } from '@components'
 			import { Progress } from './progress.svelte'
 		</\script>
 

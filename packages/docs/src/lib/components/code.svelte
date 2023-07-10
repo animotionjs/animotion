@@ -1,9 +1,15 @@
 <script lang="ts">
 	import Prism from 'prismjs'
 	import { ClipboardIcon } from 'lucide-svelte'
+	import './svelte'
 
 	export let lang: string
-	let code: string
+
+	let clipboard: string
+
+	function highlight(code: string, language: string) {
+		return Prism.highlight(code, Prism.languages[language], 'html')
+	}
 
 	function highlightCode(code: string, lang: string) {
 		if (!code) return
@@ -22,20 +28,19 @@
 			.join('')
 	}
 
-	function highlight(code: string, language: string) {
-		return Prism.highlight(code, Prism.languages[language], 'html')
+	function highlighter(node: HTMLElement) {
+		if (!node.textContent) return
+		clipboard = node.textContent.trim()
+		const html = highlightCode(node.textContent, lang)
+		node.innerHTML = `
+			<pre class="language-${lang}"><code class="language-${lang}">${html}</code></pre>
+		`
 	}
 
 	function copyToClipboard() {
-		navigator.clipboard.writeText(code)
+		navigator.clipboard.writeText(clipboard)
 	}
-
-	$: highlightedCode = highlightCode(code, lang)
 </script>
-
-<div bind:textContent={code} class="hide" contenteditable>
-	<slot />
-</div>
 
 <div class="code-block">
 	<div class="copy">
@@ -44,17 +49,15 @@
 		</button>
 	</div>
 
-	<pre class="language-{lang}"><code class="language-{lang}">{@html highlightedCode}</code></pre>
+	<div class="code" use:highlighter>
+		<slot />
+	</div>
 </div>
 
 <style>
 	.code-block {
 		position: relative;
 	}
-
-	/* .code-block code {
-		white-space: pre-wrap;
-	} */
 
 	.code-block .copy {
 		position: absolute;

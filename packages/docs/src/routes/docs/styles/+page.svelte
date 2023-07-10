@@ -29,7 +29,7 @@
 	</Slide>
 </Keynote>
 
-<Code lang="html">
+<Code lang="svelte">
 	{`
 		<Presentation>
 			<Slide>
@@ -65,7 +65,7 @@
 	to worry about using unique class names. PostCSS works out of the box but you can also set up SASS.
 </p>
 
-<Code lang="html">
+<Code lang="svelte">
 	{`
 		<Slide>
 				<div class="circles">
