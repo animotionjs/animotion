@@ -31,15 +31,13 @@
 
 <Code lang="svelte">
 	{`
-		<Presentation>
-			<Slide>
-				<div class="mx-auto flex w-[800px] justify-between text-gray-900">
-					<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-red-400">Red</div>
-					<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-green-400">Green</div>
-					<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-blue-400">Blue</div>
-				</div>
-			</Slide>
-		</Presentation>
+		<Slide>
+			<div class="mx-auto flex w-[800px] justify-between text-gray-900">
+				<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-red-400">Red</div>
+				<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-green-400">Green</div>
+				<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-blue-400">Blue</div>
+			</div>
+		</Slide>
   `}
 </Code>
 
