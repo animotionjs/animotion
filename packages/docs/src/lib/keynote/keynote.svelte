@@ -11,17 +11,37 @@
 	import Math from 'reveal.js/plugin/math/math'
 	import Notes from 'reveal.js/plugin/notes/notes'
 
-	onMount(async () => {
+	import { navigation } from './stores/navigation'
+
+	export const options = {}
+
+	onMount(() => {
 		/*
 			to have multiple slides we pass the new reference
 			for the keynote and have to set `embedded: true`
 		*/
 		const deck = new Reveal(keynote, {
 			plugins: [Markdown, Highlight, Math.KaTeX, Notes],
-			embedded: true
+			embedded: true,
+			hash: true,
+			history: true,
+			...options
 		})
-		deck.initialize()
+		deck.on('slidechanged', () => {
+			console.log('changed')
+			updateSlideStore(deck)
+		})
+		deck.initialize().then(() => updateSlideStore(deck))
 	})
+
+	function updateSlideStore(deck: Reveal.Api) {
+		$navigation = {
+			hash: window.location.hash,
+			currentSlide: deck.getSlidePastCount(),
+			indices: deck.getIndices(),
+			availableRoutes: deck.availableRoutes()
+		}
+	}
 
 	let keynote: HTMLElement
 </script>

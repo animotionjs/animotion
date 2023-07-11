@@ -1,6 +1,13 @@
 import { writable } from 'svelte/store'
 
-export const navigation = writable({
+type Navigation = {
+	hash: string | null
+	currentSlide: number | null
+	indices: unknown
+	availableRoutes: unknown
+}
+
+export const navigation = writable<Navigation>({
 	// slide number from the URL
 	hash: null,
 	// current slide
