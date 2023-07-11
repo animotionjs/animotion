@@ -66,6 +66,10 @@
 	.content {
 		margin-block-start: var(--size-5);
 
+		& :global(h2) {
+			margin-block-start: var(--size-5);
+		}
+
 		@media (width > 1000px) {
 			max-width: 70ch;
 			margin-block-start: 0rem;
