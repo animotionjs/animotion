@@ -8,6 +8,8 @@ export const sections = [
 	{ title: 'Auto-animate', path: '/docs/auto-animate' },
 	{ title: 'Code blocks', path: '/docs/code-blocks' },
 	{ title: 'Events', path: '/docs/events' },
+	{ section: 'Examples' },
+	{ title: 'Visualizing Ideas', path: '/docs/visualizing-ideas' },
 	{ section: 'Components' },
 	{ title: 'Markdown', path: '/docs/markdown' },
 	{ title: 'Media', path: '/docs/media' },
