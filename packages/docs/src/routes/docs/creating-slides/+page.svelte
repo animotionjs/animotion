@@ -30,8 +30,8 @@
 <h2>Slide away</h2>
 
 <p>
-	You can write your entire presentation inside <code>slides.svelte</code> but you can also break things
-	into components.
+	You can write your entire presentation inside <code>src/slides.svelte</code> but you can also break
+	slides into components you can learn more about in another section.
 </p>
 
 <Keynote>
@@ -51,9 +51,9 @@
 
 <Code lang="svelte">
 	{`
-		<script lang="ts">
+		<script>
 			import { Presentation, Slide, Vertical } from '@components'
-		</\script>
+		<\/script>
 
 		<Presentation>
 			<Slide>Horizontal 1</Slide>
@@ -96,8 +96,8 @@
 <h2>Using components</h2>
 
 <p>
-	You might have more complex presentations that also have state which can be hard to manage inside
-	a single file — in that case you can split your slides into components and place them wherever you
+	You might have more complex presentations with state which can be hard to manage inside of a
+	single file — in that case you can split your slides into components and place them wherever you
 	want.
 </p>
 
@@ -114,13 +114,13 @@
 
 <Code lang="svelte">
 	{`
-		<!-- progress.svelte -->
-		<script lang="ts">
+		<!-- src/progress.svelte -->
+		<script>
 			import { tweened } from 'svelte/motion'
 
 			let progress = tweened(0, { duration: 2000 })
 			$progress = 10_000
-		</\script>
+		<\/script>
 
 		<Slide>
 			{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
@@ -130,11 +130,11 @@
 
 <Code lang="html">
 	{`
-		<!-- slides.svelte -->
-		<script lang="ts">
+		<!-- src/slides.svelte -->
+		<script>
 			import { Presentation } from '@components'
 			import { Progress } from './progress.svelte'
-		</\script>
+		<\/script>
 
 		<Presentation>
 			<Progress /\>
@@ -147,3 +147,89 @@
 	<code>progress.svelte</code>
 	but it's useful if you want to use <a href="{base}/docs/events">events</a> to update state.
 </p>
+
+<p>
+	You can store your components inside the <code>lib</code> folder and use the <code>$lib</code>
+	alias, so you can avoid doing <code>../../</code> and use
+	<code>$lib/...</code> instead.
+</p>
+
+<h2>Slide Options</h2>
+
+<p>
+	These are the slide options you can pass to the <code>&lt;Slide&gt;</code> component. Some options
+	for things like
+	<a href="/keynote/docs/auto-animate">auto-animate</a> have their dedicated section you can learn more
+	about.
+</p>
+
+<table>
+	<tr>
+		<th>Option</th>
+		<th>Description</th>
+	</tr>
+
+	<tr>
+		<td><code>animate</code></td>
+		<td>Animate elements between slides.</td>
+	</tr>
+
+	<tr>
+		<td><code>animateEasing</code></td>
+		<td>Pass CSS easing.</td>
+	</tr>
+
+	<tr>
+		<td><code>animateUnmatched</code></td>
+		<td>Animate elements that aren't a match.</td>
+	</tr>
+
+	<tr>
+		<td><code>animateId</code></td>
+		<td>Change the animate id for a slide.</td>
+	</tr>
+
+	<tr>
+		<td><code>animateRestart</code></td>
+		<td>Don't auto-animate from previous slide even if the animate id match.</td>
+	</tr>
+
+	<tr>
+		<td><code>background</code></td>
+		<td>Set slide background color.</td>
+	</tr>
+
+	<tr>
+		<td><code>gradient</code></td>
+		<td>Set gradient background.</td>
+	</tr>
+
+	<tr>
+		<td><code>image</code></td>
+		<td>Set image background.</td>
+	</tr>
+
+	<tr>
+		<td><code>video</code></td>
+		<td>Set video background.</td>
+	</tr>
+
+	<tr>
+		<td><code>iframe</code></td>
+		<td>Set iframe background.</td>
+	</tr>
+
+	<tr>
+		<td><code>interactive</code></td>
+		<td>Make iframe background interactive.</td>
+	</tr>
+
+	<tr>
+		<td><code>transition</code></td>
+		<td>
+			You can use
+			<code>"none"</code>, <code>"fade"</code>, <code>"slide"</code>, <code>"convex"</code>,
+			<code>"concave"</code>, <code>"zoom"</code>.
+		</td>
+	</tr>
+</table>

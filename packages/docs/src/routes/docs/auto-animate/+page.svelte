@@ -13,9 +13,9 @@
 </p>
 
 <p>
-	Thanks to the <a href="https://aerotwist.com/blog/flip-your-animations/"
-		>FLIP animation technique</a
-	>
+	Thanks to the <a href="https://aerotwist.com/blog/flip-your-animations/">
+		FLIP animation technique
+	</a>
 	under the hood you can animate elements across slides using the
 	<code>animate</code> attribute like magic. 🪄
 </p>
@@ -37,18 +37,24 @@
 
 <Code lang="svelte">
 	{`
-		<Slide animate>
-			<p class="text-[100px]">Magic</p>
-		</Slide>
+		<script>
+			import { Presentation, Slide } from '@components'
+		<\/script>
 
-		<Slide animate>
-			<p class="text-[200px] text-teal-300">Magic</p>
-		</Slide>
+		<Presentation>
+			<Slide animate>
+				<p class="text-[100px]">Magic</p>
+			</Slide>
 
-		<Slide animate>
-			<p class="text-[200px]">🪄</p>
-			<p class="mt-[48px] text-[200px] text-teal-300">Magic</p>
-		</Slide>
+			<Slide animate>
+				<p class="text-[200px] text-teal-300">Magic</p>
+			</Slide>
+
+			<Slide animate>
+				<p class="text-[200px]">🪄</p>
+				<p class="mt-[48px] text-[200px] text-teal-300">Magic</p>
+			</Slide>
+		</Presentation>
   `}
 </Code>
 
@@ -111,55 +117,61 @@
 
 <Code lang="svelte">
 	{`
-		<Slide animate>
-			<div class="mx-auto flex w-[800px] justify-between text-gray-900">
-				<div
-					data-id="circle-1"
-					class="grid h-[240px] w-[240px] place-content-center rounded-full bg-red-400"
-				>
-					Red
-				</div>
+		<script>
+			import { Presentation, Slide } from '@components'
+		<\/script>
 
-				<div
-					data-id="circle-2"
-					class="grid h-[240px] w-[240px] place-content-center rounded-full bg-green-400"
-				>
-					Green
-				</div>
+		<Presentation>
+			<Slide animate>
+				<div class="mx-auto flex w-[800px] justify-between text-gray-900">
+					<div
+						data-id="circle-1"
+						class="grid h-[240px] w-[240px] place-content-center rounded-full bg-red-400"
+					>
+						Red
+					</div>
 
-				<div
-					data-id="circle-3"
-					class="grid h-[240px] w-[240px] place-content-center rounded-full bg-blue-400"
-				>
-					Blue
-				</div>
-			</div>
-		</Slide>
+					<div
+						data-id="circle-2"
+						class="grid h-[240px] w-[240px] place-content-center rounded-full bg-green-400"
+					>
+						Green
+					</div>
 
-		<Slide animate>
-			<div class="mx-auto flex w-[800px] justify-between text-gray-900">
-				<div
-					data-id="circle-3"
-					class="grid h-[240px] w-[240px] place-content-center rounded-full bg-blue-400"
-				>
-					Blue
+					<div
+						data-id="circle-3"
+						class="grid h-[240px] w-[240px] place-content-center rounded-full bg-blue-400"
+					>
+						Blue
+					</div>
 				</div>
+			</Slide>
 
-				<div
-					data-id="circle-2"
-					class="mt-[200px] grid h-[240px] w-[240px] place-content-center rounded-full bg-green-400"
-				>
-					Green
+			<Slide animate>
+				<div class="mx-auto flex w-[800px] justify-between text-gray-900">
+					<div
+						data-id="circle-3"
+						class="grid h-[240px] w-[240px] place-content-center rounded-full bg-blue-400"
+					>
+						Blue
+					</div>
+
+					<div
+						data-id="circle-2"
+						class="mt-[200px] grid h-[240px] w-[240px] place-content-center rounded-full bg-green-400"
+					>
+						Green
+					</div>
+					
+					<div
+						data-id="circle-1"
+						class="grid h-[240px] w-[240px] place-content-center rounded-full bg-red-400"
+					>
+						Red
+					</div>
 				</div>
-				
-				<div
-					data-id="circle-1"
-					class="grid h-[240px] w-[240px] place-content-center rounded-full bg-red-400"
-				>
-					Red
-				</div>
-			</div>
-		</Slide>
+			</Slide>
+		</Presentation>
   `}
 </Code>
 
@@ -194,39 +206,45 @@
 
 <Code lang="svelte">
 	{`
-		<Slide animate>
-			<div
-				data-id="container"
-				class="h-[600px] w-[50%] overflow-hidden rounded-2xl"
-			>
-				<div data-id="color-1" class="h-[40%] bg-gray-400" />
-				<div data-id="colors" class="grid h-[60%] gap-14 bg-gray-100 p-8">
-					<div data-id="color-2" class="w-full bg-gray-400" />
-					<div data-id="color-3" class="w-full bg-gray-600" />
-					<div data-id="color-4" class="w-full bg-gray-800" />
-				</div>
-			</div>
-		</Slide>
+		<script>
+			import { Presentation, Slide } from '@components'
+		<\/script>
 
-		<Slide animate>
-			<div
-				data-id="container"
-				class="h-[600px] w-[100%] overflow-hidden rounded-2xl"
-			>
-				<div data-id="color-1" class="h-[40%] bg-teal-400" />
-				<div data-id="colors" class="grid h-[60%] gap-14 bg-gray-100 p-8">
-					<div data-id="color-2" class="w-full bg-teal-400" />
-					<div data-id="color-3" class="w-full bg-teal-600" />
-					<div data-id="color-4" class="w-full bg-teal-800" />
+		<Presentation>
+			<Slide animate>
+				<div
+					data-id="container"
+					class="h-[600px] w-[50%] overflow-hidden rounded-2xl"
+				>
+					<div data-id="color-1" class="h-[40%] bg-gray-400" />
+					<div data-id="colors" class="grid h-[60%] gap-14 bg-gray-100 p-8">
+						<div data-id="color-2" class="w-full bg-gray-400" />
+						<div data-id="color-3" class="w-full bg-gray-600" />
+						<div data-id="color-4" class="w-full bg-gray-800" />
+					</div>
 				</div>
-			</div>
-		</Slide>
+			</Slide>
+
+			<Slide animate>
+				<div
+					data-id="container"
+					class="h-[600px] w-[100%] overflow-hidden rounded-2xl"
+				>
+					<div data-id="color-1" class="h-[40%] bg-teal-400" />
+					<div data-id="colors" class="grid h-[60%] gap-14 bg-gray-100 p-8">
+						<div data-id="color-2" class="w-full bg-teal-400" />
+						<div data-id="color-3" class="w-full bg-teal-600" />
+						<div data-id="color-4" class="w-full bg-teal-800" />
+					</div>
+				</div>
+			</Slide>
+		</Presentation>
   `}
 </Code>
 
 <p>
-	Don't forget that you can turn things into reusable components including the styles to make your
-	life easier.
+	Don't forget that you can componetize everything and throw long class names into a variable for
+	reuse to make your life easier.
 </p>
 
 <h2>Grouping Animated Slides</h2>
@@ -265,35 +283,42 @@
 
 <Code lang="svelte">
 	{`
-		<!-- Group A -->
-		<Slide animate>
-			<p class="">Group A</p>
-		</Slide>
-		
-		<Slide animate>
-			<p class="text-red-400">Group A</p>
-		</Slide>
-		
-		<!-- Group B -->
-		<Slide animate animateId="two">
-			<p>Group B</p>
-		</Slide>
-		
-		<Slide animate animateId="two">
-			<p class="text-green-400">Group B</p>
-		</Slide>
+		<script>
+			import { Presentation, Slide } from '@components'
+		<\/script>
 
-		<!-- Group C -->
-		<Slide animate animateId="two" animateRestart>
-			<p>Group C</p>
-		</Slide>
+		<Presentation>
+			<!-- Group A -->
+			<Slide animate>
+				<p class="">Group A</p>
+			</Slide>
+			
+			<Slide animate>
+				<p class="text-red-400">Group A</p>
+			</Slide>
+			
+			<!-- Group B -->
+			<Slide animate animateId="two">
+				<p>Group B</p>
+			</Slide>
+			
+			<Slide animate animateId="two">
+				<p class="text-green-400">Group B</p>
+			</Slide>
 
-		<Slide animate animateId="two">
-			<p class="text-blue-400">Group C</p>
-		</Slide>
+			<!-- Group C -->
+			<Slide animate animateId="two" animateRestart>
+				<p>Group C</p>
+			</Slide>
+
+			<Slide animate animateId="two">
+				<p class="text-blue-400">Group C</p>
+			</Slide>
+		</Presentation>
   `}
 </Code>
 
-<h2>Animation Options</h2>
-
-TODO
+<p>
+	I never find myself in a situation where I need to use <code>animateId</code> and use
+	<code>animateRestart</code> when I have to.
+</p>

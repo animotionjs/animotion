@@ -17,12 +17,12 @@
 </Code>
 
 <p>
-	Create a new <b>Keynote</b> project.
+	Create a new <b>Keynote</b> presentation.
 </p>
 
 <Code lang="text">
 	{`
-    pnpm create keynote
+    npm create keynote
 	`}
 </Code>
 

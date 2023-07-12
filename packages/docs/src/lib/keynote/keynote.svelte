@@ -2,14 +2,14 @@
 	import { onMount } from 'svelte'
 	import Reveal from 'reveal.js'
 
-	import 'reveal.js/dist/reveal.css'
-	import './styles/theme.css'
-	import './styles/code.css'
-
 	import Markdown from 'reveal.js/plugin/markdown/markdown'
 	import Highlight from 'reveal.js/plugin/highlight/highlight'
 	import Math from 'reveal.js/plugin/math/math'
 	import Notes from 'reveal.js/plugin/notes/notes'
+
+	import 'reveal.js/dist/reveal.css'
+	import './styles/theme.css'
+	import './styles/code.css'
 
 	import { navigation } from './stores/navigation'
 
@@ -23,14 +23,9 @@
 		const deck = new Reveal(keynote, {
 			plugins: [Markdown, Highlight, Math.KaTeX, Notes],
 			embedded: true,
-			hash: true,
-			history: true,
 			...options
 		})
-		deck.on('slidechanged', () => {
-			console.log('changed')
-			updateSlideStore(deck)
-		})
+		deck.on('slidechanged', () => updateSlideStore(deck))
 		deck.initialize().then(() => updateSlideStore(deck))
 	})
 

@@ -15,12 +15,14 @@
 
 <Keynote>
 	<Slide animate>
-		<div class="mx-auto w-[400px]">
+		<div class="mx-auto w-[500px]">
 			<Code lang="html">
 				{`
-				<script>
-				<\/script>
-			`}
+					<script>
+						let count = 0
+						$: double = count * 2
+					<\/script>
+				`}
 			</Code>
 		</div>
 	</Slide>
@@ -29,24 +31,15 @@
 		<div class="mx-auto w-[800px]">
 			<Code lang="html">
 				{`
-				<script>
-					let name = 'world'
-				<\/script>
-			`}
-			</Code>
-		</div>
-	</Slide>
+					<script>
+						let count = 0
+						$: double = count * 2
+					<\/script>
 
-	<Slide animate>
-		<div class="mx-auto w-[800px]">
-			<Code lang="html">
-				{`
-				<script>
-					let name = 'world'
-				<\/script>
-
-				<h1>Hello {name}!</h1>
-			`}
+					<button on:click={() => count += 1}>
+						{double}
+					</button>
+				`}
 			</Code>
 		</div>
 	</Slide>
@@ -54,42 +47,41 @@
 
 <CodeBlock lang="svelte">
 	{`
-		<Slide animate>
-			<div class="mx-auto w-[400px]">
-				<Code lang="svelte">
-					{\`
-						<script>
-						<\/script>
-					\`}
-				</Code>
-			</div>
-		</Slide>
+		<script>
+			import { Presentation, Slide, Code } from '@components'
+		<\/script>
 
-		<Slide animate>
-			<div class="mx-auto w-[800px]">
-				<Code lang="html">
-					{\`
-						<script>
-							let name = 'world'
-						<\/script>
-					\`}
-				</Code>
-			</div>
-		</Slide>
+		<Presentation>
+			<Slide animate>
+				<div class="mx-auto w-[400px]">
+					<Code lang="svelte">
+						{\`
+							<script>
+								let count = 0
+								$: double = count * 2
+							<\/script>
+						\`}
+					</Code>
+				</div>
+			</Slide>
 
-		<Slide animate>
-			<div class="mx-auto w-[800px]">
-				<Code lang="html">
-					{\`
-						<script>
-							let name = 'world'
-						<\/script>
+			<Slide animate>
+				<div class="mx-auto w-[800px]">
+					<Code lang="html">
+						{\`
+							<script>
+								let count = 0
+								$: double = count * 2
+							<\/script>
 
-						<h1>Hello {name}!</h1>
-					\`}
-				</Code>
-			</div>
-		</Slide>
+							<button on:click={() => count += 1}>
+								{double}
+							</button>
+						\`}
+					</Code>
+				</div>
+			</Slide>
+		</Presentation>
 	`}
 </CodeBlock>
 
@@ -141,45 +133,73 @@ const bool = true
 
 <Keynote>
 	<Slide animate>
-		<Code lang="html" lines="1,3|2">
-			{`
-				<script>
-					let name = 'world'
-				<\/script>
-			`}
-		</Code>
+		<div class="mx-auto w-[500px]">
+			<Code lang="html" lines="2|3">
+				{`
+					<script>
+						let count = 0
+						$: double = count * 2
+					<\/script>
+				`}
+			</Code>
+		</div>
 	</Slide>
 
 	<Slide animate>
-		<Code lang="html" offset="5" lines="2">
-			{`
-				<!-- ... -->
-				<h1>Hello {name}!</h1>
-			`}
-		</Code>
+		<div class="mx-auto w-[800px]">
+			<Code lang="html" lines="6,8|3,7|1-8">
+				{`
+					<script>
+						let count = 0
+						$: double = count * 2
+					<\/script>
+
+					<button on:click={() => count += 1}>
+						{double}
+					</button>
+				`}
+			</Code>
+		</div>
 	</Slide>
 </Keynote>
 
-<CodeBlock lang="html">
+<CodeBlock lang="svelte">
 	{`
-		<Slide animate>
-			<Code lang="svelte" lines="1,3|2">
-				{\`
-					<script>
-						let name = 'world'
-					<\/script>
-				\`}
-			</Code>
-		</Slide>
+		<script>
+			import { Presentation, Slide, Code } from '@components'
+		<\/script>
 
-		<Slide animate>
-			<Code lang="svelte" offset="5" lines="2">
-				{\`
-					<!-- ... -->
-					<h1>Hello {name}!</h1>
-				\`}
-			</Code>
-		</Slide>
+		<Presentation>
+			<Slide animate>
+				<div class="mx-auto w-[400px]">
+					<Code lang="svelte" lines="2|3">
+						{\`
+							<script>
+								let count = 0
+								$: double = count * 2
+							<\/script>
+						\`}
+					</Code>
+				</div>
+			</Slide>
+
+			<Slide animate>
+				<div class="mx-auto w-[800px]">
+					<Code lang="svelte" lines="6,8|3,7|1-8">
+						{\`
+							<script>
+								let count = 0
+								$: double = count * 2
+							<\/script>
+
+							<button on:click={() => count += 1}>
+								{double}
+							</button>
+						\`}
+					</Code>
+				</div>
+			</Slide>
+		</Presentation>
 	`}
 </CodeBlock>
 
@@ -220,7 +240,7 @@ const bool = true
 	file to <code>lib/languages/svelte.ts</code> and register the language.
 </p>
 
-<p>Import and register the language inside <code>lib/languages/index.ts</code>.</p>
+<p>Update <code>lib/languages/index.ts</code> to register the language.</p>
 
 <CodeBlock lang="js">
 	{`
@@ -233,12 +253,6 @@ const bool = true
 </CodeBlock>
 
 <p>
-	If the language you want is not included you can look at the Svelte example provided by default
-	and figure it out from there.
+	If the language you want is not included you can look at the provided Svelte example and figure it
+	out from there.
 </p>
-
-<style>
-	:global(code > table) {
-		font-size: 48px;
-	}
-</style>

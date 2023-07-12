@@ -29,6 +29,24 @@
 	border-radius: var(--radius-1);
 }
 
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-transform: capitalize;
+}
+
+h1 {
+	font-size: var(--size-5);
+}
+
+p {
+	font-weight: 500;
+}
+
 a {
 	color: var(--brand);
 	text-decoration: none;
@@ -69,6 +87,17 @@ button {
 code,
 kbd {
 	font-family: var(--font-mono);
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th,
+td {
+	padding: var(--size-2);
+	text-align: left;
+	border: 1px solid hsl(0 0% 100% / 40%);
 }
 
 /* global */
@@ -166,23 +195,6 @@ body {
 	@media (width > 1280px) {
 		--padding: 0rem;
 	}
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	text-transform: capitalize;
-}
-
-h1 {
-	font-size: var(--size-5);
-}
-
-p {
-	font-weight: 500;
 }
 
 .section a {

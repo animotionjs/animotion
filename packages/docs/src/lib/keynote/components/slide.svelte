@@ -3,21 +3,25 @@
 </script>
 
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte'
+	import { createEventDispatcher, getContext } from 'svelte'
 	import { navigation } from '../stores/navigation'
 
-	export let animate = null
-	export let animateEasing = null
-	export let animateUnmatched = null
-	export let animateId = null
-	export let animateRestart = null
-	export let background = null
-	export let gradient = null
-	export let image = null
-	export let video = null
-	export let iframe = null
-	export let interactive = null
-	export let transition: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom' = null
+	type Bool = boolean | null
+	type String = string | null
+	type Transition = 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom' | null
+
+	export let animate: Bool = null
+	export let animateEasing: String = null
+	export let animateUnmatched: Bool = null
+	export let animateId: Bool = null
+	export let animateRestart: Bool = null
+	export let background: String = null
+	export let gradient: String = null
+	export let image: String = null
+	export let video: String = null
+	export let iframe: String = null
+	export let interactive: Bool = null
+	export let transition: Transition = null
 
 	const dispatch = createEventDispatcher()
 	const slideIndex = index++
