@@ -3,7 +3,7 @@
 	import { quadInOut } from 'svelte/easing'
 	import { base } from '$app/paths'
 
-	import { Keynote, Slide, Vertical } from '$lib/keynote/index'
+	import { Keynote, Slide, Vertical } from '$lib/keynote'
 	import Code from '$lib/components/code.svelte'
 
 	let progress = tweened(0, { duration: 1500, easing: quadInOut })

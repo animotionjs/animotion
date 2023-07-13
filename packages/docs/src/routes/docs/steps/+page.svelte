@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, Step } from '$lib/keynote/index'
+	import { Keynote, Slide, Step } from '$lib/keynote'
 	import Code from '$lib/components/code.svelte'
 </script>
 
@@ -19,7 +19,7 @@
 <Code lang="svelte">
 	{`
 		<script>
-			import { Keynote, Slide, Step } from '@components'
+			import { Presentation, Slide, Step } from '@components'
 		<\/script>
 
 		<Presentation>
@@ -165,7 +165,7 @@
 <Code lang="svelte">
 	{`
 		<script>
-			import { Keynote, Slide, Step } from '@components'
+			import { Presentation, Slide, Step } from '@components'
 		<\/script>
 
 		<Presentation>
@@ -177,7 +177,7 @@
 			</Slide>
 		</Presentation>
 
-		<style>
+		<\style>
 			:global(.fragment.blur) {
 				filter: blur(5px);
 			}
@@ -197,9 +197,7 @@
 	<Slide>
 		<Step fadeIn>
 			<Step semiFadeOut>
-				<Step fadeOut>
-					Fade in > Fade 50% > Fade out
-				</Step>
+				<Step fadeOut>Fade in > Fade 50% > Fade out</Step>
 			</Step>
 		</Step>
 	</Slide>
@@ -208,7 +206,7 @@
 <Code lang="svelte">
 	{`
 		<script>
-			import { Keynote, Slide, Step } from '@components'
+			import { Presentation, Slide, Step } from '@components'
 		<\/script>
 
 		<Presentation>
@@ -237,11 +235,10 @@
 	</Slide>
 </Keynote>
 
-
 <Code lang="svelte">
 	{`
 		<script>
-			import { Keynote, Slide, Step } from '@components'
+			import { Presentation, Slide, Step } from '@components'
 		<\/script>
 
 		<Presentation>
@@ -255,11 +252,11 @@
 </Code>
 
 <style>
-  :global(.fragment.blur) {
-    filter: blur(5px);
-  }
+	:global(.fragment.blur) {
+		filter: blur(5px);
+	}
 
-  :global(.fragment.blur.visible) {
-    filter: none;
-  }
+	:global(.fragment.blur.visible) {
+		filter: none;
+	}
 </style>

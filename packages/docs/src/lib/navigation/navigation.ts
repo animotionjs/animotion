@@ -16,6 +16,7 @@ export const sections = [
 	{ title: 'Steps', path: '/docs/steps' },
 	{ title: 'Stack', path: '/docs/stack' },
 	{ title: 'Stretch', path: '/docs/stretch' },
+	{ title: 'Math', path: '/docs/math' },
 	{ section: 'Customization' },
 	{ title: 'Layout', path: '/docs/layout' },
 	{ title: 'Theming', path: '/docs/theming' },

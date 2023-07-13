@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, Code } from '$lib/keynote/index'
+	import { Keynote, Slide, Code } from '$lib/keynote'
 	import CodeBlock from '$lib/components/code.svelte'
 
 	let centerX = 200

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, Vertical } from '$lib/keynote/index'
+	import { Keynote, Slide, Vertical } from '$lib/keynote'
 	import CodeBlock from '$lib/components/code.svelte'
 	import { navigation } from '$lib/keynote/stores/navigation'
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, FitText } from '$lib/keynote/index'
+	import { Keynote, Slide, FitText } from '$lib/keynote'
 	import Code from '$lib/components/code.svelte'
 </script>
 
@@ -20,7 +20,7 @@
 <Code lang="svelte">
 	{`
 		<script>
-			import { Keynote, Slide, FitText } from '@components'
+			import { Presentation, Slide, FitText } from '@components'
 		<\/script>
 
 		<Presentation>

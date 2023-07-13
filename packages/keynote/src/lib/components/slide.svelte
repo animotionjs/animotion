@@ -20,7 +20,7 @@
 	export let animate: Bool = null
 	export let animateEasing: String = null
 	export let animateUnmatched: Bool = null
-	export let animateId: Bool = null
+	export let animateId: String = null
 	export let animateRestart: Bool = null
 	export let background: String = null
 	export let gradient: String = null
