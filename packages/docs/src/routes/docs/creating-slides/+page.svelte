@@ -159,7 +159,7 @@
 <p>
 	These are the slide props you can pass to the <code>&lt;Slide&gt;</code> component. Some options
 	for things like
-	<a href="/keynote/docs/auto-animate">auto-animate</a> have their dedicated section you can learn more
+	<a href="{base}/docs/auto-animate">auto-animate</a> have their dedicated section you can learn more
 	about.
 </p>
 

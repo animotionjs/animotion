@@ -30,11 +30,11 @@
 </script>
 
 <nav>
-	<div class="container space-between">
+	<div class="space-between container">
 		<div class="left-side">
 			<div class="space-x" style:--margin="var(--size-0)">
 				<span>🪄</span>
-				<a class="bold" href={base}>
+				<a class="bold" href="/">
 					<span>Keynote</span>
 				</a>
 			</div>

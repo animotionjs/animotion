@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { base } from '$app/paths'
+</script>
+
 <h1>Introduction</h1>
 
 <h2>What is Keynote?</h2>
@@ -13,9 +17,10 @@
 	<b>Keynote</b> uses <a href="https://svelte.dev/">Svelte</a>,
 	<a href="https://revealjs.com/">Reveal.js</a>
 	and <a href="https://tailwindcss.com/">Tailwind CSS</a> to create beautiful animated presentations
-	with ease thanks to <a href="/docs/auto-animate">auto-animate</a> from Reveal.js — you don't have
-	to know Svelte but it's easy to learn and powerful if you want to learn a JavaScript framework.
-	You can learn Svelte from the <a href="https://learn.svelte.dev/">official Svelte tutorial.</a>
+	with ease thanks to <a href="{base}/docs/auto-animate">auto-animate</a> from Reveal.js — you don't
+	have to know Svelte but it's easy to learn and powerful if you want to learn a JavaScript
+	framework. You can learn Svelte from the
+	<a href="https://learn.svelte.dev/">official Svelte tutorial.</a>
 </p>
 
 <p>

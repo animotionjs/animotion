@@ -1,11 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import Reveal from 'reveal.js'
-
-	import Markdown from 'reveal.js/plugin/markdown/markdown'
-	import Highlight from 'reveal.js/plugin/highlight/highlight'
-	import Math from 'reveal.js/plugin/math/math'
-	import Notes from 'reveal.js/plugin/notes/notes'
 
 	import 'reveal.js/dist/reveal.css'
 	import './styles/theme.css'
@@ -15,13 +9,18 @@
 
 	export let options = {}
 
-	onMount(() => {
+	onMount(async () => {
+		const Reveal = (await import('reveal.js')).default
+		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default
+		const Math = (await import('reveal.js/plugin/math/math')).default
+		const Notes = (await import('reveal.js/plugin/notes/notes')).default
+
 		/*
 			to have multiple slides we pass the new reference
 			for the keynote and have to set `embedded: true`
 		*/
 		const deck = new Reveal(keynote, {
-			plugins: [Markdown, Highlight, Math.KaTeX, Notes],
+			plugins: [Highlight, Math.KaTeX, Notes],
 			embedded: true,
 			...options
 		})

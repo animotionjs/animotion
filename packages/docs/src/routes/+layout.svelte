@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>{title}</title>
+	<title>{title ?? 'Keynote'}</title>
 	<meta name="description" {content} />
 </svelte:head>
 
