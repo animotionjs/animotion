@@ -13,7 +13,7 @@
 
 	import { navigation } from './stores/navigation'
 
-	export const options = {}
+	export let options = {}
 
 	onMount(() => {
 		/*

@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let type = 'p'
+	export let type = 'h2'
 
 	delete $$restProps.class
 </script>

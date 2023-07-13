@@ -11,13 +11,17 @@ export const sections = [
 	{ section: 'Examples' },
 	{ title: 'Visualizing Ideas', path: '/docs/visualizing-ideas' },
 	{ section: 'Components' },
-	{ title: 'Markdown', path: '/docs/markdown' },
+	{ title: 'FitText', path: '/docs/fit-text' },
 	{ title: 'Media', path: '/docs/media' },
 	{ title: 'Steps', path: '/docs/steps' },
+	{ title: 'Stack', path: '/docs/stack' },
+	{ title: 'Stretch', path: '/docs/stretch' },
 	{ section: 'Customization' },
 	{ title: 'Layout', path: '/docs/layout' },
 	{ title: 'Theming', path: '/docs/theming' },
-	{ title: 'Options', path: '/docs/options' }
+	{ title: 'Options', path: '/docs/options' },
+	{ section: 'Deployment' },
+	{ title: 'How to deploy', path: '/docs/deployment' },
 ]
 
 const titles = sections.filter((section) => section.title)

@@ -22,12 +22,12 @@
 		}
 	}
 
-	function animateCircle() {
+	function play() {
 		animate = true
 		circle()
 	}
 
-	function stopAnimatingCircle() {
+	function stop() {
 		animate = false
 	}
 </script>
@@ -57,7 +57,7 @@
 	making code explainers using <b>Keynote</b>.
 </p>
 
-<Keynote>
+<Keynote options={{ hash: true, history: true }}>
 	<Slide animate>
 		<div class="w-[1020px]">
 			<Code lang="html" lines="1,3|2">
@@ -101,7 +101,7 @@
 							// request animation frame
 							requestAnimationFrame(animateCircle)
 						}
-				`}
+					`}
 				</Code>
 			</div>
 
@@ -113,7 +113,7 @@
 		</div>
 	</Slide>
 
-	<Slide animate on:in={() => animateCircle()} on:out={() => stopAnimatingCircle()}>
+	<Slide animate on:in={() => play()} on:out={() => stop()}>
 		<div class="absolute top-[160px] w-[400px]">
 			<Code lang="ts" offset="10">
 				{`
@@ -135,6 +135,35 @@
 	{`
 		<script>
 			import { Presentation, Slide, Code } from '@components'
+
+			let centerX = 200
+			let centerY = 200
+			let r = 40
+			let offset = 4
+			let cx = 200 + r * offset
+			let cy = 200
+			let angle = 0
+			let speed = 0.04
+			let animate = false
+
+			function circle() {
+				cx = centerX + Math.cos(angle) * r * offset
+				cy = centerY + Math.sin(angle) * r * offset
+				angle += speed
+
+				if (animate) {
+					requestAnimationFrame(circle)
+				}
+			}
+
+			function play() {
+				animate = true
+				circle()
+			}
+
+			function stop() {
+				animate = false
+			}
 		<\/script>
 
 		<Presentation>
@@ -195,8 +224,8 @@
 
 			<Slide
 				animate
-				on:in={() => animateCircle()}
-				on:out={() => stopAnimatingCircle()}
+				on:in={() => play()}
+				on:out={() => stop()}
 			>
 				<div class="absolute top-[160px] w-[400px]">
 					<Code lang="ts" offset="10">

@@ -29,7 +29,7 @@
 	$: enter = $navigation.currentSlide === slideIndex
 	$: enter ? dispatch('in') : dispatch('out')
 
-	delete $$restProps.css
+	delete $$restProps.class
 </script>
 
 <section

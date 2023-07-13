@@ -154,10 +154,10 @@
 	<code>$lib/...</code> instead.
 </p>
 
-<h2>Slide Options</h2>
+<h2>Slide Props</h2>
 
 <p>
-	These are the slide options you can pass to the <code>&lt;Slide&gt;</code> component. Some options
+	These are the slide props you can pass to the <code>&lt;Slide&gt;</code> component. Some options
 	for things like
 	<a href="/keynote/docs/auto-animate">auto-animate</a> have their dedicated section you can learn more
 	about.
@@ -165,71 +165,70 @@
 
 <table>
 	<tr>
-		<th>Option</th>
+		<th>Prop</th>
 		<th>Description</th>
 	</tr>
 
 	<tr>
 		<td><code>animate</code></td>
-		<td>Animate elements between slides.</td>
+		<td>Animate elements between slides</td>
 	</tr>
 
 	<tr>
 		<td><code>animateEasing</code></td>
-		<td>Pass CSS easing.</td>
+		<td>Pass CSS easing</td>
 	</tr>
 
 	<tr>
 		<td><code>animateUnmatched</code></td>
-		<td>Animate elements that aren't a match.</td>
+		<td>Animate elements that aren't a match</td>
 	</tr>
 
 	<tr>
 		<td><code>animateId</code></td>
-		<td>Change the animate id for a slide.</td>
+		<td>Change the animate id for a slide</td>
 	</tr>
 
 	<tr>
 		<td><code>animateRestart</code></td>
-		<td>Don't auto-animate from previous slide even if the animate id match.</td>
+		<td>Don't auto-animate from previous slide even if the animate id match</td>
 	</tr>
 
 	<tr>
 		<td><code>background</code></td>
-		<td>Set slide background color.</td>
+		<td>Set slide background color</td>
 	</tr>
 
 	<tr>
 		<td><code>gradient</code></td>
-		<td>Set gradient background.</td>
+		<td>Set gradient background</td>
 	</tr>
 
 	<tr>
 		<td><code>image</code></td>
-		<td>Set image background.</td>
+		<td>Set image background</td>
 	</tr>
 
 	<tr>
 		<td><code>video</code></td>
-		<td>Set video background.</td>
+		<td>Set video background</td>
 	</tr>
 
 	<tr>
 		<td><code>iframe</code></td>
-		<td>Set iframe background.</td>
+		<td>Set iframe background</td>
 	</tr>
 
 	<tr>
 		<td><code>interactive</code></td>
-		<td>Make iframe background interactive.</td>
+		<td>Make iframe background interactive</td>
 	</tr>
 
 	<tr>
 		<td><code>transition</code></td>
 		<td>
-			You can use
-			<code>"none"</code>, <code>"fade"</code>, <code>"slide"</code>, <code>"convex"</code>,
-			<code>"concave"</code>, <code>"zoom"</code>.
+			<code>none</code>, <code>fade</code>, <code>slide</code>, <code>convex</code>,
+			<code>concave</code>, <code>zoom</code>
 		</td>
 	</tr>
 </table>
