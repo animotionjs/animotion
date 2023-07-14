@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { base } from '$app/paths'
 	import Code from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>Speaker notes</h1>
@@ -12,19 +14,4 @@
 
 <img src="{base}/notes.png" alt="Speaker notes" />
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Notes } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>
-				Horizontal 1
-				<Notes>Don't make eye contact</Notes>
-			</Slide>
-
-			<Slide>Horizontal 2</Slide>
-		</Presentation>
-	`}
-</Code>
+<Code code={data.examples[0]} />

@@ -6,6 +6,8 @@
 	import { Keynote, Slide, Vertical } from '$lib/keynote'
 	import Code from '$lib/components/code.svelte'
 
+	export let data
+
 	let progress = tweened(0, { duration: 1500, easing: quadInOut })
 	let done = false
 
@@ -49,43 +51,13 @@
 	component.
 </p>
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Vertical } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>Horizontal 1</Slide>
-			<Slide>Horizontal 2</Slide>
-			
-			<Vertical>
-				<Slide>Vertical 1</Slide>  
-				<Slide>Vertical 2</Slide>  
-			</Vertical>
-		</Presentation>
-  `}
-</Code>
+<Code code={data.examples[0]} />
 
 <p>
 	Because <b>Keynote</b> uses Reveal these examples are equivalent.
 </p>
 
-<Code lang="html">
-	{`
-		<div class="reveal">
-			<div class="slides">
-				<section>Horizontal 1</section>
-				<section>Horizontal 2</section>
-
-				<section>
-					<section>Vertical 1</section>
-					<section>Vertical 2</section>
-				</section>
-			</div>
-		</div>
-  `}
-</Code>
+<Code code={data.examples[1]} />
 
 <p>
 	You can customize <b>Keynote</b> by changing the existing presentation components and add new ones
@@ -112,35 +84,9 @@
 	</Slide>
 </Keynote>
 
-<Code lang="svelte">
-	{`
-		<!-- src/progress.svelte -->
-		<script>
-			import { tweened } from 'svelte/motion'
+<Code code={data.examples[2]} />
 
-			let progress = tweened(0, { duration: 2000 })
-			$progress = 10_000
-		<\/script>
-
-		<Slide>
-			{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
-		</Slide>
-  `}
-</Code>
-
-<Code lang="html">
-	{`
-		<!-- src/slides.svelte -->
-		<script>
-			import { Presentation } from '@components'
-			import { Progress } from './progress.svelte'
-		<\/script>
-
-		<Presentation>
-			<Progress /\>
-		</Presentation>
-  `}
-</Code>
+<Code code={data.examples[3]} />
 
 <p>
 	You don't have to import the <code>&lt;Slide&gt;</code> component inside

@@ -338,8 +338,13 @@ body {
 }
 
 /* code */
+pre {
+	padding: var(--size-3);
+	border-radius: var(--radius-1);
+	overflow: auto;
+}
 
-code[class*='language-'],
+/* code[class*='language-'],
 pre[class*='language-'] {
 	padding-block: var(--size-3);
 	font-size: var(--font-size-3);
@@ -352,9 +357,15 @@ pre[class*='language-'] {
 	line-height: 1.6;
 	tab-size: 2;
 	hyphens: none;
-}
+} */
 
 /* code blocks */
+/* pre[class*='language-'] {
+	padding-inline: var(--size-3);
+	border-radius: var(--radius-1);
+	overflow: auto;
+}
+
 pre[class*='language-'] {
 	padding-inline: var(--size-3);
 	border-radius: var(--radius-1);
@@ -366,7 +377,7 @@ pre[class*='language-'] {
 	background-color: hsl(200 40% 14%);
 	border: 1px solid var(--border);
 	box-shadow: var(--shadow-1);
-}
+} */
 
 /* inline code */
 :not(pre) > code[class*='language-'],
@@ -396,12 +407,12 @@ code[class*='language-'] .code {
 }
 */
 
-.hide {
+/* .hide {
 	display: none;
-}
+} */
 
 /* syntax highlighting */
-
+/* 
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -462,4 +473,4 @@ code[class*='language-'] .code {
 .token.regex,
 .token.important {
 	color: hsl(55 100% 88%);
-}
+} */

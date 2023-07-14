@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Keynote, Slide, FitText } from '$lib/keynote'
 	import Code from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>FitText</h1>
@@ -17,29 +19,11 @@
 	</Slide>
 </Keynote>
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, FitText } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>
-				<FitText class="uppercase">Hello</FitText>
-				<FitText class="uppercase">Darkness my old friend</FitText>
-			</Slide>
-		</Presentation>
-	`}
-</Code>
+<Code code={data.examples[0]} />
 
 <p>
 	By default a <code>h2</code> tag is used for <code>&lt;FitText&gt;</code> for rendering the text but
 	you can change it to anything you want.
 </p>
 
-<Code lang="svelte">
-	{`
-		<FitText type="h1">Hello</FitText>
-		<FitText type="p">Darkness my old friend</FitText>
-	`}
-</Code>
+<Code code={data.examples[1]} />

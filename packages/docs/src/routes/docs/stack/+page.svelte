@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Keynote, Slide, Stack, Step } from '$lib/keynote'
 	import Code from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>Stack</h1>
@@ -25,26 +27,4 @@
 	</Slide>
 </Keynote>
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Stack, Step } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>
-				<Stack>
-					<img src="https://place-puppy.com/400x400" /\>
-
-					<Step>
-						<img src="https://place-puppy.com/500x300" /\>
-					</Step>
-
-					<Step>
-						<img src="https://place-puppy.com/300x340" /\>
-					</Step>
-				</Stack>
-			</Slide>
-		</Presentation>
-	`}
-</Code>
+<Code code={data.examples[0]} />

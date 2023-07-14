@@ -1,46 +1,14 @@
 <script lang="ts">
-	import Prism from 'prismjs'
 	import { ClipboardIcon } from 'lucide-svelte'
-	import './svelte'
 
-	// disable automatic highlighting
-	Prism.manual = true
+	export let code: string
 
-	export let lang: string
-	let clipboard: string
-
-	function highlight(code: string, lang: string) {
-		return Prism.highlight(code, Prism.languages[lang], lang)
-	}
-
-	function highlightCode(code: string, lang: string) {
-		if (!code) return
-
-		// remove leading whitespace
-		const twoTabs = '\t\t'
-
-		return code
-			.trim()
-			.split('\n')
-			.map((line) => line.replace(twoTabs, ''))
-			.map(
-				(line, i) =>
-					`<div data-line="${i + 1}"><span class="code">${highlight(line, lang)}\n</span></div>`
-			)
-			.join('')
-	}
-
-	function highlighter(node: HTMLElement) {
-		if (!node.textContent) return
-		clipboard = node.textContent.trim()
-		const html = highlightCode(node.textContent, lang)
-		node.innerHTML = `
-			<pre class="language-${lang}"><code class="language-${lang}">${html}</code></pre>
-		`
+	function getContent(html: string) {
+		return new DOMParser().parseFromString(html, 'text/html').documentElement.textContent!
 	}
 
 	function copyToClipboard() {
-		navigator.clipboard.writeText(clipboard)
+		navigator.clipboard.writeText(getContent(code))
 	}
 </script>
 
@@ -51,9 +19,7 @@
 		</button>
 	</div>
 
-	<div class="code" use:highlighter>
-		<slot />
-	</div>
+	{@html code}
 </div>
 
 <style>

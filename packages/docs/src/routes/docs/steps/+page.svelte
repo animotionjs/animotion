@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Keynote, Slide, Step } from '$lib/keynote'
 	import Code from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>Step</h1>
@@ -16,22 +18,7 @@
 	</Slide>
 </Keynote>
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Step } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>
-				<Step fadeUp>No care in the world</Step>
-				<Step fadeRight>Maybe I'm learning</Step>
-				<Step fadeLeft>Why the sea on the tide</Step>
-				<Step fadeDown>Has no way of turning</Step>
-			</Slide>
-		</Presentation>
-	`}
-</Code>
+<Code code={data.examples[0]} />
 
 <p>Here are the available effects as props:</p>
 
@@ -162,32 +149,7 @@
 	</Slide>
 </Keynote>
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Step } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>
-				<Step class="custom blur">I could feel at the time</Step>
-				<Step class="custom blur">There was no way of knowing</Step>
-				<Step class="custom blur">Fallen leaves in the night</Step>
-				<Step class="custom blur">Who can say where they're blowing</Step>
-			</Slide>
-		</Presentation>
-
-		<\style>
-			:global(.fragment.blur) {
-				filter: blur(5px);
-			}
-
-			:global(.fragment.blur.visible) {
-				filter: none;
-			}
-		<\/style>
-	`}
-</Code>
+<Code code={data.examples[1]} />
 
 <h2>Nested steps</h2>
 
@@ -203,25 +165,7 @@
 	</Slide>
 </Keynote>
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Step } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>
-				<Step fadeIn>
-					<Step semiFadeOut>
-						<Step fadeOut>
-							Fade in > Fade 50% > Fade out
-						</Step>
-					</Step>
-				</Step>
-			</Slide>
-		</Presentation>
-	`}
-</Code>
+<Code code={data.examples[2]} />
 
 <h2>Step order</h2>
 
@@ -235,21 +179,7 @@
 	</Slide>
 </Keynote>
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Step } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>
-				<Step order="3">Last</Step>
-				<Step order="1">First</Step>
-				<Step order="2">Second</Step>
-			</Slide>
-		</Presentation>
-	`}
-</Code>
+<Code code={data.examples[3]} />
 
 <style>
 	:global(.fragment.blur) {

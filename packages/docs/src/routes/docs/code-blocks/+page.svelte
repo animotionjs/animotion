@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Keynote, Slide, Code } from '$lib/keynote'
 	import CodeBlock from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>Code blocks</h1>
@@ -15,7 +17,7 @@
 
 <Keynote>
 	<Slide animate>
-		<div class="mx-auto w-[500px]">
+		<div class="mx-auto w-[800px]">
 			<Code lang="html">
 				{`
 					<script>
@@ -45,45 +47,7 @@
 	</Slide>
 </Keynote>
 
-<CodeBlock lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Code } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide animate>
-				<div class="mx-auto w-[400px]">
-					<Code lang="svelte">
-						{\`
-							<script>
-								let count = 0
-								$: double = count * 2
-							<\/script>
-						\`}
-					</Code>
-				</div>
-			</Slide>
-
-			<Slide animate>
-				<div class="mx-auto w-[800px]">
-					<Code lang="html">
-						{\`
-							<script>
-								let count = 0
-								$: double = count * 2
-							<\/script>
-
-							<button on:click={() => count += 1}>
-								{double}
-							</button>
-						\`}
-					</Code>
-				</div>
-			</Slide>
-		</Presentation>
-	`}
-</CodeBlock>
+<CodeBlock code={data.examples[0]} />
 
 <h2>Indentation</h2>
 
@@ -94,27 +58,11 @@
 
 <p>👍️ Tabs:</p>
 
-<CodeBlock lang="svelte">
-	{`
-		<Code lang="ts">
-			{\`
-				const bool = true
-			\`}
-		</Code>
-	`}
-</CodeBlock>
+<CodeBlock code={data.examples[1]} />
 
 <p>💩 Spaces:</p>
 
-<CodeBlock lang="svelte">
-	{`
-		<Code lang="ts">
-			{\`
-const bool = true
-			\`}
-		</Code>
-	`}
-</CodeBlock>
+<CodeBlock code={data.examples[2]} />
 
 <h2>Line Highlights And Offsets</h2>
 
@@ -163,45 +111,7 @@ const bool = true
 	</Slide>
 </Keynote>
 
-<CodeBlock lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Code } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide animate>
-				<div class="mx-auto w-[400px]">
-					<Code lang="svelte" lines="2|3">
-						{\`
-							<script>
-								let count = 0
-								$: double = count * 2
-							<\/script>
-						\`}
-					</Code>
-				</div>
-			</Slide>
-
-			<Slide animate>
-				<div class="mx-auto w-[800px]">
-					<Code lang="svelte" lines="6,8|3,7|1-8">
-						{\`
-							<script>
-								let count = 0
-								$: double = count * 2
-							<\/script>
-
-							<button on:click={() => count += 1}>
-								{double}
-							</button>
-						\`}
-					</Code>
-				</div>
-			</Slide>
-		</Presentation>
-	`}
-</CodeBlock>
+<CodeBlock code={data.examples[3]} />
 
 <h2>Escaping Characters</h2>
 
@@ -242,17 +152,15 @@ const bool = true
 
 <p>Update <code>lib/languages/index.ts</code> to register the language.</p>
 
-<CodeBlock lang="js">
-	{`
-		import { svelte } from './svelte'
-
-		export function registerLanguages(hljs) {
-			hljs.registerLanguage('svelte', svelte)
-		}
-	`}
-</CodeBlock>
+<CodeBlock code={data.examples[4]} />
 
 <p>
 	If the language you want is not included you can look at the provided Svelte example and figure it
 	out from there.
 </p>
+
+<style>
+	:global(code > table) {
+		font-size: 32px;
+	}
+</style>

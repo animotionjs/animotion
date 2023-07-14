@@ -2,6 +2,8 @@
 	import { base } from '$app/paths'
 	import { Keynote, Slide, Stretch } from '$lib/keynote'
 	import Code from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>Stretch</h1>
@@ -17,20 +19,4 @@
 	</Slide>
 </Keynote>
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Stretch } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>
-				<Stretch
-					class="mx-auto"
-					src="svelte.png"
-					type="img"
-				/>
-			</Slide>
-		</Presentation>
-	`}
-</Code>
+<Code code={data.examples[0]} />

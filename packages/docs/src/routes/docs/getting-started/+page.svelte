@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Code from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>Getting started</h1>
@@ -10,37 +12,21 @@
 	<a href="https://nodejs.org/en">Node.js</a> installed.
 </p>
 
-<Code lang="text">
-	{`
-    npm install -g pnpm
-	`}
-</Code>
+<Code code={data.examples[0]} />
 
 <p>
 	Create a new <b>Keynote</b> presentation.
 </p>
 
-<Code lang="text">
-	{`
-    npm create keynote
-	`}
-</Code>
+<Code code={data.examples[1]} />
 
 <p>Install the dependencies.</p>
 
-<Code lang="text">
-	{`
-    pnpm i
-	`}
-</Code>
+<Code code={data.examples[2]} />
 
 <p>Start the development server.</p>
 
-<Code lang="text">
-	{`
-    pnpm run dev
-	`}
-</Code>
+<Code code={data.examples[3]} />
 
 <p>
 	Visit <a href="http://localhost:5173/">http://localhost:5173/</a>.

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { Keynote, Slide, Vertical } from '$lib/keynote'
-	import CodeBlock from '$lib/components/code.svelte'
 	import { navigation } from '$lib/keynote/stores/navigation'
+	import CodeBlock from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>Events</h1>
@@ -34,31 +36,7 @@
 	</Vertical>
 </Keynote>
 
-<CodeBlock lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Vertical } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide
-				on:in={() => console.log('in')}
-				on:out={() => console.log('out')}
-			>
-				Horizontal
-			</Slide>
-
-			<Vertical>
-				<Slide
-					on:in={() => console.log('in')}
-					on:out={() => console.log('out')}
-				>
-					Vertical
-				</Slide>
-			</Vertical>
-		</Presentation>
-	`}
-</CodeBlock>
+<CodeBlock code={data.examples[0]} />
 
 <h2>Navigation store</h2>
 
@@ -67,26 +45,14 @@
 	the current slide which you can subscribe to inside of a component if you want.
 </p>
 
-<CodeBlock lang="svelte">
-	{`
-		<script>
-			import { navigation } from '@stores/navigation'
-		<\/script>
-
-		<pre>
-			{JSON.stringify($navigation, null, 2)}
-		</pre>
-	`}
-</CodeBlock>
+<CodeBlock code={data.examples[1]} />
 
 <p>
-	Try changing the slides in the previous example to see the navigation store update on the page.
+	Try changing the slides in the previous example to see the navigation store update for the page.
 </p>
 
 {#key $navigation}
-	<CodeBlock lang="text">
-		{`
- 			${JSON.stringify($navigation, null, 2)}
-		`}
-	</CodeBlock>
+	<pre class="surface-1">
+{JSON.stringify($navigation, null, 2)}
+	</pre>
 {/key}

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Keynote, Slide, Media } from '$lib/keynote'
 	import Code from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>Media</h1>
@@ -16,23 +18,7 @@
 	</Slide>
 </Keynote>
 
-<Code lang="svelte">
-	{`
-		<script>
-			import { Presentation, Slide, Media } from '@components'
-		<\/script>
-
-		<Presentation>
-			<Slide>
-				<Media
-					class="h-[600px] w-full"
-					src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-					type="iframe"
-				/\>
-			</Slide>
-		</Presentation>
-	`}
-</Code>
+<Code code={data.examples[0]} />
 
 <p>
 	Here are the options you can pass to the <code>&ltMedia&gt;</code> component:

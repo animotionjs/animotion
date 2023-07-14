@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { base } from '$app/paths'
 	import Code from '$lib/components/code.svelte'
+
+	export let data
 </script>
 
 <h1>Layout</h1>
@@ -20,13 +22,4 @@
 	disable the layout and set the display mode for the slides if you want complete control over the layout.
 </p>
 
-<Code lang="js">
-	{`
-		const options = {
-			// bring your own layout
-			disableLayout: true,
-			// display mode used to show slides
-			display: 'grid',
-		}
-	`}
-</Code>
+<Code code={data.examples[0]} />
