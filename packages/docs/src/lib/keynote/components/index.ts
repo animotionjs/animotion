@@ -7,5 +7,6 @@ import Stack from './stack.svelte'
 import FitText from './fit.svelte'
 import Stretch from './stretch.svelte'
 import Vertical from './vertical.svelte'
+import Notes from './notes.svelte'
 
-export { Slide, Code, Markdown, Media, Step, Stack, FitText, Stretch, Vertical }
+export { Slide, Code, Markdown, Media, Step, Stack, FitText, Stretch, Vertical, Notes }
