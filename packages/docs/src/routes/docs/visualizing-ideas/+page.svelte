@@ -260,8 +260,8 @@
 </p>
 
 <p>
-	The default dimensions for a presentation is <b>960x700</b> preserving the aspect ratio but you
-	can
+	The default dimensions for a presentation are <b>960x700</b> pixels preserving the aspect ratio
+	but you can
 	<a href="http://localhost:5173/keynote/docs/layout">bring your own layout</a> and have complete control
 	over the layout if desired.
 </p>
