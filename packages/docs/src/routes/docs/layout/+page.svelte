@@ -16,8 +16,8 @@
 <img src="{base}/layout.png" alt="Slides layout" />
 
 <p>
-	Inside <code>src/config.ts</code> you can change the slides dimensions, or disable the layout and
-	set the slides to use <code>display: grid;</code> giving you complete control over the layout.
+	You can change the slides dimensions and centering options inside <code>src/config.ts</code> but also
+	disable the layout and set the display mode for the slides if you want complete control over the layout.
 </p>
 
 <Code lang="js">
@@ -27,8 +27,6 @@
 			disableLayout: true,
 			// display mode used to show slides
 			display: 'grid',
-			// center slides on the screen
-			center: false
 		}
 	`}
 </Code>

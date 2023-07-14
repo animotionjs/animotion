@@ -11,12 +11,12 @@
 	delete $$restProps.class
 </script>
 
-<pre data-id={id} {...$$restProps}>
+<pre data-id={id} class={$$props.class || ''} {...$$restProps}>
   <code
 		data-trim
 		data-line-numbers={lines || null}
 		data-ln-start-from={offset}
-		class="language-{lang} {$$props.class || ''}">
+		class="language-{lang}">
 <slot />
   </code>
 </pre>

@@ -7,9 +7,11 @@
 	export let lines: Lines = true
 	export let offset: Offset = null
 	export let lang: Language = null
+
+	delete $$restProps.class
 </script>
 
-<pre data-id={id} {...$$props}>
+<pre data-id={id} class={$$props.class || ''} {...$$restProps}>
   <code
 		data-trim
 		data-line-numbers={lines || null}

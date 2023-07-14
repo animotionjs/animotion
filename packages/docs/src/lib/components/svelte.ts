@@ -88,39 +88,39 @@ Prism.languages.svelte = Prism.languages.extend('markup', {
 		lookbehind: true,
 		inside: Prism.languages['javascript'],
 	},
-});
+})
 
 Prism.languages.svelte['tag'].inside['attr-value'].inside['entity'] =
-	Prism.languages.svelte['entity'];
+Prism.languages.svelte['entity']
 
 Prism.hooks.add('wrap', env => {
 	if (env.type === 'entity') {
-		env.attributes['title'] = env.content.replace(/&amp;/, '&');
+		env.attributes['title'] = env.content.replace(/&amp;/, '&')
 	}
-});
+})
 
 Object.defineProperty(Prism.languages.svelte.tag, 'addInlined', {
 	value: function addInlined(tagName, lang) {
-		const includedCdataInside = {};
+		const includedCdataInside = {}
 		includedCdataInside['language-' + lang] = {
 			pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
 			lookbehind: true,
 			inside: Prism.languages[lang],
-		};
-		includedCdataInside['cdata'] = /^<!\[CDATA\[|\]\]>$/i;
+		}
+		includedCdataInside['cdata'] = /^<!\[CDATA\[|\]\]>$/i
 
 		const inside = {
 			'included-cdata': {
 				pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
 				inside: includedCdataInside,
 			},
-		};
+		}
 		inside['language-' + lang] = {
 			pattern: /[\s\S]+/,
 			inside: Prism.languages[lang],
-		};
+		}
 
-		const def = {};
+		const def = {}
 		def[tagName] = {
 			pattern: RegExp(
 				/(<__[\s\S]*?>)(?:<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S])*?(?=<\/__>)/.source.replace(
@@ -132,11 +132,11 @@ Object.defineProperty(Prism.languages.svelte.tag, 'addInlined', {
 			lookbehind: true,
 			greedy: true,
 			inside,
-		};
+		}
 
-		Prism.languages.insertBefore('svelte', 'cdata', def);
+		Prism.languages.insertBefore('svelte', 'cdata', def)
 	},
-});
+})
 
-Prism.languages.svelte.tag.addInlined('style', 'css');
-Prism.languages.svelte.tag.addInlined('script', 'javascript');
+Prism.languages.svelte.tag.addInlined('style', 'css')
+Prism.languages.svelte.tag.addInlined('script', 'javascript')

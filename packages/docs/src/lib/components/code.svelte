@@ -3,12 +3,14 @@
 	import { ClipboardIcon } from 'lucide-svelte'
 	import './svelte'
 
-	export let lang: string
+	// disable automatic highlighting
+	Prism.manual = true
 
+	export let lang: string
 	let clipboard: string
 
-	function highlight(code: string, language: string) {
-		return Prism.highlight(code, Prism.languages[language], 'html')
+	function highlight(code: string, lang: string) {
+		return Prism.highlight(code, Prism.languages[lang], lang)
 	}
 
 	function highlightCode(code: string, lang: string) {
