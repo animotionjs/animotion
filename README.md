@@ -1,6 +1,8 @@
+<br>
 <div align="center">
  <img width="400" src="packages/docs/static/logo.png" alt="Animotion logo">
 </div>
+<br>
 
 ## Animotion
 
