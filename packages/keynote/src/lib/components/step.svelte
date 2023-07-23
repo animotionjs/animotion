@@ -21,7 +21,7 @@
 	export let shrink = false
 	export let strike = false
 
-	delete $$props.class
+	delete $$restProps.class
 </script>
 
 <svelte:element
