@@ -1,5 +1,5 @@
 <div align="center">
- <img width="240" src="packages/docs/static/logo.png" alt="Animotion logo">
+ <img width="400" src="packages/docs/static/logo.png" alt="Animotion logo">
 </div>
 
 ## Animotion
