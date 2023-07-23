@@ -34,7 +34,7 @@
 		<div class="left-side">
 			<div class="space-x" style:--margin="var(--size-0)">
 				<span>🪄</span>
-				<a class="bold" href="/">
+				<a class="bold" href={base}>
 					<span>Animotion</span>
 				</a>
 			</div>
