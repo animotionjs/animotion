@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, Code } from '$lib/keynote'
+	import { Animotion, Slide, Code } from '$lib/animotion'
 	import CodeBlock from '$lib/components/code.svelte'
 
 	export let data
@@ -37,8 +37,8 @@
 <h1>Visualizing Ideas With Code</h1>
 
 <p>
-	Svelte has great <a href="https://svelte.dev/tutorial/tweened">built-in tools for motion</a> you
-	can use but you can reach for any animation library like
+	Svelte has great <a href="https://svelte.dev/tutorial/tweened">built-in tools for motion</a> but
+	you can reach for any animation library like
 	<a href="https://greensock.com/gsap/">GSAP</a>
 	or
 	<a href="https://motion.dev/">Motion One</a>.
@@ -56,10 +56,10 @@
 
 <p>
 	Let's combine everything you learned so far and see how you can visualize ideas with code for
-	making code explainers using <b>Keynote</b>.
+	making code explainers using <b>Animotion</b>.
 </p>
 
-<Keynote options={{ hash: true, history: true }}>
+<Animotion options={{ hash: true, history: true }}>
 	<Slide animate>
 		<div class="w-[1020px]">
 			<Code lang="html" lines="1,3|2">
@@ -131,7 +131,7 @@
 			</svg>
 		</div>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <CodeBlock code={data.examples[0]} />
 
@@ -141,7 +141,7 @@
 </p>
 
 <p>
-	<b>There is no right or wrong way</b> to do something — <b>Keynote</b> is only concerned about
+	<b>There is no right or wrong way</b> to do something — <b>Animotion</b> is only concerned about
 	managing the slides and transitions between them. You can use
 	<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox">Flexbox</a>
 	and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout">CSS Grid</a> for the
@@ -151,7 +151,7 @@
 <p>
 	The default dimensions for a presentation are <b>960x700</b> pixels preserving the aspect ratio
 	but you can
-	<a href="http://localhost:5173/keynote/docs/layout">bring your own layout</a> and have complete control
+	<a href="http://localhost:5173/animotion/docs/layout">bring your own layout</a> and have complete control
 	over the layout if desired.
 </p>
 

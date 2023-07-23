@@ -7,12 +7,12 @@
 
 <div class="container">
 	<aside class="sections space-y" style:--margin="var(--size-2)">
-		{#each sections as { path, title, section }}
+		{#each sections as { path, title, section, reload }}
 			{@const active = $page.route.id === path}
 			{#if section}
 				<h4 class="section">{section}</h4>
 			{:else}
-				<a href="{base}{path}" class:active>{title}</a>
+				<a data-sveltekit-reload={reload || null} href="{base}{path}" class:active>{title}</a>
 			{/if}
 		{/each}
 	</aside>

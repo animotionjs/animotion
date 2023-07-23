@@ -17,9 +17,9 @@
 
 		/*
 			to have multiple slides we pass the new reference
-			for the keynote and have to set `embedded: true`
+			to animotion and have to set `embedded: true`
 		*/
-		const deck = new Reveal(keynote, {
+		const deck = new Reveal(animotion, {
 			plugins: [Highlight, Math.KaTeX, Notes],
 			embedded: true,
 			...options
@@ -37,10 +37,10 @@
 		}
 	}
 
-	let keynote: HTMLElement
+	let animotion: HTMLElement
 </script>
 
-<div bind:this={keynote} class="reveal">
+<div bind:this={animotion} class="reveal">
 	<div class="slides">
 		<slot />
 	</div>

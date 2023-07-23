@@ -2,7 +2,7 @@ import { highlightCode } from '$lib/components/shiki.server'
 
 const example1 = await highlightCode(`
 <script>
-  import { Keynote, Slide, Step } from '@components'
+  import { Animotion, Slide, Step } from '@components'
 </script>
 
 <Presentation>

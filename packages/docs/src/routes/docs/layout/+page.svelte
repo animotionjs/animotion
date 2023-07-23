@@ -23,3 +23,9 @@
 </p>
 
 <Code code={data.examples[0]} />
+
+<p>This way you can create a reusable <code>&lt;Layout&gt;</code> component.</p>
+
+<Code code={data.examples[1]} />
+
+<Code code={data.examples[2]} />

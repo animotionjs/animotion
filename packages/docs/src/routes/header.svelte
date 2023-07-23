@@ -35,7 +35,7 @@
 			<div class="space-x" style:--margin="var(--size-0)">
 				<span>🪄</span>
 				<a class="bold" href="/">
-					<span>Keynote</span>
+					<span>Animotion</span>
 				</a>
 			</div>
 		</div>

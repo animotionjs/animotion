@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Keynote, Slide, Vertical } from '$lib/keynote'
-	import { navigation } from '$lib/keynote/stores/navigation'
+	import { Animotion, Slide, Vertical } from '$lib/animotion'
+	import { navigation } from '$lib/animotion/stores/navigation'
 	import CodeBlock from '$lib/components/code.svelte'
 
 	export let data
@@ -16,11 +16,11 @@
 </p>
 
 <p>
-	<b>Keynote</b> provides a <code>on:in</code> and <code>on:out</code> event listener on the slide if
-	you want to run some code when a slide enters or leaves.
+	<b>Animotion</b> provides a <code>on:in</code> and <code>on:out</code> event listener on the slide
+	if you want to run some code when a slide enters or leaves.
 </p>
 
-<Keynote options={{ hash: true, history: true }}>
+<Animotion options={{ hash: true, history: true }}>
 	<Slide>
 		<p class="text-[100px] font-semibold">Events</p>
 	</Slide>
@@ -34,15 +34,15 @@
 			<p class="text-[100px] font-semibold">Vertical</p>
 		</Slide>
 	</Vertical>
-</Keynote>
+</Animotion>
 
 <CodeBlock code={data.examples[0]} />
 
 <h2>Navigation store</h2>
 
 <p>
-	<b>Keynote</b> uses a navigation store to know which slide you're on with additional information about
-	the current slide which you can subscribe to inside of a component if you want.
+	<b>Animotion</b> uses a navigation store to know which slide you're on with additional information
+	about the current slide which you can subscribe to inside of a component if you want.
 </p>
 
 <CodeBlock code={data.examples[1]} />

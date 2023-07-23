@@ -9,7 +9,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: dev ? '' : '/keynote'
+			base: dev ? '' : '/animotion'
 		}
 	}
 }

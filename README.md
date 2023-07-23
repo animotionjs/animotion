@@ -1,45 +1,43 @@
-# Keynote
-
 <div align="center">
- <img src="packages/docs/static/logo.png" alt="Keynote logo">
+ <img width="240" src="packages/docs/static/logo.png" alt="Animotion logo">
 </div>
 
-## What Is Keynote?
+## Animotion
 
-Keynote is a presentational framework for creating beautiful slides and visualizing ideas with code.
+Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code.
 
 ## Contributing
 
-Keynote is a monorepo using [pnpm workspaces](https://pnpm.io/workspaces) for easier organization broken down into these packages.
+Animotion is a monorepo using [pnpm workspaces](https://pnpm.io/workspaces) for easier organization.
 
-| Package          | Description   |
-| ---------------- | ------------- |
-| `create-keynote` | Keynote CLI   |
-| `docs`           | Documentation |
-| `keynote`        | Keynote       |
+| Package     | Description   |
+| ----------- | ------------- |
+| `create`    | Animotion CLI |
+| `docs`      | Documentation |
+| `animotion` | Animotion     |
 
-To set up the project first clone it.
+### Clone the project
 
 ```sh
-git clone https://github.com/mattcroat/keynote
+git clone https://github.com/mattcroat/animotion
 ```
 
-Install dependencies for every package.
+### Install dependencies for every package
 
 ```sh
 pnpm i
 ```
 
-If you want to make changes to the docs.
+### Make changes to the docs
 
 ```sh
 pnpm docs:dev
 ```
 
-If you want to make changes to Keynote.
+### Make changes to Animotion
 
 ```sh
-pnpm keynote:dev
+pnpm animotion:dev
 ```
 
 You can also `cd` into the respective package directory and run `pnpm run dev`, or `pnpm run build` and `pnpm run preview` for the package.

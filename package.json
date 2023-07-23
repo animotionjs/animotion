@@ -1,10 +1,12 @@
 {
-	"name": "keynote",
+	"name": "animotion",
 	"version": "1.0.0",
-	"description": "Keynote monorepo",
+	"description": "Animotion monorepo",
 	"scripts": {
-		"keynote:dev": "pnpm -F keynote run dev",
+		"animotion:dev": "pnpm -F animotion run dev",
 		"docs:dev": "pnpm -F docs run dev",
+		"docs:build": "pnpm -F docs run build",
+		"docs:preview": "pnpm -F docs run preview",
 		"update": "pnpm -r update -i -L"
 	},
 	"license": "MIT"

@@ -1,4 +1,4 @@
-import Keynote from './keynote.svelte'
+import Animotion from './animotion.svelte'
 import Slide from './components/slide.svelte'
 import Code from './components/code.svelte'
 import Markdown from './components/markdown.svelte'
@@ -10,4 +10,4 @@ import Stretch from './components/stretch.svelte'
 import Vertical from './components/vertical.svelte'
 import Notes from './components/notes.svelte'
 
-export { Keynote, Slide, Code, Markdown, Media, Step, Stack, FitText, Stretch, Vertical, Notes }
+export { Animotion, Slide, Code, Markdown, Media, Step, Stack, FitText, Stretch, Vertical, Notes }

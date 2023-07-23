@@ -22,10 +22,10 @@ const example2 = await highlightCode(`
 
 <Presentation>
   <Slide>
-    <Step class="custom blur">I could feel at the time</Step>
-    <Step class="custom blur">There was no way of knowing</Step>
-    <Step class="custom blur">Fallen leaves in the night</Step>
-    <Step class="custom blur">Who can say where they're blowing</Step>
+    <Step class="custom blur">No care in the world</Step>
+    <Step class="custom blur">Maybe I'm learning</Step>
+    <Step class="custom blur">Why the sea on the tide</Step>
+    <Step class="custom blur">Has no way of turning</Step>
   </Slide>
 </Presentation>
 

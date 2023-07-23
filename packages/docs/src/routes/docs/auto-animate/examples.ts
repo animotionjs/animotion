@@ -85,42 +85,6 @@ const example3 = await highlightCode(`
 </script>
 
 <Presentation>
-  <Slide animate>
-    <div
-      data-id="container"
-      class="h-[600px] w-[50%] overflow-hidden rounded-2xl"
-    >
-      <div data-id="color-1" class="h-[40%] bg-gray-400" />
-      <div data-id="colors" class="grid h-[60%] gap-14 bg-gray-100 p-8">
-        <div data-id="color-2" class="w-full bg-gray-400" />
-        <div data-id="color-3" class="w-full bg-gray-600" />
-        <div data-id="color-4" class="w-full bg-gray-800" />
-      </div>
-    </div>
-  </Slide>
-
-  <Slide animate>
-    <div
-      data-id="container"
-      class="h-[600px] w-[100%] overflow-hidden rounded-2xl"
-    >
-      <div data-id="color-1" class="h-[40%] bg-teal-400" />
-      <div data-id="colors" class="grid h-[60%] gap-14 bg-gray-100 p-8">
-        <div data-id="color-2" class="w-full bg-teal-400" />
-        <div data-id="color-3" class="w-full bg-teal-600" />
-        <div data-id="color-4" class="w-full bg-teal-800" />
-      </div>
-    </div>
-  </Slide>
-</Presentation>
-`.trim(), 'svelte')
-
-const example4 = await highlightCode(`
-<script>
-  import { Presentation, Slide } from '@components'
-</script>
-
-<Presentation>
   <!-- Group A -->
   <Slide animate>
     <p class="">Group A</p>
@@ -150,6 +114,6 @@ const example4 = await highlightCode(`
 </Presentation>
 `.trim(), 'svelte')
 
-const examples = [example1, example2, example3, example4]
+const examples = [example1, example2, example3]
 
 export default examples

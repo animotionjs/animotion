@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, Step } from '$lib/keynote'
+	import { Animotion, Slide, Step } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -12,7 +12,7 @@
 	<a href="https://revealjs.com/math/">options</a> for the Math plugin.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<p>
 			The probability of getting {`\\(k\\)`} heads when flipping {`\\(n\\)`} coins
@@ -24,6 +24,6 @@
 			`}
 		</Step>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[0]} />

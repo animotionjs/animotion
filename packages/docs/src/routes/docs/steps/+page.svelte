@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, Step } from '$lib/keynote'
+	import { Animotion, Slide, Step } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -9,14 +9,14 @@
 
 <p>You can use steps (fragments) to reveal individual elements on a slide.</p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<Step fadeUp>No care in the world</Step>
 		<Step fadeRight>Maybe I'm learning</Step>
 		<Step fadeLeft>Why the sea on the tide</Step>
 		<Step fadeDown>Has no way of turning</Step>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[0]} />
 
@@ -140,14 +140,14 @@
 	You can make a custom step using CSS by passing a <code>custom</code> class and the class you created.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide>
-		<Step class="custom blur">I could feel at the time</Step>
-		<Step class="custom blur">There was no way of knowing</Step>
-		<Step class="custom blur">Fallen leaves in the night</Step>
-		<Step class="custom blur">Who can say where they're blowing</Step>
+		<Step class="custom blur">No care in the world</Step>
+		<Step class="custom blur">Maybe I'm learning</Step>
+		<Step class="custom blur">Why the sea on the tide</Step>
+		<Step class="custom blur">Has no way of turning</Step>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[1]} />
 
@@ -155,7 +155,7 @@
 
 <p>You can also have nested steps.</p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<Step fadeIn>
 			<Step semiFadeOut>
@@ -163,7 +163,7 @@
 			</Step>
 		</Step>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[2]} />
 
@@ -171,13 +171,13 @@
 
 <p>You can change the step order with the <code>order</code> attribute.</p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<Step order="3">Last</Step>
 		<Step order="1">First</Step>
 		<Step order="2">Second</Step>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[3]} />
 

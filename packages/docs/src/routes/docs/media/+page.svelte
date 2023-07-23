@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, Media } from '$lib/keynote'
+	import { Animotion, Slide, Media } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -12,11 +12,11 @@
 	load a video, image or iframe since you can just use regular HTML to do the same thing.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<Media class="h-[600px] w-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" type="iframe" />
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[0]} />
 

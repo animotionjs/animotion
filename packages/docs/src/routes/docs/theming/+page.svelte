@@ -5,11 +5,10 @@
 <h1>Theming</h1>
 
 <p>
-	<b>Keynote</b> exposes styles from the slide theme to the code theme for you to customize to your liking.
+	<b>Animotion</b> exposes styles inside <code>lib/styles</code>:
 </p>
 
-<p>
-	The styles are located inside <code>lib/styles</code> where you can find
-	<code>theme.css</code>
-	styles for the slides theme and <code>code.css</code> styles for the syntax highlighting.
-</p>
+<ul>
+	<li><code>theme.css</code> include the slide styles</li>
+	<li><code>code.css</code> are responsible for syntax higlighting</li>
+</ul>

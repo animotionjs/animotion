@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, Code } from '$lib/keynote'
+	import { Animotion, Slide, Code } from '$lib/animotion'
 	import CodeBlock from '$lib/components/code.svelte'
 
 	export let data
@@ -15,7 +15,7 @@
 	out of the box.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide animate>
 		<div class="mx-auto w-[800px]">
 			<Code lang="html">
@@ -45,7 +45,7 @@
 			</Code>
 		</div>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <CodeBlock code={data.examples[0]} />
 
@@ -56,11 +56,11 @@
 	using spaces for indentation you have to keep code at the start of a new line.
 </p>
 
-<p>👍️ Tabs:</p>
+<p>Tabs:</p>
 
 <CodeBlock code={data.examples[1]} />
 
-<p>💩 Spaces:</p>
+<p>Spaces:</p>
 
 <CodeBlock code={data.examples[2]} />
 
@@ -79,7 +79,7 @@
 	</li>
 </ul>
 
-<Keynote>
+<Animotion>
 	<Slide animate>
 		<div class="mx-auto w-[500px]">
 			<Code lang="html" lines="2|3">
@@ -109,7 +109,7 @@
 			</Code>
 		</div>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <CodeBlock code={data.examples[3]} />
 

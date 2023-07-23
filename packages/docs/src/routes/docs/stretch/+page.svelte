@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths'
-	import { Keynote, Slide, Stretch } from '$lib/keynote'
+	import { Animotion, Slide, Stretch } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -13,10 +13,10 @@
 	example to cover the remaining vertical space in a slide.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<Stretch class="mx-auto" src="{base}/svelte.png" type="img" />
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[0]} />

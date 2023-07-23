@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, Stack, Step } from '$lib/keynote'
+	import { Animotion, Slide, Stack, Step } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -11,7 +11,7 @@
 	You can use the <code>&lt;Stack&gt;</code> component to stack things on top of each other.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<Stack>
 			<img src="https://place-puppy.com/400x400" alt="Placeholder" />
@@ -25,6 +25,6 @@
 			</Step>
 		</Stack>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[0]} />

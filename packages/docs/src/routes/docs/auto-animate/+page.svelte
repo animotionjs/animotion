@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide } from '$lib/keynote'
+	import { Animotion, Slide } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -22,7 +22,7 @@
 	<code>animate</code> attribute like magic. 🪄
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide animate>
 		<p class="text-[100px]">Magic</p>
 	</Slide>
@@ -35,7 +35,7 @@
 		<p class="text-[200px]">🪄</p>
 		<p class="mt-[48px] text-[200px] text-teal-300">Magic</p>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[0]} />
 
@@ -46,7 +46,7 @@
 	aren't the same in which case you can use the <code>data-id</code> attribute.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide animate>
 		<div class="mx-auto flex w-[800px] justify-between text-gray-900">
 			<div
@@ -94,45 +94,58 @@
 			</div>
 		</div>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[1]} />
 
+<h2>Don't auto-animate everything</h2>
+
 <p>
-	Here's a more complicated example where you might want to animate multiple values at the same
-	time.
+	Auto-animate is great for animating layouts but it's not perfect and might not work as expected
+	with nested elements.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide animate>
-		<div data-id="container" class="h-[600px] w-[50%] overflow-hidden rounded-2xl">
+		<div data-id="color-picker" class="h-[600px] w-[50%] overflow-hidden rounded-2xl">
 			<div data-id="color-1" class="h-[40%] bg-gray-400" />
 			<div data-id="colors" class="grid h-[60%] gap-14 bg-gray-100 p-8">
-				<div data-id="color-2" class="w-full bg-gray-400" />
-				<div data-id="color-3" class="w-full bg-gray-600" />
-				<div data-id="color-4" class="w-full bg-gray-800" />
+				<div data-id="color-2" class="w-full rounded-2xl bg-gray-400" />
+				<div data-id="color-3" class="w-full rounded-2xl bg-gray-400" />
+				<div data-id="color-4" class="w-full rounded-2xl bg-gray-400" />
 			</div>
 		</div>
 	</Slide>
 
 	<Slide animate>
-		<div data-id="container" class="h-[600px] w-[100%] overflow-hidden rounded-2xl">
-			<div data-id="color-1" class="h-[50%] bg-teal-400" />
-			<div data-id="colors" class="grid h-[50%] gap-14 bg-gray-100 p-8">
-				<div data-id="color-2" class="w-full bg-teal-400" />
-				<div data-id="color-3" class="w-full bg-teal-600" />
-				<div data-id="color-4" class="w-full bg-teal-800" />
+		<div data-id="color-picker" class="h-[600px] w-[100%] overflow-hidden rounded-2xl">
+			<div data-id="color-1" class="h-[40%] bg-teal-400" />
+			<div data-id="colors" class="grid h-[60%] gap-14 bg-gray-100 p-8">
+				<div data-id="color-2" class="w-full rounded-2xl bg-teal-400" />
+				<div data-id="color-3" class="w-full rounded-2xl bg-teal-400" />
+				<div data-id="color-4" class="w-full rounded-2xl bg-teal-400" />
 			</div>
 		</div>
 	</Slide>
-</Keynote>
-
-<Code code={data.examples[2]} />
+</Animotion>
 
 <p>
-	Don't forget that you can componetize everything and throw long class names into a variable for
-	reuse to make your life easier.
+	Instead of using auto-animate just animate the <code>width</code> and <code>color</code>
+	properties with CSS or JavaScript by using an animation library or interpolating the values.
 </p>
+
+<Animotion>
+	<Slide>
+		<div class="animate-width h-[600px] overflow-hidden rounded-2xl">
+			<div data-id="color" class="animate-bg h-[40%] bg-gray-400" />
+			<div data-id="values" class="grid h-[60%] gap-14 bg-gray-100 p-8">
+				<div class="animate-bg w-full rounded-2xl bg-gray-400" />
+				<div class="animate-bg w-full rounded-2xl bg-gray-400" />
+				<div class="animate-bg w-full rounded-2xl bg-gray-400" />
+			</div>
+		</div>
+	</Slide>
+</Animotion>
 
 <h2>Grouping Animated Slides</h2>
 
@@ -142,7 +155,7 @@
 	slides even if they have the same id.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide animate>
 		<p class="">Group A</p>
 	</Slide>
@@ -166,11 +179,38 @@
 	<Slide animate animateId="two">
 		<p class="text-blue-400">Group C</p>
 	</Slide>
-</Keynote>
+</Animotion>
 
-<Code code={data.examples[3]} />
+<Code code={data.examples[2]} />
 
-<p>
-	I never find myself in a situation where I need to use <code>animateId</code> and use
-	<code>animateRestart</code> when I have to.
-</p>
+<style>
+	.animate-width {
+		animation: width 2s ease-in-out infinite alternate;
+	}
+
+	.animate-bg {
+		animation: background 2s ease-in-out infinite alternate;
+	}
+
+	@keyframes width {
+		0%,
+		10% {
+			width: 50%;
+		}
+		90%,
+		100% {
+			width: 100%;
+		}
+	}
+
+	@keyframes background {
+		0%,
+		10% {
+			background-color: #9ca3af;
+		}
+		90%,
+		100% {
+			background-color: #2dd4bf;
+		}
+	}
+</style>

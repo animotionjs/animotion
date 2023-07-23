@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide, FitText } from '$lib/keynote'
+	import { Animotion, Slide, FitText } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -12,12 +12,12 @@
 	the slide.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<FitText class="uppercase">Hello</FitText>
 		<FitText class="uppercase">Darkness my old friend</FitText>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[0]} />
 

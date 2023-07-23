@@ -8,7 +8,7 @@
 
 <p>
 	You can open <code>src/config.ts</code> to change the default presentation options and add
-	<a href="https://revealjs.com/plugins/">plugins</a> including creating your own plugins.
+	<a href="https://revealjs.com/plugins/">Reveal plugins</a> including creating your own plugins.
 </p>
 
 <Code code={data.examples[0]} />

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Keynote, Slide } from '$lib/keynote'
+	import { Animotion, Slide } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -14,7 +14,7 @@
 	text is scaled based on the size of your presentation which you can also override with CSS.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<div class="mx-auto flex w-[800px] justify-between text-gray-900">
 			<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-red-400">Red</div>
@@ -24,7 +24,7 @@
 			<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-blue-400">Blue</div>
 		</div>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[0]} />
 
@@ -38,7 +38,7 @@
 	<a href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss">
 		Tailwind CSS IntelliSense
 	</a>
-	extension for VS Code and to make your life easier <b>Keynote</b> is set up to sort Tailwind classes
+	extension for VS Code and to make your life easier <b>Animotion</b> is set up to sort Tailwind classes
 	on your behalf to keep things organized.
 </p>
 

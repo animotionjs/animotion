@@ -3,7 +3,7 @@
 	import { quadInOut } from 'svelte/easing'
 	import { base } from '$app/paths'
 
-	import { Keynote, Slide, Vertical } from '$lib/keynote'
+	import { Animotion, Slide, Vertical } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -36,7 +36,7 @@
 	slides into components you can learn more about in another section.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide>Horizontal 1</Slide>
 	<Slide>Horizontal 2</Slide>
 
@@ -44,7 +44,7 @@
 		<Slide>Vertical 1</Slide>
 		<Slide>Vertical 2</Slide>
 	</Vertical>
-</Keynote>
+</Animotion>
 
 <p>
 	To create horizontal and vertical slides use the <code>&lt;Slide&gt;</code>
@@ -54,14 +54,14 @@
 <Code code={data.examples[0]} />
 
 <p>
-	Because <b>Keynote</b> uses Reveal these examples are equivalent.
+	Because <b>Animotion</b> uses Reveal these examples are equivalent.
 </p>
 
 <Code code={data.examples[1]} />
 
 <p>
-	You can customize <b>Keynote</b> by changing the existing presentation components and add new ones
-	if you read the
+	You can customize <b>Animotion</b> by changing the existing presentation components and add new
+	ones if you read the
 	<a href="https://revealjs.com/">Reveal documentation</a>.
 </p>
 
@@ -73,7 +73,7 @@
 	want.
 </p>
 
-<Keynote>
+<Animotion>
 	<Slide>
 		<span class="mt-8 text-[100px] font-black">
 			{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
@@ -82,7 +82,7 @@
 			</span>
 		</span>
 	</Slide>
-</Keynote>
+</Animotion>
 
 <Code code={data.examples[2]} />
 

@@ -7,27 +7,27 @@
 </script>
 
 <svelte:head>
-	<title>{title ?? 'Keynote'}</title>
+	<title>{title ?? 'Animotion'}</title>
 
 	<meta
-		content="Keynote is a presentational framework for creating beautiful slides and visualizing ideas with code."
+		content="Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code."
 		name="description"
 	/>
 
-	<meta content={title ?? 'Keynote'} property="og:title" />
+	<meta content={title ?? 'Animotion'} property="og:title" />
 	<!-- <meta content={social} property="og:image" /> -->
 	<!-- <meta content="https://joyofcode.xyz/" property="og:url" /> -->
 	<meta
-		content="Keynote is a presentational framework for creating beautiful slides and visualizing ideas with code."
+		content="Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code."
 		property="og:description"
 	/>
-	<meta content="Keynote" property="og:site_name" />
+	<meta content="Animotion" property="og:site_name" />
 
 	<meta content="@joyofcodedev" name="twitter:creator" />
 	<meta content="summary_large_image" name="twitter:card" />
-	<meta content={title ?? 'Keynote'} name="twitter:title" />
+	<meta content={title ?? 'Animotion'} name="twitter:title" />
 	<meta
-		content="Keynote is a presentational framework for creating beautiful slides and visualizing ideas with code."
+		content="Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code."
 		name="twitter:description"
 	/>
 	<!-- <meta content={social} name="twitter:image" /> -->

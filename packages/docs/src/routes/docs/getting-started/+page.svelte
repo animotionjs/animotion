@@ -15,12 +15,12 @@
 <Code code={data.examples[0]} />
 
 <p>
-	Create a new <b>Keynote</b> presentation.
+	Create a new <b>Animotion</b> presentation.
 </p>
 
 <Code code={data.examples[1]} />
 
-<p>Install the dependencies.</p>
+<p>Install the dependencies if you haven't during the setup.</p>
 
 <Code code={data.examples[2]} />
 

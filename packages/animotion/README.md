@@ -1,6 +1,6 @@
-# Keynote
+# Animotion
 
-This is a Keynote presentation.
+This is an Animotion presentation.
 
 ## Setup
 
