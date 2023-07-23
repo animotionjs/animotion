@@ -7,15 +7,15 @@ const example1 = await highlightCode(`
 
 <Presentation>
   <Slide>
-    <FitText class="uppercase">Hello</FitText>
-    <FitText class="uppercase">Darkness my old friend</FitText>
+    <FitText class="uppercase">hello</FitText>
+    <FitText class="uppercase">darkness my old friend</FitText>
   </Slide>
 </Presentation>
 `.trim(), 'svelte')
 
 const example2 = await highlightCode(`
-<FitText type="h1">Hello</FitText>
-<FitText type="p">Darkness my old friend</FitText>
+<FitText type="h1">hello</FitText>
+<FitText type="p">darkness my old friend</FitText>
 `.trim(), 'svelte')
 
 const examples = [example1, example2]

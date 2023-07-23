@@ -52,15 +52,14 @@
 <h2>Indentation</h2>
 
 <p>
-	If you use tabs to indent the code you don't have to think about whitespace but in case you're
-	using spaces for indentation you have to keep code at the start of a new line.
+	If you use tabs to indent the code you don't have to think about whitespace.
 </p>
-
-<p>Tabs:</p>
 
 <CodeBlock code={data.examples[1]} />
 
-<p>Spaces:</p>
+<p>
+	If you use spaces for indentation the code has to be at the start of a new line.
+</p>
 
 <CodeBlock code={data.examples[2]} />
 

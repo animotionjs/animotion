@@ -14,8 +14,8 @@
 
 <Animotion>
 	<Slide>
-		<FitText class="uppercase">Hello</FitText>
-		<FitText class="uppercase">Darkness my old friend</FitText>
+		<FitText class="uppercase">hello</FitText>
+		<FitText class="uppercase">darkness my old friend</FitText>
 	</Slide>
 </Animotion>
 

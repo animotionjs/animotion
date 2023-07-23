@@ -43,4 +43,11 @@
 	.code-block .copy button:active {
 		scale: 0.8;
 	}
+
+	.code-block :global(pre) {
+		padding: var(--size-3);
+		border-radius: var(--radius-1);
+		white-space: pre-wrap;
+		overflow: auto;
+	}
 </style>

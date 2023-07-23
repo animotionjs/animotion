@@ -9,6 +9,6 @@
 </p>
 
 <ul>
-	<li><code>theme.css</code> include the slide styles</li>
-	<li><code>code.css</code> are responsible for syntax higlighting</li>
+	<li><code>theme.css</code> includes the slide styles</li>
+	<li><code>code.css</code> is responsible for syntax higlighting</li>
 </ul>

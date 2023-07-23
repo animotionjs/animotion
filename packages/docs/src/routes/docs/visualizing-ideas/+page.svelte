@@ -141,7 +141,7 @@
 </p>
 
 <p>
-	<b>There is no right or wrong way</b> to do something — <b>Animotion</b> is only concerned about
+	<b>There's no right or wrong way</b> to do something — <b>Animotion</b> is only concerned about
 	managing the slides and transitions between them. You can use
 	<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox">Flexbox</a>
 	and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout">CSS Grid</a> for the
@@ -156,7 +156,7 @@
 </p>
 
 <p>
-	If you have a more complicated example you can absolute position it outside the slide and show and
+	If you have a more complicated example you can absolutely position it outside the slide and show and
 	hide it using Svelte through events.
 </p>
 

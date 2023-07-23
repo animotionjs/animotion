@@ -7,11 +7,10 @@
 
 <h1>Styling</h1>
 
-<h2>Tailwind CSS</h2>
+<h2>Using Tailwind CSS</h2>
 
 <p>
-	Every element is unstyled by default giving you complete control over the styles using Tailwind —
-	text is scaled based on the size of your presentation which you can also override with CSS.
+	Every element is unstyled by default giving you complete control over the styles using Tailwind and text is scaled based on the size of your presentation which you can also override with CSS.
 </p>
 
 <Animotion>
@@ -34,20 +33,20 @@
 </p>
 
 <p>
-	I recommend the
+	Use the 
 	<a href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss">
 		Tailwind CSS IntelliSense
 	</a>
-	extension for VS Code and to make your life easier <b>Animotion</b> is set up to sort Tailwind classes
+	extension for VS Code to not have to memorize the utility classes and to make your life easier <b>Animotion</b> is set up to sort Tailwind classes
 	on your behalf to keep things organized.
 </p>
 
-<h2>Regular CSS</h2>
+<h2>Using Regular CSS</h2>
 
 <p>
 	You can write regular CSS inside a
 	<code>&lt;style&gt</code> tag in Svelte. Styles are scoped to the component meaning you don't have
-	to worry about unique class names — PostCSS works out of the box and you can also set up SASS.
+	to worry about unique class names — <b>PostCSS</b> works out of the box and you can also set up <b>Sass</b>.
 </p>
 
 <Code code={data.examples[1]} />
