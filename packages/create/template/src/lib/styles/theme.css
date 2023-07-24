@@ -1,0 +1,126 @@
+@import '@fontsource-variable/manrope';
+@import '@fontsource-variable/jetbrains-mono';
+
+:root {
+	--r-background-color: hsl(226 19% 13%);
+	--r-main-font: 'Manrope Variable';
+	--r-main-font-size: 42px;
+	--r-main-color: hsl(226 19% 98%);
+	--r-heading-font: 'Manrope';
+	--r-code-font: 'JetBrains Mono Variable';
+	--r-link-color: hsl(180 100% 50%);
+}
+
+/* required for Reveal.js to work */
+#app {
+	display: contents;
+}
+
+.reveal-viewport {
+	background-color: var(--r-background-color);
+}
+
+.reveal {
+	color: var(--r-main-color);
+	font-family: var(--r-main-font);
+	font-size: var(--r-main-font-size);
+	font-weight: normal;
+}
+
+.reveal pre {
+	display: block;
+	position: relative;
+	margin-inline: auto;
+	font-family: var(--r-code-font);
+	font-size: 0.55em;
+	line-height: 1.6em;
+	text-align: left;
+	word-wrap: break-word;
+}
+
+.reveal code {
+	font-family: var(--r-code-font);
+	text-transform: none;
+	tab-size: 2;
+}
+
+.reveal code::-webkit-scrollbar {
+	display: none;
+	scrollbar-width: none;
+}
+
+.reveal pre code {
+	display: block;
+	padding: 5px;
+	overflow: auto;
+	word-wrap: normal;
+}
+
+.reveal .code-wrapper {
+	white-space: normal;
+}
+
+.reveal .code-wrapper code {
+	white-space: pre;
+}
+
+.reveal table {
+	margin: auto;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.reveal table th {
+	font-weight: bold;
+}
+
+.reveal table th,
+.reveal table td {
+	padding: 0.2em 0.5em 0.2em 0.5em;
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+.reveal table th[align='center'],
+.reveal table td[align='center'] {
+	text-align: center;
+}
+
+.reveal table th[align='right'],
+.reveal table td[align='right'] {
+	text-align: right;
+}
+
+.reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.reveal sup {
+	vertical-align: super;
+	font-size: smaller;
+}
+
+.reveal sub {
+	vertical-align: sub;
+	font-size: smaller;
+}
+
+.reveal small {
+	display: inline-block;
+	font-size: 0.6em;
+	line-height: 1.2em;
+	vertical-align: top;
+}
+
+.reveal small * {
+	vertical-align: top;
+}
+
+.reveal .controls {
+	color: var(--r-link-color);
+}
+
+.reveal .progress {
+	color: var(--r-link-color);
+}

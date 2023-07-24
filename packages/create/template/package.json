@@ -1,0 +1,35 @@
+{
+	"name": "animotion",
+	"private": true,
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-check --tsconfig ./tsconfig.json"
+	},
+	"devDependencies": {
+		"@sveltejs/vite-plugin-svelte": "^2.4.2",
+		"@tsconfig/svelte": "^5.0.0",
+		"@types/node": "^20.4.4",
+		"@types/reveal.js": "^4.4.2",
+		"autoprefixer": "^10.4.14",
+		"postcss": "^8.4.27",
+		"postcss-load-config": "^4.0.1",
+		"prettier": "^3.0.0",
+		"prettier-plugin-svelte": "^3.0.0",
+		"prettier-plugin-tailwindcss": "^0.4.1",
+		"svelte": "^4.1.1",
+		"svelte-check": "^3.4.6",
+		"tailwindcss": "^3.3.3",
+		"tslib": "^2.6.0",
+		"typescript": "^5.1.6",
+		"vite": "^4.4.6"
+	},
+	"dependencies": {
+		"@fontsource-variable/jetbrains-mono": "^5.0.6",
+		"@fontsource-variable/manrope": "^5.0.5",
+		"reveal.js": "^4.5.0"
+	}
+}
