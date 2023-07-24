@@ -15,8 +15,8 @@
 	/>
 
 	<meta content={title ?? 'Animotion'} property="og:title" />
-	<!-- <meta content={social} property="og:image" /> -->
-	<!-- <meta content="https://joyofcode.xyz/" property="og:url" /> -->
+	<meta content="https://animotionjs.github.io/animotion/social.png" property="og:image" />
+	<meta content="https://animotionjs.github.io/animotion/social.png" property="og:url" />
 	<meta
 		content="Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code."
 		property="og:description"
@@ -30,7 +30,7 @@
 		content="Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code."
 		name="twitter:description"
 	/>
-	<!-- <meta content={social} name="twitter:image" /> -->
+	<meta content="https://animotionjs.github.io/animotion/social.png" name="twitter:image" />
 </svelte:head>
 
 <Header />

@@ -21,7 +21,7 @@ Animotion is a monorepo using [pnpm workspaces](https://pnpm.io/workspaces) for 
 ### Clone the project
 
 ```sh
-git clone https://github.com/mattcroat/animotion
+git clone https://github.com/animotionjs/animotion
 ```
 
 ### Install dependencies for every package
