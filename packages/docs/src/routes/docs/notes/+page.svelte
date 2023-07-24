@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -12,6 +11,6 @@
 	which is only visible to you inside the speaker view if you press <code>S</code> on the keyboard.
 </p>
 
-<img src="{base}/notes.png" alt="Speaker notes" />
+<img src="/notes.png" alt="Speaker notes" />
 
 <Code code={data.examples[0]} />

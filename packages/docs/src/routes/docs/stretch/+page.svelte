@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths'
 	import { Animotion, Slide, Stretch } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
 
@@ -15,7 +14,7 @@
 
 <Animotion>
 	<Slide>
-		<Stretch class="mx-auto" src="{base}/svelte.png" type="img" />
+		<Stretch class="mx-auto" src="/svelte.png" type="img" />
 	</Slide>
 </Animotion>
 

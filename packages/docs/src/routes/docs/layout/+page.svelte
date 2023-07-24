@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths'
 	import Code from '$lib/components/code.svelte'
 
 	export let data
@@ -15,7 +14,7 @@
 	can disable the layout and bring your own layout.
 </p>
 
-<img src="{base}/layout.png" alt="Slides layout" />
+<img src="/layout.png" alt="Slides layout" />
 
 <p>
 	You can change the slides dimensions and centering options inside <code>src/config.ts</code> but also

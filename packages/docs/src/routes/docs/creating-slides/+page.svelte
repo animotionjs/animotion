@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { tweened } from 'svelte/motion'
 	import { quadInOut } from 'svelte/easing'
-	import { base } from '$app/paths'
 
 	import { Animotion, Slide, Vertical } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
@@ -91,7 +90,7 @@
 <p>
 	You don't have to import the <code>&lt;Slide&gt;</code> component inside
 	<code>progress.svelte</code>
-	but it's useful if you want to use <a href="{base}/docs/events">events</a> to update state.
+	but it's useful if you want to use <a href="/docs/events">events</a> to update state.
 </p>
 
 <p>
@@ -105,7 +104,7 @@
 <p>
 	These are the slide props you can pass to the <code>&lt;Slide&gt;</code> component. Some options
 	for things like
-	<a href="{base}/docs/auto-animate">auto-animate</a> have their dedicated section you can learn more
+	<a href="/docs/auto-animate">auto-animate</a> have their dedicated section you can learn more
 	about.
 </p>
 

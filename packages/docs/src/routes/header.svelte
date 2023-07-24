@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import { base } from '$app/paths'
 	import { BookOpenIcon, MoonIcon, SunIcon } from 'lucide-svelte'
 
 	type Theme = 'light' | 'dark'
@@ -34,14 +33,14 @@
 		<div class="left-side">
 			<div class="space-x" style:--margin="var(--size-0)">
 				<span>🪄</span>
-				<a class="bold" href={base}>
+				<a class="bold" href="/">
 					<span>Animotion</span>
 				</a>
 			</div>
 		</div>
 
 		<div class="right-side flex-items-center space-x" style:--margin="var(--size-3)">
-			<a class="icon" href="{base}/docs" title="Docs">
+			<a class="icon" href="/docs" title="Docs">
 				<BookOpenIcon size="20" />
 			</a>
 

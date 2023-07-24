@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths'
 	import { fade } from '$lib/transitions/fade'
 
 	let videoEl: HTMLVideoElement
@@ -15,7 +14,7 @@
 		on:finish={() => videoEl.play()}
 		class="subheading margin-text-center"
 	>
-		<a href="{base}/docs/getting-started">Visualize ideas</a> with code using web technologies.
+		<a href="/docs/getting-started">Visualize ideas</a> with code using web technologies.
 	</p>
 
 	<div class="video">

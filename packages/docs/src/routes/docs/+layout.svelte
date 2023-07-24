@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import { base } from '$app/paths'
 	import { sections } from '$lib/navigation/navigation'
 	import Links from '$lib/navigation/links.svelte'
 </script>
@@ -12,7 +11,7 @@
 			{#if section}
 				<h4 class="section">{section}</h4>
 			{:else}
-				<a data-sveltekit-reload={reload || null} href="{base}{path}" class:active>{title}</a>
+				<a data-sveltekit-reload={reload || null} href={path} class:active>{title}</a>
 			{/if}
 		{/each}
 	</aside>

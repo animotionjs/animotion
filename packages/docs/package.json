@@ -13,7 +13,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^2.0.2",
+		"@sveltejs/adapter-vercel": "^3.0.2",
 		"@sveltejs/kit": "^1.22.3",
 		"@types/reveal.js": "^4.4.2",
 		"@typescript-eslint/eslint-plugin": "^6.1.0",
