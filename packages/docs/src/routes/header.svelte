@@ -64,7 +64,7 @@
 				</svg>
 			</a>
 
-			<a class="icon" href="{base}/#" title="GitHub" aria-label="Open GitHub">
+			<a class="icon" href="https://github.com/animotionjs/animotion" title="GitHub" aria-label="Open GitHub">
 				<div class="flex-items-center">
 					<div class="icon">
 						<svg
