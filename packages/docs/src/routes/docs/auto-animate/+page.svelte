@@ -136,7 +136,7 @@
 
 <Animotion>
 	<Slide>
-		<div class="animate-width h-[600px] overflow-hidden rounded-2xl">
+		<div class="animate-width h-[600px] overflow-hidden rounded-2xl" style="transform: translateZ(0)">
 			<div data-id="color" class="animate-bg h-[40%] bg-gray-400" />
 			<div data-id="values" class="grid h-[60%] gap-14 bg-gray-100 p-8">
 				<div class="animate-bg w-full rounded-2xl bg-gray-400" />
