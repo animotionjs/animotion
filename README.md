@@ -6,40 +6,20 @@
 
 ## Animotion
 
-Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code.
+Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code that uses [Svelte](https://svelte.dev/), [Reveal.js](https://revealjs.com/) and [Tailwind CSS](https://tailwindcss.com/).
+
+## Setup
+
+The quickest way to get started with Animotion.
+
+```
+npm create @animotion
+```
+
+## Docs
+
+To learn how to use Animotion read the [Animotion documentation](https://animotionjs.vercel.app/).
 
 ## Contributing
 
-Animotion is a monorepo using [pnpm workspaces](https://pnpm.io/workspaces) for easier organization.
-
-| Package     | Description   |
-| ----------- | ------------- |
-| `create`    | Animotion CLI |
-| `docs`      | Documentation |
-| `animotion` | Animotion     |
-
-### Clone the project
-
-```sh
-git clone https://github.com/animotionjs/animotion
-```
-
-### Install dependencies for every package
-
-```sh
-pnpm i
-```
-
-### Make changes to the docs
-
-```sh
-pnpm docs:dev
-```
-
-### Make changes to Animotion
-
-```sh
-pnpm animotion:dev
-```
-
-You can also `cd` into the respective package directory and run `pnpm run dev`, or `pnpm run build` and `pnpm run preview` for the package.
+If you want to contribute to the project you can read the [contributing guide](https://github.com/animotionjs/animotion/blob/main/CONTRIBUTING.md).
