@@ -62,7 +62,7 @@
 <Animotion options={{ hash: true, history: true }}>
 	<Slide animate>
 		<div class="w-[1020px]">
-			<Code lang="html" lines="1,3|2">
+			<Code lang="html" lines="1-3|1,3|2">
 				{`
 					<svg width="400" height="400">
 						<circle cx="200" cy="200" r="100" fill="aqua" />
@@ -156,8 +156,7 @@
 </p>
 
 <p>
-	If you have a more complicated example you can absolutely position it outside the slide and show and
-	hide it using Svelte through events.
+	If you have a more complicated example you don't want to repeat inside of every slide absolutely position it outside the slide.
 </p>
 
 <CodeBlock code={data.examples[1]} />

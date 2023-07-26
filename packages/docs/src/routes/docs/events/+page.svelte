@@ -11,13 +11,13 @@
 <h2>Custom Events</h2>
 
 <p>
-	Slides are always present in the DOM because of how Reveal works meaning you can't rely on
-	lifecycle methods from components to trigger actions but you can use events.
+	Because slides are already in the DOM, you can't rely on
+	component lifecycle methods to trigger actions but you can use <b>events</b>.
 </p>
 
 <p>
-	<b>Animotion</b> provides a <code>on:in</code> and <code>on:out</code> event listener on the slide
-	if you want to run some code when a slide enters or leaves.
+	<b>Animotion</b> provides <code>on:in</code> and <code>on:out</code> events on the slide
+	if you want to run some code when a slide enters or leaves the viewport.
 </p>
 
 <Animotion options={{ hash: true, history: true }}>

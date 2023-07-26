@@ -131,7 +131,7 @@
 
 <p>
 	Instead of using auto-animate just animate the <code>width</code> and <code>color</code>
-	properties with CSS or JavaScript by using an animation library or interpolating the values.
+	properties with CSS or JavaScript by using an animation library, or interpolating the values.
 </p>
 
 <Animotion>

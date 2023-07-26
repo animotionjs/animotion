@@ -37,7 +37,7 @@ const example1 = await highlightCode(`
 <Presentation>
   <Slide animate>
     <div class="w-[1020px]">
-      <Code lang="svelte" lines="1,3|2">
+      <Code lang="svelte" lines="1-3|1,3|2">
         {\`
           <svg width="400" height="400">
             <circle cx="200" cy="200" r="100" fill="aqua" />

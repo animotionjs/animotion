@@ -7,6 +7,14 @@
 
 <h1>Styling</h1>
 
+<h2>You can use any CSS framework</h2>
+
+<p>You can use any CSS framework like <a href="https://unocss.dev/">UnoCSS</a> because <b>Animotion</b> is just a Svelte project using Vite as the build tool.</p>
+
+<p>You can completely remove Tailwind CSS and replace it with the CSS framework of your choice by reading their guide on how to set it up for Svelte.</p>
+
+<p>You have the choice to use the tools you're most comfortable with.</p>
+
 <h2>Using Tailwind CSS</h2>
 
 <p>

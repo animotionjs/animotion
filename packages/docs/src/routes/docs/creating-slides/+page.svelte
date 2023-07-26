@@ -53,7 +53,7 @@
 <Code code={data.examples[0]} />
 
 <p>
-	Because <b>Animotion</b> uses Reveal these examples are equivalent.
+	Because <b>Animotion</b> is a wrapper around Reveal.js these examples are the same which means you can customize <b>Animotion</b> beyond what it can do.
 </p>
 
 <Code code={data.examples[1]} />
@@ -61,7 +61,7 @@
 <p>
 	You can customize <b>Animotion</b> by changing the existing presentation components and add new
 	ones if you read the
-	<a href="https://revealjs.com/">Reveal documentation</a>.
+	<a href="https://revealjs.com/">Reveal.js documentation</a>.
 </p>
 
 <h2>Using components</h2>
@@ -90,7 +90,7 @@
 <p>
 	You don't have to import the <code>&lt;Slide&gt;</code> component inside
 	<code>progress.svelte</code>
-	but it's useful if you want to use <a href="/docs/events">events</a> to update state.
+	but it's useful if you want to use <a href="/docs/events">events</a> to do some action.
 </p>
 
 <p>

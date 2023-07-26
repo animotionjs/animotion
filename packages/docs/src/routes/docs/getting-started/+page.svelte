@@ -26,7 +26,7 @@
 
 <Code code={data.examples[2]} />
 
-<p>If you're on Windows and <code>npm create @animotion</code> doesn't work then instead you can do <code>npx @animotion/create</code> and it should work.</p>
+<p>If you're on Windows and <code>npm create @animotion</code> doesn't work, then instead you can do <code>npx @animotion/create</code> and it should work.</p>
 
 <h2>Install the dependencies (if you haven't during the setup)</h2>
 
@@ -37,5 +37,5 @@
 <Code code={data.examples[4]} />
 
 <p>
-	Visit <a href="http://localhost:5173/">http://localhost:5173/</a>.
+	Open <a href="http://localhost:5173/">http://localhost:5173/</a>.
 </p>
