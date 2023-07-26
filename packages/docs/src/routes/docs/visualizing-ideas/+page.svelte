@@ -151,7 +151,7 @@
 <p>
 	The default dimensions for a presentation are <b>960x700</b> pixels preserving the aspect ratio
 	but you can
-	<a href="http://localhost:5173/animotion/docs/layout">bring your own layout</a> and have complete control
+	<a href="/docs/layout">bring your own layout</a> and have complete control
 	over the layout if desired.
 </p>
 
