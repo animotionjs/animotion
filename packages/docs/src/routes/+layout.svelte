@@ -15,8 +15,8 @@
 	/>
 
 	<meta content={title ?? 'Animotion'} property="og:title" />
-	<meta content="https://animotionjs.vercel.app/social.png" property="og:image" />
-	<meta content="https://animotionjs.vercel.app/social.png" property="og:url" />
+	<meta content="https://animotion.pages.dev/social.png" property="og:image" />
+	<meta content="https://animotion.pages.dev/social.png" property="og:url" />
 	<meta
 		content="Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code."
 		property="og:description"
@@ -30,7 +30,7 @@
 		content="Animotion is a presentational framework for creating beautiful slides and visualizing ideas with code."
 		name="twitter:description"
 	/>
-	<meta content="https://animotionjs.vercel.app/social.png" name="twitter:image" />
+	<meta content="https://animotion.pages.dev/social.png" name="twitter:image" />
 </svelte:head>
 
 <Header />

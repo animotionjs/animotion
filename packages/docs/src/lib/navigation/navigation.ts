@@ -11,6 +11,7 @@ export const sections = [
 	{ title: 'Events', path: '/docs/events', reload: true },
 	{ section: 'Examples' },
 	{ title: 'Visualizing Ideas', path: '/docs/visualizing-ideas', reload: true },
+	{ title: 'Examples', path: '/docs/examples', reload: true },
 	{ section: 'Components' },
 	{ title: 'Speaker notes', path: '/docs/notes' },
 	{ title: 'Fit text', path: '/docs/fit-text' },
