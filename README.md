@@ -1,12 +1,10 @@
 <br>
 <div align="center">
   <img width="400" src="packages/docs/static/logo.png" alt="Animotion logo" />
-  <br>
-  <video width="400" muted autoplay>
-    <source src="packages/docs/static/video.mp4" />
-  </video>
 </div>
 <br>
+
+https://github.com/animotionjs/animotion/assets/38083522/da098a66-d2bb-4109-bc56-510894196d96
 
 ## Animotion
 
