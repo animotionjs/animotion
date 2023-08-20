@@ -1,6 +1,8 @@
 <br>
 <div align="center">
- <img width="400" src="packages/docs/static/logo.png" alt="Animotion logo">
+  <img width="400" src="packages/docs/static/logo.png" alt="Animotion logo">
+  <br>
+  <video width="400" src="packages/docs/static/video.mp4" muted autoplay>
 </div>
 <br>
 
@@ -22,7 +24,7 @@ To learn how to use Animotion read the [Animotion documentation](https://animoti
 
 ## Examples
 
-You can look at the [examples repository](https://github.com/animotionjs/examples) if you want to understand how I use Animotion to visualize ideas with code and you can try the examples in the browser thanks to [SvelteLab](https://www.sveltelab.dev/).
+You can look at the [examples repository](https://github.com/animotionjs/examples) if you want to understand how I use Animotion to visualize ideas with code. You can try the examples in the browser thanks to [SvelteLab](https://www.sveltelab.dev/).
 
 ## Contributing
 
