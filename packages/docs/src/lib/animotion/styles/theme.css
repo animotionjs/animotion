@@ -50,6 +50,7 @@
 }
 
 .reveal pre code {
+	max-height: 600px;
 	display: block;
 	padding: 5px;
 	overflow: auto;

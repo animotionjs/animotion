@@ -51,15 +51,11 @@
 
 <h2>Indentation</h2>
 
-<p>
-	If you use tabs to indent the code you don't have to think about whitespace.
-</p>
+<p>If you use tabs to indent the code you don't have to think about whitespace.</p>
 
 <CodeBlock code={data.examples[1]} />
 
-<p>
-	If you use spaces for indentation the code has to be at the start of a new line.
-</p>
+<p>If you use spaces for indentation the code has to be at the start of a new line.</p>
 
 <CodeBlock code={data.examples[2]} />
 
@@ -112,6 +108,15 @@
 
 <CodeBlock code={data.examples[3]} />
 
+<h2>Code Block Height</h2>
+
+<p>
+	Inside <code>theme.css</code> the <code>max-height</code> property is required for the animated code
+	scrolling effect but you can remove it in case you want to set the height yourself.
+</p>
+
+<CodeBlock code={data.examples[4]} />
+
 <h2>Escaping Characters</h2>
 
 <p>
@@ -151,7 +156,7 @@
 
 <p>Update <code>lib/languages/index.ts</code> to register the language.</p>
 
-<CodeBlock code={data.examples[4]} />
+<CodeBlock code={data.examples[5]} />
 
 <p>
 	If the language you want is not included you can look at the provided Svelte example and figure it

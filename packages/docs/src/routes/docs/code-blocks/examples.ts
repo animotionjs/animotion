@@ -93,6 +93,13 @@ const example4 = await highlightCode(`
 `.trim(), 'svelte')
 
 const example5 = await highlightCode(`
+.reveal pre code {
+  max-height: 600px;
+  /* ... */
+}
+`.trim(), 'css')
+
+const example6 = await highlightCode(`
 import { svelte } from './svelte'
 
 export function registerLanguages(hljs) {
@@ -100,6 +107,6 @@ export function registerLanguages(hljs) {
 }
 `.trim(), 'ts')
 
-const examples = [example1, example2, example3, example4, example5]
+const examples = [example1, example2, example3, example4, example5, example6]
 
 export default examples
