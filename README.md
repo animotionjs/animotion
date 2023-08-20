@@ -1,8 +1,10 @@
 <br>
 <div align="center">
-  <img width="400" src="packages/docs/static/logo.png" alt="Animotion logo">
+  <img width="400" src="packages/docs/static/logo.png" alt="Animotion logo" />
   <br>
-  <video width="400" src="packages/docs/static/video.mp4" muted autoplay>
+  <video width="400" muted autoplay>
+    <source src="packages/docs/static/video.mp4" />
+  </video>
 </div>
 <br>
 
