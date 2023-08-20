@@ -32,7 +32,7 @@
 
 	<tr>
 		<td><code>type</code></td>
-		<td><code>video</code>, <code>image</code>, <code>iframe</code></td>
+		<td><code>video</code>, <code>img</code>, <code>iframe</code></td>
 	</tr>
 
 	<tr>

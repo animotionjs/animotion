@@ -1,6 +1,6 @@
 <script lang="ts">
 	type Bool = boolean | null
-	type Element = 'video' | 'image' | 'iframe'
+	type Element = 'video' | 'img' | 'iframe'
 
 	export let type: Element
 	export let src: string
