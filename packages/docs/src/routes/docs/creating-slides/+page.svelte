@@ -31,8 +31,8 @@
 <h2>Slide away</h2>
 
 <p>
-	You can write your entire presentation inside <code>src/slides.svelte</code> but you can also break
-	slides into components you can learn more about in another section.
+	You can write the entire presentation inside <code>src/slides.svelte</code> but you can also break
+	slides into components.
 </p>
 
 <Animotion>
@@ -53,7 +53,8 @@
 <Code code={data.examples[0]} />
 
 <p>
-	Because <b>Animotion</b> is a wrapper around Reveal.js these examples are the same which means you can customize <b>Animotion</b> beyond what it can do.
+	Because <b>Animotion</b> is a wrapper around Reveal.js these examples are the same which means you
+	can customize <b>Animotion</b> beyond what it can do.
 </p>
 
 <Code code={data.examples[1]} />
@@ -104,8 +105,7 @@
 <p>
 	These are the slide props you can pass to the <code>&lt;Slide&gt;</code> component. Some options
 	for things like
-	<a href="/docs/auto-animate">auto-animate</a> have their dedicated section you can learn more
-	about.
+	<a href="/docs/auto-animate">auto-animate</a> have their dedicated section you can learn more about.
 </p>
 
 <table>

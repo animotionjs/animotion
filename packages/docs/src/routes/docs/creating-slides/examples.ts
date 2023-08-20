@@ -33,6 +33,7 @@ const example2 = await highlightCode(`
 const example3 = await highlightCode(`
 <!-- src/progress.svelte -->
 <script>
+  import { Slide } from '@components'
   import { tweened } from 'svelte/motion'
 
   let progress = tweened(0, { duration: 2000 })

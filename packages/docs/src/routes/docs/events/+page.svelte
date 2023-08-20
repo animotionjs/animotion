@@ -11,13 +11,13 @@
 <h2>Custom Events</h2>
 
 <p>
-	Because slides are already in the DOM, you can't rely on
-	component lifecycle methods to trigger actions but you can use <b>events</b>.
+	Because slides are already in the DOM, you can't rely on component lifecycle methods to trigger
+	actions but you can use <b>events</b>.
 </p>
 
 <p>
-	<b>Animotion</b> provides <code>on:in</code> and <code>on:out</code> events on the slide
-	if you want to run some code when a slide enters or leaves the viewport.
+	<b>Animotion</b> provides <code>on:in</code> and <code>on:out</code> events on the slide if you want
+	to run some code when a slide enters or leaves the viewport.
 </p>
 
 <Animotion options={{ hash: true, history: true }}>
@@ -52,7 +52,11 @@
 </p>
 
 {#key $navigation}
-	<pre class="surface-1">
-{JSON.stringify($navigation, null, 2)}
-	</pre>
+	<pre class="surface-1">{JSON.stringify($navigation, null, 2)}</pre>
 {/key}
+
+<style>
+	pre {
+		padding: var(--size-3);
+	}
+</style>
