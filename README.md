@@ -18,6 +18,8 @@ The quickest way to get started with Animotion.
 npm create @animotion
 ```
 
+You can run `npx @animotion/create` on Windows if that doesn't work.
+
 ## Docs
 
 To learn how to use Animotion read the [Animotion documentation](https://animotion.pages.dev).
