@@ -1,9 +1,21 @@
 {
 	"name": "@animotion/create",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"bin": "./cli/bin.js",
 	"type": "module",
 	"dependencies": {
 		"@clack/prompts": "^0.6.3"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/animotionjs/animotion.git",
+		"directory": "packages/create"
+	},
+	"keywords": [
+		"presentation",
+		"slides",
+		"svelte",
+		"reveal"
+	],
+	"homepage": "https://animotion.pages.dev/"
 }
