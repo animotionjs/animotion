@@ -1,6 +1,6 @@
 {
 	"name": "@animotion/create",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"bin": "./cli/bin.js",
 	"type": "module",
 	"dependencies": {
@@ -17,5 +17,5 @@
 		"svelte",
 		"reveal"
 	],
-	"homepage": "https://animotion.pages.dev/"
+	"homepage": "https://animotion.pages.dev"
 }
