@@ -28,7 +28,7 @@
 	})
 </script>
 
-<nav>
+<nav class="mx-[-2.4rem] px-[2.4rem]>
 	<div class="space-between container">
 		<div class="left-side">
 			<div class="space-x" style:--margin="var(--size-0)">
