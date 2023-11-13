@@ -9,6 +9,8 @@ export const sections = [
 	{ title: 'Auto-animate', path: '/docs/auto-animate' },
 	{ title: 'Code blocks', path: '/docs/code-blocks' },
 	{ title: 'Events', path: '/docs/events', reload: true },
+	{ title: 'Motion', path: '/docs/motion' },
+	{ title: 'HMR', path: '/docs/hot-module-replacement' },
 	{ section: 'Examples' },
 	{ title: 'Visualizing Ideas', path: '/docs/visualizing-ideas', reload: true },
 	{ title: 'Examples', path: '/docs/examples', reload: true },

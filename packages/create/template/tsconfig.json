@@ -5,6 +5,7 @@
 		"paths": {
 			"@config": ["./src/config.ts"],
 			"@components": ["./src/lib/components/index.ts"],
+			"@motion": ["./src/lib/motion/index.ts"],
 			"@languages": ["./src/lib/languages/index.ts"],
 			"@lib/*": ["./src/lib/*"],
 			"@stores/*": ["./src/lib/stores/*"],
@@ -14,12 +15,6 @@
 		"useDefineForClassFields": true,
 		"module": "ESNext",
 		"resolveJsonModule": true,
-		/**
-		 * Typecheck JS in `.svelte` and `.js` files by default.
-		 * Disable checkJs if you'd like to use dynamic types in JS.
-		 * Note that setting allowJs false does not prevent the use
-		 * of JS in `.svelte` files.
-		 */
 		"allowJs": true,
 		"checkJs": true,
 		"isolatedModules": true

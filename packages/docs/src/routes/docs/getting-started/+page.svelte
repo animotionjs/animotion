@@ -21,12 +21,18 @@
 <Code code={data.examples[1]} />
 
 <p>
-	This is going to copy the <a href="https://github.com/animotionjs/animotion/tree/main/packages/create/template">Animotion template</a> and install the dependencies for you.
+	If you're on Windows and <code>npm create @animotion</code> doesn't work, then instead you can do
+	<code>npx @animotion/create</code> and it should work.
+</p>
+
+<p>
+	This is going to copy the <a
+		href="https://github.com/animotionjs/animotion/tree/main/packages/create/template"
+		>Animotion template</a
+	> and install the dependencies for you.
 </p>
 
 <Code code={data.examples[2]} />
-
-<p>If you're on Windows and <code>npm create @animotion</code> doesn't work, then instead you can do <code>npx @animotion/create</code> and it should work.</p>
 
 <h2>Install the dependencies (if you haven't during the setup)</h2>
 

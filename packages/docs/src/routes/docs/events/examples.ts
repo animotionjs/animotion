@@ -24,16 +24,6 @@ const example1 = await highlightCode(`
 </Presentation>
 `.trim(), 'svelte')
 
-const example2 = await highlightCode(`
-<script>
-  import { navigation } from '@stores/navigation'
-</script>
-
-<pre>
-  {JSON.stringify($navigation, null, 2)}
-</pre>
-`.trim(), 'svelte')
-
-const examples = [example1, example2]
+const examples = [example1]
 
 export default examples
