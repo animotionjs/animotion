@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Presentation, Slide, Step } from '@components'
+	import { Presentation, Slide } from '@components'
 	import { signal } from '@motion'
 
 	const circle = signal(

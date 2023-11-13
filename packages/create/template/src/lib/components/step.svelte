@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let type = 'p'
 	export let order: string | null = null
 	export let fadeIn = false
 	export let fadeOut = false
@@ -24,8 +23,9 @@
 	delete $$restProps.class
 </script>
 
-<svelte:element
-	this={type}
+<p
+	on:in
+	on:out
 	class:fade-in={fadeIn}
 	class:fade-out={fadeOut}
 	class:fade-up={fadeUp}
@@ -50,4 +50,4 @@
 	{...$$restProps}
 >
 	<slot />
-</svelte:element>
+</p>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let file: string
+	export let file: string | null = null
 </script>
 
 {#if file}

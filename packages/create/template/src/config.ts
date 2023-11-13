@@ -45,15 +45,8 @@ const options: Reveal.Options = {
 	hideInactiveCursor: true,
 	// time before cursor is hidden (ms)
 	hideCursorTime: 5000,
-
-	/*
-		Shows current slide number in the URL and
-		pushes the slide change to the browser history
-		for listening to the `hashchange` event used
-		to update the store values.
-	*/
+	// show current slide
 	hash: true,
-	history: true,
 }
 
 export default options

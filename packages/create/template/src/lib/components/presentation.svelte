@@ -1,48 +1,56 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
 	import Reveal from 'reveal.js'
+	import options from '@config'
 
 	import 'reveal.js/dist/reveal.css'
 	import '@styles/theme.css'
 	import '@styles/code.css'
 
-	import { navigation } from '@stores/navigation'
-	import options from '@config'
-
 	onMount(() => {
+		// create deck instance
 		const deck = new Reveal(options)
 
+		// custom event listeners
+		const inEvent = new CustomEvent('in')
+		const outEvent = new CustomEvent('out')
+
 		// keep track of current slide
-		deck.on('slidechanged', (event: CustomEvent) => {
-			// update navigation store
-			updateSlideStore(deck)
+		deck.on('slidechanged', (event) => {
+			if ('currentSlide' in event) {
+				const currentSlideEl = event.currentSlide as HTMLElement
+				currentSlideEl.dispatchEvent(inEvent)
+			}
+
+			if ('previousSlide' in event) {
+				const currentPreviousEl = event.previousSlide as HTMLElement
+				currentPreviousEl.dispatchEvent(outEvent)
+			}
+		})
+
+		deck.on('fragmentshown', (event) => {
+			if ('fragment' in event) {
+				const fragmentEl = event.fragment as HTMLElement
+				fragmentEl.dispatchEvent(inEvent)
+			}
+		})
+
+		deck.on('fragmenthidden', (event) => {
+			if ('fragment' in event) {
+				const fragmentEl = event.fragment as HTMLElement
+				fragmentEl.dispatchEvent(outEvent)
+			}
 		})
 
 		deck.initialize().then(() => {
-			// update navigation store
-			updateSlideStore(deck)
-
 			// we pass the language to the `<Code>` block
 			// and higlight code blocks after initialization
 			highlightCodeBlocks(deck)
 		})
 
 		// reload page after update to avoid HMR issues
-		reloadPageAfterUpdate()
+		// reloadPageAfterUpdate()
 	})
-
-	function updateSlideStore(deck: Reveal.Api) {
-		$navigation = {
-			hash: window.location.hash,
-			currentSlide: deck.getSlidePastCount(),
-			indices: deck.getIndices(),
-			availableRoutes: deck.availableRoutes(),
-		}
-	}
-
-	function updateHash() {
-		$navigation.hash = window.location.hash
-	}
 
 	function highlightCodeBlocks(deck: Reveal.Api) {
 		const highlight = deck.getPlugin('highlight')
@@ -61,8 +69,6 @@
 		}
 	}
 </script>
-
-<svelte:window on:hashchange={updateHash} />
 
 <div class="reveal">
 	<div class="slides">
