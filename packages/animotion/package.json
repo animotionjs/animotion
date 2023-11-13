@@ -12,6 +12,7 @@
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^2.4.2",
 		"@tsconfig/svelte": "^5.0.0",
+		"@types/d3-interpolate": "^3.0.4",
 		"@types/node": "^20.4.4",
 		"@types/reveal.js": "^4.4.2",
 		"autoprefixer": "^10.4.14",
@@ -30,6 +31,7 @@
 	"dependencies": {
 		"@fontsource-variable/jetbrains-mono": "^5.0.6",
 		"@fontsource-variable/manrope": "^5.0.5",
+		"d3-interpolate": "^3.0.1",
 		"reveal.js": "^4.5.0"
 	}
 }
