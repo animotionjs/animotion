@@ -7,7 +7,7 @@
 
 <h1>Step</h1>
 
-<p>You can use steps (fragments) to reveal individual elements on a slide.</p>
+<p>You can use steps to reveal individual elements on a slide.</p>
 
 <Animotion>
 	<Slide>
@@ -29,8 +29,13 @@
 	</tr>
 
 	<tr>
-		<td><code>type</code></td>
-		<td>Change tag</td>
+		<td><code>on:in</code></td>
+		<td>Step is shown event</td>
+	</tr>
+
+	<tr>
+		<td><code>on:out</code></td>
+		<td>Step is hidden event</td>
 	</tr>
 
 	<tr>
