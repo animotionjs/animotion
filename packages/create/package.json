@@ -1,6 +1,6 @@
 {
 	"name": "@animotion/create",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"bin": "./cli/bin.js",
 	"type": "module",
 	"dependencies": {
