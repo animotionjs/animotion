@@ -6,21 +6,23 @@ const example1 = await highlightCode(`
 </script>
 
 <Presentation>
-  <Slide
-    on:in={() => console.log('in')}
-    on:out={() => console.log('out')}
-  >
-    Horizontal
+  <Slide>
+    <p class="text-[100px] font-semibold">Events</p>
   </Slide>
 
-  <Vertical>
-    <Slide
-      on:in={() => console.log('in')}
-      on:out={() => console.log('out')}
+  <Slide
+    on:in={() => alert('slide in')}
+    on:out={() => alert('slide out')}
+  >
+    <p class="text-[100px] font-semibold">Slide</p>
+
+    <Step
+      on:in={() => alert('step in')}
+      on:out={() => alert('step out')}
     >
-      Vertical
-    </Slide>
-  </Vertical>
+      Step
+    </Step>
+  </Slide>
 </Presentation>
 `.trim(), 'svelte')
 

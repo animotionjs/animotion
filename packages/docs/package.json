@@ -15,6 +15,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.22.3",
+		"@types/d3-interpolate": "^3.0.4",
 		"@types/reveal.js": "^4.4.2",
 		"@typescript-eslint/eslint-plugin": "^6.1.0",
 		"@typescript-eslint/parser": "^6.1.0",
@@ -35,6 +36,7 @@
 	"dependencies": {
 		"@fontsource-variable/jetbrains-mono": "^5.0.6",
 		"@fontsource-variable/manrope": "^5.0.5",
+		"d3-interpolate": "^3.0.1",
 		"lucide-svelte": "^0.263.0",
 		"reveal.js": "^4.5.0",
 		"shiki": "^0.14.3"

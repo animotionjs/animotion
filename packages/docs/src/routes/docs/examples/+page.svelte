@@ -1,15 +1,10 @@
 <h1>Examples</h1>
 
 <p>
-	You can find a <a href="https://github.com/animotionjs/examples"
-		>repository of Animotion examples</a
-	>
+	You can find a <a href="https://github.com/animotionjs/examples">
+		repository of Animotion examples
+	</a>
 	and try the examples in the browser thanks to <a href="https://www.sveltelab.dev/">SvelteLab</a>.
-</p>
-
-<p>
-	Don't take any of these examples as how you should do something because everyone does questionable
-	things to get something done on time.
 </p>
 
 <h2>Avoid Representing State With Booleans</h2>

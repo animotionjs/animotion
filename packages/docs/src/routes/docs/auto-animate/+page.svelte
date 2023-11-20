@@ -10,11 +10,6 @@
 <h2>Animating Elements</h2>
 
 <p>
-	You can animate anything from styles (regardless of the styling method) to change in size,
-	position and most animatable CSS properties.
-</p>
-
-<p>
 	Thanks to the <a href="https://aerotwist.com/blog/flip-your-animations/">
 		FLIP animation technique
 	</a>
@@ -98,12 +93,9 @@
 
 <Code code={data.examples[1]} />
 
-<h2>Don't auto-animate everything</h2>
+<h2>When Not To Use Auto-Animate</h2>
 
-<p>
-	Auto-animate is great for animating layouts but it's not perfect and might not work as expected
-	with nested elements.
-</p>
+<p>Auto-animate is great for animating layouts and code blocks, but not for regular animations.</p>
 
 <Animotion>
 	<Slide animate>
@@ -130,13 +122,16 @@
 </Animotion>
 
 <p>
-	Instead of using auto-animate just animate the <code>width</code> and <code>color</code>
-	properties with CSS or JavaScript by using an animation library, or interpolating the values.
+	You should animate the <code>width</code> and <code>color</code>
+	properties with CSS, or using a JavaScript animation library instead.
 </p>
 
 <Animotion>
 	<Slide>
-		<div class="animate-width h-[600px] overflow-hidden rounded-2xl" style="transform: translateZ(0)">
+		<div
+			class="animate-width h-[600px] overflow-hidden rounded-2xl"
+			style="transform: translateZ(0)"
+		>
 			<div data-id="color" class="animate-bg h-[40%] bg-gray-400" />
 			<div data-id="values" class="grid h-[60%] gap-14 bg-gray-100 p-8">
 				<div class="animate-bg w-full rounded-2xl bg-gray-400" />

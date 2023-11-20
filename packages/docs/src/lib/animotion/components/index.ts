@@ -1,12 +1,23 @@
-import Slide from './slide.svelte'
 import Code from './code.svelte'
+import FitText from './fit.svelte'
 import Markdown from './markdown.svelte'
 import Media from './media.svelte'
-import Step from './step.svelte'
+import Notes from './notes.svelte'
+import Slide from './slide.svelte'
 import Stack from './stack.svelte'
-import FitText from './fit.svelte'
+import Step from './step.svelte'
 import Stretch from './stretch.svelte'
 import Vertical from './vertical.svelte'
-import Notes from './notes.svelte'
 
-export { Slide, Code, Markdown, Media, Step, Stack, FitText, Stretch, Vertical, Notes }
+export {
+	Code,
+	FitText,
+	Markdown,
+	Media,
+	Notes,
+	Slide,
+	Stack,
+	Step,
+	Stretch,
+	Vertical,
+}

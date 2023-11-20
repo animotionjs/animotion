@@ -1,14 +1,14 @@
-<script context="module" lang="ts">
-	let index = 0
-</script>
-
 <script lang="ts">
-	import { createEventDispatcher, getContext } from 'svelte'
-	import { navigation } from '../stores/navigation'
-
 	type Bool = boolean | null
 	type String = string | null
-	type Transition = 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom' | null
+	type Transition =
+		| 'none'
+		| 'fade'
+		| 'slide'
+		| 'convex'
+		| 'concave'
+		| 'zoom'
+		| null
 
 	export let animate: Bool = null
 	export let animateEasing: String = null
@@ -23,16 +23,12 @@
 	export let interactive: Bool = null
 	export let transition: Transition = null
 
-	const dispatch = createEventDispatcher()
-	const slideIndex = index++
-
-	$: enter = $navigation.currentSlide === slideIndex
-	$: enter ? dispatch('in') : dispatch('out')
-
 	delete $$restProps.class
 </script>
 
 <section
+	on:in
+	on:out
 	data-auto-animate={animate}
 	data-auto-animate-easing={animateEasing}
 	data-auto-animate-unmatched={animateUnmatched}

@@ -1,29 +1,22 @@
 <script lang="ts">
-	import { tweened } from 'svelte/motion'
-	import { quadInOut } from 'svelte/easing'
-
 	import { Animotion, Slide, Vertical } from '$lib/animotion'
 	import Code from '$lib/components/code.svelte'
+	import { signal } from '$lib/motion'
 
 	export let data
 
-	let progress = tweened(0, { duration: 1500, easing: quadInOut })
+	let progress = signal(0)
 	let done = false
 
-	progress.subscribe((value) => {
-		if (value === 10_000) {
-			done = true
+	async function animate() {
+		await progress.to(10_000, { delay: 1000 })
+		done = true
+		await progress.to(0, { duration: 100, delay: 1000 })
+		done = false
+		animate()
+	}
 
-			setTimeout(() => {
-				progress.set(0, { duration: 0 })
-			}, 2000)
-		}
-
-		if (value === 0) {
-			done = false
-			setTimeout(() => progress.set(10_000), 1000)
-		}
-	})
+	animate()
 </script>
 
 <h1>Creating slides</h1>

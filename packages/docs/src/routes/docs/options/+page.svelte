@@ -7,8 +7,8 @@
 <h1>Options</h1>
 
 <p>
-	You can open <code>src/config.ts</code> to change the default presentation options and add
-	<a href="https://revealjs.com/plugins/">Reveal plugins</a> including creating your own plugins.
+	You can change the default presentation options inside <code>src/config.ts</code>, add
+	<a href="https://revealjs.com/plugins/">Reveal plugins</a>, or create your own plugins.
 </p>
 
 <Code code={data.examples[0]} />

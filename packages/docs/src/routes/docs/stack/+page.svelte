@@ -14,14 +14,14 @@
 <Animotion>
 	<Slide>
 		<Stack>
-			<img src="https://place-puppy.com/400x400" alt="Placeholder" />
+			<img src="https://picsum.photos/400/400" alt="Placeholder" />
 
 			<Step>
-				<img src="https://place-puppy.com/500x300" alt="Placeholder" />
+				<img src="https://picsum.photos/500/300" alt="Placeholder" />
 			</Step>
 
 			<Step>
-				<img src="https://place-puppy.com/300x340" alt="Placeholder" />
+				<img src="https://picsum.photos/300/340" alt="Placeholder" />
 			</Step>
 		</Stack>
 	</Slide>

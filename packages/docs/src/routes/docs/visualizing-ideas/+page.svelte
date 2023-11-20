@@ -45,18 +45,18 @@
 </p>
 
 <p>
-	You can use the
-	<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas API</a>
-	or <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVGs</a> to draw shapes on the
-	screen but you also have the entire JavaScript ecosystem at your fingertips from
-	<a href="https://d3js.org/">D3</a>
-	for bespoke data visualization to
-	<a href="https://threejs.org/">Three.js</a> for 3D.
+	You can also try out <a href="/docs/motion">Motion</a>, a new addition to <b>Animotion</b> for bespoke
+	animations that uses values that change over time.
 </p>
 
 <p>
-	Let's combine everything you learned so far and see how you can visualize ideas with code for
-	making code explainers using <b>Animotion</b>.
+	You can use the
+	<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas API</a>
+	or <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVGs</a> to draw on the screen, but
+	you also have the entire JavaScript ecosystem at your fingertips from
+	<a href="https://d3js.org/">D3</a>
+	for bespoke data visualization to
+	<a href="https://threejs.org/">Three.js</a> for 3D.
 </p>
 
 <Animotion options={{ hash: true, history: true }}>
@@ -151,12 +151,12 @@
 <p>
 	The default dimensions for a presentation are <b>960x700</b> pixels preserving the aspect ratio
 	but you can
-	<a href="/docs/layout">bring your own layout</a> and have complete control
-	over the layout if desired.
+	<a href="/docs/layout">bring your own layout</a> and have complete control over the layout if desired.
 </p>
 
 <p>
-	If you have a more complicated example you don't want to repeat inside of every slide absolutely position it outside the slide.
+	If you have a more complicated example you don't want to repeat inside of every slide absolutely
+	position it outside the slide.
 </p>
 
 <CodeBlock code={data.examples[1]} />

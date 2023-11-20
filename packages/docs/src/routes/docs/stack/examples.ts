@@ -8,14 +8,14 @@ const example1 = await highlightCode(`
 <Presentation>
   <Slide>
     <Stack>
-      <img src="https://place-puppy.com/400x400" />
+      <img src="https://picsum.photos/400/400" />
 
       <Step>
-        <img src="https://place-puppy.com/500x300" />
+        <img src="https://picsum.photos/500/300" />
       </Step>
 
       <Step>
-        <img src="https://place-puppy.com/300x340" />
+        <img src="https://picsum.photos/300/340" />
       </Step>
     </Stack>
   </Slide>

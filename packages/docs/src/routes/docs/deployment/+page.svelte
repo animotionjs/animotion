@@ -1,8 +1,8 @@
 <h1>Deployment</h1>
 
 <p>
-	<b>Animotion</b> uses <a href="https://vitejs.dev/">Vite</a> which makes it easy to
-	<a href="https://vitejs.dev/guide/static-deploy.html">deploy</a> anywhere:
+	You can <a href="https://vitejs.dev/guide/static-deploy.html">read the Vite deployment docs</a> to
+	learn how to deploy your presentation to any of these target platforms:
 </p>
 
 <ul>

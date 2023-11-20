@@ -8,8 +8,8 @@
 <h1>Stretch</h1>
 
 <p>
-	<code>&lt;Stretch&gt;</code> is a helper component for resizing an element like an image or video for
-	example to cover the remaining vertical space in a slide.
+	<code>&lt;Stretch&gt;</code> is a helper component for resizing an image, or video for example to cover
+	the remaining vertical space in a slide.
 </p>
 
 <Animotion>

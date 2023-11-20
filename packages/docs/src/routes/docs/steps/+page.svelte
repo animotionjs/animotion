@@ -7,7 +7,7 @@
 
 <h1>Step</h1>
 
-<p>You can use steps to reveal individual elements on a slide.</p>
+<p>You can use steps, or fragments to reveal individual elements on a slide.</p>
 
 <Animotion>
 	<Slide>

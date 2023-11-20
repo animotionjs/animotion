@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Animotion, Slide, Vertical } from '$lib/animotion'
+	import { Animotion, Slide, Step } from '$lib/animotion'
 	import CodeBlock from '$lib/components/code.svelte'
 
 	export let data
@@ -10,30 +10,21 @@
 <h2>Custom Events</h2>
 
 <p>
-	Because slides are already in the DOM, you can't rely on component lifecycle methods to trigger
-	actions but you can use <b>events</b>.
-</p>
-
-<p>
 	<b>Animotion</b> provides <code>on:in</code> and <code>on:out</code> events for the
 	<code>&lt;Slide&gt;</code>
-	and <code>&lt;Step&gt;</code> components which is useful when it comes to animations.
+	and <code>&lt;Step&gt;</code> components if you want to use JavaScript to trigger some behaviour.
 </p>
 
-<Animotion options={{ hash: true, history: true }}>
+<Animotion>
 	<Slide>
 		<p class="text-[100px] font-semibold">Events</p>
 	</Slide>
 
-	<Slide on:in={() => alert('in')} on:out={() => alert('out')}>
-		<p class="text-[100px] font-semibold">Horizontal</p>
-	</Slide>
+	<Slide on:in={() => alert('slide in')} on:out={() => alert('slide out')}>
+		<p class="text-[100px] font-semibold">Slide</p>
 
-	<Vertical>
-		<Slide on:in={() => alert('in')} on:out={() => alert('out')}>
-			<p class="text-[100px] font-semibold">Vertical</p>
-		</Slide>
-	</Vertical>
+		<Step on:in={() => alert('step in')} on:out={() => alert('step out')}>Step</Step>
+	</Slide>
 </Animotion>
 
 <CodeBlock code={data.examples[0]} />
