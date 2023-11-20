@@ -156,3 +156,13 @@
 </p>
 
 <CodeBlock code={data.examples[4]} />
+
+<h2>Animation Reset</h2>
+
+<p>
+	If you mess up your delivery, instead of reloading the slide to reset the state of your animation,
+	use the <code>reset</code> method on the
+	<code>signal</code> to reset the animation back to its initial state.
+</p>
+
+<CodeBlock code={data.examples[5]} />

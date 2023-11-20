@@ -133,6 +133,21 @@ const example5 = await highlightCode(`
 </Presentation>
 `.trim(), 'svelte')
 
-const examples = [example1, example2, example3, example4, example5]
+const example6 = await highlightCode(`
+<script lang="ts">
+  import { Presentation, Slide } from '@components'
+  import { signal } from '@motion'
+
+  let value = signal(0)
+</script>
+
+<Presentation>
+  <Slide on:out={() => value.reset()}>
+    <!-- ... -->
+  </Slide>
+</Presentation>
+`.trim(), 'svelte')
+
+const examples = [example1, example2, example3, example4, example5, example6]
 
 export default examples
