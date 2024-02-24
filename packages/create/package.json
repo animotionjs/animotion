@@ -1,10 +1,10 @@
 {
 	"name": "@animotion/create",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"bin": "./cli/bin.js",
 	"type": "module",
 	"dependencies": {
-		"@clack/prompts": "^0.6.3"
+		"@clack/prompts": "^0.7.0"
 	},
 	"license": "MIT",
 	"repository": {
