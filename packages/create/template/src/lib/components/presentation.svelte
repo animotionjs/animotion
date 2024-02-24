@@ -19,12 +19,12 @@
 		deck.on('slidechanged', (event) => {
 			if ('currentSlide' in event) {
 				const currentSlideEl = event.currentSlide as HTMLElement
-				currentSlideEl.dispatchEvent(inEvent)
+				currentSlideEl?.dispatchEvent(inEvent)
 			}
 
 			if ('previousSlide' in event) {
 				const currentPreviousEl = event.previousSlide as HTMLElement
-				currentPreviousEl.dispatchEvent(outEvent)
+				currentPreviousEl?.dispatchEvent(outEvent)
 			}
 		})
 
