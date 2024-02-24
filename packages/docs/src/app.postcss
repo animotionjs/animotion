@@ -15,21 +15,6 @@
 	box-sizing: border-box;
 }
 
-::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
-}
-
-::-webkit-scrollbar-track {
-	background-color: none;
-}
-
-::-webkit-scrollbar-thumb {
-	background-color: var(--scrollbar);
-	border-radius: var(--radius-1);
-}
-
-
 h1,
 h2,
 h3,
@@ -112,7 +97,6 @@ td {
 	--text-2: var(--text-2-dark);
 	--text-3: var(--text-3-dark);
 	--surface-1: var(--surface-1-dark);
-	--scrollbar: var(--scrollbar-dark);
 }
 
 html {
@@ -180,6 +164,7 @@ html,
 body {
 	height: 100%;
 	scrollbar-color: var(--brand) transparent;
+	scrollbar-width: thin;
 }
 
 body {
@@ -239,7 +224,6 @@ body {
 		--text-2: var(--text-2-light);
 		--text-3: var(--text-3-light);
 		--surface-1: var(--surface-1-light);
-		--scrollbar: var(--scrollbar-light);
 		--border: var(--border-light);
 	}
 }
@@ -253,7 +237,6 @@ body {
 	--text-2: var(--text-2-light);
 	--text-3: var(--text-3-light);
 	--surface-1: var(--surface-1-light);
-	--scrollbar: var(--scrollbar-light);
 	--border: var(--border-light);
 }
 
@@ -266,7 +249,6 @@ body {
 	--text-2: var(--text-2-dark);
 	--text-3: var(--text-3-dark);
 	--surface-1: var(--surface-1-dark);
-	--scrollbar: var(--scrollbar-dark);
 	--border: var(--border-dark);
 }
 
