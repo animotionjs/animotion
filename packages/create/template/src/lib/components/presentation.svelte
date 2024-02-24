@@ -19,26 +19,26 @@
 		deck.on('slidechanged', (event) => {
 			if ('currentSlide' in event) {
 				const currentSlideEl = event.currentSlide as HTMLElement
-				currentSlideEl.dispatchEvent(inEvent)
+				currentSlideEl?.dispatchEvent(inEvent)
 			}
 
 			if ('previousSlide' in event) {
 				const currentPreviousEl = event.previousSlide as HTMLElement
-				currentPreviousEl.dispatchEvent(outEvent)
+				currentPreviousEl?.dispatchEvent(outEvent)
 			}
 		})
 
 		deck.on('fragmentshown', (event) => {
 			if ('fragment' in event) {
 				const fragmentEl = event.fragment as HTMLElement
-				fragmentEl.dispatchEvent(inEvent)
+				fragmentEl?.dispatchEvent(inEvent)
 			}
 		})
 
 		deck.on('fragmenthidden', (event) => {
 			if ('fragment' in event) {
 				const fragmentEl = event.fragment as HTMLElement
-				fragmentEl.dispatchEvent(outEvent)
+				fragmentEl?.dispatchEvent(outEvent)
 			}
 		})
 
