@@ -6,15 +6,6 @@
 		{ x: 0, y: 200, r: 80, fill: '#00ffff' },
 		{ duration: 2000 }
 	)
-
-	async function animate() {
-		await circle.to({ x: 400, fill: '#ffff00' }, { delay: 600 })
-		await circle.to({ x: 0, fill: '#00ffff' }, { delay: 300 })
-	}
-
-	function resetAnimation() {
-		circle.reset()
-	}
 </script>
 
 <Presentation>
@@ -26,7 +17,7 @@
 		<p class="font-bold text-6xl mt-8">🪄 Animotion</p>
 
 		<div class="w-max mx-auto mt-16">
-			<Code lang="ts" lines="1,4|2|3">
+			<Code lang="ts" lines="1,4|2|3|1-4">
 				{`
 					const circle = signal(
 						{ x: 0, y: 200, r: 80, fill: '#00ffff' },
@@ -37,11 +28,19 @@
 		</div>
 	</Slide>
 
-	<Slide animate>
+	<Slide on:out={() => circle.reset()} animate>
 		<p class="font-bold text-6xl mt-8">🪄 Animotion</p>
 
 		<div class="w-max mx-auto mt-16">
-			<Code lang="ts" lines="1,4|2|3">
+			<Code
+				lang="ts"
+				lines="1,4|2|3|1-4"
+				steps={[
+					['2', async () => await circle.to({ x: 400, fill: '#ffff00' })],
+					['3', async () => await circle.to({ x: 0, fill: '#00ffff' })],
+					['1-4', () => circle.reset()],
+				]}
+			>
 				{`
 					async function animate() {
 						await circle.to({ x: 400, fill: '#ffff00' })
@@ -70,25 +69,17 @@
 		</svg>
 	</Slide>
 
-	<Slide on:in={animate} on:out={resetAnimation} animate>
+	<Slide animate>
 		<p class="font-bold text-6xl mt-8">🪄 Animotion</p>
-
-		<svg
-			class="w-full h-[400px] mx-auto"
-			viewBox="0 0 400 400"
-			data-id="animation"
-		>
-			<circle cx={$circle.x} cy={$circle.y} r={$circle.r} fill={$circle.fill} />
-			<text
-				x={$circle.x}
-				y={$circle.y}
-				font-size={$circle.r * 0.4}
-				font-family="JetBrains Mono"
-				text-anchor="middle"
-				dominant-baseline="middle"
+		<p class="mt-16 text-3xl">
+			Learn more by reading the
+			<a
+				class="underline"
+				href="https://animotion.pages.dev/docs"
+				target="_blank"
 			>
-				{$circle.x.toFixed(0)}
-			</text>
-		</svg>
+				Animotion docs
+			</a>.
+		</p>
 	</Slide>
 </Presentation>

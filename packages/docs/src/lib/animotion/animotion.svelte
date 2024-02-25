@@ -42,8 +42,20 @@
 
 		deck.on('fragmentshown', (event) => {
 			if ('fragment' in event) {
-				const fragmentEl = event.fragment as HTMLElement
-				fragmentEl?.dispatchEvent(inEvent)
+				const el = event.fragment as HTMLElement
+				let eventType: Event
+
+				if (el.tagName === 'CODE') {
+					const codeEvent = new CustomEvent('change', {
+						bubbles: true,
+						detail: { lines: el.dataset.lineNumbers }
+					})
+					eventType = codeEvent
+				} else {
+					eventType = inEvent
+				}
+
+				el?.dispatchEvent(eventType)
 			}
 		})
 

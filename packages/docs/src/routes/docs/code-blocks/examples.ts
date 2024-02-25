@@ -93,13 +93,52 @@ const example4 = await highlightCode(`
 `.trim(), 'svelte')
 
 const example5 = await highlightCode(`
+<Code
+  lang="ts"
+  lines="1,4|2|3|1-4"
+  steps={[
+    ['2', async () => await circle.to({ x: 400, fill: '#ffff00' })],
+    ['3', async () => await circle.to({ x: 0, fill: '#00ffff' })],
+    ['1-4', () => circle.reset()],
+  ]}
+>
+  {\`
+    async function animate() {
+      await circle.to({ x: 400, fill: '#ffff00' })
+      await circle.to({ x: 0, fill: '#00ffff' })
+    }
+  \`}
+</Code>
+`.trim(), 'svelte')
+
+const example6 = await highlightCode(`
+<Code
+  lang="ts"
+  lines="1,4|2|3|1-4"
+  on:change={(e) => {
+    const { lines } = e.detail
+    if (lines === '2') && await circle.to({ x: 400, fill: '#ffff00' })
+    if (lines === '3') && await circle.to({ x: 0, fill: '#00ffff' })
+    if (lines === '1-4') && circle.reset()
+  }}
+>
+  {\`
+    async function animate() {
+      await circle.to({ x: 400, fill: '#ffff00' })
+      await circle.to({ x: 0, fill: '#00ffff' })
+    }
+  \`}
+</Code>
+`.trim(), 'svelte')
+
+const example7 = await highlightCode(`
 .reveal pre code {
   max-height: 600px;
   /* ... */
 }
 `.trim(), 'css')
 
-const example6 = await highlightCode(`
+const example8 = await highlightCode(`
 import { svelte } from './svelte'
 
 export function registerLanguages(hljs) {
@@ -107,6 +146,6 @@ export function registerLanguages(hljs) {
 }
 `.trim(), 'ts')
 
-const examples = [example1, example2, example3, example4, example5, example6]
+const examples = [example1, example2, example3, example4, example5, example6, example7, example8]
 
 export default examples

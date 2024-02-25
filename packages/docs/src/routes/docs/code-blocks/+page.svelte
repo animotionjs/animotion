@@ -108,6 +108,23 @@
 
 <CodeBlock code={data.examples[3]} />
 
+<h2>Highlighted Code Animations</h2>
+
+<p>
+	You can provide a <code>steps</code> prop to specify what animations you want to play based on the
+	currently highlighted line.
+</p>
+
+<CodeBlock code={data.examples[4]} />
+
+<p>
+	You can also use the <code>on:change</code>
+	event listener and pass a callback function if you want access to the custom event, and data inside
+	<code>e.detail</code>.
+</p>
+
+<CodeBlock code={data.examples[5]} />
+
 <h2>Code Block Height</h2>
 
 <p>
@@ -115,7 +132,7 @@
 	scrolling effect but you can remove it in case you want to set the height yourself.
 </p>
 
-<CodeBlock code={data.examples[4]} />
+<CodeBlock code={data.examples[6]} />
 
 <h2>Escaping Characters</h2>
 
@@ -156,7 +173,7 @@
 
 <p>Update <code>lib/languages/index.ts</code> to register the language.</p>
 
-<CodeBlock code={data.examples[5]} />
+<CodeBlock code={data.examples[7]} />
 
 <p>
 	If the language you want is not included you can look at the provided Svelte example and figure it
