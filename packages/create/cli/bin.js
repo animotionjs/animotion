@@ -65,8 +65,12 @@ async function main() {
 	// copy the template
 	await copy('../template', cwd)
 
-	// rename because npm ignores it
-	fs.rename('ignore', '.gitignore', (error) => error && console.log(error))
+	// npm ignores `.gitignore` so rename it
+	fs.renameSync(
+		path.join(cwd, 'ignore'),
+		path.join(cwd, '.gitignore'),
+		(error) => error && console.log(error)
+	)
 
 	if (dependencies) {
 		const s = spinner()
