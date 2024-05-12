@@ -1,13 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
 	import Reveal from 'reveal.js'
-	import options from '@config'
+	import options from '../../config'
 
-	import 'reveal.js/dist/reveal.css'
-	import '@styles/theme.css'
-	import '@styles/code.css'
-
-	onMount(() => {
+	onMount(async () => {
 		// create deck instance
 		const deck = new Reveal(options)
 
@@ -36,7 +32,7 @@
 				if (el.tagName === 'CODE') {
 					const codeEvent = new CustomEvent('change', {
 						bubbles: true,
-						detail: { lines: el.dataset.lineNumbers },
+						detail: { step: el.dataset.lineNumbers }
 					})
 					eventType = codeEvent
 				} else {
@@ -61,13 +57,16 @@
 		})
 
 		// reload page after update to avoid HMR issues
-		// reloadPageAfterUpdate()
+		reloadPageAfterUpdate()
 	})
 
 	function highlightCodeBlocks(deck: Reveal.Api) {
 		const highlight = deck.getPlugin('highlight')
 		const codeBlocks = [...document.querySelectorAll('code')]
 		codeBlocks.forEach((block) => {
+			// remove Svelte generated HTML comments
+			block.innerHTML = block.innerHTML.replace(/&lt;!----&gt;/, '')
+
 			// @ts-ignore
 			highlight.highlightBlock(block)
 		})

@@ -1,22 +1,19 @@
 <script lang="ts">
-	import { Presentation, Slide, Code } from '@components'
-	import { signal } from '@motion'
+	import { Presentation, Slide, Code } from '$lib/components'
+	import { signal } from '@animotion/motion'
 
-	const circle = signal(
-		{ x: 0, y: 200, r: 80, fill: '#00ffff' },
-		{ duration: 2000 }
-	)
+	const circle = signal({ x: 0, y: 200, r: 80, fill: '#00ffff' }, { duration: 2 })
 </script>
 
 <Presentation>
 	<Slide animate>
-		<p class="font-bold text-8xl">🪄 Animotion</p>
+		<p class="text-8xl font-bold">🪄 Animotion</p>
 	</Slide>
 
 	<Slide animate>
-		<p class="font-bold text-6xl mt-8">🪄 Animotion</p>
+		<p class="mt-8 text-6xl font-bold">🪄 Animotion</p>
 
-		<div class="w-max mx-auto mt-16">
+		<div class="mx-auto mt-16 w-max">
 			<Code lang="ts" lines="1,4|2|3|1-4">
 				{`
 					const circle = signal(
@@ -29,17 +26,17 @@
 	</Slide>
 
 	<Slide on:out={() => circle.reset()} animate>
-		<p class="font-bold text-6xl mt-8">🪄 Animotion</p>
+		<p class="mt-8 text-6xl font-bold">🪄 Animotion</p>
 
-		<div class="w-max mx-auto mt-16">
+		<div class="mx-auto mt-16 w-max">
 			<Code
 				lang="ts"
 				lines="1,4|2|3|1-4"
-				steps={[
-					['2', async () => await circle.to({ x: 400, fill: '#ffff00' })],
-					['3', async () => await circle.to({ x: 0, fill: '#00ffff' })],
-					['1-4', () => circle.reset()],
-				]}
+				steps={{
+					'2': async () => await circle.to({ x: 400, fill: '#ffff00' }),
+					'3': async () => await circle.to({ x: 0, fill: '#00ffff' }),
+					'1-4': () => circle.reset()
+				}}
 			>
 				{`
 					async function animate() {
@@ -50,11 +47,7 @@
 			</Code>
 		</div>
 
-		<svg
-			class="w-full h-[400px] mx-auto"
-			viewBox="0 0 400 400"
-			data-id="animation"
-		>
+		<svg class="mx-auto h-[400px] w-full" viewBox="0 0 400 400" data-id="animation">
 			<circle cx={$circle.x} cy={$circle.y} r={$circle.r} fill={$circle.fill} />
 			<text
 				x={$circle.x}
@@ -70,14 +63,10 @@
 	</Slide>
 
 	<Slide animate>
-		<p class="font-bold text-6xl mt-8">🪄 Animotion</p>
+		<p class="mt-8 text-6xl font-bold">🪄 Animotion</p>
 		<p class="mt-16 text-3xl">
 			Learn more by reading the
-			<a
-				class="underline"
-				href="https://animotion.pages.dev/docs"
-				target="_blank"
-			>
+			<a class="underline" href="https://animotion.pages.dev/docs" target="_blank">
 				Animotion docs
 			</a>.
 		</p>

@@ -1,13 +1,15 @@
 <script lang="ts">
-	export let type = 'p'
+	import type { Snippet } from 'svelte'
 
-	delete $$restProps.class
+	type StretchProps = {
+		children: Snippet
+		type?: string
+		class?: string
+	}
+
+	let { children, type = 'p', ...props }: StretchProps = $props()
 </script>
 
-<svelte:element
-	this={type}
-	class="r-stretch {$$props.class || ''}"
-	{...$$restProps}
->
-	<slot />
+<svelte:element this={type} {...props} class="r-stretch {props.class}">
+	{@render children()}
 </svelte:element>

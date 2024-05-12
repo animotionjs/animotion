@@ -1,13 +1,20 @@
 <script lang="ts">
-	export let file: string | null = null
+	import type { Snippet } from 'svelte'
+
+	type MarkdownProps = {
+		children: Snippet
+		file?: string
+	}
+
+	let { children, file }: MarkdownProps = $props()
 </script>
 
 {#if file}
-	<section data-markdown={file} />
+	<section data-markdown={file}></section>
 {:else}
 	<section data-markdown>
 		<div data-template>
-			<slot />
+			{@render children()}
 		</div>
 	</section>
 {/if}

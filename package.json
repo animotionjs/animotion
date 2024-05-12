@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "Animotion monorepo",
 	"scripts": {
-		"animotion:dev": "pnpm -F animotion run dev",
+		"animotion:dev": "pnpm -F @animotion/core run dev",
 		"docs:dev": "pnpm -F docs run dev",
 		"docs:build": "pnpm -F docs run build",
 		"docs:preview": "pnpm -F docs run preview",
