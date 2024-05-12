@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Presentation, Slide, Code } from '$lib/components'
+	import { Presentation, Slide, Code, Step } from '$lib/components'
 	import { signal } from '$lib/motion'
 
 	const circle = signal({ x: 0, y: 200, r: 80, fill: '#00ffff' }, { duration: 2000 })
@@ -32,11 +32,11 @@
 			<Code
 				lang="ts"
 				lines="1,4|2|3|1-4"
-				steps={[
-					['2', async () => await circle.to({ x: 400, fill: '#ffff00' })],
-					['3', async () => await circle.to({ x: 0, fill: '#00ffff' })],
-					['1-4', () => circle.reset()]
-				]}
+				steps={{
+					'2': async () => await circle.to({ x: 400, fill: '#ffff00' }),
+					'3': async () => await circle.to({ x: 0, fill: '#00ffff' }),
+					'1-4': () => circle.reset()
+				}}
 			>
 				{`
 					async function animate() {

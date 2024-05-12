@@ -32,7 +32,7 @@
 				if (el.tagName === 'CODE') {
 					const codeEvent = new CustomEvent('change', {
 						bubbles: true,
-						detail: { lines: el.dataset.lineNumbers }
+						detail: { step: el.dataset.lineNumbers }
 					})
 					eventType = codeEvent
 				} else {

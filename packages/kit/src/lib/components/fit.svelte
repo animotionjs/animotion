@@ -1,13 +1,15 @@
 <script lang="ts">
-	export let type = 'h2'
+	import type { Snippet } from 'svelte'
 
-	delete $$restProps.class
+	type FitProps = {
+		children: Snippet
+		type?: string
+		class?: string
+	}
+
+	let { children, type = 'h2', ...props }: FitProps = $props()
 </script>
 
-<svelte:element
-	this={type}
-	class="r-fit-text {$$props.class || ''}"
-	{...$$restProps}
->
-	<slot />
+<svelte:element this={type} {...props} class="r-fit-text {props.class}">
+	{@render children()}
 </svelte:element>
