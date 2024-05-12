@@ -1,11 +1,69 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import Reveal from 'reveal.js'
-	import options from '../../config'
+	import Markdown from 'reveal.js/plugin/markdown/markdown'
+	import Highlight from 'reveal.js/plugin/highlight/highlight'
+	import Math from 'reveal.js/plugin/math/math'
+	import Notes from 'reveal.js/plugin/notes/notes'
+	import type { Snippet } from 'svelte'
+	import type { HLJSApi } from 'highlight.js'
+	import { svelte } from '../languages'
 
-	onMount(async () => {
+	type PresentationProps = {
+		children: Snippet
+		options?: Reveal.Options
+	}
+
+	let { children, options }: PresentationProps = $props()
+
+	const defaults: Reveal.Options = {
+		// presentation size respecting aspect ratio
+		width: 960,
+		height: 700,
+		// content padding
+		margin: 0.04,
+		// smallest and largest possible scale
+		minScale: 0.2,
+		maxScale: 2.0,
+		// plugins
+		plugins: [Markdown, Highlight, Math.KaTeX, Notes],
+		// syntax highlight options
+		highlight: {
+			// add new languages
+			beforeHighlight: (hljs: HLJSApi) => {
+				hljs.registerLanguage('svelte', svelte)
+			},
+			// disable automatic syntax highlighting
+			highlightOnLoad: false
+		},
+		// slide controls
+		controls: true,
+		// slide progress bar
+		progress: true,
+		// slide transition
+		transition: 'slide',
+		// bring your own layout
+		disableLayout: false,
+		// display mode used to show slides
+		display: 'block',
+		// center slides on the screen
+		center: true,
+		// auto-animate duration
+		autoAnimateDuration: 1,
+		// auto-animate easing
+		autoAnimateEasing: 'ease',
+		// animate unmatched elements
+		autoAnimateUnmatched: true,
+		// hide cursor
+		hideInactiveCursor: true,
+		// time before cursor is hidden (ms)
+		hideCursorTime: 5000,
+		// show current slide
+		hash: true
+	}
+
+	$effect(() => {
 		// create deck instance
-		const deck = new Reveal(options)
+		const deck = new Reveal({ ...defaults, ...options })
 
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
@@ -83,6 +141,6 @@
 
 <div class="reveal">
 	<div class="slides">
-		<slot />
+		{@render children()}
 	</div>
 </div>
