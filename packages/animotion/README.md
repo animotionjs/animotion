@@ -1,23 +1,3 @@
-# Animotion
+# Animotion Core
 
-This is an Animotion presentation.
-
-## Setup
-
-Install dependencies.
-
-```sh
-pnpm i
-```
-
-Run the development server at http://localhost:5173/.
-
-```sh
-pnpm run dev
-```
-
-Build and preview deploy.
-
-```sh
-pnpm run build && pnpm run preview
-```
+This package provides the core components for [Animotion](https://animotion.pages.dev/), and is only meant to be used in the Animotion template.
