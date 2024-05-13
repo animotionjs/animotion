@@ -22,6 +22,12 @@ importers:
       '@tailwindcss/vite':
         specifier: 4.0.0-alpha.14
         version: 4.0.0-alpha.14(vite@5.2.11(@types/node@20.12.11)(lightningcss@1.24.1))
+      '@types/d3-interpolate':
+        specifier: ^3.0.4
+        version: 3.0.4
+      '@types/reveal.js':
+        specifier: ^5.0.3
+        version: 5.0.3
       d3-interpolate:
         specifier: ^3.0.1
         version: 3.0.1
@@ -44,12 +50,6 @@ importers:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^3.1.0
         version: 3.1.0(svelte@5.0.0-next.127)(vite@5.2.11(@types/node@20.12.11)(lightningcss@1.24.1))
-      '@types/d3-interpolate':
-        specifier: ^3.0.4
-        version: 3.0.4
-      '@types/reveal.js':
-        specifier: ^5.0.3
-        version: 5.0.3
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -165,67 +165,6 @@ importers:
       vite:
         specifier: ^5.1.4
         version: 5.1.4(@types/node@20.12.11)(lightningcss@1.24.1)
-
-  packages/kit:
-    dependencies:
-      '@fontsource-variable/jetbrains-mono':
-        specifier: ^5.0.21
-        version: 5.0.21
-      '@fontsource-variable/manrope':
-        specifier: ^5.0.20
-        version: 5.0.20
-      '@tailwindcss/vite':
-        specifier: 4.0.0-alpha.14
-        version: 4.0.0-alpha.14(vite@5.2.11(@types/node@20.12.11)(lightningcss@1.24.1))
-      d3-interpolate:
-        specifier: ^3.0.1
-        version: 3.0.1
-      reveal.js:
-        specifier: ^5.1.0
-        version: 5.1.0
-      tailwindcss:
-        specifier: 4.0.0-alpha.14
-        version: 4.0.0-alpha.14
-    devDependencies:
-      '@sveltejs/adapter-auto':
-        specifier: ^3.2.0
-        version: 3.2.0(@sveltejs/kit@2.5.7(@sveltejs/vite-plugin-svelte@3.1.0(svelte@5.0.0-next.127)(vite@5.2.11(@types/node@20.12.11)(lightningcss@1.24.1)))(svelte@5.0.0-next.127)(vite@5.2.11(@types/node@20.12.11)(lightningcss@1.24.1)))
-      '@sveltejs/kit':
-        specifier: ^2.5.7
-        version: 2.5.7(@sveltejs/vite-plugin-svelte@3.1.0(svelte@5.0.0-next.127)(vite@5.2.11(@types/node@20.12.11)(lightningcss@1.24.1)))(svelte@5.0.0-next.127)(vite@5.2.11(@types/node@20.12.11)(lightningcss@1.24.1))
-      '@sveltejs/vite-plugin-svelte':
-        specifier: ^3.1.0
-        version: 3.1.0(svelte@5.0.0-next.127)(vite@5.2.11(@types/node@20.12.11)(lightningcss@1.24.1))
-      '@types/d3-interpolate':
-        specifier: ^3.0.4
-        version: 3.0.4
-      '@types/reveal.js':
-        specifier: ^5.0.3
-        version: 5.0.3
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      prettier-plugin-svelte:
-        specifier: ^3.2.3
-        version: 3.2.3(prettier@3.2.5)(svelte@5.0.0-next.127)
-      prettier-plugin-tailwindcss:
-        specifier: ^0.5.14
-        version: 0.5.14(prettier-plugin-svelte@3.2.3(prettier@3.2.5)(svelte@5.0.0-next.127))(prettier@3.2.5)
-      svelte:
-        specifier: 5.0.0-next.127
-        version: 5.0.0-next.127
-      svelte-check:
-        specifier: ^3.7.1
-        version: 3.7.1(postcss-load-config@5.1.0(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.127)
-      tslib:
-        specifier: ^2.6.2
-        version: 2.6.2
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-      vite:
-        specifier: ^5.2.11
-        version: 5.2.11(@types/node@20.12.11)(lightningcss@1.24.1)
 
 packages:
 

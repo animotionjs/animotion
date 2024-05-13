@@ -1,6 +1,6 @@
 {
 	"name": "@animotion/core",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Core components for Animotion",
 	"author": "animotionjs",
 	"homepage": "https://animotion.pages.dev/",
@@ -38,6 +38,10 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
+		"@types/d3-interpolate": "^3.0.4",
+		"@types/reveal.js": "^5.0.3",
+		"d3-interpolate": "^3.0.1",
+		"reveal.js": "^5.1.0",
 		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
@@ -45,8 +49,6 @@
 		"@sveltejs/kit": "^2.5.7",
 		"@sveltejs/package": "^2.3.1",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
-		"@types/d3-interpolate": "^3.0.4",
-		"@types/reveal.js": "^5.0.3",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.3",
 		"prettier-plugin-tailwindcss": "^0.5.14",
@@ -62,8 +64,6 @@
 		"@fontsource-variable/jetbrains-mono": "^5.0.21",
 		"@fontsource-variable/manrope": "^5.0.20",
 		"@tailwindcss/vite": "4.0.0-alpha.14",
-		"d3-interpolate": "^3.0.1",
-		"reveal.js": "^5.1.0",
 		"tailwindcss": "4.0.0-alpha.14"
 	}
 }
