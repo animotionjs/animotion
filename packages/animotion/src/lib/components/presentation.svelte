@@ -6,7 +6,7 @@
 	import Notes from 'reveal.js/plugin/notes/notes'
 	import type { Snippet } from 'svelte'
 	import type { HLJSApi } from 'highlight.js'
-	import { svelte } from '../languages'
+	import { svelte } from '../languages/index.js'
 
 	type PresentationProps = {
 		children: Snippet

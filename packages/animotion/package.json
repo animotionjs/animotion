@@ -1,22 +1,56 @@
 {
 	"name": "@animotion/core",
+	"version": "0.0.1",
+	"description": "Core components for Animotion",
+	"author": "animotionjs",
+	"homepage": "https://animotion.pages.dev/",
+	"bugs": "https://github.com/animotionjs/animotion/issues",
 	"type": "module",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/animotionjs/animotion.git"
+	},
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"animation",
+		"library"
+	],
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "vite build && npm run package",
 		"preview": "vite preview",
+		"package": "svelte-kit sync && svelte-package && publint",
+		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"peerDependencies": {
+		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.0",
 		"@sveltejs/kit": "^2.5.7",
+		"@sveltejs/package": "^2.3.1",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
 		"@types/d3-interpolate": "^3.0.4",
 		"@types/reveal.js": "^5.0.3",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.3",
 		"prettier-plugin-tailwindcss": "^0.5.14",
+		"publint": "^0.2.7",
 		"svelte": "5.0.0-next.127",
 		"svelte-check": "^3.7.1",
 		"tslib": "^2.6.2",

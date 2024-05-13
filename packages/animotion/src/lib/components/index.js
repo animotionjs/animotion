@@ -21,5 +21,5 @@ export {
 	Stack,
 	Step,
 	Stretch,
-	Vertical,
+	Vertical
 }
