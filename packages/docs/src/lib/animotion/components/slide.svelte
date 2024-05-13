@@ -1,48 +1,48 @@
 <script lang="ts">
-	type Bool = boolean | null
-	type String = string | null
-	type Transition =
-		| 'none'
-		| 'fade'
-		| 'slide'
-		| 'convex'
-		| 'concave'
-		| 'zoom'
-		| null
+	import type { Snippet } from 'svelte'
 
-	export let animate: Bool = null
-	export let animateEasing: String = null
-	export let animateUnmatched: Bool = null
-	export let animateId: String = null
-	export let animateRestart: Bool = null
-	export let background: String = null
-	export let gradient: String = null
-	export let image: String = null
-	export let video: String = null
-	export let iframe: String = null
-	export let interactive: Bool = null
-	export let transition: Transition = null
+	type SlideProps = {
+		children: Snippet
+		in?: () => void
+		out?: () => void
+		animate?: boolean
+		animateEasing?: string
+		animateUnmatched?: boolean
+		animateId?: string
+		animateRestart?: boolean
+		background?: string
+		gradient?: string
+		image?: string
+		video?: string
+		iframe?: string
+		interactive?: boolean
+		transition?: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom'
+		class?: string
+	}
 
-	delete $$restProps.class
+	let { ...props }: SlideProps = $props()
+
+	function listeners(el: HTMLElement) {
+		const events = ['in', 'out'] as const
+		events.forEach((event) => el.addEventListener(event, () => props[event]?.()))
+	}
 </script>
 
 <section
-	on:in
-	on:out
-	data-auto-animate={animate}
-	data-auto-animate-easing={animateEasing}
-	data-auto-animate-unmatched={animateUnmatched}
-	data-auto-animate-id={animateId}
-	data-auto-animate-restart={animateRestart}
-	data-background-color={background}
-	data-background-gradient={gradient}
-	data-background-image={image}
-	data-background-video={video}
-	data-background-iframe={iframe}
-	data-background-interactive={interactive}
-	data-transition={transition}
-	class={$$props.class || ''}
-	{...$$restProps}
+	use:listeners
+	data-auto-animate={props.animate}
+	data-auto-animate-easing={props.animateEasing}
+	data-auto-animate-unmatched={props.animateUnmatched}
+	data-auto-animate-id={props.animateId}
+	data-auto-animate-restart={props.animateRestart}
+	data-background-color={props.background}
+	data-background-gradient={props.gradient}
+	data-background-image={props.image}
+	data-background-video={props.video}
+	data-background-iframe={props.iframe}
+	data-background-interactive={props.interactive}
+	data-transition={props.transition}
+	class={props.class}
 >
-	<slot />
+	{@render props.children()}
 </section>

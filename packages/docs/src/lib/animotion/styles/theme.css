@@ -11,11 +11,6 @@
 	--r-link-color: hsl(180 100% 50%);
 }
 
-/* required for Reveal.js to work */
-#app {
-	display: contents;
-}
-
 .reveal-viewport {
 	background-color: var(--r-background-color);
 }

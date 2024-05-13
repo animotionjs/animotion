@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import { BookOpenIcon, MoonIcon, SunIcon } from 'lucide-svelte'
 
 	type Theme = 'light' | 'dark'
-	let theme: Theme
+
+	let theme = $state<Theme>()
 
 	function toggleTheme() {
 		theme = theme === 'dark' ? 'light' : 'dark'
@@ -15,9 +15,11 @@
 		document.documentElement.setAttribute('color-scheme', theme)
 	}
 
-	onMount(() => {
+	$effect(() => {
 		const colorScheme = document.documentElement.getAttribute('color-scheme')
-		const prefersColorScheme = window.matchMedia('(prefers-color-scheme: light)').matches
+		const prefersColorScheme = window.matchMedia(
+			'(prefers-color-scheme: light)'
+		).matches
 
 		if (colorScheme === 'dark' || colorScheme === 'light') {
 			theme = colorScheme
@@ -39,7 +41,10 @@
 			</div>
 		</div>
 
-		<div class="right-side flex-items-center space-x" style:--margin="var(--size-3)">
+		<div
+			class="right-side flex-items-center space-x"
+			style:--margin="var(--size-3)"
+		>
 			<a class="icon" href="/docs" title="Docs">
 				<BookOpenIcon size="20" />
 			</a>
@@ -63,7 +68,12 @@
 				</svg>
 			</a>
 
-			<a class="icon" href="https://github.com/animotionjs/animotion" title="GitHub" aria-label="Open GitHub">
+			<a
+				class="icon"
+				href="https://github.com/animotionjs/animotion"
+				title="GitHub"
+				aria-label="Open GitHub"
+			>
 				<div class="flex-items-center">
 					<div class="icon">
 						<svg
@@ -81,7 +91,11 @@
 				</div>
 			</a>
 
-			<button on:click={toggleTheme} class="icon" aria-label="Toggle {theme} mode">
+			<button
+				onclick={toggleTheme}
+				class="icon"
+				aria-label="Toggle {theme} mode"
+			>
 				{#if theme === 'dark'}
 					<SunIcon size="20" />
 				{:else}
@@ -91,8 +105,6 @@
 		</div>
 	</div>
 </nav>
-
-<slot />
 
 <style lang="postcss">
 	nav {
@@ -115,7 +127,9 @@
 	.icon {
 		color: var(--text-2);
 		fill: var(--text-2);
-		transition: color 0.3s ease, fill 0.3s ease;
+		transition:
+			color 0.3s ease,
+			fill 0.3s ease;
 
 		&:hover {
 			color: var(--brand);

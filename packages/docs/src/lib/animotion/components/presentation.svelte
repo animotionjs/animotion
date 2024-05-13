@@ -1,15 +1,22 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
+	import { type Snippet } from 'svelte'
+	import type Reveal from 'reveal.js'
 
 	import 'reveal.js/dist/reveal.css'
-	import './styles/theme.css'
-	import './styles/code.css'
+	import '../styles/theme.css'
+	import '../styles/code.css'
 
-	export let options = {}
+	type PresentationProps = {
+		children: Snippet,
+		options?: Reveal.Options
+	}
 
-	onMount(async () => {
+	let { children, options }: PresentationProps = $props()
+
+	async function init() {
 		const Reveal = (await import('reveal.js')).default
-		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default
+		const Highlight = (await import('reveal.js/plugin/highlight/highlight'))
+			.default
 		const Math = (await import('reveal.js/plugin/math/math')).default
 		const Notes = (await import('reveal.js/plugin/notes/notes')).default
 
@@ -67,6 +74,10 @@
 		})
 
 		deck.initialize()
+	}
+
+	$effect(() => {
+		init()
 	})
 
 	let animotion: HTMLElement
@@ -74,11 +85,11 @@
 
 <div bind:this={animotion} class="reveal">
 	<div class="slides">
-		<slot />
+		{@render children()}
 	</div>
 </div>
 
-<style lang="postcss">
+<style>
 	.reveal {
 		height: 200px;
 		margin-block: var(--size-3);

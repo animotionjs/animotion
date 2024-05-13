@@ -1,9 +1,12 @@
+/* fonts */
+
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/jetbrains-mono';
 
 /* tailwind is only used for the examples */
-@tailwind components;
-@tailwind utilities;
+
+@import 'tailwindcss/theme';
+@import 'tailwindcss/utilities';
 
 /* reset */
 
@@ -51,8 +54,10 @@ ul {
 img,
 picture,
 video,
+iframe,
 canvas,
-svg {
+svg
+{
 	display: block;
 	max-width: 100%;
 }
@@ -67,6 +72,14 @@ select {
 button {
 	all: unset;
 	cursor: pointer;
+}
+
+pre {
+	padding: var(--size-3);
+	border-radius: var(--radius-1);
+	tab-size: 2;
+	border: 1px solid hsl(0 0% 0% / 2%);
+	box-shadow: var(--shadow-1);
 }
 
 code,
@@ -101,7 +114,7 @@ td {
 }
 
 html {
-	/* don't @me 🤫 */
+	/* yeah I know */
 	font-size: 62.5%;
 
 	/* typography */

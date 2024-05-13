@@ -1,7 +1,12 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte'
 	import { page } from '$app/stores'
 	import { sections } from '$lib/navigation/navigation'
 	import Links from '$lib/navigation/links.svelte'
+
+	type LayoutProps = { children: Snippet }
+
+	let { children }: LayoutProps = $props()
 </script>
 
 <div class="container">
@@ -17,7 +22,7 @@
 	</aside>
 
 	<main class="content space-y" style:--margin="var(--size-4)">
-		<slot />
+		{@render children()}
 		<Links />
 	</main>
 </div>
@@ -26,7 +31,7 @@
 	.container {
 		margin-block-start: var(--size-5);
 
-		@media (width > 1000px) {
+		@media (width > 600px) {
 			display: grid;
 			grid-template-columns: 240px 1fr;
 		}

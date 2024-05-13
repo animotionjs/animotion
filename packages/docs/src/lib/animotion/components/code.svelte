@@ -1,33 +1,31 @@
 <script lang="ts">
-	type Lines = string | boolean | null
-	type Offset = string | null
-	type Language = string | null
-	type Step = [string, () => void]
+	import type { Snippet } from 'svelte'
 
-	export let id = 'code-animation'
-	export let lines: Lines = true
-	export let offset: Offset = null
-	export let lang: Language = null
-	export let steps: Step[] = []
+	type CodeProps = {
+		children: Snippet
+		lang: string
+		id?: string
+		lines?: string
+		offset?: string
+		steps?: Record<string, () => void>
+	}
 
-	delete $$restProps.class
+	let { children, id, lines, offset, lang, steps }: CodeProps = $props()
 
-	function change(el: HTMLPreElement) {
+	function listeners(el: HTMLPreElement) {
+		if (!steps) return
+
 		el.addEventListener('change', (e) => {
-			for (const [lines, fn] of steps) {
+			for (const step in steps) {
 				// @ts-ignore
-				lines === e.detail.lines && fn()
+				if (step === e.detail.step) steps[step]()
 			}
 		})
 	}
 </script>
 
-<pre use:change on:change data-id={id} class={$$props.class || ''} {...$$restProps}>
-  <code
-		data-trim
-		data-line-numbers={lines || null}
-		data-ln-start-from={offset}
-		class="language-{lang}">
-<slot />
+<pre use:listeners data-id={id}>
+  <code data-trim data-line-numbers={lines} data-ln-start-from={offset} class="language-{lang}">
+{@render children()}
   </code>
 </pre>
