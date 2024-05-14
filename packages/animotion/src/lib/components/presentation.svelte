@@ -7,6 +7,7 @@
 	import type { Snippet } from 'svelte'
 	import type { HLJSApi } from 'highlight.js'
 	import { svelte } from '../languages/index.js'
+	import 'reveal.js/dist/reveal.css'
 
 	type PresentationProps = {
 		children: Snippet

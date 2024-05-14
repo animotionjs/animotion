@@ -1,14 +1,11 @@
-/* Fonts */
+/* fonts */
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/jetbrains-mono';
 
-/* Reveal */
-@import 'reveal.js/dist/reveal.css';
-@import 'theme.css';
-@import 'code.css';
+/* reveal */
+@import '$lib/styles/theme.css';
+@import '$lib/styles/code.css';
 
-/* Tailwind */
-@import 'tailwindcss';
-
-/* Overrides */
-@import 'overrides.css';
+/* tailwind */
+@import 'tailwindcss/theme';
+@import 'tailwindcss/utilities';
