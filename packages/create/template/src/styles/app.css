@@ -3,12 +3,9 @@
 @import '@fontsource-variable/jetbrains-mono';
 
 /* reveal */
-@import 'reveal.js/dist/reveal.css';
-@import 'theme.css';
-@import 'code.css';
+@import '@animotion/core/dist/styles/theme.css';
+@import '@animotion/core/dist/styles/code.css';
 
 /* tailwind */
-@import 'tailwindcss';
-
-/* overrides */
-@import 'overrides.css';
+@import 'tailwindcss/theme';
+@import 'tailwindcss/utilities';
