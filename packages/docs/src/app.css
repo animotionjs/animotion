@@ -77,9 +77,10 @@ button {
 pre {
 	padding: var(--size-3);
 	border-radius: var(--radius-1);
-	tab-size: 2;
 	border: 1px solid hsl(0 0% 0% / 2%);
 	box-shadow: var(--shadow-1);
+	white-space: pre-wrap;
+	tab-size: 2;
 }
 
 code,

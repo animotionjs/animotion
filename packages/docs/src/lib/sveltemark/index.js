@@ -22,11 +22,18 @@ async function parseMarkdown(content) {
 }
 
 /**
- * Replace special Svelte characters.
+ * Replace characters with HTML entities.
  * @param {string} content
  */
-function replaceSpecialSvelteChars(content) {
-	return content.replaceAll('{', '&#123;').replaceAll('}', '&#125;')
+function replace(content) {
+	/**
+	 * @type {Object.<string, string>}
+	 */
+	const entities = {
+		'{': '&#123;',
+		'}': '&#125;',
+	}
+	return content.replace(/[{}]/g, entity => entities[entity])
 }
 
 /**
@@ -46,7 +53,7 @@ function sveltemark() {
 		async markup({ content, filename }) {
 			if (filename.endsWith('.md')) {
 				const html = await parseMarkdown(content)
-				const code = replaceSpecialSvelteChars(html)
+				const code = replace(html)
 				return { code }
 			}
 		},

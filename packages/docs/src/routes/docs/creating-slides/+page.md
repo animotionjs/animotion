@@ -29,7 +29,7 @@ To create a slide use the `<Slide>` component inside your presentation.
 
 ## Using components
 
-Stateful slides are easier to split into separate components.
+Components are a great way to organize, and make your code more reusable.
 
 <Components />
 
@@ -47,11 +47,8 @@ This could be a `<Progress>` component inside the `lib` folder.
 	}  
 </script>
 
-<div class="mt-8 text-[100px]">
-	{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
-</div>
-<button	onclick={animate}	class="mt-16 p-8 bg-gray-700 rounded-2xl">
-	animate
+<button onclick={animate}>
+  {$progress}
 </button>
 ```
 

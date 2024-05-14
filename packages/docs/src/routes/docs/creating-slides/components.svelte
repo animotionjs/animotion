@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Presentation, Slide } from '$lib/animotion'
+	import { Embed as Presentation, Slide } from '@animotion/core'
 	import { signal } from '@animotion/motion'
 
 	let progress = signal(0)
@@ -11,11 +11,9 @@
 
 <Presentation>
 	<Slide>
-		<div class="mt-8 text-[100px]">
+		<button onclick={animate} class="text-[100px] font-semibold">
 			{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
-		</div>
-		<button onclick={animate} class="mt-16 p-8 bg-gray-700 rounded-2xl">
-			animate
 		</button>
+		<p class="mt-8 opacity-50">click to animate</p>
 	</Slide>
 </Presentation>

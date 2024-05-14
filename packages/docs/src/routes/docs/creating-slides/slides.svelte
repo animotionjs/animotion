@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Presentation, Slide, Vertical } from '$lib/animotion'
+	import { Embed as Presentation, Slide, Vertical } from '@animotion/core'
 </script>
 
 <Presentation>
