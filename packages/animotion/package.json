@@ -1,6 +1,6 @@
 {
 	"name": "@animotion/core",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Core components for Animotion",
 	"author": "animotionjs",
 	"homepage": "https://animotion.pages.dev/",
@@ -46,7 +46,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.0",
-		"@sveltejs/kit": "^2.5.7",
+		"@sveltejs/kit": "^2.5.8",
 		"@sveltejs/package": "^2.3.1",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
 		"prettier": "^3.2.5",
@@ -60,7 +60,7 @@
 		"vite": "^5.2.11"
 	},
 	"dependencies": {
-		"@animotion/motion": "^0.0.4",
+		"@animotion/motion": "^0.0.5",
 		"@fontsource-variable/jetbrains-mono": "^5.0.21",
 		"@fontsource-variable/manrope": "^5.0.20",
 		"@tailwindcss/vite": "4.0.0-alpha.14",
