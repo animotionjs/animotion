@@ -5,12 +5,12 @@
 		children: Snippet
 		lang: string
 		id?: string
-		lines?: string
+		lines?: boolean | string
 		offset?: string
 		steps?: Record<string, () => void>
 	}
 
-	let { children, id, lines, offset, lang, steps }: CodeProps = $props()
+	let { children, id = 'code-animation', lines = true, offset, lang, steps }: CodeProps = $props()
 
 	function listeners(el: HTMLPreElement) {
 		if (!steps) return
