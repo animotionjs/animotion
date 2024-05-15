@@ -101,7 +101,7 @@
 
 	function highlightCodeBlocks(deck: Reveal.Api) {
 		const highlight = deck.getPlugin('highlight')
-		const codeBlocks = [...document.querySelectorAll('code')]
+		const codeBlocks = [...document.querySelectorAll('.code-wrapper code')]
 		codeBlocks.forEach((block) => {
 			// remove Svelte hydration markers
 			const comments = /&lt;!--\[--&gt;\s|&lt;!--\]--&gt;|&lt;!----&gt;/g

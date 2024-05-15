@@ -87,8 +87,8 @@ importers:
   packages/docs:
     dependencies:
       '@animotion/core':
-        specifier: ^0.0.5
-        version: 0.0.5(@types/d3-interpolate@3.0.4)(@types/reveal.js@5.0.3)(d3-interpolate@3.0.1)(reveal.js@5.1.0)(svelte@5.0.0-next.131)(vite@5.2.11(@types/node@20.12.12)(lightningcss@1.24.1))
+        specifier: ^0.0.6
+        version: 0.0.6(@types/d3-interpolate@3.0.4)(@types/reveal.js@5.0.3)(d3-interpolate@3.0.1)(reveal.js@5.1.0)(svelte@5.0.0-next.131)(vite@5.2.11(@types/node@20.12.12)(lightningcss@1.24.1))
       '@animotion/motion':
         specifier: ^0.0.5
         version: 0.0.5(svelte@5.0.0-next.131)
@@ -193,8 +193,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@animotion/core@0.0.5':
-    resolution: {integrity: sha512-H8OuGcd7CgTRozLA5IdC323NAeN1eHK+M1VcmSoAUhlEfBz0YGPuKqnkS953jAt6xp+WeI5/AzGXWQlxppe6Rg==}
+  '@animotion/core@0.0.6':
+    resolution: {integrity: sha512-X5rjcaiOSkldjE5oQdwUFY/ADAMguqFBjP+gdSNkP4vz4xTiayKtrR8rrWJEoUJbBZFe2J+xuzzUfp6XVfuxBw==}
     peerDependencies:
       '@types/d3-interpolate': ^3.0.4
       '@types/reveal.js': ^5.0.3
@@ -2530,7 +2530,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@animotion/core@0.0.5(@types/d3-interpolate@3.0.4)(@types/reveal.js@5.0.3)(d3-interpolate@3.0.1)(reveal.js@5.1.0)(svelte@5.0.0-next.131)(vite@5.2.11(@types/node@20.12.12)(lightningcss@1.24.1))':
+  '@animotion/core@0.0.6(@types/d3-interpolate@3.0.4)(@types/reveal.js@5.0.3)(d3-interpolate@3.0.1)(reveal.js@5.1.0)(svelte@5.0.0-next.131)(vite@5.2.11(@types/node@20.12.12)(lightningcss@1.24.1))':
     dependencies:
       '@animotion/motion': 0.0.5(svelte@5.0.0-next.131)
       '@fontsource-variable/jetbrains-mono': 5.0.21
