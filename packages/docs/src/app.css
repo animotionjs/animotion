@@ -74,7 +74,7 @@ button {
 	cursor: pointer;
 }
 
-pre {
+pre.shiki {
 	padding: var(--size-3);
 	border-radius: var(--radius-1);
 	border: 1px solid hsl(0 0% 0% / 2%);
@@ -176,8 +176,6 @@ html {
 html,
 body {
 	height: 100%;
-	scrollbar-color: var(--brand) transparent;
-	scrollbar-width: thin;
 }
 
 body {

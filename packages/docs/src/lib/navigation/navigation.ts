@@ -9,12 +9,8 @@ export const sections = [
 	{ title: 'Code blocks', path: '/docs/code-blocks' },
 	{ title: 'Events', path: '/docs/events' },
 	{ title: 'Motion', path: '/docs/motion' },
-	{ title: 'HMR', path: '/docs/hot-module-replacement' },
-	{ section: 'Examples' },
-	{ title: 'Visualizing Ideas', path: '/docs/visualizing-ideas', reload: true },
-	{ title: 'Examples', path: '/docs/examples' },
 	{ section: 'Components' },
-	{ title: 'Speaker notes', path: '/docs/notes' },
+	{ title: 'Notes', path: '/docs/notes' },
 	{ title: 'Fit text', path: '/docs/fit-text' },
 	{ title: 'Media', path: '/docs/media' },
 	{ title: 'Steps', path: '/docs/steps' },
@@ -24,9 +20,8 @@ export const sections = [
 	{ section: 'Customization' },
 	{ title: 'Layout', path: '/docs/layout' },
 	{ title: 'Theming', path: '/docs/theming' },
-	{ title: 'Options', path: '/docs/options' },
 	{ section: 'Deployment' },
-	{ title: 'How to deploy', path: '/docs/deployment' },
+	{ title: 'Adapters', path: '/docs/deployment' },
 ]
 
 const titles = sections.filter((section) => section.title)

@@ -106,7 +106,7 @@ You might be tempted to animate CSS properties such as `width` with auto-animate
 
 <Bad />
 
-Auto-animate is best used for doing layout animations. For regular CSS properties you should rely on using CSS animations, or using a JavaScript animation library.
+Auto-animate is best suited for doing layout animations. For regular animations you can either use [Motion](/docs/motion), CSS animations, or any JavaScript animation library.
 
 <Good />
 

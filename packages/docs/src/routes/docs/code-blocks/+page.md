@@ -18,7 +18,7 @@ You can use the `<Code>` component and auto-animate the code. The `<Code>` compo
 
 <Presentation>
   <Slide animate>
-    <div class="mx-auto w-[800px]">
+    <div class="w-[800px] mx-auto text-8xl">
       <Code lang="svelte">
         {`
 					<script>
@@ -31,7 +31,7 @@ You can use the `<Code>` component and auto-animate the code. The `<Code>` compo
   </Slide>
 
   <Slide animate>
-    <div class="mx-auto w-[800px]">
+    <div class="w-[800px] mx-auto text-8xl">
       <Code lang="html">
         {`
 					<script>
@@ -47,28 +47,6 @@ You can use the `<Code>` component and auto-animate the code. The `<Code>` compo
     </div>
   </Slide>
 </Presentation>
-```
-
-## Indentation
-
-If you use tabs to indent the code you don't have to think about whitespace.
-
-```svelte
-<Code lang="ts">
-  {`
-    const bool = true
-  `}
-</Code>
-```
-
-If you use spaces for indentation the code has to be at the start of a new line.
-
-```svelte
-<Code lang="ts">
-  {`
-const bool = true
-  `}
-</Code>
 ```
 
 ## Line highlights and offsets
@@ -88,7 +66,7 @@ You can animate line highlights using the `lines` prop and offset the line start
 
 <Presentation>
   <Slide animate>
-    <div class="mx-auto w-[400px]">
+    <div class="w-[800px] mx-auto text-8xl">
       <Code lang="svelte" lines="2|3">
         {`
           <script>
@@ -101,7 +79,7 @@ You can animate line highlights using the `lines` prop and offset the line start
   </Slide>
 
   <Slide animate>
-    <div class="mx-auto w-[800px]">
+    <div class="w-[800px] mx-auto text-8xl">
       <Code lang="svelte" lines="6,8|3,7|1-8">
         {`
           <script>
@@ -147,7 +125,11 @@ You can provide a `steps` prop to specify what animations you want to play based
 Having a closing tag like `</script>` in your code block is going to cause problems because Svelte thinks you're trying to close the `<script>` tag in your component. To solve this problem use the backslash character to escape it:
 
 ```svelte
-<script>
-	// ...
-<\/script>
+<Code>
+  {`
+    <script>
+      // ...
+    <\/script>
+  `}
+<Code>
 ```

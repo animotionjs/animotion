@@ -4,8 +4,8 @@
 
 <Presentation>
 	<Slide animate>
-		<div class="mx-auto w-[500px]">
-			<Code lang="html" lines="2|3">
+		<div class="w-[800px] mx-auto text-8xl">
+			<Code lang="html" lines="2|3" id="lines">
 				{`
 					<script>
 						let count = $state(0)
@@ -17,8 +17,8 @@
 	</Slide>
 
 	<Slide animate>
-		<div class="mx-auto w-[800px]">
-			<Code lang="html" lines="6,8|3,7|1-8">
+		<div class="w-[800px] mx-auto text-8xl">
+			<Code lang="html" lines="6,8|3,7|1-8" id="lines">
 				{`
 					<script>
 						let count = $state(0)
