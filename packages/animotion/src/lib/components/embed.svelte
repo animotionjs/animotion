@@ -25,7 +25,17 @@
 		*/
 		const deck = new Reveal(animotion, {
 			plugins: [Highlight, Math.KaTeX, Notes],
-			highlight: { highlightOnLoad: false },
+			highlight: {
+				beforeHighlight() {
+					const codeBlocks = [...document.querySelectorAll('.code-wrapper code')]
+					codeBlocks.forEach((block) => {
+						// remove Svelte hydration markers
+						const comments = /&lt;!--\[--&gt;\s|&lt;!--\]--&gt;|&lt;!----&gt;/g
+						const code = block.innerHTML.replace(comments, '')
+						block.innerHTML = indent(code)
+					})
+				}
+			},
 			embedded: true,
 			...options
 		})
@@ -73,11 +83,7 @@
 			}
 		})
 
-		deck.initialize().then(() => {
-			// we pass the language to the `<Code>` block
-			// and higlight code blocks after initialization
-			highlightCodeBlocks(deck)
-		})
+		deck.initialize()
 	}
 
 	function indent(code: string) {
@@ -97,20 +103,6 @@
 			.split('\n')
 			.map((line) => line.replace(tabs, ''))
 			.join('\n')
-	}
-
-	function highlightCodeBlocks(deck: Reveal.Api) {
-		const highlight = deck.getPlugin('highlight')
-		const codeBlocks = [...document.querySelectorAll('.code-wrapper code')]
-		codeBlocks.forEach((block) => {
-			// remove Svelte hydration markers
-			const comments = /&lt;!--\[--&gt;\s|&lt;!--\]--&gt;|&lt;!----&gt;/g
-			const code = block.innerHTML.replace(comments, '')
-			block.innerHTML = indent(code)
-
-			// @ts-ignore
-			highlight.highlightBlock(block)
-		})
 	}
 
 	$effect(() => {
