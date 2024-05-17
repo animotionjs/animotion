@@ -67,7 +67,22 @@ You can import, and use the `<Progress>` component inside the slide.
 </Presentation>
 ```
 
+## Presentation options
+
+You can pass `options` to the `<Presentation>` component.
+
+```svelte
+<script>
+  import { Presentation } from '@animotion/core'
+</script>
+
+<!-- show current slide in the URL hash -->
+<Presentation options={{ hash: true }} />	
+```
+
 ## Slide props
+
+Here are the props you can pass to the `<Slide>` component.
 
 | Prop                 | Description                                                         |
 |----------------------|---------------------------------------------------------------------|

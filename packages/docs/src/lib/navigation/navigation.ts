@@ -19,7 +19,6 @@ export const sections = [
 	{ title: 'Math', path: '/docs/math' },
 	{ section: 'Customization' },
 	{ title: 'Layout', path: '/docs/layout' },
-	{ title: 'Theming', path: '/docs/theming' },
 	{ section: 'Deployment' },
 	{ title: 'Adapters', path: '/docs/deployment' },
 ]

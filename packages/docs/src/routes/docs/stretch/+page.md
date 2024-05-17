@@ -15,11 +15,7 @@ The `<Stretch>` component is a helper for resizing an image, or video for exampl
 
 <Presentation>
   <Slide>
-    <Stretch
-      class="mx-auto"
-      src="svelte.png"
-      type="img"
-    />
+    <Stretch class="mx-auto" src="svelte.png" type="img" />
   </Slide>
 </Presentation>
 ```

@@ -32,13 +32,15 @@ You can create a custom `<Layout>` component like one for recording YouTube vide
 
 ```svelte
 <script>
-  import { Presentation } from '@animotion/core'
+  import { Presentation, Slide } from '@animotion/core'
   import Layout from './layout.svelte'
 </script>
 
 <Presentation>
-	<Layout>
-    <!-- ... -->
-  <Layout>
+  <Slide>
+    <Layout>
+      <!-- ... -->
+    <Layout>
+  </Slide>
 </Presentation>
 ```
