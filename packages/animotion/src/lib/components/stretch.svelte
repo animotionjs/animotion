@@ -2,7 +2,8 @@
 	import type { Snippet } from 'svelte'
 
 	type StretchProps = {
-		children: Snippet
+		[key: string]: any
+		children?: Snippet
 		type?: string
 		class?: string
 	}
@@ -11,5 +12,7 @@
 </script>
 
 <svelte:element this={type} {...props} class="r-stretch {props.class}">
-	{@render children()}
+	{#if children}
+		{@render children()}
+	{/if}
 </svelte:element>
