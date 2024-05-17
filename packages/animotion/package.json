@@ -1,6 +1,6 @@
 {
 	"name": "@animotion/core",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"description": "Core components for Animotion",
 	"author": "animotionjs",
 	"homepage": "https://animotion.pages.dev/",
@@ -30,7 +30,9 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
-		}
+		},
+		"./theme": "./dist/styles/theme.css",
+		"./code": "./dist/styles/code.css"
 	},
 	"files": [
 		"dist",

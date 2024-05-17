@@ -61,7 +61,7 @@
 			// time before cursor is hidden (ms)
 			hideCursorTime: 5000,
 			// show current slide
-			hash: true
+			hash: false
 		}
 
 		// create deck instance
