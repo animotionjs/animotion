@@ -1,18 +1,15 @@
-<script lang="ts" context="module">
-	import { bundledLanguages, getHighlighter } from 'shiki'
-	import 'shiki-magic-move/dist/style.css'
-
-	const highlighter = await getHighlighter({
-		themes: ['poimandres'],
-		langs: Object.keys(bundledLanguages)
-	})
-</script>
-
 <script lang="ts">
-	import { type BundledLanguage, type BundledTheme, type SpecialLanguage } from 'shiki'
+	import {
+		type BundledLanguage,
+		type BundledTheme,
+		type HighlighterCore,
+		type SpecialLanguage
+	} from 'shiki'
 	import { codeToKeyedTokens, createMagicMoveMachine } from 'shiki-magic-move/core'
 	import { MagicMoveRenderer } from 'shiki-magic-move/renderer'
 	import type { MagicMoveDifferOptions, MagicMoveRenderOptions } from 'shiki-magic-move/types'
+	import { getHighlighter } from 'shiki'
+	import 'shiki-magic-move/dist/style.css'
 
 	type Promises = Promise<unknown>[]
 	type Lang = BundledLanguage | SpecialLanguage
@@ -28,6 +25,7 @@
 	let { code, lang, theme = 'poimandres', options = {}, ...props }: CodeProps = $props()
 
 	let container: HTMLPreElement
+	let highlighter: HighlighterCore
 	let machine: ReturnType<typeof createMagicMoveMachine>
 	let renderer: MagicMoveRenderer
 	let ready = false
@@ -55,6 +53,10 @@
 	}
 
 	async function init() {
+		highlighter = await getHighlighter({
+			themes: [theme],
+			langs: [lang]
+		})
 		machine = createMagicMoveMachine(
 			(code) => codeToKeyedTokens(highlighter, code, { lang, theme }, options.lineNumbers),
 			options
