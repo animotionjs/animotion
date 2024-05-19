@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte'
 
 	type StepProps = {
-		children: Snippet
+		children?: Snippet
 		in?: () => void
 		out?: () => void
 		class?: string
@@ -28,7 +28,7 @@
 		strike?: boolean
 	}
 
-	let { ...props }: StepProps = $props()
+	let { children, ...props }: StepProps = $props()
 
 	function listeners(el: HTMLElement) {
 		const events = ['in', 'out'] as const
@@ -60,5 +60,7 @@
 	class="fragment {props.class}"
 	data-fragment-index={props.order}
 >
-	{@render props.children()}
+	{#if children}
+		{@render children()}
+	{/if}
 </p>
