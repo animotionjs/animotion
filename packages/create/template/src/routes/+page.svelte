@@ -16,7 +16,7 @@
 	<Slide animate>
 		<p class="mt-8 text-6xl font-bold">🪄 Animotion</p>
 
-		<div class="mt-16 mx-auto w-max">
+		<div class="mx-auto mt-16 w-max">
 			<Code lang="ts" lines="1,4|2|3|1-4">
 				{`
 					const circle = signal(
@@ -28,10 +28,10 @@
 		</div>
 	</Slide>
 
-	<Slide on:out={() => circle.reset()} animate>
+	<Slide out={() => circle.reset()} animate>
 		<p class="mt-8 text-6xl font-bold">🪄 Animotion</p>
 
-		<div class="mt-16 mx-auto w-max">
+		<div class="mx-auto mt-16 w-max">
 			<Code
 				lang="ts"
 				lines="1,4|2|3|1-4"
