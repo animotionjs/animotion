@@ -3,9 +3,9 @@
 	import Components from './components.svelte'
 </script>
 
-# Creating slides
+# Slides
 
-## Slide away
+## Creating Slides
 
 <Slides />
 
@@ -25,6 +25,22 @@ To create a slide use the `<Slide>` component inside your presentation.
     <Slide>Vertical 2</Slide>  
   </Vertical>
 </Presentation>
+```
+
+## Presentation layout
+
+The presentation dimensions are **960x700** pixels by default, preserving the aspect ratio, and centering slides vertically.
+
+![Slides layout](/layout.png)
+
+You can disable the default slide layout (scaling and centering), and use a custom CSS layout if you pass the `options` prop to the `<Presentation>` component.
+
+```svelte
+<script>
+	import { Presentation } from '@animotion/core'
+</script>
+
+<Presentation options={{ disableLayout: true }}>
 ```
 
 ## Using components

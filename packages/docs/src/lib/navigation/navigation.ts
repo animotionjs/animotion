@@ -3,7 +3,7 @@ export const sections = [
 	{ title: 'What is animotion?', path: '/docs' },
 	{ title: 'Installation', path: '/docs/getting-started' },
 	{ section: 'Concepts' },
-	{ title: 'Creating slides', path: '/docs/creating-slides' },
+	{ title: 'Slides', path: '/docs/slides' },
 	{ title: 'Styles', path: '/docs/styles' },
 	{ title: 'Auto-animate', path: '/docs/auto-animate' },
 	{ title: 'Code blocks', path: '/docs/code-blocks' },
@@ -17,8 +17,6 @@ export const sections = [
 	{ title: 'Stack', path: '/docs/stack' },
 	{ title: 'Stretch', path: '/docs/stretch' },
 	{ title: 'Math', path: '/docs/math' },
-	{ section: 'Customization' },
-	{ title: 'Layout', path: '/docs/layout' },
 	{ section: 'Deployment' },
 	{ title: 'Adapters', path: '/docs/deployment' },
 ]
