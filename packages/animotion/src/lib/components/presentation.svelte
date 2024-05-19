@@ -5,11 +5,13 @@
 	import 'reveal.js/dist/reveal.css'
 
 	type PresentationProps = {
+		[key: string]: any
 		children: Snippet
 		options?: Reveal.Options
+		class?: string
 	}
 
-	let { children, options }: PresentationProps = $props()
+	let { children, options, ...props }: PresentationProps = $props()
 
 	async function init() {
 		const Reveal = (await import('reveal.js')).default
@@ -167,7 +169,7 @@
 </script>
 
 <div class="reveal">
-	<div class="slides">
+	<div class="slides {props.class}">
 		{@render children()}
 	</div>
 </div>
