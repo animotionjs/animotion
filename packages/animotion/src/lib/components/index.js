@@ -5,6 +5,7 @@ import Markdown from './markdown.svelte'
 import Media from './media.svelte'
 import Notes from './notes.svelte'
 import Presentation from './presentation.svelte'
+import Shiki from './shiki.svelte'
 import Slide from './slide.svelte'
 import Stack from './stack.svelte'
 import Step from './step.svelte'
@@ -19,6 +20,7 @@ export {
 	Media,
 	Notes,
 	Presentation,
+	Shiki,
 	Slide,
 	Stack,
 	Step,
