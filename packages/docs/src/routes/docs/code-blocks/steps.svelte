@@ -3,16 +3,16 @@
 	import { signal } from '@animotion/motion'
 
 	const circle = signal(
-		{ x: 100, y: 100, r: 100, fill: '#00ffff' },
+		{ x: 0, y: 50, r: 50, fill: '#00ffff' },
 		{ duration: 2 }
 	)
 
 	async function moveCircleRight() {
-		await circle.to({ x: 800, fill: '#ffff00' })
+		await circle.to({ x: 400, fill: '#ffff00' })
 	}
 
 	async function moveCircleLeft() {
-		await circle.to({ x: 100, fill: '#00ffff' })
+		await circle.to({ x: 0, fill: '#00ffff' })
 	}
 
 	function resetAnimation() {
@@ -21,7 +21,7 @@
 </script>
 
 <Presentation>
-	<Slide class="text-[56px]">
+	<Slide class="text-[54px]">
 		<Code
 			id="steps"
 			lang="ts"
@@ -34,19 +34,19 @@
 		>
 			{`
 				async function animate() {
-					await circle.to({ x: 800, fill: '#ffff00' })
-					await circle.to({ x: 100, fill: '#00ffff' })
+					await circle.to({ x: 400, fill: '#ffff00' })
+					await circle.to({ x: 0, fill: '#00ffff' })
 				}
       `}
 		</Code>
 
-		<svg class="w-[900px] h-[200px] mt-32 mx-auto">
+		<svg viewBox="-50 0 500 100" class="mt-32 mx-auto">
 			<circle cx={$circle.x} cy={$circle.y} r={$circle.r} fill={$circle.fill} />
 			<text
 				x={$circle.x}
 				y={$circle.y}
-				font-size={$circle.r * 0.4}
 				font-family="JetBrains Mono"
+				font-size={$circle.r * 0.4}
 				text-anchor="middle"
 				dominant-baseline="middle"
 			>

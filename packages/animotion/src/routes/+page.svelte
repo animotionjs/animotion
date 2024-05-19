@@ -52,8 +52,8 @@
 			<text
 				x={$circle.x}
 				y={$circle.y}
-				font-size={$circle.r * 0.4}
 				font-family="JetBrains Mono"
+				font-size={$circle.r * 0.4}
 				text-anchor="middle"
 				dominant-baseline="middle"
 			>

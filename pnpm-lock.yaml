@@ -11,8 +11,8 @@ importers:
   packages/animotion:
     dependencies:
       '@animotion/motion':
-        specifier: ^0.0.5
-        version: 0.0.5(svelte@5.0.0-next.127)
+        specifier: ^0.0.6
+        version: 0.0.6(svelte@5.0.0-next.127)
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.0.21
         version: 5.0.21
@@ -87,11 +87,11 @@ importers:
   packages/docs:
     dependencies:
       '@animotion/core':
-        specifier: ^0.1.1
-        version: 0.1.1(@types/d3-interpolate@3.0.4)(@types/reveal.js@5.0.3)(d3-interpolate@3.0.1)(reveal.js@5.1.0)(svelte@5.0.0-next.131)(vite@5.2.11(@types/node@20.12.12)(lightningcss@1.24.1))
+        specifier: ^0.1.2
+        version: 0.1.2(@types/d3-interpolate@3.0.4)(@types/reveal.js@5.0.3)(d3-interpolate@3.0.1)(reveal.js@5.1.0)(svelte@5.0.0-next.131)(vite@5.2.11(@types/node@20.12.12)(lightningcss@1.24.1))
       '@animotion/motion':
-        specifier: ^0.0.5
-        version: 0.0.5(svelte@5.0.0-next.131)
+        specifier: ^0.0.6
+        version: 0.0.6(svelte@5.0.0-next.131)
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.0.21
         version: 5.0.21
@@ -193,8 +193,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@animotion/core@0.1.1':
-    resolution: {integrity: sha512-k1907To40yG8cuvu5sVNMxf9KcFUratq4phTu5ELRd/iU3WVmOpaM3E2fhDDIIxDb9B9BnT/FqKFWW3QjZwe5Q==}
+  '@animotion/core@0.1.2':
+    resolution: {integrity: sha512-4h9z+BL26BQLX91r931O1rS+0GFkXdBDTPIhuIx/X+O3vn9AL9i06cPUExhs8IawsAgRbthUxhYot9q1Q8lQRQ==}
     peerDependencies:
       '@types/d3-interpolate': ^3.0.4
       '@types/reveal.js': ^5.0.3
@@ -204,6 +204,11 @@ packages:
 
   '@animotion/motion@0.0.5':
     resolution: {integrity: sha512-Fr1cRC1fO+vx2pfurHbzDNxZDlrEdhJAr4PTkNKs+/4S44lGykY+34pkORy5H6VK5xzfWJtwHdfgTu8l/E5u/g==}
+    peerDependencies:
+      svelte: ^5.0.0
+
+  '@animotion/motion@0.0.6':
+    resolution: {integrity: sha512-KVv+Eos2kruQnEiiTlD6uvPLAa5GHuIyIMUH4Vy7dDZVq2Hw8vNPaIAiaW/yCl7wmT7Pjp76krbA6Cr8ORhJBA==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -2530,7 +2535,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@animotion/core@0.1.1(@types/d3-interpolate@3.0.4)(@types/reveal.js@5.0.3)(d3-interpolate@3.0.1)(reveal.js@5.1.0)(svelte@5.0.0-next.131)(vite@5.2.11(@types/node@20.12.12)(lightningcss@1.24.1))':
+  '@animotion/core@0.1.2(@types/d3-interpolate@3.0.4)(@types/reveal.js@5.0.3)(d3-interpolate@3.0.1)(reveal.js@5.1.0)(svelte@5.0.0-next.131)(vite@5.2.11(@types/node@20.12.12)(lightningcss@1.24.1))':
     dependencies:
       '@animotion/motion': 0.0.5(svelte@5.0.0-next.131)
       '@fontsource-variable/jetbrains-mono': 5.0.21
@@ -2545,12 +2550,17 @@ snapshots:
     transitivePeerDependencies:
       - vite
 
-  '@animotion/motion@0.0.5(svelte@5.0.0-next.127)':
+  '@animotion/motion@0.0.5(svelte@5.0.0-next.131)':
+    dependencies:
+      d3-interpolate: 3.0.1
+      svelte: 5.0.0-next.131
+
+  '@animotion/motion@0.0.6(svelte@5.0.0-next.127)':
     dependencies:
       d3-interpolate: 3.0.1
       svelte: 5.0.0-next.127
 
-  '@animotion/motion@0.0.5(svelte@5.0.0-next.131)':
+  '@animotion/motion@0.0.6(svelte@5.0.0-next.131)':
     dependencies:
       d3-interpolate: 3.0.1
       svelte: 5.0.0-next.131
