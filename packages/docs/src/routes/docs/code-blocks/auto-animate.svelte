@@ -5,7 +5,7 @@
 <Presentation>
 	<Slide animate>
 		<div class="w-[800px] mx-auto text-8xl">
-			<Code lang="html" id="auto-animate">
+			<Code id="auto-animate" lang="html">
 				{`
 					<script>
 						let count = $state(0)
@@ -18,7 +18,7 @@
 
 	<Slide animate>
 		<div class="w-[800px] mx-auto text-8xl">
-			<Code lang="html" id="auto-animate">
+			<Code id="auto-animate" lang="html">
 				{`
 					<script>
 						let count = $state(0)

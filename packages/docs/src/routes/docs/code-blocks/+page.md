@@ -1,6 +1,7 @@
 <script lang="ts">
 	import AutoAnimate from './auto-animate.svelte'
 	import Lines from './lines.svelte'
+	import Steps from './steps.svelte'
 </script>
 
 # Code blocks
@@ -101,23 +102,74 @@ You can animate line highlights using the `lines` prop and offset the line start
 
 You can provide a `steps` prop to specify what animations you want to play based on the currently highlighted line.
 
+<Steps />
+
 ```svelte
-<Code
-  lang="ts"
-  lines="1,4|2|3|1-4"
-  steps={{
-    '2': async () => await circle.to({ x: 400, fill: '#ffff00' }),
-    '3': async () => await circle.to({ x: 0, fill: '#00ffff' }),
-    '1-4': () => circle.reset(),
-	}}
->
-  {`
-    async function animate() {
-      await circle.to({ x: 400, fill: '#ffff00' })
-      await circle.to({ x: 0, fill: '#00ffff' })
-    }
-  `}
-</Code>
+<script lang="ts">
+	import { Presentation, Slide, Code } from '@animotion/core'
+	import { signal } from '@animotion/motion'
+
+	const circle = signal(
+		{ x: 100, y: 100, r: 100, fill: '#00ffff' },
+		{ duration: 2 }
+	)
+
+  async function moveCircleRight() {
+    await circle.to({ x: 800, fill: '#ffff00' })
+  }
+
+  async function moveCircleLeft() {
+    await circle.to({ x: 100, fill: '#00ffff' })
+  }
+
+  function resetAnimation() {
+    circle.reset()
+  }
+</script>
+
+<Presentation>
+	<Slide class="text-[56px]">
+		<Code
+			id="steps"
+			lang="ts"
+			lines="1,4|2|3|1-4"
+			steps={{
+        '2': moveCircleRight,
+        '3': moveCircleLeft,
+        '1-4': resetAnimation
+			}}
+		>
+			{`
+				async function animate() {
+					await circle.to({ x: 800, fill: '#ffff00' })
+					await circle.to({ x: 100, fill: '#00ffff' })
+				}
+      `}
+		</Code>
+
+		<svg class="w-[900px] h-[200px] mt-32 mx-auto">
+			<circle cx={$circle.x} cy={$circle.y} r={$circle.r} fill={$circle.fill} />
+			<text
+				x={$circle.x}
+				y={$circle.y}
+				font-size={$circle.r * 0.4}
+				font-family="JetBrains Mono"
+				text-anchor="middle"
+				dominant-baseline="middle"
+			>
+				{$circle.x.toFixed(0)}
+			</text>
+		</svg>
+	</Slide>
+</Presentation>
+```
+
+## Theming code blocks
+
+The default theme is [Poimandres](https://github.com/drcmda/poimandres-theme), but you can use any of the [themes](https://github.com/highlightjs/highlight.js/tree/main/src/styles) provided by highlight.js. You can also create your own theme. The default code block styles are imported in `styles/app.css`:
+
+```css
+@import '@animotion/core/code';
 ```
 
 ## Escaping closing tags
