@@ -141,7 +141,7 @@
 	})
 </script>
 
-<pre bind:this={container} class="shiki-magic-move-container {props.class}" {...props}></pre>
+<pre bind:this={container} {...props} class="shiki-magic-move-container {props.class}"></pre>
 
 <style>
 	pre {
