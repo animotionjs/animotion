@@ -12,6 +12,7 @@
 		"@sveltejs/adapter-auto": "^3.2.0",
 		"@sveltejs/kit": "^2.5.8",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
+		"@types/reveal.js": "^5.0.3",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.3",
 		"prettier-plugin-tailwindcss": "^0.5.14",
