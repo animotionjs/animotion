@@ -2,7 +2,7 @@
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/jetbrains-mono';
 
-/* reveal */
+/* presentation */
 @import '$lib/styles/theme.css';
 @import '$lib/styles/code.css';
 

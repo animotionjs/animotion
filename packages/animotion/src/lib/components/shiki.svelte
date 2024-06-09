@@ -9,7 +9,7 @@
 	import { MagicMoveRenderer } from 'shiki-magic-move/renderer'
 	import type { MagicMoveDifferOptions, MagicMoveRenderOptions } from 'shiki-magic-move/types'
 	import { getHighlighter } from 'shiki'
-	import 'shiki-magic-move/dist/style.css'
+	import '../styles/shiki.css'
 
 	type Promises = Promise<unknown>[]
 	type Lang = BundledLanguage | SpecialLanguage
@@ -19,10 +19,22 @@
 		lang: Lang
 		theme: Theme
 		options?: MagicMoveRenderOptions & MagicMoveDifferOptions
+		autoIndent?: boolean
 		class?: string
 	}
 
-	let { code, lang, theme = 'poimandres', options = {}, ...props }: CodeProps = $props()
+	let {
+		code,
+		lang,
+		theme = 'poimandres',
+		options = {},
+		autoIndent = true,
+		...props
+	}: CodeProps = $props()
+
+	if (options.duration) {
+		options.duration = options.duration * 1000
+	}
 
 	let container: HTMLPreElement
 	let highlighter: HighlighterCore
@@ -36,20 +48,24 @@
 		newLine: (el: HTMLElement) => el.tagName === 'BR'
 	}
 
-	function indent(code: string) {
+	function indent(text: string) {
+		const code = text.trim().split('\n')
+
+		if (code.length === 1) {
+			return text.trim()
+		}
+
 		const tabs = code
-			.trim()
-			.split('\n')
 			.map((line) => line.split('').filter((char) => char === '\t'))
 			.filter((line) => line.length !== 0)
 			.sort((a, b) => a.length - b.length)[0]
 			.join('')
 
-		return code
-			.trim()
-			.split('\n')
-			.map((line) => line.replace(tabs, ''))
-			.join('\n')
+		if (tabs === '\t') {
+			return text.trim()
+		}
+
+		return code.map((line) => line.replace(tabs, '')).join('\n')
 	}
 
 	async function init() {
@@ -63,14 +79,14 @@
 		)
 		renderer = new MagicMoveRenderer(container)
 		Object.assign(renderer.options, options)
-		const result = machine.commit(indent(code))
+		const result = machine.commit(autoIndent ? indent(code) : code)
 		renderer.render(result.current)
 		ready = true
 	}
 
 	async function render(code: string) {
 		if (!ready) return
-		const result = machine.commit(indent(code))
+		const result = machine.commit(autoIndent ? indent(code) : code)
 		if (result.previous) renderer.replace(result.previous)
 		await renderer.render(result.current)
 	}
@@ -87,52 +103,81 @@
 
 	function transition(el: HTMLElement, selected: boolean) {
 		const { promise, resolve } = Promise.withResolvers()
-		const selectedToDeselect = !selected && el.classList.contains('selected')
-		const deselectedToSelect = selected && el.classList.contains('deselected')
-		const nothingToDeselect =
-			!selected && !el.classList.contains('deselected') && !el.classList.contains('deselected')
-		const willTransition = selectedToDeselect || deselectedToSelect || nothingToDeselect
-		willTransition ? (el.ontransitionend = resolve) : resolve('finished')
+
+		const selectToDeselect = !selected && el.classList.contains('selected')
+		const deselectToSelect = selected && el.classList.contains('deselected')
+		const nothingToDeselect = !selected && !el.classList.contains('deselected')
+
+		const willTransition = selectToDeselect || deselectToSelect || nothingToDeselect
+
+		if (willTransition) {
+			el.ontransitionend = resolve
+		} else {
+			resolve('finished')
+		}
+
 		el.classList.toggle('selected', selected)
 		el.classList.toggle('deselected', !selected)
+
 		return promise
 	}
 
 	export function selectLines(string: TemplateStringsArray) {
 		const lines = getLines(string)
-		const children = container.children
+		const tokens = container.children
 		const promises: Promises = []
 
 		let currentLine = 1
-		for (const child of children) {
-			if (!is.htmlEl(child)) return
-			if (is.token(child)) {
+
+		for (const token of tokens) {
+			if (!is.htmlEl(token)) {
+				return
+			}
+
+			if (is.token(token)) {
 				let selected = false
 				lines.length === 0 ? (selected = true) : (selected = lines.includes(currentLine))
-				promises.push(transition(child, selected))
+				promises.push(transition(token, selected))
 			}
-			if (is.newLine(child)) currentLine++
+
+			if (is.newLine(token)) {
+				currentLine++
+			}
 		}
+
 		return Promise.all(promises)
 	}
 
 	export function selectToken(string: TemplateStringsArray) {
 		const selection = string[0].split(' ')
-		const line = typeof +selection[0] === 'number' ? +selection[0] : false
-		const children = container.children
+		const isLineNumber = !isNaN(+selection[0])
+		const line = isLineNumber ? +selection[0] : 0
+		const tokens = container.children
 		const promises: Promises = []
 
 		let currentLine = 1
-		for (const child of children) {
-			if (!is.htmlEl(child)) return
-			if (is.token(child)) {
+
+		for (const token of tokens) {
+			if (!is.htmlEl(token)) return
+
+			if (is.token(token)) {
 				let selected = false
-				if (line && line === currentLine) selected = selection.includes(child.textContent!)
-				if (!line) selected = selection.includes(child.textContent!)
-				promises.push(transition(child, selected))
+
+				if (isLineNumber && line === currentLine) {
+					selected = selection.includes(token.textContent!)
+				}
+				if (!isLineNumber) {
+					selected = selection.includes(token.textContent!)
+				}
+
+				promises.push(transition(token, selected))
 			}
-			if (is.newLine(child)) currentLine++
+
+			if (is.newLine(token)) {
+				currentLine++
+			}
 		}
+
 		return Promise.all(promises)
 	}
 
@@ -142,9 +187,3 @@
 </script>
 
 <pre bind:this={container} {...props} class="shiki-magic-move-container {props.class}"></pre>
-
-<style>
-	pre {
-		tab-size: 2;
-	}
-</style>
