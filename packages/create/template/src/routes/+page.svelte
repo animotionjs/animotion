@@ -1,21 +1,6 @@
 <script lang="ts">
-	import {
-		Presentation,
-		Slide,
-		Code,
-		transition,
-		action
-	} from '@animotion/core'
+	import { Presentation, Slide, Code, transition, action } from '@animotion/core'
 	import type Reveal from 'reveal.js'
-
-	const options: Reveal.Options = {
-		display: 'grid',
-		disableLayout: true,
-		transition: 'slide',
-		controls: true,
-		progress: true,
-		hash: false
-	}
 
 	let text: HTMLParagraphElement
 	let code: Code
@@ -38,12 +23,19 @@
 			absolute positioning to not affect the layout
 -->
 
-<Presentation {options}>
+<Presentation
+	options={{
+		display: 'grid',
+		disableLayout: true,
+		transition: 'slide',
+		controls: true,
+		progress: true,
+		hash: false
+	}}
+>
 	<Slide class="h-full place-content-center place-items-center">
 		<div use:transition>
-			<p bind:this={text} class="text-8xl font-bold drop-shadow-sm">
-				🪄 Animotion
-			</p>
+			<p bind:this={text} class="text-8xl font-bold drop-shadow-sm">🪄 Animotion</p>
 		</div>
 
 		<div

@@ -3,8 +3,8 @@
 @import '@fontsource-variable/jetbrains-mono';
 
 /* presentation */
-@import '$lib/styles/theme.css';
-@import '$lib/styles/code.css';
+@import '@animotion/core/theme';
+@import '@animotion/core/code';
 
 /* tailwind */
 @import 'tailwindcss/theme';
