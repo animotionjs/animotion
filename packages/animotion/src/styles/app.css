@@ -9,3 +9,88 @@
 /* tailwind */
 @import 'tailwindcss/theme';
 @import 'tailwindcss/utilities';
+
+/* reset */
+*,
+*::before,
+*::after {
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+/* defaults */
+:root {
+	--r-background-color: hsl(226 19% 10%);
+	--r-main-font: 'Manrope Variable';
+	--r-main-font-size: 42px;
+	--r-main-color: hsl(226 19% 98%);
+	--r-heading-font: 'Manrope';
+	--r-code-font: 'JetBrains Mono Variable';
+	--r-link-color: hsl(180 100% 50%);
+	--ease: linear(
+		0 0%,
+		0.0036 9.62%,
+		0.0185 16.66%,
+		0.0489 23.03%,
+		0.0962 28.86%,
+		0.1705 34.93%,
+		0.269 40.66%,
+		0.3867 45.89%,
+		0.5833 52.95%,
+		0.683 57.05%,
+		0.7829 62.14%,
+		0.8621 67.46%,
+		0.8991 70.68%,
+		0.9299 74.03%,
+		0.9545 77.52%,
+		0.9735 81.21%,
+		0.9865 85%,
+		0.9949 89.15%,
+		1 100%
+	);
+}
+
+/* code */
+div:has(> pre) {
+	padding: 1rem 2rem;
+	background: hsl(226 19% 13%);
+	border-top: 1px solid hsl(226 19% 24%);
+	border-radius: 8px;
+	box-shadow:
+		1px 1px 20px hsl(226 19% 0% / 40%),
+		1px 1px 40px hsl(226 19% 0% / 20%);
+}
+
+/* transitions */
+html {
+	view-transition-name: none;
+}
+
+::view-transition-group(*) {
+	animation-duration: 0.6s;
+	animation-timing-function: var(--ease);
+}
+
+.enter {
+	animation: enter 0.6s var(--ease);
+}
+
+.rotate {
+	animation: rotate 0.6s var(--ease);
+}
+
+@keyframes enter {
+	from {
+		filter: blur(40px);
+		scale: 0;
+	}
+}
+
+@keyframes rotate {
+	from {
+		filter: blur(40px);
+		scale: 0;
+		rotate: -1turn;
+	}
+}

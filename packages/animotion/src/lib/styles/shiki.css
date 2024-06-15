@@ -16,11 +16,11 @@
 		opacity 1s var(--smm-easing, 'ease');
 }
 
-.shiki-magic-move-item.selected {
+:where(.shiki-magic-move-item.selected) {
 	opacity: 1;
 }
 
-.shiki-magic-move-item.deselected {
+:where(.shiki-magic-move-item.deselected) {
 	opacity: 0.5;
 }
 
