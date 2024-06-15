@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Presentation, Slide, Code, transition, action } from '@animotion/core'
-	import type Reveal from 'reveal.js'
 
 	let text: HTMLParagraphElement
 	let code: Code
