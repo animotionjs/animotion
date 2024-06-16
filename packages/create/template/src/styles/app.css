@@ -72,11 +72,11 @@ html {
 	animation-timing-function: var(--ease);
 }
 
-.enter {
+.transition-enter {
 	animation: enter 0.6s var(--ease);
 }
 
-.rotate {
+.transition-rotate {
 	animation: rotate 0.6s var(--ease);
 }
 

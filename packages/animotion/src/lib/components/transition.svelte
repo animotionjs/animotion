@@ -16,7 +16,7 @@
 		children,
 		order,
 		name,
-		transition = 'in',
+		transition = 'transition-enter',
 		action = noop,
 		...props
 	}: TransitionProps = $props()

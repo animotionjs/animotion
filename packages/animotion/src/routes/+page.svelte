@@ -87,7 +87,7 @@
 			{#each boxes as box (box)}
 				<!-- custom CSS transition -->
 				<Transition
-					transition="rotate"
+					transition="transition-rotate"
 					class="grid h-[200px] w-[200px] place-content-center rounded-2xl bg-gray-100 font-semibold text-black shadow-2xl"
 				>
 					{box}
