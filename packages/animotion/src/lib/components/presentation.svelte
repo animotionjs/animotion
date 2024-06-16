@@ -47,9 +47,9 @@
 			// slide transition
 			transition: 'slide',
 			// bring your own layout
-			disableLayout: false,
+			disableLayout: true,
 			// display mode used to show slides
-			display: 'block',
+			display: 'grid',
 			// center slides on the screen
 			center: true,
 			// auto-animate duration
