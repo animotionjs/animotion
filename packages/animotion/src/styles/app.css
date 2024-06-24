@@ -21,13 +21,13 @@
 
 /* defaults */
 :root {
-	--r-background-color: hsl(226 19% 10%);
+	--r-background-color: oklch(20% 0.01 272);
 	--r-main-font: 'Manrope Variable';
 	--r-main-font-size: 42px;
-	--r-main-color: hsl(226 19% 98%);
+	--r-main-color: oklch(98% 0.02 272);
 	--r-heading-font: 'Manrope';
 	--r-code-font: 'JetBrains Mono Variable';
-	--r-link-color: hsl(180 100% 50%);
+	--r-link-color: oklch(90.54% 0.15 194);
 	--ease: linear(
 		0 0%,
 		0.0036 9.62%,
@@ -51,18 +51,15 @@
 	);
 }
 
-/* code */
+/* code block */
 div:has(> pre) {
-	padding: 1rem 2rem;
-	background: hsl(226 19% 13%);
-	border-top: 1px solid hsl(226 19% 24%);
-	border-radius: 8px;
-	box-shadow:
-		1px 1px 20px hsl(226 19% 0% / 40%),
-		1px 1px 40px hsl(226 19% 0% / 20%);
+	padding: var(--spacing-4) var(--spacing-8);
+	background-color: oklch(24% 0.02 272);
+	border-top: 1px solid oklch(34% 0.02 272);
+	border-radius: var(--radius-lg);
 }
 
-/* transitions */
+/* view transitions */
 html {
 	view-transition-name: none;
 }
@@ -72,6 +69,7 @@ html {
 	animation-timing-function: var(--ease);
 }
 
+/* animations */
 .enter {
 	animation: enter 0.6s var(--ease);
 }
@@ -84,13 +82,14 @@ html {
 	from {
 		filter: blur(40px);
 		scale: 0;
+		translate: 0px 100vh;
 	}
 }
 
 @keyframes rotate {
 	from {
-		filter: blur(40px);
-		scale: 0;
+		filter: blur(4px);
+		scale: 2;
 		rotate: -1turn;
 	}
 }
