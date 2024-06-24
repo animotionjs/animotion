@@ -45,7 +45,7 @@
 						{double}
 					</button>
 				`}
-				options={{ duration: 1, stagger: 0.3, containerStyle: false }}
+				options={{ duration: 600, stagger: 0.3, containerStyle: false }}
 			/>
 		</Transition>
 

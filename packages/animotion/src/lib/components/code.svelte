@@ -32,14 +32,6 @@
 		...props
 	}: CodeProps = $props()
 
-	if (options.duration) {
-		options.duration = options.duration * 1000
-	}
-
-	if (options.stagger) {
-		options.stagger = options.stagger * 10
-	}
-
 	let container: HTMLPreElement
 	let highlighter: HighlighterCore
 	let machine: ReturnType<typeof createMagicMoveMachine>
