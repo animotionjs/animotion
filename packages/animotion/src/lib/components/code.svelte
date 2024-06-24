@@ -53,6 +53,10 @@
 	}
 
 	function indent(text: string) {
+		if (!/\t/.test(text.trim())) {
+			return text
+		}
+
 		const code = text.trim().split('\n')
 
 		if (code.length === 1) {
@@ -99,10 +103,31 @@
 		return render(code[0])
 	}
 
+	function createRange(start: number, end: number) {
+		return Array.from({ length: end - start + 1 }, (_, index) => start + index)
+	}
+
 	function getLines(string: TemplateStringsArray) {
 		let range = string[0]
-		if (range === '*') return []
-		return range.split(',').flatMap((v) => v.split('-').map(Number))
+
+		// code.selectLines`1,2`
+		// code.selectLines`1,2,3,4`
+		// code.selectLines`1-4`
+		// code.selectLines`1-4,8`
+		// code.selectLines`*`
+
+		if (range === '*') {
+			return []
+		}
+
+		return range.split(',').flatMap((number) => {
+			if (number.includes('-')) {
+				const [start, end] = number.split('-')
+				return createRange(+start, +end)
+			} else {
+				return +number
+			}
+		})
 	}
 
 	function transition(el: HTMLElement, selected: boolean) {
