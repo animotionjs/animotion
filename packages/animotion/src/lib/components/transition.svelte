@@ -6,20 +6,13 @@
 		order?: number
 		name?: string
 		transition?: string
-		action?: () => void
+		do?: () => void
 		class?: string
 	}
 
 	const noop = () => {}
 
-	let {
-		children,
-		order,
-		name,
-		transition = 'transition-enter',
-		action = noop,
-		...props
-	}: TransitionProps = $props()
+	let { children, order, name, transition = 'enter', ...props }: TransitionProps = $props()
 
 	let el: HTMLDivElement
 	let viewTransitionName = name ? `transition-${name}` : `transition-${crypto.randomUUID()}`
@@ -35,7 +28,7 @@
 
 	function enter() {
 		viewTransition(() => {
-			action()
+			props?.do?.() ?? noop()
 			el.classList.add(transition)
 			el.classList.remove('hidden')
 		})

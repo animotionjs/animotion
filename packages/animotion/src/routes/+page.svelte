@@ -8,10 +8,10 @@
 
 <!--
 	`<Transition />` and `<Action />` are just steps
-	so you can use arrow keys to step through	the slide:
+	so you can use arrow keys to step through the slide:
 
 	`<Transition />` animates the layout and accepts:
-		- `action` (optional) callback
+		- `do` (optional) callback
 		- `name` (optional)	for the transition
 		- `order` (optional) option	to specify the step order
 		- `transition` (optional)	for custom CSS transitions
@@ -24,19 +24,13 @@
 			to not affect the layout because they're both `<div>` elements
 -->
 
-<Presentation options={{ transition: 'slide', controls: true, progress: true, hash: true }}>
+<Presentation options={{ transition: 'slide', controls: true, progress: true, hash: false }}>
 	<Slide class="h-full place-content-center place-items-center">
 		<Transition>
 			<p bind:this={text} class="text-8xl font-bold drop-shadow-sm">🪄 Animotion</p>
 		</Transition>
 
-		<Transition
-			action={() => {
-				// change the DOM and animate the layout
-				text.classList.replace('text-8xl', 'text-6xl')
-			}}
-			class="mt-16"
-		>
+		<Transition do={() => text.classList.replace('text-8xl', 'text-6xl')} class="mt-16">
 			<Code
 				bind:this={code}
 				lang="svelte"
@@ -55,12 +49,11 @@
 			/>
 		</Transition>
 
-		<!-- run arbitrary code -->
+		<Action do={() => code.selectLines`2,3`} />
 		<Action do={() => code.selectLines`2`} />
 		<Action do={() => code.selectLines`3`} />
 		<Action do={() => code.selectToken`double {double}`} />
 
-		<!-- code returns promise -->
 		<Action
 			do={async () => {
 				await code.selectLines`*`
@@ -80,25 +73,24 @@
 
 	<Slide class="h-full place-content-center place-items-center">
 		<Transition>
-			<h1>Shuffle</h1>
+			<h1>Transitions</h1>
 		</Transition>
 
 		<div class="mt-16 grid grid-cols-2 grid-rows-2 gap-4">
 			{#each boxes as box (box)}
-				<!-- custom CSS transition -->
 				<Transition
-					transition="transition-rotate"
-					class="grid h-[200px] w-[200px] place-content-center rounded-2xl bg-gray-100 font-semibold text-black shadow-2xl"
+					transition="rotate"
+					class="grid h-[200px] w-[200px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 font-semibold text-black shadow-2xl"
 				>
 					{box}
 				</Transition>
 			{/each}
 		</div>
 
-		<Transition action={() => (boxes = [4, 3, 2, 1])} />
-		<Transition action={() => (boxes = [2, 1, 4, 3])} />
-		<Transition action={() => (boxes = [4, 3, 2, 1])} />
-		<Transition action={() => (boxes = [1, 2, 3, 4])} />
+		<Transition do={() => (boxes = [4, 3, 2, 1])} />
+		<Transition do={() => (boxes = [2, 1, 4, 3])} />
+		<Transition do={() => (boxes = [4, 3, 2, 1])} />
+		<Transition do={() => (boxes = [1, 2, 3, 4])} />
 	</Slide>
 
 	<Slide class="h-full place-content-center place-items-center">
