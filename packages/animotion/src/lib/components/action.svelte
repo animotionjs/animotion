@@ -1,9 +1,10 @@
 <script lang="ts">
 	type ActionProps = {
+		order?: number
 		do?: () => void
 	}
 
-	let { ...props }: ActionProps = $props()
+	let { order, ...props }: ActionProps = $props()
 	let el: HTMLDivElement
 
 	function action() {
@@ -17,4 +18,4 @@
 	})
 </script>
 
-<div bind:this={el} class="fragment hidden"></div>
+<div bind:this={el} class="fragment hidden" data-fragment-index={order}></div>
