@@ -6,7 +6,7 @@
 
 	type PresentationProps = {
 		[key: string]: any
-		children: Snippet
+		children?: Snippet
 		options?: Reveal.Options
 		class?: string
 	}
@@ -170,6 +170,8 @@
 
 <div class="reveal">
 	<div class="slides {props.class}">
-		{@render children()}
+		{#if children}
+			{@render children()}
+		{/if}
 	</div>
 </div>

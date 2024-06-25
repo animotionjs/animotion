@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte'
 
 	type SlideProps = {
-		children: Snippet
+		children?: Snippet
 		in?: () => void
 		out?: () => void
 		animate?: boolean
@@ -20,7 +20,7 @@
 		class?: string
 	}
 
-	let { ...props }: SlideProps = $props()
+	let { children, ...props }: SlideProps = $props()
 
 	function listeners(el: HTMLElement) {
 		const events = ['in', 'out'] as const
@@ -44,5 +44,7 @@
 	data-transition={props.transition}
 	class={props.class}
 >
-	{@render props.children()}
+	{#if children}
+		{@render children()}
+	{/if}
 </section>
