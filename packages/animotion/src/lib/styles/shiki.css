@@ -13,7 +13,7 @@
 	display: inline-block;
 	transition:
 		color var(--smm-duration, 0.5s) var(--smm-easing, 'ease'),
-		opacity 1s var(--smm-easing, 'ease');
+		opacity 0.5s var(--smm-easing, 'ease');
 }
 
 :where(.shiki-magic-move-item.selected) {
