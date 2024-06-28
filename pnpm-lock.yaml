@@ -11,8 +11,8 @@ importers:
   packages/animotion:
     dependencies:
       '@animotion/motion':
-        specifier: ^0.0.6
-        version: 0.0.6(svelte@5.0.0-next.131)
+        specifier: ^0.0.7
+        version: 0.0.7(svelte@5.0.0-next.131)
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.0.21
         version: 5.0.21
@@ -82,7 +82,7 @@ importers:
         version: 5.0.0-next.131
       svelte-check:
         specifier: ^3.6.0
-        version: 3.8.0(postcss-load-config@6.0.1(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131)
+        version: 3.8.0(postcss-load-config@3.1.4(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131)
       tslib:
         specifier: ^2.4.1
         version: 2.6.3
@@ -105,11 +105,11 @@ importers:
   packages/docs:
     dependencies:
       '@animotion/core':
-        specifier: ^0.1.6
-        version: 0.1.6(svelte@5.0.0-next.131)(vite@5.2.12(lightningcss@1.25.1))
+        specifier: ^0.1.13
+        version: 0.1.13(svelte@5.0.0-next.131)(vite@5.2.12(lightningcss@1.25.1))
       '@animotion/motion':
-        specifier: ^0.0.6
-        version: 0.0.6(svelte@5.0.0-next.131)
+        specifier: ^0.0.7
+        version: 0.0.7(svelte@5.0.0-next.131)
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.0.21
         version: 5.0.21
@@ -188,7 +188,7 @@ importers:
         version: 5.0.0-next.131
       svelte-check:
         specifier: ^3.8.0
-        version: 3.8.0(postcss-load-config@6.0.1(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131)
+        version: 3.8.0(postcss-load-config@3.1.4(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131)
       tailwindcss:
         specifier: 4.0.0-alpha.15
         version: 4.0.0-alpha.15
@@ -211,13 +211,18 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@animotion/core@0.1.6':
-    resolution: {integrity: sha512-A5NVD01nEIqRmVewbHmFR3t7/El12Y7F3lkMGKADW3XdFTEliApNN2914nn3kSr/k4RPm7hbuCwVqrADawD5Ew==}
+  '@animotion/core@0.1.13':
+    resolution: {integrity: sha512-RjS9eGmNe6mFhfTIKLk/XKjPpnYXPwF/gYT0Fwm1XZj9P07DhChCKI4V2Epelieq5HIKi4Onvp6K77FansN7ww==}
     peerDependencies:
       svelte: ^5.0.0-next.1
 
   '@animotion/motion@0.0.6':
     resolution: {integrity: sha512-KVv+Eos2kruQnEiiTlD6uvPLAa5GHuIyIMUH4Vy7dDZVq2Hw8vNPaIAiaW/yCl7wmT7Pjp76krbA6Cr8ORhJBA==}
+    peerDependencies:
+      svelte: ^5.0.0
+
+  '@animotion/motion@0.0.7':
+    resolution: {integrity: sha512-RPNi9QUazpoUPp66x712cnr3CNM2w/S6pkuLK4V4HQPXSgCl6ZkHKL6JO0yjoX46GAs84XlNu2oYAKGH5JGnXA==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -1604,10 +1609,6 @@ packages:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
     engines: {node: '>=10'}
 
-  lilconfig@3.1.1:
-    resolution: {integrity: sha512-O18pf7nyvHTckunPWCV1XUNXU1piu01y2b7ATJ0ppkUkk8ocqVWBrYjJBCwHDjD/ZWcfyrA0P4gKhzWGi5EINQ==}
-    engines: {node: '>=14'}
-
   locate-character@3.0.0:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
 
@@ -1993,24 +1994,6 @@ packages:
       postcss:
         optional: true
       ts-node:
-        optional: true
-
-  postcss-load-config@6.0.1:
-    resolution: {integrity: sha512-oPtTM4oerL+UXmx+93ytZVN82RrlY/wPUV8IeDxFrzIjXOLF1pN+EmKPLbubvKHT2HC20xXsCAH2Z+CKV6Oz/g==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      jiti: '>=1.21.0'
-      postcss: '>=8.0.9'
-      tsx: ^4.8.1
-      yaml: ^2.4.2
-    peerDependenciesMeta:
-      jiti:
-        optional: true
-      postcss:
-        optional: true
-      tsx:
-        optional: true
-      yaml:
         optional: true
 
   postcss-logical@7.0.1:
@@ -2555,7 +2538,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@animotion/core@0.1.6(svelte@5.0.0-next.131)(vite@5.2.12(lightningcss@1.25.1))':
+  '@animotion/core@0.1.13(svelte@5.0.0-next.131)(vite@5.2.12(lightningcss@1.25.1))':
     dependencies:
       '@animotion/motion': 0.0.6(svelte@5.0.0-next.131)
       '@fontsource-variable/jetbrains-mono': 5.0.21
@@ -2572,6 +2555,11 @@ snapshots:
       - vue
 
   '@animotion/motion@0.0.6(svelte@5.0.0-next.131)':
+    dependencies:
+      d3-interpolate: 3.0.1
+      svelte: 5.0.0-next.131
+
+  '@animotion/motion@0.0.7(svelte@5.0.0-next.131)':
     dependencies:
       d3-interpolate: 3.0.1
       svelte: 5.0.0-next.131
@@ -3947,9 +3935,6 @@ snapshots:
 
   lilconfig@2.1.0: {}
 
-  lilconfig@3.1.1:
-    optional: true
-
   locate-character@3.0.0: {}
 
   locate-path@6.0.0:
@@ -4508,13 +4493,6 @@ snapshots:
     optionalDependencies:
       postcss: 8.4.38
 
-  postcss-load-config@6.0.1(postcss@8.4.38):
-    dependencies:
-      lilconfig: 3.1.1
-    optionalDependencies:
-      postcss: 8.4.38
-    optional: true
-
   postcss-logical@7.0.1(postcss@8.4.38):
     dependencies:
       postcss: 8.4.38
@@ -4856,7 +4834,7 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  svelte-check@3.8.0(postcss-load-config@6.0.1(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131):
+  svelte-check@3.8.0(postcss-load-config@3.1.4(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 3.6.0
@@ -4865,7 +4843,7 @@ snapshots:
       picocolors: 1.0.1
       sade: 1.8.1
       svelte: 5.0.0-next.131
-      svelte-preprocess: 5.1.4(postcss-load-config@6.0.1(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131)(typescript@5.4.5)
+      svelte-preprocess: 5.1.4(postcss-load-config@3.1.4(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131)(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -4892,7 +4870,7 @@ snapshots:
     dependencies:
       svelte: 5.0.0-next.131
 
-  svelte-preprocess@5.1.4(postcss-load-config@6.0.1(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131)(typescript@5.4.5):
+  svelte-preprocess@5.1.4(postcss-load-config@3.1.4(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.131)(typescript@5.4.5):
     dependencies:
       '@types/pug': 2.0.10
       detect-indent: 6.1.0
@@ -4902,7 +4880,7 @@ snapshots:
       svelte: 5.0.0-next.131
     optionalDependencies:
       postcss: 8.4.38
-      postcss-load-config: 6.0.1(postcss@8.4.38)
+      postcss-load-config: 3.1.4(postcss@8.4.38)
       typescript: 5.4.5
 
   svelte2tsx@0.7.9(svelte@5.0.0-next.131)(typescript@5.4.5):

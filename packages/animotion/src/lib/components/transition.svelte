@@ -5,14 +5,14 @@
 		children?: Snippet
 		order?: number
 		name?: string
-		transition?: string
+		enter?: string
 		do?: () => void
 		class?: string
 	}
 
 	const noop = () => {}
 
-	let { children, order, name, transition = 'enter', ...props }: TransitionProps = $props()
+	let { children, order, name, enter = 'enter', ...props }: TransitionProps = $props()
 
 	let el: HTMLDivElement
 	let viewTransitionName = name ? `transition-${name}` : `transition-${crypto.randomUUID()}`
@@ -26,28 +26,28 @@
 		document.startViewTransition(fn)
 	}
 
-	function enter() {
+	function enterTransition() {
 		viewTransition(() => {
 			props?.do?.() ?? noop()
-			el.classList.add(transition)
+			el.classList.add(enter)
 			el.classList.remove('hidden')
 		})
 	}
 
-	function leave() {
+	function leaveTransition() {
 		viewTransition(() => {
-			el.classList.remove(transition)
+			el.classList.remove(enter)
 			el.classList.remove('hidden')
 		})
 	}
 
 	$effect(() => {
-		el.addEventListener('in', enter)
-		el.addEventListener('out', leave)
+		el.addEventListener('in', enterTransition)
+		el.addEventListener('out', leaveTransition)
 
 		return () => {
-			el.removeEventListener('in', enter)
-			el.removeEventListener('out', leave)
+			el.removeEventListener('in', enterTransition)
+			el.removeEventListener('out', leaveTransition)
 		}
 	})
 </script>
