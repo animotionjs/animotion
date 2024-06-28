@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Embed as Presentation, Slide, Step } from '@animotion/core'
-	import { signal } from '@animotion/motion'
+	import { tween } from '@animotion/motion'
 
-	const circle = signal(
+	const circle = tween(
 		{ x: 0, y: 100, r: 100, fill: '#00ffff' },
 		{ duration: 1.5 }
 	)

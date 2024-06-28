@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Embed as Presentation, Slide, Step } from '@animotion/core'
-	import { signal, all } from '@animotion/motion'
+	import { tween, all } from '@animotion/motion'
 
-	let circle = signal({ x: 0, y: 100, r: 100, fill: '#00ffff' })
-	let text = signal({ count: 0 })
+	let circle = tween({ x: 0, y: 100, r: 100, fill: '#00ffff' })
+	let text = tween({ count: 0 })
 
 	async function animate() {
 		all(

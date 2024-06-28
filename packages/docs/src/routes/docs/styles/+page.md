@@ -4,10 +4,6 @@
 
 # Styling
 
-## Use any CSS framework
-
-Animotion doesn't have an opinion on what you should use for styling — [Tailwind CSS](https://tailwindcss.com/) works out of the box but you can remove it, and use [UnoCSS](https://unocss.dev/) instead for example.
-
 ## Using Tailwind CSS
 
 Every element is unstyled by default, giving you complete control over the styles using Tailwind. Text is scaled based on the size of your presentation which you can override with CSS.

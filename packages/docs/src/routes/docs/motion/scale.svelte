@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Embed as Presentation, Slide, Step } from '@animotion/core'
-	import { signal } from '@animotion/motion'
+	import { tween } from '@animotion/motion'
 
-	let text = signal(1)
+	let text = tween(1)
 
 	async function animate() {
 		await text.to(3).to(1)

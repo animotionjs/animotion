@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Embed as Presentation, Slide, Step } from '@animotion/core'
-	import { signal } from '@animotion/motion'
+	import { tween } from '@animotion/motion'
 
-	let cx = signal(0)
+	let cx = tween(0)
 
 	async function animate() {
 		await cx.to(600).to(0, { delay: 0.3 })

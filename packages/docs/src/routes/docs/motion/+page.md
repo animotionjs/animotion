@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Signal from './signal.svelte'
+  import Tween from './tween.svelte'
   import Scale from './scale.svelte'
   import Options from './options.svelte'
   import All from './all.svelte'
@@ -9,22 +9,22 @@
 
 ## Procedural Animations
 
-Animotion is great for [animating layouts](/docs/auto-animate), and [code blocks](/docs/code-blocks), but
+Animotion is great for [animating layouts](/docs/transitions), and [code blocks](/docs/code-blocks), but
 Motion is great if you want to animate any value over time.
 
-You can use a `signal` to create a value that changes over time:
+You can use a `tween` to create a value that changes over time:
 - Animate the value using the `to` method
 - Use the `await` keyword to start the animation
 - You can chain multiple `to` methods together
 
-<Signal />
+<Tween />
 
 ```svelte
 <script>
 	import { Presentation, Slide, Step } from '@animotion/core'
-	import { signal } from '@animotion/motion'
+	import { tween } from '@animotion/motion'
 
-	let cx = signal(0)
+	let cx = tween(0)
 
 	async function animate() {
 		await cx.to(600).to(0, { delay: 0.3 })
@@ -60,9 +60,9 @@ Svelte's `style:` directive.
 ```svelte
 <script>
   import { Presentation, Slide, Step } from '@animotion/core'
-  import { signal } from '@animotion/motion'
+  import { tween } from '@animotion/motion'
 
-  let text = signal(1)
+  let text = tween(1)
 
   async function animate() {
     await text.to(3).to(1)
@@ -84,16 +84,16 @@ Svelte's `style:` directive.
 
 ## Animating multiple values
 
-A `signal` can be a single value, or an object which can interpolate between strings, objects, and arrays. You can also pass options which includes `duration`, `delay`, and `easing`.
+A `tween` can be a single value, or an object which can interpolate between strings, objects, and arrays. You can also pass options which includes `duration`, `delay`, and `easing`.
 
 <Options />
 
 ```svelte
 <script>
 	import { Presentation, Slide, Step } from '@animotion/core'
-	import { signal } from '@animotion/motion'
+	import { tween } from '@animotion/motion'
 
-	const circle = signal(
+	const circle = tween(
 		{ x: 0, y: 100, r: 100, fill: '#00ffff' },
 		{ duration: 1.5 }
 	)
@@ -123,17 +123,17 @@ A `signal` can be a single value, or an object which can interpolate between str
 
 ## Combining animations
 
-You can animate different `signals` at the same using the `all` method.
+You can animate different `tween` at the same using the `all` method.
 
 <All />
 
 ```svelte
 <script>
 	import { Presentation, Slide, Step } from '@animotion/core'
-	import { signal, all } from '@animotion/motion'
+	import { tween, all } from '@animotion/motion'
 
-	let circle = signal({ x: 0, y: 100, r: 100, fill: '#00ffff' })
-	let text = signal({ count: 0 })
+	let circle = tween({ x: 0, y: 100, r: 100, fill: '#00ffff' })
+	let text = tween({ count: 0 })
 
 	async function animate() {
 		all(
@@ -184,9 +184,9 @@ become available from the root `/` of your site.
 ```svelte
 <script>
   import { Presentation, Slide } from '@animotion/core'
-  import { signal } from '@animotion/motion'
+  import { tween } from '@animotion/motion'
 
-  let circle = signal({ x: 0 })
+  let circle = tween({ x: 0 })
   
   async function animate() {
     await circle
@@ -207,14 +207,14 @@ become available from the root `/` of your site.
 ## Animation reset
 
 If you mess up your delivery, instead of reloading the slide to reset the state of your animation,
-use the `reset` method on the `signal` to reset the animation back to its initial state.
+use the `reset` method on the `tween` to reset the animation back to its initial state.
 
 ```svelte
 <script>
   import { Presentation, Slide } from '@animotion/core'
-  import { signal } from '@animotion/motion'
+  import { tween } from '@animotion/motion'
 
-  let value = signal(0)
+  let value = tween(0)
 </script>
 
 <Presentation>
