@@ -1,24 +1,14 @@
 {
-	"extends": "@tsconfig/svelte/tsconfig.json",
+	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@config": ["./src/config.ts"],
-			"@components": ["./src/lib/components/index.ts"],
-			"@motion": ["./src/lib/motion/index.ts"],
-			"@languages": ["./src/lib/languages/index.ts"],
-			"@lib/*": ["./src/lib/*"],
-			"@stores/*": ["./src/lib/stores/*"],
-			"@styles/*": ["./src/lib/styles/*"]
-		},
-		"target": "ESNext",
-		"useDefineForClassFields": true,
-		"module": "ESNext",
-		"resolveJsonModule": true,
 		"allowJs": true,
 		"checkJs": true,
-		"isolatedModules": true
-	},
-	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
-	"references": [{ "path": "./tsconfig.node.json" }]
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"moduleResolution": "bundler"
+	}
 }

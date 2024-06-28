@@ -1,15 +1,16 @@
 {
 	"name": "@animotion/create",
-	"version": "1.0.8",
+	"version": "1.0.9",
+	"description": "Animotion CLI",
+	"author": "animotionjs",
+	"homepage": "https://animotion.pages.dev",
+	"bugs": "https://github.com/animotionjs/animotion/issues",
 	"bin": "./cli/bin.js",
 	"type": "module",
-	"dependencies": {
-		"@clack/prompts": "^0.7.0"
-	},
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/animotionjs/animotion.git",
+		"url": "git+https://github.com/animotionjs/animotion.git",
 		"directory": "packages/create"
 	},
 	"keywords": [
@@ -18,5 +19,7 @@
 		"svelte",
 		"reveal"
 	],
-	"homepage": "https://animotion.pages.dev"
+	"dependencies": {
+		"@clack/prompts": "^0.7.0"
+	}
 }

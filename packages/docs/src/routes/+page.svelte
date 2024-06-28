@@ -18,11 +18,11 @@
 	</p>
 
 	<div class="video">
-		<video bind:this={videoEl} src="video.mp4" muted loop />
+		<video bind:this={videoEl} src="video.mp4" muted loop></video>
 	</div>
 </main>
 
-<style lang="postcss">
+<style>
 	.heading {
 		max-width: 400px;
 		font-size: var(--font-size-4);

@@ -1,6 +1,4 @@
-/*
- Yoinked from https://github.com/highlightjs/highlight.js/blob/main/types/index.d.ts
-*/
+// https://github.com/highlightjs/highlight.js/blob/main/types/index.d.ts
 
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
@@ -44,10 +42,7 @@ declare module 'highlight.js' {
 			optionsOrCode: string | HighlightOptions,
 			ignoreIllegals?: boolean
 		) => HighlightResult
-		highlightAuto: (
-			code: string,
-			languageSubset?: string[]
-		) => AutoHighlightResult
+		highlightAuto: (code: string, languageSubset?: string[]) => AutoHighlightResult
 		highlightBlock: (element: HTMLElement) => void
 		highlightElement: (element: HTMLElement) => void
 		configure: (options: Partial<HLJSOptions>) => void
@@ -74,9 +69,7 @@ declare module 'highlight.js' {
 			concat: (...args: (RegExp | string)[]) => string
 			lookahead: (re: RegExp | string) => string
 			either: (
-				...args:
-					| (RegExp | string)[]
-					| [...(RegExp | string)[], RegexEitherOptions]
+				...args: (RegExp | string)[] | [...(RegExp | string)[], RegexEitherOptions]
 			) => string
 			optional: (re: RegExp | string) => string
 			anyNumberOfTimes: (re: RegExp | string) => string
@@ -90,11 +83,7 @@ declare module 'highlight.js' {
 		QUOTE_STRING_MODE: Mode
 		APOS_STRING_MODE: Mode
 		PHRASAL_WORDS_MODE: Mode
-		COMMENT: (
-			begin: string | RegExp,
-			end: string | RegExp,
-			modeOpts?: Mode | {}
-		) => Mode
+		COMMENT: (begin: string | RegExp, end: string | RegExp, modeOpts?: Mode | {}) => Mode
 		C_LINE_COMMENT_MODE: Mode
 		C_BLOCK_COMMENT_MODE: Mode
 		HASH_COMMENT_MODE: Mode
@@ -157,20 +146,14 @@ declare module 'highlight.js' {
 			result: HighlightResult
 			text: string
 		}) => void
-		'before:highlightElement'?: (data: {
-			el: Element
-			language: string
-		}) => void
+		'before:highlightElement'?: (data: { el: Element; language: string }) => void
 		// TODO: Old API, remove with v12
 		'after:highlightBlock'?: (data: {
 			block: Element
 			result: HighlightResult
 			text: string
 		}) => void
-		'before:highlightBlock'?: (data: {
-			block: Element
-			language: string
-		}) => void
+		'before:highlightBlock'?: (data: { block: Element; language: string }) => void
 	}
 
 	interface EmitterConstructor {
@@ -199,10 +182,7 @@ declare module 'highlight.js' {
 		isMatchIgnored: boolean
 	}
 
-	export type ModeCallback = (
-		match: RegExpMatchArray,
-		response: CallbackResponse
-	) => void
+	export type ModeCallback = (match: RegExpMatchArray, response: CallbackResponse) => void
 	export type Language = LanguageDetail & Partial<Mode>
 	export interface Mode extends ModeCallbacks, ModeDetails {}
 

@@ -4,13 +4,19 @@ Animotion is a presentational framework for creating beautiful slides and visual
 
 ## Setup
 
-The quickest way to get started with Animotion.
+The quickest way to get started with Animotion:
 
 ```
 npm create @animotion
 ```
 
-You can run `npx @animotion/create` on Windows if that doesn't work.
+## Windows
+
+If the Animotion CLI doesn't work on Windows try:
+
+```
+npx @animotion/create
+```
 
 ## Docs
 

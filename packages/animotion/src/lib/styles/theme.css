@@ -1,21 +1,3 @@
-@import '@fontsource-variable/manrope';
-@import '@fontsource-variable/jetbrains-mono';
-
-:root {
-	--r-background-color: hsl(226 19% 13%);
-	--r-main-font: 'Manrope Variable';
-	--r-main-font-size: 42px;
-	--r-main-color: hsl(226 19% 98%);
-	--r-heading-font: 'Manrope';
-	--r-code-font: 'JetBrains Mono Variable';
-	--r-link-color: hsl(180 100% 50%);
-}
-
-/* required for Reveal.js to work */
-#app {
-	display: contents;
-}
-
 .reveal-viewport {
 	background-color: var(--r-background-color);
 }
