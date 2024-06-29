@@ -26,6 +26,8 @@
 			to animotion and have to set `embedded: true`
 		*/
 		const deck = new Reveal(animotion, {
+			display: 'grid',
+			disableLayout: true,
 			plugins: [Highlight, Math.KaTeX, Notes],
 			highlight: {
 				beforeHighlight() {
@@ -126,7 +128,7 @@
 		margin-block: var(--size-3);
 
 		@media (width > 600px) {
-			height: 400px;
+			height: 480px;
 		}
 	}
 </style>
