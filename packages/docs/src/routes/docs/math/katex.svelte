@@ -1,16 +1,5 @@
 <script lang="ts">
-	import Katex from './katex.svelte'
-</script>
-
-# Math
-
-You can use [KaTeX](https://katex.org/) to write math formulas.
-
-<Katex />
-
-```svelte
-<script lang="ts">
-	import { Presentation, Slide, Transition } from '@animotion/core'
+	import { Embed as Presentation, Slide, Transition } from '@animotion/core'
 </script>
 
 <Presentation>
@@ -28,4 +17,3 @@ You can use [KaTeX](https://katex.org/) to write math formulas.
 		</Transition>
 	</Slide>
 </Presentation>
-```
