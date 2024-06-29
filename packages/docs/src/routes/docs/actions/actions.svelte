@@ -1,18 +1,5 @@
 <script lang="ts">
-	import Actions from './actions.svelte'
-</script>
-
-# Actions
-
-## Tying everything together
-
-You can use the `<Action>` component to step through the presentation, and run code that updates the presentation:
-
-<Actions />
-
-```svelte
-<script lang="ts">
-	import { Presentation, Slide, Code, Action } from '@animotion/core'
+	import { Embed as Presentation, Slide, Code, Action } from '@animotion/core'
 
 	let code: Code
 </script>
@@ -40,4 +27,3 @@ You can use the `<Action>` component to step through the presentation, and run c
 		<Action do={() => code.selectLines`*`} />
 	</Slide>
 </Presentation>
-```

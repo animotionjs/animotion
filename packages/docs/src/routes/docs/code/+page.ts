@@ -1,3 +1,3 @@
 export async function load() {
-	return { title: 'Media' }
+	return { title: 'Code' }
 }

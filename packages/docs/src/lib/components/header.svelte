@@ -108,11 +108,7 @@
 
 <style lang="postcss">
 	nav {
-		position: sticky;
-		top: 0px;
 		padding-block: var(--size-3);
-		backdrop-filter: blur(8px);
-		z-index: 10;
 
 		& a {
 			color: inherit;

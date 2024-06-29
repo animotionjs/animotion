@@ -3,7 +3,7 @@
 </script>
 
 <Presentation>
-	<Slide>
+	<Slide class="h-full place-content-center place-items-center">
 		<div
 			class="mx-auto flex w-[800px] justify-between font-semibold text-gray-900"
 		>
@@ -12,11 +12,13 @@
 			>
 				red
 			</div>
+
 			<div
 				class="grid h-[240px] w-[240px] place-content-center rounded-full bg-green-400"
 			>
 				green
 			</div>
+
 			<div
 				class="grid h-[240px] w-[240px] place-content-center rounded-full bg-blue-400"
 			>

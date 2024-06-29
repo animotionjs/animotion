@@ -10,7 +10,7 @@
 </script>
 
 <Presentation>
-	<Slide>
+	<Slide class="h-full place-content-center place-items-center">
 		<button onclick={animate} class="text-[100px] font-semibold">
 			{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
 		</button>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Embed as Presentation, Slide, Step } from '@animotion/core'
+	import { Embed as Presentation, Slide, Action } from '@animotion/core'
 	import { tween, all } from '@animotion/motion'
 
 	let circle = tween({ x: 0, y: 100, r: 100, fill: '#00ffff' })
@@ -14,9 +14,7 @@
 </script>
 
 <Presentation>
-	<Slide>
-		<Step in={animate} />
-
+	<Slide class="h-full place-content-center place-items-center">
 		<svg viewBox="-100 0 800 200">
 			<circle cx={$circle.x} cy={$circle.y} r={$circle.r} fill={$circle.fill} />
 
@@ -31,5 +29,7 @@
 				{$text.count.toFixed(0)}
 			</text>
 		</svg>
+
+		<Action do={animate} />
 	</Slide>
 </Presentation>

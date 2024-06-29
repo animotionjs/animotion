@@ -1,19 +1,17 @@
 <script lang="ts">
-	import { Embed as Presentation, Slide, Step } from '@animotion/core'
+	import { Embed as Presentation, Slide, Action } from '@animotion/core'
 	import { tween } from '@animotion/motion'
 
 	let cx = tween(0)
 
 	async function animate() {
-		await cx.to(600).to(0, { delay: 0.3 })
+		await cx.to(600).to(0, { delay: 300 })
 	}
 </script>
 
 <Presentation>
-	<Slide>
-		<Step in={animate} />
-
-		<svg viewBox="-100 0 800 200">
+	<Slide class="h-full place-content-center place-items-center">
+		<svg width="800" height="200" viewBox="-100 0 800 200">
 			<circle cx={$cx} cy={100} r={100} fill="#00ffff" />
 			<text
 				x={$cx}
@@ -26,5 +24,7 @@
 				{$cx.toFixed(0)}
 			</text>
 		</svg>
+
+		<Action do={animate} />
 	</Slide>
 </Presentation>

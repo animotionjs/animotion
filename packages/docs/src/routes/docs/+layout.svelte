@@ -11,12 +11,12 @@
 
 <div class="container">
 	<aside class="sections space-y" style:--margin="var(--size-2)">
-		{#each sections as { path, title, section, reload }}
+		{#each sections as { path, title, section }}
 			{@const active = $page.route.id === path}
 			{#if section}
 				<h4 class="section">{section}</h4>
 			{:else}
-				<a data-sveltekit-reload={reload || null} href={path} class:active>{title}</a>
+				<a href={path} class:active>{title}</a>
 			{/if}
 		{/each}
 	</aside>
@@ -75,7 +75,7 @@
 		}
 
 		@media (width > 1000px) {
-			max-width: 70ch;
+			max-width: 80ch;
 			margin-block-start: 0rem;
 			margin-inline-start: var(--size-5);
 		}

@@ -8,6 +8,10 @@
 	</Slide>
 
 	<Slide class="h-full place-content-center place-items-center">
-		<p>Visualize ideas with code</p>
+		<img
+			class="rounded-lg drop-shadow-sm"
+			src="https://c.tenor.com/J5A9wZzn3ZYAAAAd/tenor.gif"
+			alt="nod of approval"
+		/>
 	</Slide>
 </Presentation>

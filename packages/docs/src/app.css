@@ -46,6 +46,7 @@ a {
 
 	&:hover {
 		text-decoration: underline;
+		cursor: pointer;
 	}
 }
 
@@ -76,13 +77,17 @@ button {
 	cursor: pointer;
 }
 
-pre.shiki {
+.shiki {
 	padding: var(--size-3);
 	border-radius: var(--radius-1);
 	border: 1px solid hsl(0 0% 0% / 2%);
 	box-shadow: var(--shadow-1);
-	white-space: pre-wrap;
+	overflow: auto;
 	tab-size: 2;
+
+	.line span {
+		font-style: normal !important;
+	}
 }
 
 code,
@@ -116,7 +121,7 @@ td {
 }
 
 html {
-	/* yeah I know */
+	/* 1rem = 10px */
 	font-size: 62.5%;
 
 	/* typography */
@@ -157,7 +162,7 @@ html {
 
 	/* light */
 	--brand-light: var(--aqua-1);
-	--bg-light: radial-gradient(hsl(220 40% 94%), hsl(220 14% 94%));
+	--bg-light: var(--white-1);
 	--text-1-light: var(--blue-1);
 	--text-2-light: var(--blue-2);
 	--text-3-light: var(--blue-5);
@@ -166,7 +171,7 @@ html {
 
 	/* dark */
 	--brand-dark: var(--aqua-2);
-	--bg-dark: radial-gradient(hsl(200 40% 14%), hsl(220 14% 10%) 80%);
+	--bg-dark: var(--blue-1);
 	--text-1-dark: var(--white-1);
 	--text-2-dark: var(--white-2);
 	--text-3-dark: var(--white-3);
@@ -185,8 +190,7 @@ body {
 	font-size: var(--font-size-3);
 	line-height: 1.6;
 	color: var(--text-1);
-	background-image: var(--bg);
-	background-attachment: fixed;
+	background-color: var(--bg);
 	transition: color 0.3s ease;
 
 	@media (width > 1280px) {
@@ -332,7 +336,7 @@ body {
 
 /* presentation */
 :root {
-	--r-background-color: oklch(20% 0.01 272);
+	--r-background-color: oklch(24% 0.019 272);
 	--r-main-font: 'Manrope Variable';
 	--r-main-font-size: 42px;
 	--r-main-color: oklch(98% 0.02 272);

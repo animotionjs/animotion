@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Embed as Presentation, Slide, Step } from '@animotion/core'
+	import { Action, Embed as Presentation, Slide } from '@animotion/core'
 	import { tween } from '@animotion/motion'
 
 	let text = tween(1)
@@ -10,8 +10,8 @@
 </script>
 
 <Presentation>
-	<Slide>
-		<Step in={animate} />
-		<h1 style:scale={$text}>Motion</h1>
+	<Slide class="h-full place-content-center place-items-center">
+		<p style:scale={$text}>Motion</p>
+		<Action do={animate} />
 	</Slide>
 </Presentation>
