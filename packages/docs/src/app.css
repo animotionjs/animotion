@@ -387,7 +387,6 @@ html {
 	from {
 		filter: blur(40px);
 		scale: 0;
-		translate: 0px 100vh;
 	}
 }
 
@@ -398,4 +397,3 @@ html {
 		rotate: -1turn;
 	}
 }
-

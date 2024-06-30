@@ -7,8 +7,8 @@
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
 		<Code
-			class="w-[480px]"
 			bind:this={code}
+			class="w-[480px]"
 			lang="svelte"
 			theme="poimandres"
 			code={`

@@ -3,7 +3,7 @@
 The project uses [pnpm](https://pnpm.io/) as the package manager — if you don't have pnpm installed the easiest method to install it is using npm
 assuming you have [Node.js](https://nodejs.org/en) installed.
 
-```bash
+```text
 npm install -g pnpm
 ```
 
@@ -11,13 +11,13 @@ npm install -g pnpm
 
 Run the Animotion CLI:
 
-```bash
+```text
 npm create @animotion
 ```
 
 If the Animotion CLI doesn't work on Windows try:
 
-```bash
+```text
 npx @animotion/create
 ```
 
@@ -45,13 +45,13 @@ https://joyofcode.xyz/invite
 
 Install the dependencies if you haven't during the setup:
 
-```bash
+```text
 pnpm i
 ```
 
 Start the development server:
 
-```bash
+```text
 pnpm run dev
 ```
 

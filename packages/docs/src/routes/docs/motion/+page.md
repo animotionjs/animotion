@@ -174,7 +174,7 @@ You can animate different tweens at the same using the `all` method:
 
 ## Sound Effects
 
-Besides playing animations you can play sounds using the `sfx` method.
+Besides playing animations you can play `mp3` sounds using the `sfx` method.
 
 After you place your sounds in the `static` folder at the root of your project, they
 become available from the root `/` of your site:

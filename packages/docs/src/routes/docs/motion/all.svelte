@@ -15,7 +15,7 @@
 
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
-		<svg viewBox="-100 0 800 200">
+		<svg width="800" height="200" viewBox="-100 0 800 200">
 			<circle cx={$circle.x} cy={$circle.y} r={$circle.r} fill={$circle.fill} />
 
 			<text
