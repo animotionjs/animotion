@@ -1,11 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte'
 	import { page } from '$app/stores'
-	import Header from '$lib/components/header.svelte'
-		
-	import '@animotion/core/code'
-	import '@animotion/core/theme'
-	import '../app.css'
+	import Header from '$lib/components/header.svelte'		
+	import '../styles/app.css'
 
 	type LayoutProps = { children: Snippet }
 

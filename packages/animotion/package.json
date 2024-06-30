@@ -1,6 +1,6 @@
 {
 	"name": "@animotion/core",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Core components for Animotion",
 	"author": "animotionjs",
 	"homepage": "https://animotion.pages.dev/",
@@ -28,9 +28,6 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
-	"sideEffects": false,
-	"module": "./dist/index.js",
-	"main": "./dist/index.js",
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"exports": {
@@ -38,8 +35,7 @@
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		},
-		"./theme": "./dist/styles/theme.css",
-		"./code": "./dist/styles/code.css"
+		"./theme": "./dist/styles/theme.css"
 	},
 	"files": [
 		"dist",

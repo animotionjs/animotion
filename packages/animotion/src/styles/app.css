@@ -4,7 +4,6 @@
 
 /* presentation */
 @import '$lib/styles/theme.css';
-@import '$lib/styles/code.css';
 
 /* tailwind */
 @import 'tailwindcss/theme';

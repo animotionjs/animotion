@@ -2,6 +2,9 @@
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/jetbrains-mono';
 
+/* presentation */
+@import './theme.css';
+
 /* tailwind */
 @import 'tailwindcss/theme';
 @import 'tailwindcss/utilities';
