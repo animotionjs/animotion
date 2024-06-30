@@ -3,16 +3,24 @@
 
 	type TransitionProps = {
 		children?: Snippet
+		do?: () => void
+		class?: string
 		order?: number
 		name?: string
 		enter?: string
-		do?: () => void
-		class?: string
+		visible?: boolean
 	}
 
 	const noop = () => {}
 
-	let { children, order, name, enter = 'enter', ...props }: TransitionProps = $props()
+	let {
+		children,
+		order,
+		name,
+		enter = 'enter',
+		visible = false,
+		...props
+	}: TransitionProps = $props()
 
 	let el: HTMLDivElement
 	let viewTransitionName = name ? `transition-${name}` : `transition-${crypto.randomUUID()}`
@@ -42,6 +50,11 @@
 	}
 
 	$effect(() => {
+		if (visible) {
+			el.classList.add(enter)
+			return
+		}
+
 		el.addEventListener('in', enterTransition)
 		el.addEventListener('out', leaveTransition)
 
@@ -54,7 +67,9 @@
 
 <div
 	bind:this={el}
-	class="fragment hidden {props.class}"
+	class:fragment={!visible}
+	class:hidden={!visible}
+	class={props.class}
 	data-fragment-index={order}
 	style:view-transition-name={viewTransitionName}
 >
