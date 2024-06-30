@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte'
 	import { page } from '$app/stores'
 	import Header from '$lib/components/header.svelte'		
-	import '../styles/app.css'
+	import '../app.css'
 
 	type LayoutProps = { children: Snippet }
 
