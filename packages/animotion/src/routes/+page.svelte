@@ -5,7 +5,8 @@
 	let text: HTMLParagraphElement
 	let code: Code
 	let circle = tween({ x: 0, y: 80, r: 80, fill: '#00ffff' })
-	let boxes = $state([1, 2, 3, 4])
+	let items = $state([1, 2, 3, 4])
+	let layout = $state('flex gap-4')
 </script>
 
 <Presentation options={{ transition: 'slide', controls: true, progress: true, hash: false }}>
@@ -77,21 +78,26 @@
 			<p class="text-6xl font-bold drop-shadow-sm">🪄 Layout Animations</p>
 		</Transition>
 
-		<div class="mt-24 grid grid-cols-2 grid-rows-2 gap-4">
-			{#each boxes as box (box)}
-				<Transition
-					class="grid h-[200px] w-[200px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 font-semibold text-black shadow-2xl"
-					enter="rotate"
-				>
-					{box}
-				</Transition>
-			{/each}
-		</div>
+		<Transition class="mt-16">
+			<div class={layout}>
+				{#each items as item (item)}
+					<Transition
+						class="grid h-[180px] w-[180px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 text-6xl font-semibold text-black shadow-2xl"
+						enter="rotate"
+						visible
+					>
+						{item}
+					</Transition>
+				{/each}
+			</div>
+		</Transition>
 
-		<Transition do={() => (boxes = [4, 3, 2, 1])} />
-		<Transition do={() => (boxes = [2, 1, 4, 3])} />
-		<Transition do={() => (boxes = [4, 3, 2, 1])} />
-		<Transition do={() => (boxes = [1, 2, 3, 4])} />
+		<Transition do={() => (layout = 'grid grid-cols-2 grid-rows-2 gap-4')} />
+		<Transition do={() => (items = [4, 3, 2, 1])} />
+		<Transition do={() => (items = [2, 1, 4, 3])} />
+		<Transition do={() => (items = [4, 3, 2, 1])} />
+		<Transition do={() => (items = [1, 2, 3, 4])} />
+		<Transition do={() => (layout = 'flex gap-4')} />
 	</Slide>
 
 	<Slide class="h-full place-content-center place-items-center">
