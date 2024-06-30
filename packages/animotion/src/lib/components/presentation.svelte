@@ -101,6 +101,8 @@
 			}
 		})
 
+		deck.initialize()
+
 		// reload page after update to avoid HMR issues
 		reloadPageAfterUpdate()
 	}
