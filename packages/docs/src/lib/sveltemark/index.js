@@ -6,18 +6,19 @@ import remarkGfm from 'remark-gfm'
 import remarkSmartypants from 'remark-smartypants'
 import rehypeShiki from '@shikijs/rehype'
 
+const markdownPreprocessor = unified()
+	.use(toMarkdownAST)
+	.use([ remarkGfm,	remarkSmartypants ])
+	.use(toHtmlAST, { allowDangerousHtml: true })
+	.use(rehypeShiki, { theme: 'poimandres' })
+	.use(toHtmlString, { allowDangerousHtml: true })
+
 /**
  * Markdown preprocessor.
  * @param {string} content
  */
 async function parseMarkdown(content) {
-	const processor = await unified()
-		.use(toMarkdownAST)
-		.use([ remarkGfm,	remarkSmartypants ])
-		.use(toHtmlAST, { allowDangerousHtml: true })
-		.use(rehypeShiki, { theme: 'poimandres' })
-		.use(toHtmlString, { allowDangerousHtml: true })
-		.process(content)
+	const processor = await markdownPreprocessor.process(content)
 	return processor.toString()
 }
 
