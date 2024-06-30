@@ -8,7 +8,7 @@
 	import { codeToKeyedTokens, createMagicMoveMachine } from 'shiki-magic-move/core'
 	import { MagicMoveRenderer } from 'shiki-magic-move/renderer'
 	import type { MagicMoveDifferOptions, MagicMoveRenderOptions } from 'shiki-magic-move/types'
-	import { getHighlighter } from 'shiki'
+	import { createHighlighter } from 'shiki'
 	import '../styles/shiki.css'
 
 	type Promises = Promise<unknown>[]
@@ -69,7 +69,7 @@
 	}
 
 	async function init() {
-		highlighter = await getHighlighter({
+		highlighter = await createHighlighter({
 			themes: [theme],
 			langs: [lang]
 		})
