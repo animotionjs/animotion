@@ -2,14 +2,9 @@
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/jetbrains-mono';
 
-/* presentation */
-@import '@animotion/core/theme';
-@import '@animotion/core/code';
-
 /* tailwind */
 @import 'tailwindcss/theme';
 @import 'tailwindcss/utilities';
-
 
 /* reset */
 *,
