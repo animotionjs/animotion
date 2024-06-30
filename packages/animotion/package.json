@@ -28,6 +28,9 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
+	"engines": {
+		"node": "20.10.0"
+	},
 	"sideEffects": false,
 	"module": "./dist/index.js",
 	"main": "./dist/index.js",
