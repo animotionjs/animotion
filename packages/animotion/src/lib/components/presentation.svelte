@@ -1,7 +1,5 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte'
-	import type { HLJSApi } from 'highlight.js'
-	import { svelte } from '../languages/index.js'
 	import 'reveal.js/dist/reveal.css'
 
 	type PresentationProps = {
@@ -31,15 +29,6 @@
 			maxScale: 2.0,
 			// plugins
 			plugins: [Markdown, Highlight, Math.KaTeX, Notes],
-			// syntax highlight options
-			highlight: {
-				// add new languages
-				beforeHighlight: (hljs: HLJSApi) => {
-					hljs.registerLanguage('svelte', svelte)
-				},
-				// disable automatic syntax highlighting
-				highlightOnLoad: false
-			},
 			// slide controls
 			controls: true,
 			// slide progress bar
@@ -112,47 +101,8 @@
 			}
 		})
 
-		deck.initialize().then(() => {
-			// we pass the language to the `<Code>` block
-			// and higlight code blocks after initialization
-			highlightCodeBlocks(deck)
-		})
-
 		// reload page after update to avoid HMR issues
 		reloadPageAfterUpdate()
-	}
-
-	function indent(code: string) {
-		if (!code.startsWith('\t')) {
-			return code
-		}
-
-		const tabs = code
-			.trim()
-			.split('\n')
-			.map((line) => line.split('').filter((char) => char === '\t'))
-			.filter((line) => line.length !== 0)
-			.sort((a, b) => a.length - b.length)[0]
-			.join('')
-
-		return code
-			.split('\n')
-			.map((line) => line.replace(tabs, ''))
-			.join('\n')
-	}
-
-	function highlightCodeBlocks(deck: Reveal.Api) {
-		const highlight = deck.getPlugin('highlight')
-		const codeBlocks = [...document.querySelectorAll('.code-wrapper code')]
-		codeBlocks.forEach((block) => {
-			// remove Svelte hydration markers
-			const comments = /&lt;!--\[--&gt;\s|&lt;!--\]--&gt;|&lt;!----&gt;/g
-			const code = block.innerHTML.replace(comments, '')
-			block.innerHTML = indent(code)
-
-			// @ts-ignore
-			highlight.highlightBlock(block)
-		})
 	}
 
 	function reloadPageAfterUpdate() {

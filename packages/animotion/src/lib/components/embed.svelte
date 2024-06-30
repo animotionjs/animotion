@@ -4,7 +4,6 @@
 
 	import 'reveal.js/dist/reveal.css'
 	import '../styles/theme.css'
-	import '../styles/code.css'
 
 	type PresentationProps = {
 		[key: string]: any
@@ -29,17 +28,6 @@
 			display: 'grid',
 			disableLayout: true,
 			plugins: [Highlight, Math.KaTeX, Notes],
-			highlight: {
-				beforeHighlight() {
-					const codeBlocks = [...document.querySelectorAll('.code-wrapper code')]
-					codeBlocks.forEach((block) => {
-						// remove Svelte hydration markers
-						const comments = /&lt;!--\[--&gt;\s|&lt;!--\]--&gt;|&lt;!----&gt;/g
-						const code = block.innerHTML.replace(comments, '')
-						block.innerHTML = indent(code)
-					})
-				}
-			},
 			embedded: true,
 			...options
 		})
@@ -88,25 +76,6 @@
 		})
 
 		deck.initialize()
-	}
-
-	function indent(code: string) {
-		if (!code.startsWith('\t')) {
-			return code
-		}
-
-		const tabs = code
-			.trim()
-			.split('\n')
-			.map((line) => line.split('').filter((char) => char === '\t'))
-			.filter((line) => line.length !== 0)
-			.sort((a, b) => a.length - b.length)[0]
-			.join('')
-
-		return code
-			.split('\n')
-			.map((line) => line.replace(tabs, ''))
-			.join('\n')
 	}
 
 	$effect(() => {
