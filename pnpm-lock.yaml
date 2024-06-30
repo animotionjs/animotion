@@ -64,7 +64,7 @@ importers:
         version: 2.41.0(eslint@9.6.0)(svelte@5.0.0-next.167)
       globals:
         specifier: ^15.6.0
-        version: 15.6.0
+        version: 15.7.0
       prettier:
         specifier: ^3.3.2
         version: 3.3.2
@@ -82,7 +82,7 @@ importers:
         version: 5.0.0-next.167
       svelte-check:
         specifier: ^3.8.4
-        version: 3.8.4(postcss-load-config@6.0.1(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.167)
+        version: 3.8.4(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.167)
       tslib:
         specifier: ^2.6.3
         version: 2.6.3
@@ -105,7 +105,7 @@ importers:
   packages/docs:
     dependencies:
       '@animotion/core':
-        specifier: ^1.0.5
+        specifier: '*'
         version: 1.0.5(svelte@5.0.0-next.131)(vite@5.3.2(lightningcss@1.25.1))
       '@animotion/motion':
         specifier: '*'
@@ -188,7 +188,7 @@ importers:
         version: 5.0.0-next.131
       svelte-check:
         specifier: ^3.8.0
-        version: 3.8.4(postcss-load-config@6.0.1(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.131)
+        version: 3.8.4(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.131)
       tailwindcss:
         specifier: 4.0.0-alpha.15
         version: 4.0.0-alpha.15
@@ -1409,8 +1409,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@15.6.0:
-    resolution: {integrity: sha512-UzcJi88Hw//CurUIRa9Jxb0vgOCcuD/MNjwmXp633cyaRKkCWACkoqHCtfZv43b1kqXGg/fpOa8bwgacCeXsVg==}
+  globals@15.7.0:
+    resolution: {integrity: sha512-ivatRXWwKC6ImcdKO7dOwXuXR5XFrdwo45qFwD7D0qOkEPzzJdLXC3BHceBdyrPOD3p1suPaWi4Y4NMm2D++AQ==}
     engines: {node: '>=18'}
 
   globalyzer@0.1.0:
@@ -1604,10 +1604,6 @@ packages:
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
     engines: {node: '>=10'}
-
-  lilconfig@3.1.2:
-    resolution: {integrity: sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==}
-    engines: {node: '>=14'}
 
   locate-character@3.0.0:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
@@ -1994,24 +1990,6 @@ packages:
       postcss:
         optional: true
       ts-node:
-        optional: true
-
-  postcss-load-config@6.0.1:
-    resolution: {integrity: sha512-oPtTM4oerL+UXmx+93ytZVN82RrlY/wPUV8IeDxFrzIjXOLF1pN+EmKPLbubvKHT2HC20xXsCAH2Z+CKV6Oz/g==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      jiti: '>=1.21.0'
-      postcss: '>=8.0.9'
-      tsx: ^4.8.1
-      yaml: ^2.4.2
-    peerDependenciesMeta:
-      jiti:
-        optional: true
-      postcss:
-        optional: true
-      tsx:
-        optional: true
-      yaml:
         optional: true
 
   postcss-logical@7.0.1:
@@ -3810,7 +3788,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@15.6.0: {}
+  globals@15.7.0: {}
 
   globalyzer@0.1.0: {}
 
@@ -4014,9 +3992,6 @@ snapshots:
       lightningcss-win32-x64-msvc: 1.25.1
 
   lilconfig@2.1.0: {}
-
-  lilconfig@3.1.2:
-    optional: true
 
   locate-character@3.0.0: {}
 
@@ -4576,13 +4551,6 @@ snapshots:
     optionalDependencies:
       postcss: 8.4.39
 
-  postcss-load-config@6.0.1(postcss@8.4.39):
-    dependencies:
-      lilconfig: 3.1.2
-    optionalDependencies:
-      postcss: 8.4.39
-    optional: true
-
   postcss-logical@7.0.1(postcss@8.4.39):
     dependencies:
       postcss: 8.4.39
@@ -4943,14 +4911,14 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  svelte-check@3.8.4(postcss-load-config@6.0.1(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.131):
+  svelte-check@3.8.4(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.131):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 3.6.0
       picocolors: 1.0.1
       sade: 1.8.1
       svelte: 5.0.0-next.131
-      svelte-preprocess: 5.1.4(postcss-load-config@6.0.1(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.131)(typescript@5.5.2)
+      svelte-preprocess: 5.1.4(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.131)(typescript@5.5.2)
       typescript: 5.5.2
     transitivePeerDependencies:
       - '@babel/core'
@@ -4963,14 +4931,14 @@ snapshots:
       - stylus
       - sugarss
 
-  svelte-check@3.8.4(postcss-load-config@6.0.1(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.167):
+  svelte-check@3.8.4(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.167):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 3.6.0
       picocolors: 1.0.1
       sade: 1.8.1
       svelte: 5.0.0-next.167
-      svelte-preprocess: 5.1.4(postcss-load-config@6.0.1(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.167)(typescript@5.5.2)
+      svelte-preprocess: 5.1.4(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.167)(typescript@5.5.2)
       typescript: 5.5.2
     transitivePeerDependencies:
       - '@babel/core'
@@ -5011,7 +4979,7 @@ snapshots:
     dependencies:
       svelte: 5.0.0-next.167
 
-  svelte-preprocess@5.1.4(postcss-load-config@6.0.1(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.131)(typescript@5.5.2):
+  svelte-preprocess@5.1.4(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.131)(typescript@5.5.2):
     dependencies:
       '@types/pug': 2.0.10
       detect-indent: 6.1.0
@@ -5021,10 +4989,10 @@ snapshots:
       svelte: 5.0.0-next.131
     optionalDependencies:
       postcss: 8.4.39
-      postcss-load-config: 6.0.1(postcss@8.4.39)
+      postcss-load-config: 3.1.4(postcss@8.4.39)
       typescript: 5.5.2
 
-  svelte-preprocess@5.1.4(postcss-load-config@6.0.1(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.167)(typescript@5.5.2):
+  svelte-preprocess@5.1.4(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.167)(typescript@5.5.2):
     dependencies:
       '@types/pug': 2.0.10
       detect-indent: 6.1.0
@@ -5034,7 +5002,7 @@ snapshots:
       svelte: 5.0.0-next.167
     optionalDependencies:
       postcss: 8.4.39
-      postcss-load-config: 6.0.1(postcss@8.4.39)
+      postcss-load-config: 3.1.4(postcss@8.4.39)
       typescript: 5.5.2
 
   svelte2tsx@0.7.13(svelte@5.0.0-next.167)(typescript@5.5.2):
