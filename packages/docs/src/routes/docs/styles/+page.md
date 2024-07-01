@@ -53,10 +53,8 @@ You can write regular CSS inside a `<style>` tag in Svelte. Styles are scoped to
 
 <style>
   .circles {
-    width: 800px;
     display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
+    gap: 2rem;
     font-weight: 600;
     color: #111827;
   }

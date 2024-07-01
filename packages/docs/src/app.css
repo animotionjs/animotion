@@ -376,10 +376,6 @@ blockquote {
 	);
 }
 
-/* html {
-	view-transition-name: none;
-} */
-
 ::view-transition-group(*) {
 	animation-duration: 0.6s;
 	animation-timing-function: var(--ease);
