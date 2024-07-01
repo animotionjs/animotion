@@ -1,7 +1,7 @@
 # Getting started
 
-The project uses [pnpm](https://pnpm.io/) as the package manager — if you don't have pnpm installed the easiest method to install it is using npm
-assuming you have [Node.js](https://nodejs.org/en) installed.
+Animotion uses [pnpm](https://pnpm.io/) as the package manager. If you don't have pnpm installed the easiest method to install it is using npm
+assuming you have [Node.js](https://nodejs.org/en) installed:
 
 ```text
 npm install -g pnpm
@@ -12,10 +12,10 @@ npm install -g pnpm
 Run the Animotion CLI:
 
 ```text
-npm create @animotion
+npm create @animotion@latest
 ```
 
-If the Animotion CLI doesn't work on Windows try:
+If you're using Windows and it doesn't work:
 
 ```text
 npx @animotion/create
