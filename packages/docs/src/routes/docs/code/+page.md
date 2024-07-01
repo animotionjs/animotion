@@ -6,7 +6,7 @@
 
 ## Animating code
 
-The `<Code>` component uses [Shiki](https://shiki.style/) for beautiful syntax highlighting, and [Shiki Magic Move](https://shiki-magic-move.netlify.app/) for animating the code:
+The `<Code>` component uses [Shiki](https://shiki.style/) for beautiful syntax highlighting:
 
 <CodeBlock />
 
@@ -98,17 +98,37 @@ You can also use `await` since the `<Code />` component methods return a promise
 
 ## Code Indentation
 
+Indenting code creates extra whitespace:
+
+```svelte
+<Code
+	code={`
+->-><script>
+->->->let count = 0
+->->->$: double = count * 2
+->-><\/script>
+
+->-><button on:click={() => count++}>
+->->->{double}
+->-></button>
+	`}
+/>
+```
+
 If you use tabs Animotion auto-indents your code for you:
 
 ```svelte
-<script>
-->let count = 0
-->$: double = count * 2
-</script>
-
-<button on:click={() => count++}>
-->{double}
-</button>
+<Code
+	code={`
+		<script>
+		->let count = 0
+		->$: double = count * 2
+		<\/script>
+		<button on:click={() => count++}>
+		->{double}
+		</button>
+	`}
+/>
 ```
 
 If you want to opt-out of this feature, you can set `autoIndent` to false:

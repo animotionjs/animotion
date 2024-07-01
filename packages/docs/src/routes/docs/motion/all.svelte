@@ -2,7 +2,7 @@
 	import { Embed as Presentation, Slide, Action } from '@animotion/core'
 	import { tween, all } from '@animotion/motion'
 
-	let circle = tween({ x: 0, y: 100, r: 100, fill: '#00ffff' })
+	let circle = tween({ x: 0, y: 100, r: 80, fill: '#00ffff' })
 	let text = tween({ count: 0 })
 
 	async function animate() {

@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
 	import { page } from '$app/stores'
+	import type { Snippet } from 'svelte'
+	import PageTransition from '$lib/components/transition.svelte'
 	import Header from '$lib/components/header.svelte'		
 	import '../app.css'
 
@@ -9,6 +10,8 @@
 	let { children }: LayoutProps = $props()
 	const { title = 'Animotion' } = $derived($page.data)
 </script>
+
+<PageTransition />
 
 <svelte:head>
 	<title>{title}</title>

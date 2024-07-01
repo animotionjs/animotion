@@ -13,7 +13,7 @@ You can use the `<Transition>` component to animate changes in your slide like m
 <Transition />
 
 ```svelte
-<script>
+<script lang="ts">
 	import { Presentation, Slide, Transition } from '@animotion/core'
 
 	let text: HTMLParagraphElement
@@ -37,6 +37,8 @@ You can use the `<Transition>` component to animate changes in your slide like m
 </Presentation>
 ```
 
+> ⚠️ The View Transitions API is only supported in Chromium based browsers at the moment. 
+
 The `<Transition>` component accepts the following props:
 
 - `do`: callback function to change the DOM before animating the layout
@@ -45,9 +47,6 @@ The `<Transition>` component accepts the following props:
 - `enter`: the animation to use for the transition
 - `name`: view transition name (generates random name by default)
 - `visible`: whether the element should be visible or not
-
-You have to use a Chromium based browser since the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) is not available in every browser yet.
-
 
 You can change the default animation, or create your own animations inside `app.css` since transitions are just CSS animations:
 
@@ -94,11 +93,11 @@ If the elements you want to transition are out of order in the DOM, you can use 
 
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
-		<div class="mt-16 grid grid-cols-2 grid-rows-2 gap-4">
-			<Transition order={1} enter="rotate">1</Transition>
-			<Transition order={2} enter="rotate">2</Transition>
-			<Transition order={3} enter="rotate">3</Transition>
-			<Transition order={4} enter="rotate">4</Transition>
+		<div class="grid grid-cols-2 grid-rows-2 gap-4">
+			<Transition order={4} enter="rotate">1</Transition>
+			<Transition order={3} enter="rotate">2</Transition>
+			<Transition order={2} enter="rotate">3</Transition>
+			<Transition order={1} enter="rotate">4</Transition>
 		</div>
 	</Slide>
 </Presentation>

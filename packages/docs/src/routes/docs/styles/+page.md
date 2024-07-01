@@ -6,21 +6,23 @@
 
 ## Using Tailwind CSS
 
-Every element is unstyled by default, giving you complete control over the styles using Tailwind. Text is scaled based on the size of your presentation which you can override with CSS.
+You have complete control over unstyled elements using Tailwind:
 
 <Tailwind />
 
 ```svelte
 <script>
-  import { Presentation, Slide } from '@animotion/core'
+	import { Presentation, Slide } from '@animotion/core'
+
+	let circle = 'grid h-[200px] w-[200px] place-content-center rounded-full'
 </script>
 
 <Presentation>
-	<Slide>
-		<div class="mx-auto flex w-[800px] justify-between font-semibold text-gray-900">
-			<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-red-400">red</div>
-			<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-green-400">green</div>
-			<div class="grid h-[240px] w-[240px] place-content-center rounded-full bg-blue-400">blue</div>
+	<Slide class="h-full place-content-center place-items-center">
+		<div class="flex gap-8 font-semibold text-gray-900">
+			<div class="{circle} bg-red-400">red</div>
+			<div class="{circle} bg-green-400">green</div>
+			<div class="{circle} bg-blue-400">blue</div>
 		</div>
 	</Slide>
 </Presentation>
@@ -32,7 +34,7 @@ If you enjoy Tailwind get the [Tailwind CSS IntelliSense](https://marketplace.vi
 
 ## Using regular CSS
 
-You can write regular CSS inside a `<style>` tag in Svelte. Styles are scoped to the component, so you don't have to worry about the class name being unique.
+You can write regular CSS inside a `<style>` tag in Svelte. Styles are scoped to the component, so you don't have to worry about the class name being unique:
 
 ```svelte
 <script>

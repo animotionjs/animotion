@@ -8,7 +8,7 @@
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
 		<Transition>
-			<div class={layout} style="--gap: var(--size-2)">
+			<div class={layout} style:--gap="var(--size-2)">
 				{#each items as item, i (item)}
 					<Transition
 						class="grid h-[180px] w-[180px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 text-6xl font-semibold text-black shadow-2xl"

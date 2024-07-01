@@ -17,9 +17,7 @@
 
 	$effect(() => {
 		const colorScheme = document.documentElement.getAttribute('color-scheme')
-		const prefersColorScheme = window.matchMedia(
-			'(prefers-color-scheme: light)'
-		).matches
+		const prefersColorScheme = window.matchMedia('(prefers-color-scheme: light)').matches
 
 		if (colorScheme === 'dark' || colorScheme === 'light') {
 			theme = colorScheme
@@ -41,10 +39,7 @@
 			</div>
 		</div>
 
-		<div
-			class="right-side flex-items-center space-x"
-			style:--margin="var(--size-3)"
-		>
+		<div class="right-side flex-items-center space-x" style:--margin="var(--size-3)">
 			<a class="icon" href="/docs" title="Docs">
 				<BookOpenIcon size="20" />
 			</a>
@@ -91,11 +86,7 @@
 				</div>
 			</a>
 
-			<button
-				onclick={toggleTheme}
-				class="icon"
-				aria-label="Toggle {theme} mode"
-			>
+			<button onclick={toggleTheme} class="icon" aria-label="Toggle {theme} mode">
 				{#if theme === 'dark'}
 					<SunIcon size="20" />
 				{:else}
@@ -106,9 +97,10 @@
 	</div>
 </nav>
 
-<style lang="postcss">
+<style>
 	nav {
 		padding-block: var(--size-3);
+		view-transition-name: nav;
 
 		& a {
 			color: inherit;

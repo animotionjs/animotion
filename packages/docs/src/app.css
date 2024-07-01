@@ -31,6 +31,11 @@ h1 {
 	font-size: var(--size-5);
 }
 
+h2 {
+	border-bottom: 1px solid var(--border);
+	padding-bottom: var(--size-2);
+}
+
 p {
 	font-weight: 500;
 }
@@ -194,6 +199,13 @@ body {
 	@media (width > 1280px) {
 		--padding: 0rem;
 	}
+}
+
+blockquote {
+	padding: var(--size-4);
+	border-radius: var(--radius-1);
+	border: 1px solid var(--border);
+	opacity: 0.9;
 }
 
 .section a {
@@ -364,9 +376,9 @@ body {
 	);
 }
 
-html {
+/* html {
 	view-transition-name: none;
-}
+} */
 
 ::view-transition-group(*) {
 	animation-duration: 0.6s;

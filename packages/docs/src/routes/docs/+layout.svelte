@@ -27,9 +27,13 @@
 	</main>
 </div>
 
-<style lang="postcss">
+<style>
 	.container {
 		margin-block-start: var(--size-5);
+
+		aside {
+			view-transition-name: sidebar;
+		}
 
 		@media (width > 600px) {
 			display: grid;
