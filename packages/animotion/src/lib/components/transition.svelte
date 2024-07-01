@@ -45,7 +45,7 @@
 	function leaveTransition() {
 		viewTransition(() => {
 			el.classList.remove(enter)
-			el.classList.remove('hidden')
+			el.classList.add('hidden')
 		})
 	}
 
