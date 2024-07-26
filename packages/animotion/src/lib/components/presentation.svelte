@@ -2,10 +2,14 @@
 	import type { Snippet } from 'svelte'
 	import 'reveal.js/dist/reveal.css'
 
+	type Options = {
+		reload?: boolean
+	}
+
 	type PresentationProps = {
 		[key: string]: any
 		children?: Snippet
-		options?: Reveal.Options
+		options?: Reveal.Options & Options
 		class?: string
 	}
 
@@ -103,8 +107,10 @@
 
 		deck.initialize()
 
-		// reload page after update to avoid HMR issues
-		reloadPageAfterUpdate()
+		if (options?.reload) {
+			// reload page after update to avoid HMR issues
+			reloadPageAfterUpdate()
+		}
 	}
 
 	function reloadPageAfterUpdate() {
