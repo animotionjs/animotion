@@ -91,8 +91,22 @@
 		await renderer.render(result.current)
 	}
 
-	export function update(code: TemplateStringsArray) {
-		return render(code[0])
+	function merge(strings: TemplateStringsArray, expressions: string[]) {
+		let code = []
+		for (let i = 0; i < strings.length; i++) {
+			code.push(strings[i])
+			if (expressions[i]) {
+				code.push(expressions[i].trim())
+			}
+		}
+		return code.join('')
+	}
+
+	export function update(strings: TemplateStringsArray, ...expressions: string[]) {
+		if (expressions.length > 0) {
+			return render(merge(strings, expressions))
+		}
+		return render(strings[0])
 	}
 
 	function createRange(start: number, end: number) {
