@@ -15,7 +15,7 @@ Animotion is a presentational framework for creating beautiful slides and visual
 The quickest way to get started with Animotion:
 
 ```
-npm create @animotion
+npm create @animotion@latest
 ```
 
 ## Windows
