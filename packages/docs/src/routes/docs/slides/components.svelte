@@ -12,7 +12,7 @@
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
 		<button onclick={animate} class="text-[100px] font-semibold">
-			{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
+			{progress.value.toLocaleString('en', { maximumFractionDigits: 0 })}
 		</button>
 		<p class="mt-8 opacity-50">click to animate</p>
 	</Slide>

@@ -9,14 +9,13 @@
 
 ## Procedural Animations
 
-`@animotion/core` is great for animating [code](/docs/code), and [layouts](/docs/transitions) while `@animotion/motion` is useful if you want to animate any value over time.
+`@animotion/core` is great for animating [code](/docs/code), and [layouts](/docs/transitions) while `@animotion/motion` is used for animating values you otherwise can't animate with CSS like SVG and Canvas elements.
 
 <Tween />
 
-You can create a `tween` for a value that changes over time:
-- Animate the value using the `to` method
-- Use the `await` keyword to start the animation
-- Chain multiple `to` methods together
+Use the `tween` method to create a value that changes over time:
+- to animate the value use the `to` method
+- you can use the `await` keyword to wait for the animation to finish
 
 ```svelte
 <script>
@@ -26,23 +25,24 @@ You can create a `tween` for a value that changes over time:
 	let cx = tween(0)
 
 	async function animate() {
-		await cx.to(600).to(0, { delay: 300 })
+		await cx.to(600)
+		await cx.to(0, { delay: 300 })
 	}
 </script>
 
 <Presentation>
 	<Slide>
 		<svg width="800" height="200" viewBox="-100 0 800 200">
-			<circle cx={$cx} cy={100} r={100} fill="#00ffff" />
+			<circle cx={cx.value} cy={100} r={100} fill="#00ffff" />
 			<text
-				x={$cx}
+				x={cx.value}
 				y={100}
 				font-family="JetBrains Mono"
 				font-size="48px"
 				text-anchor="middle"
 				dominant-baseline="middle"
 			>
-				{$cx.toFixed(0)}
+				{cx.value.toFixed(0)}
 			</text>
 		</svg>
 
@@ -63,17 +63,18 @@ You can animate any value, including CSS properties using the `style` attribute,
   let text = tween(1)
 
   async function animate() {
-    await text.to(3).to(1)
+    await text.to(3)
+		await text.to(1)
   }
 </script>
 
 <Presentation>
   <Slide>
     <!-- Using the style attribute -->
-    <p style="scale: {$text}">Motion</p>
+    <p style="scale: {text.value}">Motion</p>
 
     <!-- Svelte directive -->
-    <p style:scale={$text}>Motion</p>
+    <p style:scale={text.value}>Motion</p>
 
     <Action do={animate} />
   </Slide>
@@ -84,7 +85,7 @@ You can animate any value, including CSS properties using the `style` attribute,
 
 <Options />
 
-A `tween` can be a single value, or an object which can interpolate between strings, objects, and arrays. You can also pass options which includes `duration`, `delay`, and `easing`:
+You can `tween` a single value, objects, arrays, and override the default animation options using the `duration`, `delay`, and `easing` options:
 
 ```svelte
 <script>
@@ -97,9 +98,8 @@ A `tween` can be a single value, or an object which can interpolate between stri
 	)
 
 	async function animate() {
-		await circle
-			.to({ x: 600, fill: '#ffff00' }, { delay: 300 })
-			.to({ x: 0, fill: '#00ffff' })
+		await circle.to({ x: 600, fill: '#ffff00' }, { delay: 300 })
+		await circle.to({ x: 0, fill: '#00ffff' })
 	}
 </script>
 
@@ -107,10 +107,10 @@ A `tween` can be a single value, or an object which can interpolate between stri
 	<Slide>
 		<svg viewBox="-100 0 800 200">
 			<circle
-        cx={$circle.x}
-        cy={$circle.y}
-        r={$circle.r}
-        fill={$circle.fill}
+        cx={circle.x}
+        cy={circle.y}
+        r={circle.r}
+        fill={circle.fill}
       />
 		</svg>
 
@@ -123,7 +123,7 @@ A `tween` can be a single value, or an object which can interpolate between stri
 
 <All />
 
-You can animate different tweens at the same using the `all` method:
+If you want to combine and play animations at the same time without having to think about where to put `await` you can write a simple `all` function:
 
 ```svelte
 <script>
@@ -133,14 +133,19 @@ You can animate different tweens at the same using the `all` method:
 	let circle = tween({ x: 0, y: 100, r: 100, fill: '#00ffff' })
 	let text = tween({ count: 0 })
 
+	async function all(...tweens: Promise<void>[]) {
+		return Promise.all([...tweens])
+	}
+
 	async function animate() {
-		all(
-			circle
-        .to({ x: 600, fill: '#ffff00' })
-        .to({ x: 0, fill: '#00ffff' }),
-			text
-        .to({ count: 600 })
-        .to({ count: 0 })
+		await all(
+			circle.to({ x: 600, fill: '#ffff00' }),
+			text.to({ count: 600 })
+		)
+
+		await all(
+			circle.to({ x: 0, fill: '#00ffff' }),
+			text.to({ count: 0 })
 		)
 	}
 </script>
@@ -149,21 +154,21 @@ You can animate different tweens at the same using the `all` method:
 	<Slide>
 		<svg width="800" height="200" viewBox="-100 0 800 200">
 			<circle
-        cx={$circle.x}
-        cy={$circle.y}
-        r={$circle.r}
-        fill={$circle.fill}
+        cx={circle.x}
+        cy={circle.y}
+        r={circle.r}
+        fill={circle.fill}
       />
 
 			<text
-				x={$circle.x}
-				y={$circle.y}
+				x={circle.x}
+				y={circle.y}
 				font-family="JetBrains Mono"
-				font-size={$circle.r * 0.4}
+				font-size={circle.r * 0.4}
 				text-anchor="middle"
 				dominant-baseline="middle"
 			>
-				{$text.count.toFixed(0)}
+				{text.count.toFixed(0)}
 			</text>
 		</svg>
 
@@ -174,7 +179,7 @@ You can animate different tweens at the same using the `all` method:
 
 ## Sound Effects
 
-Besides playing animations you can play `mp3` sounds using the `sfx` method.
+Besides playing animations you can play sounds using the `sfx` method.
 
 After you place your sounds in the `static` folder at the root of your project, they
 become available from the root `/` of your site:
@@ -187,16 +192,14 @@ become available from the root `/` of your site:
   let circle = tween({ x: 0 })
   
   async function animate() {
-    await circle
-      .sfx('/sfx/transition')
-      .to({ x: 400 })
+    await circle.sfx('/sfx/transition.mp3').to({ x: 400 })
   }
 </script>
 
 <Presentation>
   <Slide in={animate}>
     <svg viewBox="0 0 400 400">
-      <circle cx={$circle.x} cy={200} r={100} fill="#00ffff" />
+      <circle cx={circle.x} cy={200} r={100} fill="#00ffff" />
     </svg>
   </Slide>
 </Presentation>

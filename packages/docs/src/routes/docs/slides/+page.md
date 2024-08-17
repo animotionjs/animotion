@@ -71,7 +71,7 @@ Svelte is a declarative JavaScript framework, so components are a great way to o
 </script>
 
 <button onclick={animate}>
-	{$progress.toLocaleString('en', { maximumFractionDigits: 0 })}
+	{progress.value.toLocaleString('en', { maximumFractionDigits: 0 })}
 </button>
 ```
 
@@ -99,13 +99,7 @@ You can pass an `options` prop to the `<Presentation>` component:
   import { Presentation } from '@animotion/core'
 </script>
 
-<Presentation
-	options={{
-		transition: 'slide',
-		controls: true,
-		progress: true,
-		hash: true
-	}}>
+<Presentation options={{ transition: 'slide' }}>
 	<!-- ... -->
 </Presentation>
 ```

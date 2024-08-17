@@ -5,23 +5,24 @@
 	let cx = tween(0)
 
 	async function animate() {
-		await cx.to(600).to(0, { delay: 300 })
+		await cx.to(600)
+		await cx.to(0, { delay: 300 })
 	}
 </script>
 
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
 		<svg width="800" height="200" viewBox="-100 0 800 200">
-			<circle cx={$cx} cy={100} r={80} fill="#00ffff" />
+			<circle cx={cx.value} cy={100} r={80} fill="#00ffff" />
 			<text
-				x={$cx}
+				x={cx.value}
 				y={100}
 				font-family="JetBrains Mono"
 				font-size="40px"
 				text-anchor="middle"
 				dominant-baseline="middle"
 			>
-				{$cx.toFixed(0)}
+				{cx.value.toFixed(0)}
 			</text>
 		</svg>
 

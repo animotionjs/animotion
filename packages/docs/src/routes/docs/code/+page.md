@@ -94,7 +94,26 @@ code.selectToken`double {double}`
 code.selectLines`*`
 ```
 
-You can also use `await` since the `<Code />` component methods return a promise. 
+You can also use `await` since the `<Code />` component methods return a promise.
+
+## Using Expressions
+
+You can use expressions inside the template function:
+
+```svelte
+<script lang="ts">
+	let expression = 'false'
+</script>
+
+<!-- ... -->
+
+<Action
+	do={() => {
+		expression = 'true'
+		code.update`let bool = ${expression}`		
+	}}
+>
+```
 
 ## Code Indentation
 
