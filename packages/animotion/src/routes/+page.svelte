@@ -7,6 +7,8 @@
 	let circle = tween({ x: 0, y: 80, r: 80, fill: '#00ffff' })
 	let items = $state([1, 2, 3, 4])
 	let layout = $state('flex gap-4')
+
+	let example: Code
 </script>
 
 <Presentation options={{ history: true, transition: 'slide', controls: true, progress: true }}>
@@ -30,17 +32,17 @@
 		</Transition>
 
 		<Transition class="mt-16">
-			<svg width="560" height={$circle.r * 2} viewBox="-80 0 560 {$circle.r * 2}">
-				<circle cx={$circle.x} cy={$circle.y} r={$circle.r} fill={$circle.fill} />
+			<svg width="560" height={circle.r * 2} viewBox="-80 0 560 {circle.r * 2}">
+				<circle cx={circle.x} cy={circle.y} r={circle.r} fill={circle.fill} />
 				<text
-					x={$circle.x}
-					y={$circle.y}
-					font-size={$circle.r * 0.4}
+					x={circle.x}
+					y={circle.y}
+					font-size={circle.r * 0.4}
 					font-family="JetBrains Mono"
 					text-anchor="middle"
 					dominant-baseline="middle"
 				>
-					{$circle.x.toFixed(0)}
+					{circle.x.toFixed(0)}
 				</text>
 			</svg>
 		</Transition>

@@ -30,17 +30,17 @@
 		</Transition>
 
 		<Transition class="mt-16">
-			<svg width="560" height={$circle.r * 2} viewBox="-80 0 560 {$circle.r * 2}">
-				<circle cx={$circle.x} cy={$circle.y} r={$circle.r} fill={$circle.fill} />
+			<svg width="560" height={circle.r * 2} viewBox="-80 0 560 {circle.r * 2}">
+				<circle cx={circle.x} cy={circle.y} r={circle.r} fill={circle.fill} />
 				<text
-					x={$circle.x}
-					y={$circle.y}
-					font-size={$circle.r * 0.4}
+					x={circle.x}
+					y={circle.y}
+					font-size={circle.r * 0.4}
 					font-family="JetBrains Mono"
 					text-anchor="middle"
 					dominant-baseline="middle"
 				>
-					{$circle.x.toFixed(0)}
+					{circle.x.toFixed(0)}
 				</text>
 			</svg>
 		</Transition>
