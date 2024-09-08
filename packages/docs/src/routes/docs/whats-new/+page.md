@@ -77,6 +77,21 @@ Animotion uses [signals](https://svelte-5-preview.vercel.app/docs/runes) for rea
 <p>Radius of the circle is: {radius}</p>
 ```
 
+The same is true for `tween` which is no longer a Svelte store requiring the `$` prefix to subscribe to the value:
+
+```svelte
+<script>
+	import { tween } from '@animotion/motion'
+
+	let coords = tween({ x: 0, y: 0 })
+</script>
+
+<button onclick={() => coords.to({ x: 100, y: 100 })}>
+  x: {coords.x}
+  y: {coords.y}
+</button>
+```
+
 ## SvelteKit
 
 Animotion is now a SvelteKit template, so you don't need a separate server if you need an endpoint, or embed an `<iframe>` in your slide. Learn more by reading the [SvelteKit docs](https://kit.svelte.dev/docs/introduction).
