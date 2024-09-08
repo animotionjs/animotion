@@ -7,8 +7,6 @@
 	let circle = tween({ x: 0, y: 80, r: 80, fill: '#00ffff' })
 	let items = $state([1, 2, 3, 4])
 	let layout = $state('flex gap-4')
-
-	let example: Code
 </script>
 
 <Presentation options={{ history: true, transition: 'slide', controls: true, progress: true }}>
