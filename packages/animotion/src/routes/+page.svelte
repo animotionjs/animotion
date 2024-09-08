@@ -10,7 +10,7 @@
 </script>
 
 <Presentation options={{ history: true, transition: 'slide', controls: true, progress: true }}>
-	<Slide on:out={() => circle.reset()} class="h-full place-content-center place-items-center">
+	<Slide out={() => circle.reset()} class="h-full place-content-center place-items-center">
 		<Transition>
 			<p bind:this={text} class="text-8xl font-bold drop-shadow-sm">🪄 Animotion</p>
 		</Transition>
