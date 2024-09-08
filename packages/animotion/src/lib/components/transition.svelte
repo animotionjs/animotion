@@ -34,7 +34,17 @@
 		document.startViewTransition(fn)
 	}
 
+	function shouldTransition() {
+		document.querySelectorAll('.fragment').forEach((fragment) => {
+			if (!fragment.classList.contains('visible')) {
+				fragment.classList.add('hidden')
+			}
+		})
+	}
+
 	function enterTransition() {
+		shouldTransition()
+
 		viewTransition(() => {
 			props?.do?.() ?? noop()
 			el.classList.add(enter)
@@ -68,7 +78,6 @@
 <div
 	bind:this={el}
 	class:fragment={!visible}
-	class:hidden={!visible}
 	class={props.class}
 	data-fragment-index={order}
 	style:view-transition-name={viewTransitionName}
