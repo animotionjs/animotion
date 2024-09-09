@@ -135,11 +135,51 @@
 				items = [1, 2, 3, 4]
 			}}
 		/>
-		<Transition focused={() => (items = [4, 3, 2, 1])} />
-		<Transition focused={() => (items = [2, 1, 4, 3])} />
-		<Transition focused={() => (items = [4, 3, 2, 1])} />
-		<Transition focused={() => (items = [1, 2, 3, 4])} />
-		<Transition focused={() => (layout = 'flex gap-4')} />
+		<Transition
+			do={() => {
+				console.log('do')
+			}}
+			undo={() => {
+				console.log('undo')
+			}}
+			focused={() => (items = [4, 3, 2, 1])}
+		/>
+		<Transition
+			do={() => {
+				console.log('do')
+			}}
+			undo={() => {
+				console.log('undo')
+			}}
+			focused={() => (items = [2, 1, 4, 3])}
+		/>
+		<Transition
+			do={() => {
+				console.log('do')
+			}}
+			undo={() => {
+				console.log('undo')
+			}}
+			focused={() => (items = [4, 3, 2, 1])}
+		/>
+		<Transition
+			do={() => {
+				console.log('do')
+			}}
+			undo={() => {
+				console.log('undo')
+			}}
+			focused={() => (items = [1, 2, 3, 4])}
+		/>
+		<Transition
+			do={() => {
+				console.log('do')
+			}}
+			undo={() => {
+				console.log('undo')
+			}}
+			focused={() => (layout = 'flex gap-4')}
+		/>
 	</Slide>
 
 	<Slide class="h-full place-content-center place-items-center">

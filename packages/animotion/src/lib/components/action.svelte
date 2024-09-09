@@ -17,7 +17,6 @@
 		el.addEventListener('in', action)
 		el.addEventListener('out', undo)
 		el.addEventListener('current', () => {
-			console.log("current")
 			props?.focused?.() ?? noop()
 		})
 		return () => {

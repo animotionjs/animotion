@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
+	import { tick, type Snippet } from 'svelte'
 	import 'reveal.js/dist/reveal.css'
 
 	type Options = {
@@ -67,27 +67,30 @@
 		const outEvent = new CustomEvent('out')
 		const currentEvent = new CustomEvent('current')
 
+		const dispatchFocused = async () => {
+			await tick()
+			let currentFragmentEl = document.querySelector('.current-fragment')
+			if (currentFragmentEl) {
+				currentFragmentEl.dispatchEvent(currentEvent)
+			}
+		}
+
+		deck.on('slidetransitionend', (event) => {
+			dispatchFocused()
+		})
+
 		// keep track of current slide
 		deck.on('slidechanged', (event) => {
 			if ('currentSlide' in event) {
-				console.log(event)
 				const currentSlideEl = event.currentSlide as HTMLElement
 				currentSlideEl?.dispatchEvent(inEvent)
-				let currentFragmentEl
-				for (let index = 0; index < currentSlideEl.children.length; index++) {
-					const child = currentSlideEl.children[index]
-					console.log(child.classList.contains('fragment'))
-					currentFragmentEl = child
-				}
-				if (currentFragmentEl) {
-					currentFragmentEl?.dispatchEvent(currentEvent)
-				}
 			}
 
 			if ('previousSlide' in event) {
 				const currentPreviousEl = event.previousSlide as HTMLElement
 				currentPreviousEl?.dispatchEvent(outEvent)
 			}
+			dispatchFocused()
 		})
 
 		deck.on('fragmentshown', (event) => {
@@ -106,6 +109,7 @@
 				}
 
 				el?.dispatchEvent(eventType)
+				dispatchFocused()
 			}
 		})
 
@@ -113,14 +117,7 @@
 			if ('fragment' in event) {
 				const fragmentEl = event.fragment as HTMLElement
 				fragmentEl?.dispatchEvent(outEvent)
-			}
-		})
-
-		deck.on('fragmentcurrent', (event) => {
-			console.log('current')
-			if ('fragment' in event) {
-				const fragmentEl = event.fragment
-				fragmentEl?.dispatchEvent(currentEvent)
+				dispatchFocused()
 			}
 		})
 
