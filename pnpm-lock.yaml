@@ -23,8 +23,8 @@ importers:
         specifier: 4.0.0-alpha.15
         version: 4.0.0-alpha.15(vite@5.3.2(lightningcss@1.25.1))
       reveal.js:
-        specifier: ^5.1.0
-        version: 5.1.0
+        specifier: github:williamviktorsson/reveal.js
+        version: https://codeload.github.com/williamviktorsson/reveal.js/tar.gz/477c90d4dbc3d87896017ef650c3cd37593c680f
       shiki:
         specifier: ^1.10.0
         version: 1.10.0
@@ -2200,6 +2200,11 @@ packages:
 
   reveal.js@5.1.0:
     resolution: {integrity: sha512-KDt7m0+xwKV6nAZt4CNPVFBf42sTKRQapg0bGGKB5PKO5XvChnMfwlZkybydHiQJ7p5+6LbHKRGrhXODdoNIaA==}
+    engines: {node: '>=18.0.0'}
+
+  reveal.js@https://codeload.github.com/williamviktorsson/reveal.js/tar.gz/477c90d4dbc3d87896017ef650c3cd37593c680f:
+    resolution: {tarball: https://codeload.github.com/williamviktorsson/reveal.js/tar.gz/477c90d4dbc3d87896017ef650c3cd37593c680f}
+    version: 5.1.0
     engines: {node: '>=18.0.0'}
 
   rimraf@2.7.1:
@@ -4736,6 +4741,8 @@ snapshots:
   reusify@1.0.4: {}
 
   reveal.js@5.1.0: {}
+
+  reveal.js@https://codeload.github.com/williamviktorsson/reveal.js/tar.gz/477c90d4dbc3d87896017ef650c3cd37593c680f: {}
 
   rimraf@2.7.1:
     dependencies:

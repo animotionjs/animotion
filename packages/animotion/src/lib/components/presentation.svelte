@@ -65,6 +65,7 @@
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
 		const outEvent = new CustomEvent('out')
+		const currentEvent = new CustomEvent("current");
 
 		// keep track of current slide
 		deck.on('slidechanged', (event) => {
@@ -102,6 +103,14 @@
 			if ('fragment' in event) {
 				const fragmentEl = event.fragment as HTMLElement
 				fragmentEl?.dispatchEvent(outEvent)
+			}
+		})
+
+		deck.on('fragmentcurrent', (event) => {
+			console.log(event)
+			if ('fragment' in event) {
+				const fragmentEl = event.fragment
+				fragmentEl?.dispatchEvent(currentEvent)
 			}
 		})
 
