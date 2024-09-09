@@ -135,10 +135,30 @@
 				items = [1, 2, 3, 4]
 			}}
 		/>
-		<Transition focused={() => (items = [4, 3, 2, 1])} />
-		<Transition focused={() => (items = [2, 1, 4, 3])} />
-		<Transition focused={() => (items = [4, 3, 2, 1])} />
-		<Transition focused={() => (items = [1, 2, 3, 4])} />
+		<Transition
+			focused={() => {
+				layout = 'grid grid-cols-2 grid-rows-2 gap-4'
+				items = [4, 3, 2, 1]
+			}}
+		/>
+		<Transition
+			focused={() => {
+				layout = 'grid grid-cols-2 grid-rows-2 gap-4'
+				items = [2, 1, 4, 3]
+			}}
+		/>
+		<Transition
+			focused={() => {
+				layout = 'grid grid-cols-2 grid-rows-2 gap-4'
+				items = [4, 3, 2, 1]
+			}}
+		/>
+		<Transition
+			focused={() => {
+				layout = 'grid grid-cols-2 grid-rows-2 gap-4'
+				items = [1, 2, 3, 4]
+			}}
+		/>
 		<Transition focused={() => (layout = 'flex gap-4')} />
 	</Slide>
 
