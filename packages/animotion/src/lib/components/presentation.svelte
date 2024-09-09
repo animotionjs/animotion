@@ -65,13 +65,23 @@
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
 		const outEvent = new CustomEvent('out')
-		const currentEvent = new CustomEvent("current");
+		const currentEvent = new CustomEvent('current')
 
 		// keep track of current slide
 		deck.on('slidechanged', (event) => {
 			if ('currentSlide' in event) {
+				console.log(event)
 				const currentSlideEl = event.currentSlide as HTMLElement
 				currentSlideEl?.dispatchEvent(inEvent)
+				let currentFragmentEl
+				for (let index = 0; index < currentSlideEl.children.length; index++) {
+					const child = currentSlideEl.children[index]
+					console.log(child.classList.contains('fragment'))
+					currentFragmentEl = child
+				}
+				if (currentFragmentEl) {
+					currentFragmentEl?.dispatchEvent(currentEvent)
+				}
 			}
 
 			if ('previousSlide' in event) {
@@ -107,7 +117,7 @@
 		})
 
 		deck.on('fragmentcurrent', (event) => {
-			console.log(event)
+			console.log('current')
 			if ('fragment' in event) {
 				const fragmentEl = event.fragment
 				fragmentEl?.dispatchEvent(currentEvent)

@@ -11,25 +11,46 @@
 
 <Presentation options={{ history: true, transition: 'slide', controls: true, progress: true }}>
 	<Slide out={() => circle.reset()} class="h-full place-content-center place-items-center">
-		<Transition>
+		<Transition
+			focused={async () => {
+				await code.update``
+			}}
+		>
 			<p bind:this={text} class="text-8xl font-bold drop-shadow-sm">🪄 Animotion</p>
 		</Transition>
 
-		<Transition do={() => text.classList.replace('text-8xl', 'text-6xl')} class="mt-16">
+		<Transition
+			focused={async () => {
+				text.classList.replace('text-8xl', 'text-6xl')
+				await code.update`
+					async function animate() {
+						// ...
+					}
+				`
+				await circle.to({ x: 0, fill: '#00ffff' })
+			}}
+			class="mt-16"
+		>
 			<Code
 				bind:this={code}
 				lang="ts"
 				theme="poimandres"
-				code={`
-					async function animate() {
-						// ...
-					}
-				`}
+				code={``}
 				options={{ duration: 600, stagger: 0.3, containerStyle: false }}
 			/>
 		</Transition>
 
-		<Transition class="mt-16">
+		<Transition
+			focused={async () => {
+				await code.update`
+					async function animate() {
+						// ...
+					}
+				`
+				await circle.to({ x: 0, fill: '#00ffff' })
+			}}
+			class="mt-16"
+		>
 			<svg width="560" height={circle.r * 2} viewBox="-80 0 560 {circle.r * 2}">
 				<circle cx={circle.x} cy={circle.y} r={circle.r} fill={circle.fill} />
 				<text
@@ -46,7 +67,7 @@
 		</Transition>
 
 		<Action
-			do={async () => {
+			focused={async () => {
 				await code.update`
 					async function animate() {
 						await circle.to({ x: 400, fill: '#ffff00' })
@@ -58,7 +79,7 @@
 		/>
 
 		<Action
-			do={async () => {
+			focused={async () => {
 				await code.update`
 					async function animate() {
 						await circle.to({ x: 400, fill: '#ffff00' })
@@ -69,8 +90,18 @@
 				await circle.to({ x: 0, fill: '#00ffff' })
 			}}
 		/>
-
-		<Action do={() => code.selectLines`*`} />
+		<Action
+			focused={async () => {
+				await code.selectLines`*`
+				await code.update`
+					async function animate() {
+						await circle.to({ x: 400, fill: '#ffff00' })
+						await circle.to({ x: 0, fill: '#00ffff' })
+					}
+				`
+				await circle.to({ x: 0, fill: '#00ffff' })
+			}}
+		/>
 	</Slide>
 
 	<Slide class="h-full place-content-center place-items-center">
@@ -78,7 +109,13 @@
 			<p class="text-6xl font-bold drop-shadow-sm">🪄 Layout Animations</p>
 		</Transition>
 
-		<Transition class="mt-16">
+		<Transition
+			focused={() => {
+				items = [1, 2, 3, 4]
+				layout = 'flex gap-4'
+			}}
+			class="mt-16"
+		>
 			<div class={layout}>
 				{#each items as item (item)}
 					<Transition
@@ -92,12 +129,17 @@
 			</div>
 		</Transition>
 
-		<Transition do={() => (layout = 'grid grid-cols-2 grid-rows-2 gap-4')} />
-		<Transition do={() => (items = [4, 3, 2, 1])} />
-		<Transition do={() => (items = [2, 1, 4, 3])} />
-		<Transition do={() => (items = [4, 3, 2, 1])} />
-		<Transition do={() => (items = [1, 2, 3, 4])} />
-		<Transition do={() => (layout = 'flex gap-4')} />
+		<Transition
+			focused={() => {
+				layout = 'grid grid-cols-2 grid-rows-2 gap-4'
+				items = [1, 2, 3, 4]
+			}}
+		/>
+		<Transition focused={() => (items = [4, 3, 2, 1])} />
+		<Transition focused={() => (items = [2, 1, 4, 3])} />
+		<Transition focused={() => (items = [4, 3, 2, 1])} />
+		<Transition focused={() => (items = [1, 2, 3, 4])} />
+		<Transition focused={() => (layout = 'flex gap-4')} />
 	</Slide>
 
 	<Slide class="h-full place-content-center place-items-center">

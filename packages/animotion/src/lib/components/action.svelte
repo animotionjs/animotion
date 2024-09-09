@@ -3,6 +3,7 @@
 		order?: number
 		do?: () => void
 		undo?: () => void
+		focused?: () => void
 	}
 
 	let { order, ...props }: ActionProps = $props()
@@ -15,7 +16,10 @@
 	$effect(() => {
 		el.addEventListener('in', action)
 		el.addEventListener('out', undo)
-
+		el.addEventListener('current', () => {
+			console.log("current")
+			props?.focused?.() ?? noop()
+		})
 		return () => {
 			el.removeEventListener('in', action)
 			el.removeEventListener('out', undo)

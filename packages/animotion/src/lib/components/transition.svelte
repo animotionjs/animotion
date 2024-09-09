@@ -5,6 +5,7 @@
 		children?: Snippet
 		do?: () => void
 		undo?: () => void
+		focused?: () => void
 		class?: string
 		order?: number
 		name?: string
@@ -53,6 +54,12 @@
 		})
 	}
 
+	function focusedTransition() {
+		viewTransition(() => {
+			props?.focused?.() ?? noop()
+		})
+	}
+
 	function leaveTransition() {
 		viewTransition(() => {
 			props?.undo?.() ?? noop()
@@ -69,6 +76,7 @@
 
 		el.addEventListener('in', enterTransition)
 		el.addEventListener('out', leaveTransition)
+		el.addEventListener('current', focusedTransition)
 
 		return () => {
 			el.removeEventListener('in', enterTransition)
