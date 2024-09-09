@@ -41,14 +41,3 @@ You can use the `<Action>` component to step through the presentation, and run c
 	</Slide>
 </Presentation>
 ```
-
-## Undo
-
-You can pass an optional `undo` prop with a callback to the `<Action>` component that runs when you go back a step if you need to revert to a previous state:
-
-```svelte
-<Action
-	do={() => /* ... */}
-	undo={() => /* ... */}
-/>
-```

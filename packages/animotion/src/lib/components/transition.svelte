@@ -4,7 +4,6 @@
 	type TransitionProps = {
 		children?: Snippet
 		do?: () => void
-		undo?: () => void
 		class?: string
 		order?: number
 		name?: string
@@ -48,6 +47,7 @@
 
 		viewTransition(() => {
 			props?.do?.() ?? noop()
+			el.classList.remove(enter)
 			el.classList.add(enter)
 			el.classList.remove('hidden')
 		})
@@ -55,9 +55,7 @@
 
 	function leaveTransition() {
 		viewTransition(() => {
-			props?.undo?.() ?? noop()
 			el.classList.remove(enter)
-			el.classList.add('hidden')
 		})
 	}
 
@@ -67,11 +65,11 @@
 			return
 		}
 
-		el.addEventListener('in', enterTransition)
+		el.addEventListener('current', enterTransition)
 		el.addEventListener('out', leaveTransition)
 
 		return () => {
-			el.removeEventListener('in', enterTransition)
+			el.addEventListener('current', enterTransition)
 			el.removeEventListener('out', leaveTransition)
 		}
 	})
