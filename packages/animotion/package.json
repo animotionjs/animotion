@@ -69,7 +69,7 @@
 		"@fontsource-variable/jetbrains-mono": "^5.0.23",
 		"@fontsource-variable/manrope": "^5.0.21",
 		"@tailwindcss/vite": "4.0.0-alpha.15",
-		"reveal.js": "github:williamviktorsson/reveal.js",
+		"reveal.js": "5.1.0",
 		"shiki": "^1.16.2",
 		"shiki-magic-move": "^0.4.4",
 		"tailwindcss": "4.0.0-alpha.15"
