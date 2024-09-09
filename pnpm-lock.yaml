@@ -105,8 +105,8 @@ importers:
   packages/docs:
     dependencies:
       '@animotion/core':
-        specifier: ^1.0.14
-        version: 1.0.14(svelte@5.0.0-next.167)(vite@5.3.2(lightningcss@1.26.0))
+        specifier: ^1.0.15
+        version: 1.0.15(svelte@5.0.0-next.167)(vite@5.3.2(lightningcss@1.26.0))
       '@animotion/motion':
         specifier: ^0.0.9
         version: 0.0.9(svelte@5.0.0-next.167)
@@ -211,8 +211,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@animotion/core@1.0.14':
-    resolution: {integrity: sha512-XCgoHHQeMgzWR8De4fWdVSIisO8U5Zsp98WmHok+rRcSJoeUGc3GPJVSpxghNOa/ke2zF63jBSbL0xYrM3TGcQ==}
+  '@animotion/core@1.0.15':
+    resolution: {integrity: sha512-3fZFAwC7g8in53eU5zX0ouxEM3p1Sj57Lwzt72WHoFa45wbY88tr96/SoT+OuLXM0QV+UcGWTpMD4LyZZ0zCBQ==}
     peerDependencies:
       svelte: 5.0.0-next.167
 
@@ -2862,15 +2862,15 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@animotion/core@1.0.14(svelte@5.0.0-next.167)(vite@5.3.2(lightningcss@1.26.0))':
+  '@animotion/core@1.0.15(svelte@5.0.0-next.167)(vite@5.3.2(lightningcss@1.26.0))':
     dependencies:
       '@animotion/motion': 0.0.9(svelte@5.0.0-next.167)
-      '@fontsource-variable/jetbrains-mono': 5.0.21
-      '@fontsource-variable/manrope': 5.0.20
+      '@fontsource-variable/jetbrains-mono': 5.0.23
+      '@fontsource-variable/manrope': 5.0.21
       '@tailwindcss/vite': 4.0.0-alpha.15(vite@5.3.2(lightningcss@1.26.0))
       reveal.js: 5.1.0
-      shiki: 1.10.0
-      shiki-magic-move: 0.4.4(shiki@1.10.0)(svelte@5.0.0-next.167)
+      shiki: 1.16.2
+      shiki-magic-move: 0.4.4(shiki@1.16.2)(svelte@5.0.0-next.167)
       svelte: 5.0.0-next.167
       tailwindcss: 4.0.0-alpha.15
     transitivePeerDependencies:
@@ -5383,14 +5383,6 @@ snapshots:
       shebang-regex: 3.0.0
 
   shebang-regex@3.0.0: {}
-
-  shiki-magic-move@0.4.4(shiki@1.10.0)(svelte@5.0.0-next.167):
-    dependencies:
-      diff-match-patch-es: 0.1.0
-      ohash: 1.1.3
-    optionalDependencies:
-      shiki: 1.10.0
-      svelte: 5.0.0-next.167
 
   shiki-magic-move@0.4.4(shiki@1.16.2)(svelte@5.0.0-next.167):
     dependencies:
