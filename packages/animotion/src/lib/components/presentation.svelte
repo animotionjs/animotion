@@ -67,17 +67,15 @@
 		const outEvent = new CustomEvent('out')
 		const currentEvent = new CustomEvent('current')
 
-		const dispatchFocused = async () => {
+		// dispatch event for current active fragment
+		// so `do` works in both directions
+		async function dispatchFocused() {
 			await tick()
 			let currentFragmentEl = document.querySelector('.current-fragment')
 			if (currentFragmentEl) {
 				currentFragmentEl.dispatchEvent(currentEvent)
 			}
 		}
-
-		deck.on('slidetransitionend', (event) => {
-			dispatchFocused()
-		})
 
 		// keep track of current slide
 		deck.on('slidechanged', (event) => {
@@ -90,6 +88,11 @@
 				const currentPreviousEl = event.previousSlide as HTMLElement
 				currentPreviousEl?.dispatchEvent(outEvent)
 			}
+
+			dispatchFocused()
+		})
+
+		deck.on('slidetransitionend', (event) => {
 			dispatchFocused()
 		})
 
