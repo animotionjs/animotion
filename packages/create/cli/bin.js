@@ -5,7 +5,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import util from 'node:util'
 import { fileURLToPath } from 'node:url'
-import { cancel, confirm, intro, isCancel, outro, spinner, text } from '@clack/prompts'
+import { cancel, confirm, intro, isCancel, outro, spinner, text, select } from '@clack/prompts'
 
 const execSync = util.promisify(exec)
 
@@ -51,6 +51,26 @@ async function main() {
 			}
 		}
 	}
+	// select the template
+	const template = await select({
+		message: 'Which template you would like to use?',
+		options: [
+			{
+				value: 'default',
+				label: 'Default',
+			},
+			{
+				value: 'file-based',
+				label: 'File based slides',
+				hint: 'Each slide is a new index.svelte file in a ./slides/[num]/ folder',
+			},
+		],
+	})
+
+	if (isCancel(template)) {
+		cancel('Operation cancelled.')
+		return process.exit(0)
+	}
 
 	// ask to install dependencies
 	const dependencies = await confirm({
@@ -64,6 +84,10 @@ async function main() {
 
 	// copy the template
 	await copy('../template', cwd)
+
+	if (template !== 'default') {
+		await copy(`../${template}`, cwd)
+	}
 
 	// npm ignores `.gitignore` so rename it
 	fs.renameSync(
