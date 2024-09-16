@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Presentation, Slide, Code, Transition, Action } from '$lib/index.js'
+	import { Presentation, Slide, Code, Transition, Action, Recorder } from '$lib/index.js'
 	import { tween } from '@animotion/motion'
 
 	let text: HTMLParagraphElement
@@ -8,6 +8,8 @@
 	let items = $state([1, 2, 3, 4])
 	let layout = $state('flex gap-4')
 </script>
+
+<Recorder />
 
 <Presentation options={{ history: true, transition: 'slide', controls: false, progress: true }}>
 	<Slide class="h-full place-content-center place-items-center">
