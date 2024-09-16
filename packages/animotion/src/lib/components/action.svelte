@@ -2,7 +2,6 @@
 	type ActionProps = {
 		order?: number
 		do?: () => void
-		focused?: () => void
 	}
 
 	let { order, ...props }: ActionProps = $props()
