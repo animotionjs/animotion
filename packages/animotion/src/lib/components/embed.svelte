@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Snippet } from 'svelte'
+	import { tick, type Snippet } from 'svelte'
 	import type Reveal from 'reveal.js'
 
 	import 'reveal.js/dist/reveal.css'
@@ -35,6 +35,17 @@
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
 		const outEvent = new CustomEvent('out')
+		const currentEvent = new CustomEvent('current')
+
+		// dispatch event for current active fragment
+		// so `do` works in both directions
+		async function dispatchFocused() {
+			await tick()
+			let currentFragmentEl = document.querySelector('.current-fragment')
+			if (currentFragmentEl) {
+				currentFragmentEl.dispatchEvent(currentEvent)
+			}
+		}
 
 		// keep track of current slide
 		deck.on('slidechanged', (event) => {
@@ -47,6 +58,12 @@
 				const currentPreviousEl = event.previousSlide as HTMLElement
 				currentPreviousEl?.dispatchEvent(outEvent)
 			}
+
+			dispatchFocused()
+		})
+
+		deck.on('slidetransitionend', (event) => {
+			dispatchFocused()
 		})
 
 		deck.on('fragmentshown', (event) => {
@@ -65,6 +82,7 @@
 				}
 
 				el?.dispatchEvent(eventType)
+				dispatchFocused()
 			}
 		})
 
@@ -72,6 +90,7 @@
 			if ('fragment' in event) {
 				const fragmentEl = event.fragment as HTMLElement
 				fragmentEl?.dispatchEvent(outEvent)
+				dispatchFocused()
 			}
 		})
 
