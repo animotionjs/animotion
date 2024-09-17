@@ -1,13 +1,9 @@
 <script lang="ts">
 	import { Embed as Presentation, Slide, Action } from '@animotion/core'
-	import { tween } from '@animotion/motion'
+	import { tween, all } from '@animotion/motion'
 
 	let circle = tween({ x: 0, y: 100, r: 80, fill: '#00ffff' })
 	let text = tween({ count: 0 })
-
-	async function all(...tweens: Promise<void>[]) {
-		return Promise.all([...tweens])
-	}
 
 	async function animate() {
 		await all(circle.to({ x: 600, fill: '#ffff00' }), text.to({ count: 600 }))

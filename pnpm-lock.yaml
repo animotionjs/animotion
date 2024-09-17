@@ -11,8 +11,8 @@ importers:
   packages/animotion:
     dependencies:
       '@animotion/motion':
-        specifier: ^0.0.9
-        version: 0.0.9(svelte@5.0.0-next.167)
+        specifier: ^1.0.1
+        version: 1.0.1(svelte@5.0.0-next.167)
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.0.23
         version: 5.0.23
@@ -108,8 +108,8 @@ importers:
         specifier: ^1.0.17
         version: 1.0.17(svelte@5.0.0-next.167)(vite@5.3.2(lightningcss@1.26.0))
       '@animotion/motion':
-        specifier: ^1.0.0
-        version: 1.0.0(svelte@5.0.0-next.167)
+        specifier: ^1.0.1
+        version: 1.0.1(svelte@5.0.0-next.167)
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.0.21
         version: 5.0.21
@@ -221,8 +221,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  '@animotion/motion@1.0.0':
-    resolution: {integrity: sha512-Z9kjxFtjoa2A0Guq/uh+AG2vaBniXEBc+uu/10qE5iXlM7pI1h38NtZdQoeouK7j5T38bfRZOLM8qaBqpiSYgA==}
+  '@animotion/motion@1.0.1':
+    resolution: {integrity: sha512-tYKOKm0Mj9I6fyyBdajbNJKzNa4VqycgK7cyWC7P/YaX/PyvO2N33hGjz6zYWovzTy44t7OLyCTy66lytoJvRg==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -2888,7 +2888,7 @@ snapshots:
       d3-interpolate: 3.0.1
       svelte: 5.0.0-next.167
 
-  '@animotion/motion@1.0.0(svelte@5.0.0-next.167)':
+  '@animotion/motion@1.0.1(svelte@5.0.0-next.167)':
     dependencies:
       d3-interpolate: 3.0.1
       svelte: 5.0.0-next.167

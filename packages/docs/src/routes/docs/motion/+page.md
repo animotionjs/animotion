@@ -70,10 +70,10 @@ You can animate any value, including CSS properties using the `style` attribute,
 
 <Presentation>
   <Slide>
-    <!-- Using the style attribute -->
+    <!-- using the style attribute -->
     <p style="scale: {text.value}">Motion</p>
 
-    <!-- Svelte directive -->
+    <!-- using the Svelte directive -->
     <p style:scale={text.value}>Motion</p>
 
     <Action do={animate} />
@@ -123,7 +123,7 @@ You can `tween` a single value, objects, arrays, and override the default animat
 
 <All />
 
-If you want to combine and play animations at the same time without having to think about where to put `await` you can write a simple `all` function:
+If you want to play multiple animations at the same time without having to think about where to put the `await` keyword you can combine them using the `all` helper method:
 
 ```svelte
 <script>
@@ -132,10 +132,6 @@ If you want to combine and play animations at the same time without having to th
 
 	let circle = tween({ x: 0, y: 100, r: 100, fill: '#00ffff' })
 	let text = tween({ count: 0 })
-
-	async function all(...tweens: Promise<void>[]) {
-		return Promise.all([...tweens])
-	}
 
 	async function animate() {
 		await all(
