@@ -28,6 +28,7 @@
 			display: 'grid',
 			disableLayout: true,
 			plugins: [Highlight, Math.KaTeX, Notes],
+			keyboardCondition: 'focused',
 			embedded: true,
 			...options
 		})
@@ -39,9 +40,10 @@
 
 		// dispatch event for current active fragment
 		// so `do` works in both directions
-		async function dispatchFocused() {
+		async function dispatchFocused(event: Event) {
 			await tick()
-			let currentFragmentEl = document.querySelector('.current-fragment')
+			const currentEmbedEl = event.target as HTMLElement
+			const currentFragmentEl = currentEmbedEl.querySelector('.current-fragment')
 			if (currentFragmentEl) {
 				currentFragmentEl.dispatchEvent(currentEvent)
 			}
@@ -59,11 +61,11 @@
 				currentPreviousEl?.dispatchEvent(outEvent)
 			}
 
-			dispatchFocused()
+			dispatchFocused(event)
 		})
 
 		deck.on('slidetransitionend', (event) => {
-			dispatchFocused()
+			dispatchFocused(event)
 		})
 
 		deck.on('fragmentshown', (event) => {
@@ -82,7 +84,7 @@
 				}
 
 				el?.dispatchEvent(eventType)
-				dispatchFocused()
+				dispatchFocused(event)
 			}
 		})
 
@@ -90,7 +92,7 @@
 			if ('fragment' in event) {
 				const fragmentEl = event.fragment as HTMLElement
 				fragmentEl?.dispatchEvent(outEvent)
-				dispatchFocused()
+				dispatchFocused(event)
 			}
 		})
 
