@@ -35,7 +35,8 @@
 	}
 
 	function shouldTransition() {
-		document.querySelectorAll('.fragment').forEach((fragment) => {
+		const currentSlide = el.closest('section')!
+		currentSlide.querySelectorAll('.fragment').forEach((fragment) => {
 			if (!fragment.classList.contains('visible')) {
 				fragment.classList.add('hidden')
 			}
