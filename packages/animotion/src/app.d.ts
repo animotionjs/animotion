@@ -14,6 +14,14 @@ declare global {
 	interface CSSStyleDeclaration {
 		viewTransitionName?: string
 	}
+
+	interface DisplayMediaStreamOptions {
+		preferCurrentTab?: boolean
+	}
+
+	interface MediaStream {
+		oninactive?: () => void
+	}
 }
 
 export {}

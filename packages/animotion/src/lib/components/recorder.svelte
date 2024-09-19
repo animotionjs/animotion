@@ -1,13 +1,15 @@
 <script lang="ts">
 	type Props = {
-		fps?: number
-		videoBitsPerSecond?: number
-		audio?: boolean
+		options?: {
+			frameRate?: number
+			audioBitsPerSecond?: number
+			videoBitsPerSecond?: number
+			audio?: boolean
+		}
 	}
 	type State = 'ready' | 'ready.countdown' | 'recording'
 
 	let props: Props = $props()
-
 	let recorder: State = $state('ready')
 	let mediaRecorder: MediaRecorder
 	let mediaStream: MediaStream
@@ -15,29 +17,38 @@
 	let timer: number
 	let seconds = $state(3)
 
-	const video = {
-		output: 'video.mp4',
-		mimeType: 'video/mp4',
-		fps: 60,
+	const options = {
+		mimeType: 'video/mp4;codecs="avc1.4d002a"',
+		frameRate: 60,
+		audioBitsPerSecond: 2_500_000,
 		videoBitsPerSecond: 2_500_000,
 		audio: true,
-		...props
+		...props.options
 	}
 
-	async function countdown() {
-		recorder = 'ready.countdown'
+	async function startRecording() {
+		try {
+			mediaStream = await navigator.mediaDevices.getDisplayMedia({
+				video: { frameRate: options.frameRate },
+				audio: options.audio,
+				preferCurrentTab: true
+			})
+			mediaStream.oninactive = stopRecording
 
-		let { promise, resolve } = Promise.withResolvers()
+			await countdown()
 
-		timer = setInterval(() => {
-			seconds--
-			if (seconds === 0) {
-				clearInterval(timer)
-				resolve(seconds)
-			}
-		}, 1000)
-
-		return promise
+			mediaRecorder = new MediaRecorder(mediaStream, {
+				mimeType: options.mimeType,
+				videoBitsPerSecond: options.videoBitsPerSecond,
+				audioBitsPerSecond: options.audioBitsPerSecond
+			})
+			mediaRecorder.ondataavailable = (e) => chunks.push(e.data)
+			mediaRecorder.onstop = download
+			recorder = 'recording'
+			mediaRecorder.start()
+		} catch (e) {
+			console.error(`Error: ${e}`)
+		}
 	}
 
 	function stopRecording() {
@@ -48,62 +59,35 @@
 		seconds = 3
 	}
 
-	async function startRecording() {
-		if (!mediaStream) return
-		recorder = 'recording'
-		mediaRecorder = new MediaRecorder(mediaStream, {
-			mimeType: video.mimeType,
-			videoBitsPerSecond: video.videoBitsPerSecond
-		})
-		mediaRecorder.ondataavailable = (e) => chunks.push(e.data)
-		mediaRecorder.onstop = () => {
-			download(chunks)
-			chunks = []
-		}
-		mediaRecorder.start()
+	async function countdown() {
+		recorder = 'ready.countdown'
+		let { promise, resolve } = Promise.withResolvers()
+		timer = setInterval(() => {
+			if (seconds === 0) {
+				clearInterval(timer)
+				resolve(seconds)
+			}
+			seconds--
+		}, 1000)
+		return promise
 	}
 
-	async function prepareRecording() {
-		try {
-			mediaStream = await navigator.mediaDevices.getDisplayMedia({
-				video: { frameRate: video.fps },
-				audio: video.audio,
-				// @ts-ignore
-				preferCurrentTab: true
-			})
-			// @ts-ignore
-			mediaStream.oninactive = stopRecording
-			await countdown()
-			startRecording()
-		} catch (e) {
-			console.error(`Error: ${e}`)
-		}
-	}
-
-	function download(chunks: Blob[]) {
-		const blob = new Blob(chunks, { type: video.mimeType })
+	function download() {
+		const blob = new Blob(chunks, { type: options.mimeType })
 		const a = document.createElement('a')
 		a.href = URL.createObjectURL(blob)
-		a.download = video.output
+		a.download = `video.mp4`
 		a.click()
+		chunks = []
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
-		event.key === 'R' && recorder === 'ready' && prepareRecording()
-		event.key === 'S' && recorder !== 'ready' && stopRecording()
-
-		// switch (event.key) {
-		// 	case 'R':
-		// 		if (recorder === 'ready') {
-		// 			prepareRecording()
-		// 		}
-		// 		break
-		// 	case 'S':
-		// 		if (recorder !== 'ready') {
-		// 			stopRecording()
-		// 		}
-		// 		break
-		// }
+		switch (event.key) {
+			case 'R':
+				recorder === 'ready' && startRecording()
+			case 'S':
+				recorder !== 'ready' && stopRecording()
+		}
 	}
 </script>
 
@@ -111,7 +95,7 @@
 
 {#if recorder.includes('ready')}
 	<div class="recorder" data-state={recorder}>
-		<button onclick={prepareRecording} class="record">
+		<button onclick={startRecording} class="record">
 			<div class="circle">
 				{#if recorder === 'ready.countdown'}
 					{seconds}
@@ -135,9 +119,9 @@
 
 <style>
 	.recorder {
-		--txt-clr: hsl(0 0%, 98%);
-		--circle-bg-clr: hsl(0 100% 60%);
-		--circle-border-clr: hsl(0 0% 98%);
+		--txt-clr: oklch(98% 0% 0);
+		--circle-bg-clr: oklch(64% 100% 26);
+		--circle-border-clr: oklch(98% 0% 0);
 
 		position: fixed;
 		left: 50%;
@@ -150,8 +134,8 @@
 
 		&[data-state='ready.countdown'] {
 			& .circle {
-				--txt-clr: hsl(0 0% 10%);
-				--circle-bg-clr: hsl(0 0% 98%);
+				--txt-clr: oklch(10% 0% 0);
+				--circle-bg-clr: oklch(98% 0% 0);
 			}
 		}
 
@@ -177,10 +161,6 @@
 				background: var(--circle-bg-clr);
 				border-radius: 50%;
 				transition: background-color 0.6s;
-
-				&:hover {
-					--circle-bg-clr: hsl(0 100% 64%);
-				}
 			}
 		}
 
