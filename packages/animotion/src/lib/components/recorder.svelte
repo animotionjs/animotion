@@ -1,65 +1,86 @@
 <script lang="ts">
 	type Props = {
-		options?: {
-			frameRate?: number
-			audioBitsPerSecond?: number
-			videoBitsPerSecond?: number
-			audio?: boolean
-		}
+		codec?: string
+		fps?: number
+		videoBitrate?: number
+		audioBitrate?: number
+		systemAudio?: boolean
+		useMicrophone?: boolean
+		useTimer?: boolean
 	}
 	type State = 'ready' | 'ready.countdown' | 'recording'
 
-	let props: Props = $props()
+	let {
+		codec = 'video/mp4;codecs="vp9,opus"',
+		fps = 60,
+		videoBitrate = 2000,
+		audioBitrate = 320,
+		systemAudio = true,
+		useMicrophone = true,
+		useTimer = true
+	}: Props = $props()
+
 	let recorder: State = $state('ready')
+	let videoStream: MediaStream
+	let audioStream: MediaStream
 	let mediaRecorder: MediaRecorder
-	let mediaStream: MediaStream
 	let chunks: Blob[] = []
 	let timer: number
 	let seconds = $state(3)
 
-	const options = {
-		mimeType: 'video/mp4;codecs="avc1.4d002a"',
-		frameRate: 60,
-		audioBitsPerSecond: 2_500_000,
-		videoBitsPerSecond: 2_500_000,
-		audio: true,
-		...props.options
+	function kbpsToBits(kbps: number) {
+		return kbps * 1000
+	}
+
+	$effect(() => {
+		getMediaStream()
+	})
+
+	async function getMediaStream() {
+		try {
+			videoStream = await navigator.mediaDevices.getDisplayMedia({
+				video: { frameRate: fps },
+				audio: true,
+				selfBrowserSurface: 'include',
+				systemAudio: systemAudio ? 'include' : 'exclude'
+			})
+			videoStream.oninactive = stopRecording
+			audioStream = await navigator.mediaDevices.getUserMedia({
+				audio: true
+			})
+			const [microphone] = audioStream.getAudioTracks()
+			videoStream.addTrack(microphone)
+			audioStream.oninactive = stopRecording
+		} catch (e) {
+			console.error(e)
+		}
 	}
 
 	async function startRecording() {
-		try {
-			mediaStream = await navigator.mediaDevices.getDisplayMedia({
-				video: { frameRate: options.frameRate },
-				audio: options.audio,
-				preferCurrentTab: true
-			})
-			mediaStream.oninactive = stopRecording
-
+		if (useTimer) {
 			await countdown()
-
-			mediaRecorder = new MediaRecorder(mediaStream, {
-				mimeType: options.mimeType,
-				videoBitsPerSecond: options.videoBitsPerSecond,
-				audioBitsPerSecond: options.audioBitsPerSecond
-			})
-			mediaRecorder.ondataavailable = (e) => chunks.push(e.data)
-			mediaRecorder.onstop = download
-			recorder = 'recording'
-			mediaRecorder.start()
-		} catch (e) {
-			console.error(`Error: ${e}`)
 		}
+		recorder = 'recording'
+		mediaRecorder = new MediaRecorder(videoStream, {
+			mimeType: codec,
+			videoBitsPerSecond: kbpsToBits(videoBitrate),
+			audioBitsPerSecond: kbpsToBits(audioBitrate)
+		})
+		mediaRecorder.ondataavailable = (e) => {
+			chunks.push(e.data)
+			download()
+		}
+		mediaRecorder.start()
 	}
 
 	function stopRecording() {
 		recorder = 'ready'
-		mediaStream.getTracks().forEach((track) => track.stop())
 		mediaRecorder?.stop()
 		clearInterval(timer)
 		seconds = 3
 	}
 
-	async function countdown() {
+	function countdown() {
 		recorder = 'ready.countdown'
 		let { promise, resolve } = Promise.withResolvers()
 		timer = setInterval(() => {
@@ -73,11 +94,12 @@
 	}
 
 	function download() {
-		const blob = new Blob(chunks, { type: options.mimeType })
+		const blob = new Blob(chunks, { type: codec })
 		const a = document.createElement('a')
 		a.href = URL.createObjectURL(blob)
-		a.download = `video.mp4`
+		a.download = 'video.mp4'
 		a.click()
+		URL.revokeObjectURL(a.href)
 		chunks = []
 	}
 
@@ -85,13 +107,15 @@
 		switch (event.key) {
 			case 'R':
 				recorder === 'ready' && startRecording()
+				break
 			case 'S':
 				recorder !== 'ready' && stopRecording()
+				break
 		}
 	}
 </script>
 
-<svelte:window on:keydown={handleKeydown} />
+<svelte:window onkeydown={handleKeydown} />
 
 {#if recorder.includes('ready')}
 	<div class="recorder" data-state={recorder}>
