@@ -17,6 +17,8 @@ declare global {
 
 	interface DisplayMediaStreamOptions {
 		preferCurrentTab?: boolean
+		selfBrowserSurface?: 'include' | 'exclude'
+		systemAudio?: 'include' | 'exclude'
 	}
 
 	interface MediaStream {
