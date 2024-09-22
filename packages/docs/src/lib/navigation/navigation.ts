@@ -10,6 +10,8 @@ export const sections = [
 	{ title: 'Code', path: '/docs/code' },
 	{ title: 'Motion', path: '/docs/motion' },
 	{ title: 'Styles', path: '/docs/styles' },
+	{ section: 'Recording' },
+	{ title: 'Recorder', path: '/docs/recorder' },
 	{ section: 'Components' },
 	{ title: 'Notes', path: '/docs/notes' },
 	{ title: 'Math', path: '/docs/math' },
