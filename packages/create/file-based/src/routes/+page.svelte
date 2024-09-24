@@ -31,10 +31,10 @@
 		progress: true,
 	}}
 >
-	{#each slides as [_, slide]}
-		{@const Wrapper = slide.component ?? AnimotionSlide}
-		<Wrapper {...slide.props ?? {}}>
-			<slide.default></slide.default>
+	{#each slides as [_, Slide]}
+		{@const Wrapper = Slide.component ?? AnimotionSlide}
+		<Wrapper {...Slide.props ?? {}}>
+			<Slide.default></Slide.default>
 		</Wrapper>
 	{/each}
 </Presentation>
