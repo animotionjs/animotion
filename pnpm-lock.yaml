@@ -105,8 +105,8 @@ importers:
   packages/docs:
     dependencies:
       '@animotion/core':
-        specifier: ^1.0.17
-        version: 1.0.17(svelte@5.0.0-next.167)(vite@5.3.2(lightningcss@1.26.0))
+        specifier: ^1.0.18
+        version: 1.0.18(svelte@5.0.0-next.167)(vite@5.3.2(lightningcss@1.26.0))
       '@animotion/motion':
         specifier: ^1.0.1
         version: 1.0.1(svelte@5.0.0-next.167)
@@ -211,15 +211,10 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@animotion/core@1.0.17':
-    resolution: {integrity: sha512-qMEtimTrnVJ09o83Ya4ktSldmTsV1Bm7Lk4hyUtRJ+4uwpAUICbHZISSH8IIM4iw/gJbofz3uIw0rKXAGNcpZg==}
+  '@animotion/core@1.0.18':
+    resolution: {integrity: sha512-nTmV2jce7ifrnNqS0syQXWV+i1yPAuzuQMcyxEsTonAr2lXvmO568dlO5PRajKN6o76hrV4OzjoqIvcExHM0FA==}
     peerDependencies:
       svelte: ^5.0.0 || ^5.0.0-next.1
-
-  '@animotion/motion@0.0.9':
-    resolution: {integrity: sha512-1WEwrhGaSYTHipuaQ1B7xd6hd4nbH0to70dXPRaEwdoF1Z6vnf/uO9z5nYXJoqNMOsew01Tep98HBj1aA/A8ZQ==}
-    peerDependencies:
-      svelte: ^5.0.0
 
   '@animotion/motion@1.0.1':
     resolution: {integrity: sha512-tYKOKm0Mj9I6fyyBdajbNJKzNa4VqycgK7cyWC7P/YaX/PyvO2N33hGjz6zYWovzTy44t7OLyCTy66lytoJvRg==}
@@ -2867,9 +2862,9 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@animotion/core@1.0.17(svelte@5.0.0-next.167)(vite@5.3.2(lightningcss@1.26.0))':
+  '@animotion/core@1.0.18(svelte@5.0.0-next.167)(vite@5.3.2(lightningcss@1.26.0))':
     dependencies:
-      '@animotion/motion': 0.0.9(svelte@5.0.0-next.167)
+      '@animotion/motion': 1.0.1(svelte@5.0.0-next.167)
       '@fontsource-variable/jetbrains-mono': 5.0.23
       '@fontsource-variable/manrope': 5.0.21
       '@tailwindcss/vite': 4.0.0-alpha.15(vite@5.3.2(lightningcss@1.26.0))
@@ -2882,11 +2877,6 @@ snapshots:
       - react
       - vite
       - vue
-
-  '@animotion/motion@0.0.9(svelte@5.0.0-next.167)':
-    dependencies:
-      d3-interpolate: 3.0.1
-      svelte: 5.0.0-next.167
 
   '@animotion/motion@1.0.1(svelte@5.0.0-next.167)':
     dependencies:
