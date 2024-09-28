@@ -5,6 +5,7 @@ import Notes from './notes.svelte'
 import Presentation from './presentation.svelte'
 import Recorder from './recorder.svelte'
 import Slide from './slide.svelte'
+import Slides from './slides.svelte'
 import Transition from './transition.svelte'
 
-export { Action, Code, Embed, Notes, Presentation, Recorder, Slide, Transition }
+export { Action, Code, Embed, Notes, Presentation, Recorder, Slide, Slides, Transition }

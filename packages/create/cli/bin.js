@@ -5,7 +5,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import util from 'node:util'
 import { fileURLToPath } from 'node:url'
-import { cancel, confirm, intro, isCancel, outro, spinner, text } from '@clack/prompts'
+import { cancel, confirm, intro, isCancel, outro, spinner, text, select } from '@clack/prompts'
 
 const execSync = util.promisify(exec)
 
@@ -21,7 +21,6 @@ async function main() {
 
 	intro('Welcome to Animotion!')
 
-	// create the project
 	const dir = await text({
 		message: 'Where should I create your project?',
 		placeholder: '(press Enter to use the current directory)',
@@ -34,7 +33,6 @@ async function main() {
 
 	let cwd = dir || '.'
 
-	// check if directory is empty
 	if (fs.existsSync(cwd)) {
 		if (fs.readdirSync(cwd).length > 0) {
 			const shouldContinue = await confirm({
@@ -52,7 +50,27 @@ async function main() {
 		}
 	}
 
-	// ask to install dependencies
+	const template = await select({
+		message: 'Pick the template you want to use:',
+		options: [
+			{
+				value: 'default',
+				label: 'Default',
+				hint: 'You define and manage slides',
+			},
+			{
+				value: 'file-based',
+				label: 'File-based slides',
+				hint: 'Slides are defined inside the /slides folder and managed for you',
+			},
+		],
+	})
+
+	if (isCancel(template)) {
+		cancel('Operation cancelled.')
+		return process.exit(0)
+	}
+
 	const dependencies = await confirm({
 		message: 'Install dependencies? (requires pnpm)',
 	})
@@ -62,8 +80,11 @@ async function main() {
 		return process.exit(0)
 	}
 
-	// copy the template
 	await copy('../template', cwd)
+
+	if (template !== 'default') {
+		await copy(`../${template}`, cwd)
+	}
 
 	// npm ignores `.gitignore` so rename it
 	fs.renameSync(

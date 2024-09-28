@@ -29,6 +29,9 @@ This is going to copy the [Animotion template](https://github.com/animotionjs/an
 ◇ Where should I create your project?
 │  (press Enter to use the current directory)
 │
+◇ Pick the template you want to use:
+│  Default
+│
 ◇ Install dependencies? (requires pnpm)
 │  Yes
 │
