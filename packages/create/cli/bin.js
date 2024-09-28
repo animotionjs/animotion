@@ -51,11 +51,12 @@ async function main() {
 	}
 
 	const template = await select({
-		message: 'Pick the template you want to use',
+		message: 'Pick the template you want to use:',
 		options: [
 			{
 				value: 'default',
-				label: 'You define and manage slides',
+				label: 'Default',
+				hint: 'You define and manage slides',
 			},
 			{
 				value: 'file-based',
