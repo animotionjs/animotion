@@ -1,26 +1,5 @@
-<svelte:options runes />
-
 <script lang="ts">
-	import { Presentation, Slide as AnimotionSlide } from '@animotion/core';
-	import type { Component } from 'svelte';
-	import type { Props } from '../slides/types';
-
-	const slides = Object.entries(
-		import.meta.glob<{
-			default: Component;
-			component?: Component;
-			props?: Props;
-		}>('../slides/**/index.svelte', {
-			eager: true,
-		})
-	)
-		.map(([filename, exports]) => {
-			const matches = filename.match(
-				/slides\/(?<number>\d+)\/index.svelte/
-			);
-			return [+matches!.groups!.number, exports] as const;
-		})
-		.sort(([num_a], [num_b]) => num_a - num_b);
+	import { Presentation, Slides } from '@animotion/core'
 </script>
 
 <Presentation
@@ -31,10 +10,5 @@
 		progress: true,
 	}}
 >
-	{#each slides as [_, Slide]}
-		{@const Wrapper = Slide.component ?? AnimotionSlide}
-		<Wrapper {...Slide.props ?? {}}>
-			<Slide.default></Slide.default>
-		</Wrapper>
-	{/each}
+	<Slides center={true} />
 </Presentation>
