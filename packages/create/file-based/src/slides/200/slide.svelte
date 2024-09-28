@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Transition } from '$lib/index.js'
+	import { Transition } from '@animotion/core'
 
 	let items = $state([1, 2, 3, 4])
 	let layout = $state('flex gap-4')

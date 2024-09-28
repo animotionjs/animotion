@@ -1,12 +1,5 @@
-<!-- <script lang="ts" module>
-	import type { Props } from '../types.js'
-	export const props: Props = {
-		class: 'h-full place-content-center place-items-center'
-	}
-</script> -->
-
 <script lang="ts">
-	import { Code, Transition, Action } from '$lib/index.js'
+	import { Code, Transition, Action } from '@animotion/core'
 	import { tween } from '@animotion/motion'
 
 	let text: HTMLParagraphElement
