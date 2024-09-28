@@ -21,7 +21,6 @@ async function main() {
 
 	intro('Welcome to Animotion!')
 
-	// create the project
 	const dir = await text({
 		message: 'Where should I create your project?',
 		placeholder: '(press Enter to use the current directory)',
@@ -34,7 +33,6 @@ async function main() {
 
 	let cwd = dir || '.'
 
-	// check if directory is empty
 	if (fs.existsSync(cwd)) {
 		if (fs.readdirSync(cwd).length > 0) {
 			const shouldContinue = await confirm({
@@ -51,18 +49,18 @@ async function main() {
 			}
 		}
 	}
-	// select the template
+
 	const template = await select({
-		message: 'Which template you would like to use?',
+		message: 'Pick the template you want to use',
 		options: [
 			{
 				value: 'default',
-				label: 'Default',
+				label: 'You define and manage slides',
 			},
 			{
 				value: 'file-based',
-				label: 'File based slides',
-				hint: 'Each slide is a new index.svelte file in a ./slides/[num]/ folder',
+				label: 'File-based slides',
+				hint: 'Slides are defined inside the /slides folder and managed for you',
 			},
 		],
 	})
@@ -72,7 +70,6 @@ async function main() {
 		return process.exit(0)
 	}
 
-	// ask to install dependencies
 	const dependencies = await confirm({
 		message: 'Install dependencies? (requires pnpm)',
 	})
@@ -82,7 +79,6 @@ async function main() {
 		return process.exit(0)
 	}
 
-	// copy the template
 	await copy('../template', cwd)
 
 	if (template !== 'default') {
