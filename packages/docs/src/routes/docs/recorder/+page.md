@@ -19,6 +19,8 @@ You can record your presentation using the `<Recorder>` component:
 
 The default settings give you a nice balance of quality, and file size but you can use the [YouTube recommended upload encoding settings](https://support.google.com/youtube/answer/1722171?hl=en#zippy=%2Cbitrate) to change it.
 
+> ⚠️ Before you start recording do a test recording to make sure everything is working properly, and adjust the settings accordingly.
+
 These are the default video settings:
 
 ```svelte
@@ -29,7 +31,7 @@ These are the default video settings:
 <Recorder
 	codec="video/mp4"
 	fps={60}
-	videoBitrate={8000}
+	videoBitrate={2500}
 	audioBitrate={320}
 	systemAudio={true}
 	useTimer={true}
@@ -39,7 +41,7 @@ These are the default video settings:
 
 - **MP4** container (**VP9** video codec, **Opus** audio codec)
 - **60** FPS
-- **8 mbps** (8000 kbps) video bitrate
+- **2,5 mbps** (2500 kbps) video bitrate
 - **320 kbps** audio bitrate
 - Captures system audio
 - **Timer** enabled

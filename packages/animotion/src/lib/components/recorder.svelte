@@ -13,7 +13,7 @@
 	let {
 		codec = 'video/mp4;codecs="vp9,opus"',
 		fps = 60,
-		videoBitrate = 2000,
+		videoBitrate = 2500,
 		audioBitrate = 320,
 		systemAudio = true,
 		useMicrophone = true,
