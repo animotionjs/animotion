@@ -43,12 +43,10 @@ If you need to pass props to the `<Slide>` use `<script module>`:
 
 ```svelte
 <script module>
-	import { defineProps } from '@animotion/core'
-
-	export const props = defineProps({
+	export const props = {
 		in: () => alert('in'),
 		out: () => alert('out')
-	})
+	}
 </script>
 
 <!-- /slides/100/slide.svelte -->
