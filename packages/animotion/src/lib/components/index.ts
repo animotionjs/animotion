@@ -7,17 +7,5 @@ import Recorder from './recorder.svelte'
 import Slide from './slide.svelte'
 import Slides from './slides.svelte'
 import Transition from './transition.svelte'
-import { defineProps } from './props.js'
 
-export {
-	Action,
-	Code,
-	Embed,
-	Notes,
-	Presentation,
-	Recorder,
-	Slide,
-	Slides,
-	Transition,
-	defineProps
-}
+export { Action, Code, Embed, Notes, Presentation, Recorder, Slide, Slides, Transition }

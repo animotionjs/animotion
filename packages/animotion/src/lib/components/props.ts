@@ -1,5 +1,5 @@
 import type { Component, ComponentProps } from 'svelte'
-import Slide from './slide.svelte'
+import type Slide from './slide.svelte'
 
 type Props<T extends Component> = { component?: T } & ComponentProps<T>
 
