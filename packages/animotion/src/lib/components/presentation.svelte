@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { tick, type Snippet } from 'svelte'
+	import { setPresentation } from './store.svelte.js'
 	import 'reveal.js/dist/reveal.css'
 
 	type Options = {
@@ -61,6 +62,9 @@
 
 		// create deck instance
 		const deck = new Reveal({ ...defaults, ...options })
+
+		// expose reveal instance
+		setPresentation(deck)
 
 		// custom event listeners
 		const inEvent = new CustomEvent('in')
