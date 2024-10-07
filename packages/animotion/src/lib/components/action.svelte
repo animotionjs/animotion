@@ -2,6 +2,7 @@
 	type ActionProps = {
 		order?: number
 		do?: () => void
+		undo?: () => void
 	}
 
 	let { order, ...props }: ActionProps = $props()
@@ -9,12 +10,15 @@
 
 	const noop = () => {}
 	const action = () => props?.do?.() ?? noop()
+	const undo = () => props?.undo?.() ?? noop()
 
 	$effect(() => {
 		el.addEventListener('current', action)
+		el.addEventListener('out', undo)
 
 		return () => {
 			el.removeEventListener('current', action)
+			el.removeEventListener('out', undo)
 		}
 	})
 </script>

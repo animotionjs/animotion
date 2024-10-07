@@ -4,6 +4,7 @@
 	type TransitionProps = {
 		children?: Snippet
 		do?: () => void
+		undo?: () => void
 		class?: string
 		order?: number
 		name?: string
@@ -56,6 +57,7 @@
 
 	function leaveTransition() {
 		viewTransition(() => {
+			props?.undo?.() ?? noop()
 			el.classList.remove(enter)
 		})
 	}

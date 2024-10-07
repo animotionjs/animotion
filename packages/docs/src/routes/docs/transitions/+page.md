@@ -42,6 +42,7 @@ You can use the `<Transition>` component to animate changes in your slide like m
 The `<Transition>` component accepts the following props:
 
 - `do`: change the DOM before animating the layout
+- `undo`: go back a step and revert to a previous state
 - `class`: styles to apply to the element
 - `order`: specify in which order the elements should transition
 - `enter`: the animation to use for the transition
