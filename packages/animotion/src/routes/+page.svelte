@@ -3,7 +3,7 @@
 	import { tween } from '@animotion/motion'
 
 	let text: HTMLParagraphElement
-	let code: Code
+	let code: ReturnType<typeof Code>
 	let circle = tween({ x: 0, y: 80, r: 80, fill: '#00ffff' })
 	let items = $state([1, 2, 3, 4])
 	let layout = $state('flex gap-4')

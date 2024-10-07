@@ -14,7 +14,7 @@ You can use the `<Action>` component to step through the presentation, and run c
 <script lang="ts">
 	import { Presentation, Slide, Code, Action } from '@animotion/core'
 
-	let code: Code
+	let code: ReturnType<typeof Code>
 </script>
 
 <Presentation>

@@ -14,7 +14,7 @@ The `<Code>` component uses [Shiki](https://shiki.style/) for beautiful syntax h
 <script lang="ts">
 	import { Presentation, Slide, Code, Action } from '@animotion/core'
 
-	let code: Code
+	let code: ReturnType<typeof Code>
 </script>
 
 <Presentation>
