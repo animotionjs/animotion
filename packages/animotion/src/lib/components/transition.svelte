@@ -7,6 +7,7 @@
 		undo?: () => void
 		class?: string
 		order?: number
+		stepDuration?: number
 		name?: string
 		enter?: string
 		visible?: boolean
@@ -17,6 +18,7 @@
 	let {
 		children,
 		order,
+		stepDuration,
 		name,
 		enter = 'enter',
 		visible = false,
@@ -83,6 +85,7 @@
 	class:fragment={!visible}
 	class={props.class}
 	data-fragment-index={order}
+	data-autoslide={stepDuration}
 	style:view-transition-name={viewTransitionName}
 >
 	{#if children}
