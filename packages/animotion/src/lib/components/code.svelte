@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Action, Code } from '$lib/index.js'
 	import {
 		type BundledLanguage,
 		type BundledTheme,
@@ -14,8 +15,15 @@
 	type Promises = Promise<unknown>[]
 	type Lang = BundledLanguage | SpecialLanguage
 	type Theme = BundledTheme
-	type CodeProps = {
+	type CodeProp = {
 		code: string
+		codes?: never
+	}
+	type CodesProp = {
+		code?: never
+		codes: string[]
+	}
+	type CodeProps = (CodeProp | CodesProp) & {
 		lang: Lang
 		theme: Theme
 		options?: MagicMoveRenderOptions & MagicMoveDifferOptions
@@ -25,6 +33,7 @@
 
 	let {
 		code,
+		codes,
 		lang,
 		theme = 'poimandres',
 		options = {},
@@ -32,7 +41,8 @@
 		...props
 	}: CodeProps = $props()
 
-	let container: HTMLPreElement
+	let container: HTMLPreElement | undefined = $state()
+	let self: ReturnType<typeof Code> | undefined = $state()
 	let highlighter: HighlighterCore
 	let machine: ReturnType<typeof createMagicMoveMachine>
 	let renderer: MagicMoveRenderer
@@ -69,6 +79,7 @@
 	}
 
 	async function init() {
+		if (!container) return
 		highlighter = await createHighlighter({
 			themes: [theme],
 			langs: [lang]
@@ -79,7 +90,7 @@
 		)
 		renderer = new MagicMoveRenderer(container)
 		Object.assign(renderer.options, options)
-		const result = machine.commit(autoIndent ? indent(code) : code)
+		const result = machine.commit(autoIndent ? indent(code!) : code!)
 		renderer.render(result.current)
 		ready = true
 	}
@@ -158,6 +169,8 @@
 	}
 
 	export function selectLines(string: TemplateStringsArray) {
+		if (!container) return
+
 		const lines = getLines(string)
 		const tokens = container.children
 		const promises: Promises = []
@@ -184,6 +197,8 @@
 	}
 
 	export function selectToken(string: TemplateStringsArray) {
+		if (!container) return
+
 		const selection = string[0].split(' ')
 		const isLineNumber = !isNaN(+selection[0])
 		const line = isLineNumber ? +selection[0] : 0
@@ -221,4 +236,14 @@
 	})
 </script>
 
-<pre bind:this={container} {...props} class="shiki-magic-move-container {props.class}"></pre>
+{#if codes}
+	<Code bind:this={self} code={codes[0]} {lang} {theme} {options} {autoIndent} {...props} />
+
+	{#each codes as _, i}
+		{#if codes[i + 1]}
+			<Action do={() => self!.update`${codes[i + 1]}`} undo={() => self!.update`${codes[i]}`} />
+		{/if}
+	{/each}
+{:else}
+	<pre bind:this={container} {...props} class="shiki-magic-move-container {props.class}"></pre>
+{/if}

@@ -4,7 +4,7 @@
 
 # Actions
 
-## Tying everything together
+## Control the presentation
 
 You can use the `<Action>` component to step through the presentation, and run code that updates the presentation:
 
@@ -40,6 +40,24 @@ You can use the `<Action>` component to step through the presentation, and run c
 		<Action do={() => code.selectLines`*`} />
 	</Slide>
 </Presentation>
+```
+
+## Multiple actions
+
+Instead of having to define each action separately, you can use the `actions` prop to define multiple actions.
+
+```svelte
+<Action
+	undo={() => {
+		example.selectLines`*`
+	}}
+	actions={[
+		() => example.selectLines`2`,
+		() => example.selectLines`5 count ++`,
+		() => example.selectLines`{count}`,
+		() => example.selectLines`*`
+	]}
+/>
 ```
 
 ## Undo

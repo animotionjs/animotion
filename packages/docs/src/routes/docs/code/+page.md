@@ -157,6 +157,40 @@ If you want to opt-out of this feature, you can set `autoIndent` to false:
 <Code	autoIndent={false} />
 ```
 
+
+## Chaining code animations
+
+Instead of creating actions for the code animations yourself, you can use the `codes` prop to create them for you:
+
+```svelte
+<Code
+	lang="svelte"
+	theme="poimandres"
+	codes={[
+		`
+			<script>
+				let count = 0
+				$: double = count * 2
+			<\/script>
+
+			<button on:click={() => count++}>
+				{double}
+			</button>
+		`,
+		`
+			<script>
+				let count = $state(0)
+				let double = $derived(count * 2)
+			<\/script>
+
+			<button onclick={() => count++}>
+				{double}
+			</button>
+		`
+	]}
+/>
+```
+
 ## Escape closing tags
 
 Having a closing tag like `</script>` in your code block is going to cause problems because Svelte thinks you're trying to close the `<script>` tag in your component. To solve this problem use the backslash character to escape it:
