@@ -163,7 +163,15 @@ If you want to opt-out of this feature, you can set `autoIndent` to false:
 Instead of creating actions for the code animations yourself, you can use the `codes` prop to create them for you:
 
 ```svelte
+<script lang="ts">
+	import { Code } from '@animotion/core'
+
+	// get a reference to the instance
+	let code: ReturnType<typeof Code>
+</script>
+
 <Code
+	ref={(ref) => code = ref}
 	lang="svelte"
 	theme="poimandres"
 	codes={[
@@ -187,6 +195,18 @@ Instead of creating actions for the code animations yourself, you can use the `c
 				{double}
 			</button>
 		`
+	]}
+/>
+
+<Action
+	undo={() => {
+		code.selectLines`*`
+	}}
+	actions={[
+		() => code.selectLines`2,3`,
+		() => code.selectLines`2-3,7`,
+		() => code.selectToken`double {double}`,
+		() => code.selectLines`*`
 	]}
 />
 ```

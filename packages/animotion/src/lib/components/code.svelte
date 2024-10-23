@@ -29,6 +29,7 @@
 		options?: MagicMoveRenderOptions & MagicMoveDifferOptions
 		autoIndent?: boolean
 		class?: string
+		ref?: (self: ReturnType<typeof Code>) => void
 	}
 
 	let {
@@ -234,6 +235,12 @@
 	$effect(() => {
 		init()
 	})
+
+	if (props.ref) {
+		$effect(() => {
+			props.ref?.(self!)
+		})
+	}
 </script>
 
 {#if codes}
