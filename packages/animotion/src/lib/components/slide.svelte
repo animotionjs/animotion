@@ -10,6 +10,7 @@
 		animateUnmatched?: boolean
 		animateId?: string
 		animateRestart?: boolean
+		stepDuration?: number
 		background?: string
 		gradient?: string
 		image?: string
@@ -35,6 +36,7 @@
 	data-auto-animate-unmatched={props.animateUnmatched}
 	data-auto-animate-id={props.animateId}
 	data-auto-animate-restart={props.animateRestart}
+	data-autoslide={props.stepDuration}
 	data-background-color={props.background}
 	data-background-gradient={props.gradient}
 	data-background-image={props.image}
