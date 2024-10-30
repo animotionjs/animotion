@@ -81,20 +81,43 @@ Animotion uses [Shiki Magic Move](https://shiki-magic-move.netlify.app/) to anim
 
 ## Code Highlighting
 
-You can highlight lines, and tokens in your code:
+You can highlight lines:
 
 ```ts
-// select individual lines
+// select line
+code.selectLines`2`
+// select multiple lines
 code.selectLines`2,3`
-// select ranges of lines, and individual lines
+// select lines range
+code.selectLines`2-3`
+// select lines range and lines
 code.selectLines`2-3,7`
-// select tokens
-code.selectToken`double {double}`
 // select all lines
 code.selectLines`*`
 ```
 
-You can also use `await` since the `<Code />` component methods return a promise.
+You can highlight tokens (inspect the code to see what token you can select):
+
+```ts
+// select token
+code.selectToken`double`
+// select token on line
+code.selectToken`3 double`
+// select multiple tokens
+code.selectToken`double {double}`
+```
+
+The methods return a promise that is resolved when the transition is done:
+
+```svelte
+<Action do={async () => {
+	await code.selectLines`2,3`
+	await code.selectLines`2-3,7`
+	await code.selectToken`double {double}`
+	await code.selectLines`*`
+}} />
+```
+
 
 ## Using Expressions
 
