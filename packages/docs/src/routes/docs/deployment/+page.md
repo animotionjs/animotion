@@ -1,6 +1,6 @@
 # Deployment
 
-Animotion uses [SvelteKit](https://kit.svelte.dev/) as the template, so it's very easy to deploy your presentation anywhere using one of the [SvelteKit adapters](https://kit.svelte.dev/docs/adapters).
+Animotion uses [SvelteKit](https://kit.svelte.dev/) as the template, so you can deploy your presentation anywhere where JavaScript runs using one of the [SvelteKit adapters](https://kit.svelte.dev/docs/adapters).
 
 Here is a list of the official adapters:
 

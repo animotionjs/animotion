@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte'
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { sections } from '$lib/navigation/navigation'
 	import Links from '$lib/navigation/links.svelte'
 
@@ -12,7 +12,7 @@
 <div class="container">
 	<aside class="sections space-y" style:--margin="var(--size-2)">
 		{#each sections as { path, title, section }}
-			{@const active = $page.route.id === path}
+			{@const active = page.route.id === path}
 			{#if section}
 				<h4 class="section">{section}</h4>
 			{:else}
@@ -55,7 +55,7 @@
 			display: block;
 			width: max-content;
 			color: var(--text-1);
-			font-weight: 600;
+			font-weight: 700;
 			text-decoration: none;
 			text-transform: capitalize;
 

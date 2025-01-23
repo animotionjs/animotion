@@ -25,10 +25,11 @@ Animotion is now a standalone package named `@animotion/core`. This makes it eas
 </Presentation>
 ```
 
-
 ## View Transitions API
 
 Animotion takes advantage of the View Transitions API for layout animations. You can use the `<Transition>` component to assign a `view-transition-name` to an element: 
+
+> ⚠️ The View Transitions API is only supported in Chromium based browsers at the moment.
 
 ```svelte
 <script>
@@ -43,8 +44,6 @@ Animotion takes advantage of the View Transitions API for layout animations. You
   </Slide>
 </Presentation>
 ```
-
-> ⚠️ The View Transitions API is only supported in Chromium based browsers at the moment. 
 
 Besides [transitions](/docs/transitions), you can use [actions](/docs/actions) which lets you step through the slide, and run code that updates the presentation.
 

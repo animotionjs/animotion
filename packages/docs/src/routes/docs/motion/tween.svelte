@@ -13,16 +13,16 @@
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
 		<svg width="800" height="200" viewBox="-100 0 800 200">
-			<circle cx={cx.value} cy={100} r={80} fill="#00ffff" />
+			<circle cx={cx.current} cy={100} r={80} fill="#00ffff" />
 			<text
-				x={cx.value}
+				x={cx.current}
 				y={100}
 				font-family="JetBrains Mono"
 				font-size="40px"
 				text-anchor="middle"
 				dominant-baseline="middle"
 			>
-				{cx.value.toFixed(0)}
+				{cx.current.toFixed(0)}
 			</text>
 		</svg>
 

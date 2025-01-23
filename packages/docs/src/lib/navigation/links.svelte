@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { getNavigation } from './navigation'
 
-	const path = $derived($page.route.id)
+	const path = $derived(page.route.id)
 	const { previous, next } = $derived(getNavigation(path))
 </script>
 

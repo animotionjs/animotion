@@ -43,7 +43,7 @@
 
 		& a {
 			color: var(--text-2);
-			font-weight: 600;
+			font-weight: 700;
 			text-decoration: underline wavy;
 			text-decoration-color: var(--brand);
 

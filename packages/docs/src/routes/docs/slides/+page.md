@@ -71,7 +71,7 @@ Svelte is a declarative JavaScript framework, so components are a great way to o
 </script>
 
 <button onclick={animate}>
-	{progress.value.toLocaleString('en', { maximumFractionDigits: 0 })}
+	{progress.current.toLocaleString('en', { maximumFractionDigits: 0 })}
 </button>
 ```
 

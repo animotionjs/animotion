@@ -9,13 +9,9 @@
 
 ## Procedural Animations
 
-`@animotion/core` is great for animating [code](/docs/code), and [layouts](/docs/transitions) while `@animotion/motion` is used for animating values you otherwise can't animate with CSS like SVG and Canvas elements.
+Sometimes you need to animate values outside of CSS like SVG and Canvas values. Instead of reaching for a JavaScript library, you can use Motion by importing `@animotion/motion`:
 
 <Tween />
-
-Use the `tween` method to create a value that changes over time:
-- to animate the value use the `to` method
-- you can use the `await` keyword to wait for the animation to finish
 
 ```svelte
 <script>
@@ -33,16 +29,16 @@ Use the `tween` method to create a value that changes over time:
 <Presentation>
 	<Slide>
 		<svg width="800" height="200" viewBox="-100 0 800 200">
-			<circle cx={cx.value} cy={100} r={100} fill="#00ffff" />
+			<circle cx={cx.current} cy={100} r={100} fill="#00ffff" />
 			<text
-				x={cx.value}
+				x={cx.current}
 				y={100}
 				font-family="JetBrains Mono"
 				font-size="48px"
 				text-anchor="middle"
 				dominant-baseline="middle"
 			>
-				{cx.value.toFixed(0)}
+				{cx.current.toFixed(0)}
 			</text>
 		</svg>
 
@@ -51,7 +47,9 @@ Use the `tween` method to create a value that changes over time:
 </Presentation>
 ```
 
-You can animate any value, including CSS properties using the `style` attribute, or Svelte's `style:` directive.
+To create a value that you want to animate over time, use the `tween` method. To animate the value, use the `to` method. You can use the `await` keyword to wait for the animation to finish.
+
+You can animate any value, including CSS properties using the `style` attribute, or Svelte's `style:` directive:
 
 <Scale />
 
@@ -71,10 +69,10 @@ You can animate any value, including CSS properties using the `style` attribute,
 <Presentation>
   <Slide>
     <!-- using the style attribute -->
-    <p style="scale: {text.value}">Motion</p>
+    <p style="scale: {text.current}">Motion</p>
 
     <!-- using the Svelte directive -->
-    <p style:scale={text.value}>Motion</p>
+    <p style:scale={text.current}>Motion</p>
 
     <Action do={animate} />
   </Slide>
@@ -83,9 +81,9 @@ You can animate any value, including CSS properties using the `style` attribute,
 
 ## Tween multiple values
 
-<Options />
-
 You can `tween` a single value, objects, arrays, and override the default animation options using the `duration`, `delay`, and `easing` options:
+
+<Options />
 
 ```svelte
 <script>
@@ -119,11 +117,13 @@ You can `tween` a single value, objects, arrays, and override the default animat
 </Presentation>
 ```
 
+You can use `obj.current.property` to access the object property, but Motion creates an accessor for every property, so you can omit `.current` and say `obj.property`.
+
 ## Combine animations
 
-<All />
-
 If you want to play multiple animations at the same time without having to think about where to put the `await` keyword you can combine them using the `all` helper method:
+
+<All />
 
 ```svelte
 <script>
@@ -138,7 +138,6 @@ If you want to play multiple animations at the same time without having to think
 			circle.to({ x: 600, fill: '#ffff00' }),
 			text.to({ count: 600 })
 		)
-
 		await all(
 			circle.to({ x: 0, fill: '#00ffff' }),
 			text.to({ count: 0 })
@@ -175,9 +174,7 @@ If you want to play multiple animations at the same time without having to think
 
 ## Sound Effects
 
-Besides playing animations you can play sounds using the `sfx` method.
-
-After you place your sounds in the `static` folder at the root of your project, they
+Besides playing animations you can play sounds using the `sfx` method. After you place your sounds in the `static` folder at the root of your project, they
 become available from the root `/` of your site:
 
 ```svelte
@@ -203,8 +200,8 @@ become available from the root `/` of your site:
 
 ## Reset
 
-If you mess up your delivery, instead of reloading the slide to reset the state of your animation,
-use the `reset` method on the `tween` to reset the animation back to its initial state.
+Instead of reloading the page to reset the state of your animation,
+you can use the `reset` method on the `tween` to reset the animation back to its initial state.
 
 ```svelte
 <script>

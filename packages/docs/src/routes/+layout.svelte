@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import type { Snippet } from 'svelte'
 	import PageTransition from '$lib/components/transition.svelte'
-	import Header from '$lib/components/header.svelte'		
+	import Header from '$lib/components/header.svelte'
 	import '../app.css'
 
 	type LayoutProps = { children: Snippet }
 
 	let { children }: LayoutProps = $props()
-	const { title = 'Animotion' } = $derived($page.data)
+	const { title = 'Animotion' } = $derived(page.data)
 </script>
 
 <PageTransition />
