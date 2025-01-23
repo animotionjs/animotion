@@ -32,7 +32,7 @@
 
 /* code block */
 div:has(> pre) {
-	padding: var(--spacing-4) var(--spacing-8);
+	padding: --spacing(4) --spacing(8);
 	background-color: oklch(24% 0.02 272);
 	border-top: 1px solid oklch(34% 0.02 272);
 	border-radius: var(--radius-lg);
