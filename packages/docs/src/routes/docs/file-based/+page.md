@@ -1,6 +1,6 @@
 # File-based slides
 
-You can have slides in one file or split them into multiple files by default — but Animotion also provides a file-based slides option during the setup if you want the slides to be managed for you.
+You can have slides in one file or split them into multiple files by default, but Animotion also provides a file-based slides option during the setup if you want the slides to be managed for you.
 
 ## Using File-based Slides
 

@@ -33,7 +33,7 @@ Sometimes you need to animate values outside of CSS like SVG and Canvas values. 
 			<text
 				x={cx.current}
 				y={100}
-				font-family="JetBrains Mono"
+				font-family="Monaspace Neon"
 				font-size="48px"
 				text-anchor="middle"
 				dominant-baseline="middle"
@@ -158,7 +158,7 @@ If you want to play multiple animations at the same time without having to think
 			<text
 				x={circle.x}
 				y={circle.y}
-				font-family="JetBrains Mono"
+				font-family="Monaspace Neon"
 				font-size={circle.r * 0.4}
 				text-anchor="middle"
 				dominant-baseline="middle"

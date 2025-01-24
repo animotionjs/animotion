@@ -17,7 +17,7 @@
 			<text
 				x={cx.current}
 				y={100}
-				font-family="JetBrains Mono"
+				font-family="Monaspace Neon"
 				font-size="40px"
 				text-anchor="middle"
 				dominant-baseline="middle"

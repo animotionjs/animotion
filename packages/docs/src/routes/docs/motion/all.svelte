@@ -19,7 +19,7 @@
 			<text
 				x={circle.x}
 				y={circle.y}
-				font-family="JetBrains Mono"
+				font-family="Monaspace Neon"
 				font-size={circle.r * 0.4}
 				text-anchor="middle"
 				dominant-baseline="middle"

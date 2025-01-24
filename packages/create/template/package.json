@@ -27,8 +27,8 @@
 	"dependencies": {
 		"@animotion/core": "*",
 		"@animotion/motion": "*",
-		"@fontsource-variable/jetbrains-mono": "^5.1.2",
-		"@fontsource-variable/manrope": "^5.1.1",
+		"@fontsource/atkinson-hyperlegible": "^5.1.1",
+		"@fontsource/monaspace-neon": "^5.1.0",
 		"@tailwindcss/vite": "4.0.0",
 		"reveal.js": "^5.1.0",
 		"tailwindcss": "4.0.0"

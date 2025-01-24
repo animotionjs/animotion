@@ -350,7 +350,7 @@ pre {
 /* presentation */
 :root {
 	--r-background-color: oklch(24% 0.019 272);
-	--r-main-font: 'Aatkinson Hyperlegible';
+	--r-main-font: 'Atkinson Hyperlegible';
 	--r-main-font-size: 42px;
 	--r-main-color: oklch(98% 0.02 272);
 	--r-heading-font: 'Atkinson Hyperlegible';
