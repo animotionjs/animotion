@@ -39,7 +39,7 @@
 		"vite": "^6.0.11"
 	},
 	"dependencies": {
-		"@animotion/core": "^1.0.25",
+		"@animotion/core": "^1.1.0",
 		"@animotion/motion": "^2.0.1",
 		"@fontsource/atkinson-hyperlegible": "^5.1.1",
 		"@fontsource/monaspace-neon": "^5.1.0",
