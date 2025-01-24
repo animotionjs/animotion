@@ -1,6 +1,6 @@
 {
 	"name": "@animotion/core",
-	"version": "1.0.25",
+	"version": "1.0.3",
 	"description": "Core components for Animotion",
 	"author": "animotionjs",
 	"homepage": "https://animotion.pages.dev/",
@@ -66,8 +66,8 @@
 	},
 	"dependencies": {
 		"@animotion/motion": "^2.0.1",
-		"@fontsource-variable/jetbrains-mono": "^5.1.2",
-		"@fontsource-variable/manrope": "^5.1.1",
+		"@fontsource/atkinson-hyperlegible": "^5.1.1",
+		"@fontsource/monaspace-neon": "^5.1.0",
 		"@tailwindcss/vite": "4.0.0",
 		"reveal.js": "5.1.0",
 		"shiki": "^2.1.0",
@@ -75,6 +75,6 @@
 		"tailwindcss": "4.0.0"
 	},
 	"peerDependencies": {
-		"svelte": "^5.0.0 || ^5.0.0-next.1"
+		"svelte": "^5.0.0"
 	}
 }

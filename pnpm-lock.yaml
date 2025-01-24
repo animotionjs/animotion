@@ -13,12 +13,12 @@ importers:
       '@animotion/motion':
         specifier: ^2.0.1
         version: 2.0.1(svelte@5.19.2)
-      '@fontsource-variable/jetbrains-mono':
-        specifier: ^5.1.2
-        version: 5.1.2
-      '@fontsource-variable/manrope':
+      '@fontsource/atkinson-hyperlegible':
         specifier: ^5.1.1
         version: 5.1.1
+      '@fontsource/monaspace-neon':
+        specifier: ^5.1.0
+        version: 5.1.0
       '@tailwindcss/vite':
         specifier: 4.0.0
         version: 4.0.0(vite@6.0.11(jiti@2.4.2)(lightningcss@1.29.1))
@@ -99,8 +99,8 @@ importers:
   packages/create:
     dependencies:
       '@clack/prompts':
-        specifier: ^0.7.0
-        version: 0.7.0
+        specifier: ^0.9.1
+        version: 0.9.1
 
   packages/docs:
     dependencies:
@@ -110,15 +110,12 @@ importers:
       '@animotion/motion':
         specifier: ^2.0.1
         version: 2.0.1(svelte@5.19.2)
-      '@fontsource-variable/jetbrains-mono':
-        specifier: ^5.1.2
-        version: 5.1.2
-      '@fontsource-variable/manrope':
-        specifier: ^5.1.1
-        version: 5.1.1
       '@fontsource/atkinson-hyperlegible':
         specifier: ^5.1.1
         version: 5.1.1
+      '@fontsource/monaspace-neon':
+        specifier: ^5.1.0
+        version: 5.1.0
       '@tailwindcss/vite':
         specifier: 4.0.0
         version: 4.0.0(vite@6.0.11(jiti@2.4.2)(lightningcss@1.29.1))
@@ -229,13 +226,11 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  '@clack/core@0.3.4':
-    resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
+  '@clack/core@0.4.1':
+    resolution: {integrity: sha512-Pxhij4UXg8KSr7rPek6Zowm+5M22rbd2g1nfojHJkxp5YkFqiZ2+YLEM/XGVIzvGOcM0nqjIFxrpDwWRZYWYjA==}
 
-  '@clack/prompts@0.7.0':
-    resolution: {integrity: sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA==}
-    bundledDependencies:
-      - is-unicode-supported
+  '@clack/prompts@0.9.1':
+    resolution: {integrity: sha512-JIpyaboYZeWYlyP0H+OoPPxd6nqueG/CmN6ixBiNFsIDHREevjIf0n0Ohh5gr5C8pEDknzgvz+pIJ8dMhzWIeg==}
 
   '@csstools/cascade-layer-name-parser@2.0.4':
     resolution: {integrity: sha512-7DFHlPuIxviKYZrOiwVU/PiHLm3lLUR23OMuEEtfEOQTOp9hzQ2JjdY6X5H18RVuUPJqSCI+qNnD5iOLMVE0bA==}
@@ -681,6 +676,9 @@ packages:
 
   '@fontsource/atkinson-hyperlegible@5.1.1':
     resolution: {integrity: sha512-AxjSa0Ld2CrHqz3GV0gHVY7R5ySBw5c1B7FXLz59aUeFK9rJNm5ivc14qzYKaDi0lYCjFQtfpqb9pklie91PeA==}
+
+  '@fontsource/monaspace-neon@5.1.0':
+    resolution: {integrity: sha512-nW56kEvbPwNHHYfouTEI6KR2BAcXhqjGc/KkQdDvC+bcpRFc9olZTBd+Jw+l8MhcbnFwX+GWE5VP8EUrAcshew==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1906,9 +1904,6 @@ packages:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
     engines: {node: '>=8'}
 
-  picocolors@1.0.1:
-    resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
-
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -2567,15 +2562,15 @@ snapshots:
       d3-interpolate: 3.0.1
       svelte: 5.19.2
 
-  '@clack/core@0.3.4':
+  '@clack/core@0.4.1':
     dependencies:
-      picocolors: 1.0.1
+      picocolors: 1.1.1
       sisteransi: 1.0.5
 
-  '@clack/prompts@0.7.0':
+  '@clack/prompts@0.9.1':
     dependencies:
-      '@clack/core': 0.3.4
-      picocolors: 1.0.1
+      '@clack/core': 0.4.1
+      picocolors: 1.1.1
       sisteransi: 1.0.5
 
   '@csstools/cascade-layer-name-parser@2.0.4(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)':
@@ -2952,6 +2947,8 @@ snapshots:
   '@fontsource-variable/manrope@5.1.1': {}
 
   '@fontsource/atkinson-hyperlegible@5.1.1': {}
+
+  '@fontsource/monaspace-neon@5.1.0': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -4332,8 +4329,6 @@ snapshots:
   path-exists@4.0.0: {}
 
   path-key@3.1.1: {}
-
-  picocolors@1.0.1: {}
 
   picocolors@1.1.1: {}
 

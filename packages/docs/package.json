@@ -41,9 +41,8 @@
 	"dependencies": {
 		"@animotion/core": "^1.0.25",
 		"@animotion/motion": "^2.0.1",
-		"@fontsource-variable/jetbrains-mono": "^5.1.2",
-		"@fontsource-variable/manrope": "^5.1.1",
 		"@fontsource/atkinson-hyperlegible": "^5.1.1",
+		"@fontsource/monaspace-neon": "^5.1.0",
 		"@tailwindcss/vite": "4.0.0",
 		"lucide-svelte": "^0.474.0",
 		"reveal.js": "^5.1.0",
