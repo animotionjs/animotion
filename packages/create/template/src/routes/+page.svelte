@@ -9,7 +9,7 @@
 	let layout = $state('flex gap-4')
 </script>
 
-<Presentation options={{ history: true, transition: 'slide', controls: false, progress: true }}>
+<Presentation options={{ history: true, transition: 'slide', controls: true, progress: true }}>
 	<Slide class="h-full place-content-center place-items-center">
 		<p class="text-4xl font-bold drop-shadow-sm">🪄 Use arrow keys to navigate</p>
 	</Slide>

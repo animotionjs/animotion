@@ -1,6 +1,6 @@
 {
 	"name": "@animotion/create",
-	"version": "2.0.10",
+	"version": "2.0.2",
 	"description": "Animotion CLI",
 	"author": "animotionjs",
 	"homepage": "https://animotion.pages.dev",
@@ -20,6 +20,6 @@
 		"reveal"
 	],
 	"dependencies": {
-		"@clack/prompts": "^0.7.0"
+		"@clack/prompts": "^0.9.1"
 	}
 }
