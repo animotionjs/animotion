@@ -37,7 +37,12 @@
 		document.startViewTransition(fn)
 	}
 
-	function shouldTransition() {
+	/**
+	 * Transition elements are hidden so we can animate the change in position
+	 * otherwise the layout would never change if they're already in the DOM
+	 * so this checks for fragments that aren't visible and hides them.
+	 */
+	function prepareTransition() {
 		const currentSlide = el.closest('section')!
 		currentSlide.querySelectorAll('.fragment').forEach((fragment) => {
 			if (!fragment.classList.contains('visible')) {
@@ -47,7 +52,7 @@
 	}
 
 	function enterTransition() {
-		shouldTransition()
+		prepareTransition()
 
 		viewTransition(() => {
 			props?.do?.() ?? noop()
@@ -58,6 +63,8 @@
 	}
 
 	function leaveTransition() {
+		prepareTransition()
+
 		viewTransition(() => {
 			props?.undo?.() ?? noop()
 			el.classList.remove(enter)
@@ -65,6 +72,7 @@
 	}
 
 	$effect(() => {
+		// if element should be visible animate it
 		if (visible) {
 			el.classList.add(enter)
 			return
@@ -83,7 +91,7 @@
 <div
 	bind:this={el}
 	class:fragment={!visible}
-	class={props.class}
+	class={!visible ? `hidden ${props.class}` : props.class}
 	data-fragment-index={order}
 	data-autoslide={stepDuration}
 	style:view-transition-name={viewTransitionName}
