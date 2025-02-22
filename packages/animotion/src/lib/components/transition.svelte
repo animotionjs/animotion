@@ -91,7 +91,7 @@
 <div
 	bind:this={el}
 	class:fragment={!visible}
-	class={!visible ? `hidden ${props.class}` : props.class}
+	class={[{ hidden: !visible }, props.class]}
 	data-fragment-index={order}
 	data-autoslide={stepDuration}
 	style:view-transition-name={viewTransitionName}
