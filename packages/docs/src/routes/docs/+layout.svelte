@@ -10,15 +10,17 @@
 </script>
 
 <div class="container">
-	<aside class="sections space-y" style:--margin="var(--size-2)">
-		{#each sections as { path, title, section }}
-			{@const active = page.route.id === path}
-			{#if section}
-				<h4 class="section">{section}</h4>
-			{:else}
-				<a href={path} class:active>{title}</a>
-			{/if}
-		{/each}
+	<aside class="sections">
+		<div class="sticky">
+			{#each sections as { path, title, section }}
+				{@const active = page.route.id === path}
+				{#if section}
+					<h4 class="section">{section}</h4>
+				{:else}
+					<a href={path} class:active>{title}</a>
+				{/if}
+			{/each}
+		</div>
 	</aside>
 
 	<main class="content space-y" style:--margin="var(--size-4)">
@@ -42,12 +44,17 @@
 	}
 
 	.sections {
+		.sticky {
+			position: sticky;
+			top: 24px;
+		}
+
 		& .section {
 			color: var(--text-3);
 			text-transform: capitalize;
 
 			&:not(:first-of-type) {
-				margin-block-start: var(--size-4);
+				margin-block-start: var(--size-2);
 			}
 		}
 
@@ -55,7 +62,6 @@
 			display: block;
 			width: max-content;
 			color: var(--text-1);
-			font-weight: 700;
 			text-decoration: none;
 			text-transform: capitalize;
 
