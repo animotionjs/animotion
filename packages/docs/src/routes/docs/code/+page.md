@@ -33,7 +33,7 @@ The `<Code>` component uses [Shiki](https://shiki.style/) for beautiful syntax h
 					{double}
 				</button>
 			`}
-			options={{ duration: 1000, stagger: 0.3, containerStyle: false }}
+			options={{ duration: 1000, stagger: 0.3, lineNumbers: true, containerStyle: false }}
 		/>
 
 		<Action
