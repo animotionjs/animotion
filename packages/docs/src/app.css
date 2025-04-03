@@ -227,18 +227,6 @@ pre {
 	&:hover {
 		color: var(--brand);
 	}
-
-	&.previous {
-		&::before {
-			content: '👈️ ';
-		}
-	}
-
-	&.next {
-		&::after {
-			content: ' 👉️';
-		}
-	}
 }
 
 /* theme */

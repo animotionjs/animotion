@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state'
 	import { getNavigation } from './navigation'
+	import { ArrowLeft, ArrowRight } from 'lucide-svelte'
 
 	const path = $derived(page.route.id)
 	const { previous, next } = $derived(getNavigation(path))
@@ -9,11 +10,25 @@
 {#if path}
 	<nav class="section space-between">
 		{#if previous}
-			<a class="previous" href={previous.path}>{previous.title}</a>
+			<div class="link">
+				<ArrowLeft />
+				<a href={previous.path}>{previous.title}</a>
+			</div>
 		{/if}
 
 		{#if next}
-			<a class="next" href={next.path}>{next.title}</a>
+			<div class="link">
+				<a href={next.path}>{next.title}</a>
+				<ArrowRight />
+			</div>
 		{/if}
 	</nav>
 {/if}
+
+<style>
+	.link {
+		display: flex;
+		gap: var(--size-1);
+		align-items: center;
+	}
+</style>
