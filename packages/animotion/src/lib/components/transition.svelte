@@ -1,16 +1,21 @@
 <script lang="ts">
+	import { Transition } from '$lib/index.js'
 	import type { Snippet } from 'svelte'
 
 	type TransitionProps = {
+		[key: string]: unknown
 		children?: Snippet
 		do?: () => void
 		undo?: () => void
 		class?: string
+		style?: string
 		order?: number
 		stepDuration?: number
 		name?: string
 		enter?: string
 		visible?: boolean
+		hidden?: boolean
+		transitions?: Array<() => void>
 	}
 
 	const noop = () => {}
@@ -22,10 +27,12 @@
 		name,
 		enter = 'enter',
 		visible = false,
+		transitions,
+		hidden,
 		...props
 	}: TransitionProps = $props()
 
-	let el: HTMLDivElement
+	let el = $state<HTMLDivElement>()
 	let viewTransitionName = name ? `transition-${name}` : `transition-${crypto.randomUUID()}`
 
 	function viewTransition(fn: () => void) {
@@ -43,7 +50,7 @@
 	 * so this checks for fragments that aren't visible and hides them.
 	 */
 	function prepareTransition() {
-		const currentSlide = el.closest('section')!
+		const currentSlide = el?.closest('section')!
 		currentSlide.querySelectorAll('.fragment').forEach((fragment) => {
 			if (!fragment.classList.contains('visible')) {
 				fragment.classList.add('hidden')
@@ -56,9 +63,9 @@
 
 		viewTransition(() => {
 			props?.do?.() ?? noop()
-			el.classList.remove(enter)
-			el.classList.add(enter)
-			el.classList.remove('hidden')
+			el?.classList.remove(enter)
+			el?.classList.add(enter)
+			el?.classList.remove('hidden')
 		})
 	}
 
@@ -67,11 +74,13 @@
 
 		viewTransition(() => {
 			props?.undo?.() ?? noop()
-			el.classList.remove(enter)
+			el?.classList.remove(enter)
 		})
 	}
 
 	$effect(() => {
+		if (!el) return
+
 		// if element should be visible animate it
 		if (visible) {
 			el.classList.add(enter)
@@ -82,21 +91,33 @@
 		el.addEventListener('out', leaveTransition)
 
 		return () => {
-			el.addEventListener('current', enterTransition)
-			el.removeEventListener('out', leaveTransition)
+			el?.addEventListener('current', enterTransition)
+			el?.removeEventListener('out', leaveTransition)
 		}
 	})
 </script>
 
-<div
-	bind:this={el}
-	class:fragment={!visible}
-	class={[{ hidden: !visible }, props.class]}
-	data-fragment-index={order}
-	data-autoslide={stepDuration}
-	style:view-transition-name={viewTransitionName}
->
-	{#if children}
-		{@render children()}
-	{/if}
-</div>
+{#if transitions}
+	{#each transitions as transition, i}
+		{@const previousTransition = i === 0 ? noop : transitions[i - 1]}
+		<Transition do={transition} undo={previousTransition} />
+	{/each}
+{:else}
+	<div
+		bind:this={el}
+		class:fragment={!visible}
+		class={[{ hidden: !visible, ignore: hidden }, props.class]}
+		data-fragment-index={order}
+		data-autoslide={stepDuration}
+		style:view-transition-name={viewTransitionName}
+		style={props.style}
+	>
+		{@render children?.()}
+	</div>
+{/if}
+
+<style>
+	.ignore {
+		display: none;
+	}
+</style>
