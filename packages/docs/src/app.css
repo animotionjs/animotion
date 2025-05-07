@@ -344,33 +344,81 @@ pre {
 	--r-heading-font: 'Atkinson Hyperlegible';
 	--r-code-font: 'Monaspace Neon';
 	--r-link-color: oklch(90.54% 0.15 194);
-	--ease: linear(0 0%, 0.0036 9.62%, 0.0185 16.66%, 0.0489 23.03%, 0.0962 28.86%, 0.1705 34.93%, 0.269 40.66%, 0.3867 45.89%, 0.5833 52.95%, 0.683 57.05%, 0.7829 62.14%, 0.8621 67.46%, 0.8991 70.68%, 0.9299 74.03%, 0.9545 77.52%, 0.9735 81.21%, 0.9865 85%, 0.9949 89.15%, 1 100%);
+	--ease: linear(
+		0 0%,
+		0.0036 9.62%,
+		0.0185 16.66%,
+		0.0489 23.03%,
+		0.0962 28.86%,
+		0.1705 34.93%,
+		0.269 40.66%,
+		0.3867 45.89%,
+		0.5833 52.95%,
+		0.683 57.05%,
+		0.7829 62.14%,
+		0.8621 67.46%,
+		0.8991 70.68%,
+		0.9299 74.03%,
+		0.9545 77.52%,
+		0.9735 81.21%,
+		0.9865 85%,
+		0.9949 89.15%,
+		1 100%
+	);
+	--view-transition-duration: 0.6s;
 }
 
+/* for animations */
+.hidden {
+	display: none;
+}
+
+/* view transitions */
+html {
+	view-transition-name: none;
+}
+
+/* all view transitions */
 ::view-transition-group(*) {
-	animation-duration: 0.6s;
+	animation-duration: var(--view-transition-duration);
 	animation-timing-function: var(--ease);
 }
 
-.enter {
-	animation: enter 0.6s var(--ease);
+/* entry transition */
+::view-transition-new(*):only-child {
+	animation: scale-in var(--view-transition-duration) var(--ease);
 }
 
-.rotate {
-	animation: rotate 0.6s var(--ease);
+/* exit transition */
+::view-transition-old(*):only-child {
+	animation: scale-out var(--view-transition-duration) var(--ease);
 }
 
-@keyframes enter {
+@keyframes scale-in {
 	from {
-		filter: blur(40px);
 		scale: 0;
+		opacity: 0;
+	}
+}
+
+@keyframes scale-out {
+	to {
+		scale: 0;
+		opacity: 0;
 	}
 }
 
 @keyframes rotate {
 	from {
-		filter: blur(4px);
-		scale: 2;
-		rotate: -1turn;
+		opacity: 0;
+	}
+	20% {
+		rotate: 0deg;
+	}
+	40% {
+		opacity: 1;
+	}
+	to {
+		rotate: 360deg;
 	}
 }

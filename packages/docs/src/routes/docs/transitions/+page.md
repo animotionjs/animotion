@@ -6,6 +6,8 @@
 
 # Transitions
 
+> ⚠️ The View Transitions API is not supported in Firefox.
+
 ## Animating elements
 
 You can use the `<Transition>` component to animate changes in your slide like magic:
@@ -37,53 +39,141 @@ You can use the `<Transition>` component to animate changes in your slide like m
 </Presentation>
 ```
 
-> ⚠️ The View Transitions API is only supported in Chromium based browsers at the moment. 
+## How Transitions Work
 
-The `<Transition>` component accepts the following props:
+Animotion uses the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API) to animate the layout of your slides.
 
-- `do`: change the DOM before animating the layout
-- `undo`: go back a step and revert to a previous state
-- `class`: styles to apply to the element
-- `order`: specify in which order the elements should transition
-- `enter`: the animation to use for the transition
-- `name`: view transition name (generates random name by default)
-- `visible`: whether the element should be visible or not
+The `<Transition>` component is a `<div>` wrapper with a unique `view-transition-name` name, so the browser knows what element should transition after the DOM changed:
 
-You can change the default animation, or create your own animations inside `app.css` since transitions are just CSS animations:
+```svelte
+<div style="view-transition-name: name">
+	<!-- ... -->
+</div>
+```
+
+You can use the `<Transition>` component purely as a layout animation trigger without having to pass any children:
+
+```svelte
+<Transition do={() => /* code that causes DOM change */ } />
+```
+
+Animotion is going to run the `do` function before animating the layout, and invoke the `startViewTransition()` method on the document.
+
+This is very useful for revealing or hiding elements like a code block and its output:
+
+```svelte
+<script>
+	import { Code, Slide, Transition } from '@animotion/core'
+	import Example from './example.svelte'
+
+	let state = $state('none')
+</script>
+
+<Slide>
+	{#if state === 'code'}
+		<Transition visible>
+			<Code />
+		</Transition>
+	{/if}
+
+	{#if state === 'output'}
+		<Transition visible>
+			<Example />
+		</Transition>
+	{/if}
+
+	<Transition do={() => state = 'code'}>
+	<Transition do={() => state = 'output'}>
+</Slide>
+```
+
+In this example we use the `visible` prop to show the element by default, so we can smoothly animate the layout when `state` changes using `<Transition>` as a layout animation trigger.
+
+If you don't want the `<Transition>` element to affect the layout when using it between elements, you can use the `hidden` prop to hide it:
+
+```svelte
+<!-- content -->
+<Transition do={() => /* code that causes DOM change */ } hidden />
+<!-- content -->
+```
+
+## Custom Entry And Exit Transitions
+
+You can find the default view transition styles in `app.css`:
 
 ```css
-/* default animation */
-
-.enter {
-	animation: enter 0.6s var(--ease);
+/* view transitions */
+html {
+	view-transition-name: none;
 }
 
-@keyframes enter {
+/* all view transitions */
+::view-transition-group(*) {
+	animation-duration: var(--view-transition-duration);
+	animation-timing-function: var(--ease);
+}
+
+/* entry transition */
+::view-transition-new(*):only-child {
+	animation: scale-in var(--view-transition-duration) var(--ease);
+}
+
+/* exit transition */
+::view-transition-old(*):only-child {
+	animation: scale-out var(--view-transition-duration) var(--ease);
+}
+
+@keyframes scale-in {
 	from {
-		filter: blur(40px);
 		scale: 0;
-		translate: 0px 100vh;
+		opacity: 0;
 	}
 }
 
-/* custom animation */
-
-.rotate {
-	animation: rotate 0.6s var(--ease);
-}
-
-@keyframes rotate {
-	from {
-		filter: blur(4px);
-		scale: 2;
-		rotate: -1turn;
+@keyframes scale-out {
+	to {
+		scale: 0;
+		opacity: 0;
 	}
 }
 ```
 
+You can create your own entry and exit animations inside `app.css`:
+
+```css
+@keyframes rotate {
+	from {
+		opacity: 0;
+	}
+	20% {
+		rotate: 0deg;
+	}
+	40% {
+		opacity: 1;
+	}
+	to {
+		rotate: 360deg;
+	}
+}
+```
+
+...then pass the animation to the `entry` and `exit` props of the `<Transition>` component, including the `duration` and `delay` in seconds:
+
+```svelte
+{#each items as item, i}
+	<Transition
+		entry="rotate"
+		exit="scale-out"
+		duration={1}
+		delay={i * 0.1}
+		visible
+	/>
+{/each}
+```
+
 ## Transition order
 
-If the elements you want to transition are out of order in the DOM, you can use the `order` prop to specify the order which element should transition:
+You can use the `order` prop to specify the order in which the elements should transition:
 
 <TransitionOrder />
 
@@ -95,10 +185,10 @@ If the elements you want to transition are out of order in the DOM, you can use 
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
 		<div class="grid grid-cols-2 grid-rows-2 gap-4">
-			<Transition order={4} enter="rotate">1</Transition>
-			<Transition order={3} enter="rotate">2</Transition>
-			<Transition order={2} enter="rotate">3</Transition>
-			<Transition order={1} enter="rotate">4</Transition>
+			<Transition order={4}>1</Transition>
+			<Transition order={3}>2</Transition>
+			<Transition order={2}>3</Transition>
+			<Transition order={1}>4</Transition>
 		</div>
 	</Slide>
 </Presentation>
@@ -106,7 +196,7 @@ If the elements you want to transition are out of order in the DOM, you can use 
 
 ## Layout animations
 
-You can use the `<Transition />` component to do layout animations:
+You can do impossible layout animations, like animating between a `flex` and `grid` layout among other things — the only thing you have to do is change the DOM, and leave the rest to Animotion:
 
 <LayoutAnimation />
 
@@ -125,7 +215,6 @@ You can use the `<Transition />` component to do layout animations:
 				{#each items as item, i (item)}
 					<Transition
 						class="grid h-[180px] w-[180px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 text-6xl font-semibold text-black shadow-2xl"
-						enter="rotate"
 						visible
 					>
 						{item}
@@ -134,14 +223,17 @@ You can use the `<Transition />` component to do layout animations:
 			</div>
 		</Transition>
 
-		<Transition do={() => (layout = 'grid grid-cols-2 grid-rows-2 gap-4')} />
-		<Transition do={() => (items = [4, 3, 2, 1])} />
-		<Transition do={() => (items = [2, 1, 4, 3])} />
-		<Transition do={() => (items = [4, 3, 2, 1])} />
-		<Transition do={() => (items = [1, 2, 3, 4])} />
-		<Transition do={() => (layout = 'flex gap-4')} />
+		<!-- you can pass a transitions array for convenience -->
+		<Transition
+			transitions={[
+				() => layout = 'grid grid-cols-2 grid-rows-2 gap-4',
+				() => items = [4, 3, 2, 1],
+				() => items = [2, 1, 4, 3],
+				() => items = [4, 3, 2, 1],
+				() => items = [1, 2, 3, 4],
+				() => layout = 'flex gap-4'
+			]}
+		/>
 	</Slide>
 </Presentation>
 ```
-
-You can do impossible layout animations like animating between a `flex` and `grid` layout among other things — the only thing you have to do is change the DOM, and leave the rest to Animotion.

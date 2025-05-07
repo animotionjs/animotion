@@ -29,7 +29,7 @@ Animotion is now a standalone package named `@animotion/core`. This makes it eas
 
 Animotion takes advantage of the View Transitions API for layout animations. You can use the `<Transition>` component to assign a `view-transition-name` to an element: 
 
-> ⚠️ The View Transitions API is only supported in Chromium based browsers at the moment.
+> ⚠️ The View Transitions API is not supported in Firefox.
 
 ```svelte
 <script>

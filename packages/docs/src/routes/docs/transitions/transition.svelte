@@ -14,7 +14,7 @@
 			<img
 				class="w-[400px] rounded-lg drop-shadow-sm"
 				src="https://c.tenor.com/J5A9wZzn3ZYAAAAd/tenor.gif"
-				alt="nod of approval"
+				alt="Nod of approval"
 			/>
 		</Transition>
 	</Slide>
