@@ -98,3 +98,18 @@ html {
 		opacity: 0;
 	}
 }
+
+@keyframes rotate {
+	from {
+		opacity: 0;
+	}
+	20% {
+		rotate: 0deg;
+	}
+	40% {
+		opacity: 1;
+	}
+	to {
+		rotate: 360deg;
+	}
+}

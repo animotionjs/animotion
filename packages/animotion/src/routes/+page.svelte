@@ -119,10 +119,12 @@
 			class="mt-16"
 		>
 			<div class={layout}>
-				{#each items as item (item)}
+				{#each items as item, i (item)}
 					<Transition
 						class="grid h-[180px] w-[180px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 text-6xl font-semibold text-black shadow-2xl"
-						enter="rotate"
+						entry="rotate"
+						duration={2}
+						delay={i * 0.1}
 						visible
 					>
 						{item}
