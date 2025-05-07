@@ -15,6 +15,10 @@
 		visible?: boolean
 		hidden?: boolean
 		transitions?: Array<() => void>
+		entry?: string
+		exit?: string
+		duration?: number
+		delay?: number
 	}
 
 	const noop = () => {}
@@ -27,6 +31,10 @@
 		visible = false,
 		transitions,
 		hidden,
+		entry,
+		exit,
+		duration,
+		delay,
 		...props
 	}: TransitionProps = $props()
 
@@ -82,6 +90,36 @@
 		return () => {
 			el?.addEventListener('current', enterTransition)
 			el?.removeEventListener('out', leaveTransition)
+		}
+	})
+
+	$effect(() => {
+		if (entry) {
+			const style = document.createElement('style')
+			style.textContent = `
+				::view-transition-new(${viewTransitionName}):only-child {
+					${duration ? `--view-transition-duration: ${duration}s;` : null} 
+					animation: ${entry} var(--view-transition-duration) var(--ease);
+					animation-delay: ${delay ?? 0}s;
+					animation-fill-mode: both;
+				}
+			`
+			document.head.appendChild(style)
+		}
+	})
+
+	$effect(() => {
+		if (exit) {
+			const style = document.createElement('style')
+			style.textContent = `
+				::view-transition-old(${viewTransitionName}):only-child {
+					${duration ? `--view-transition-duration: ${duration}s;` : null} 
+					animation: ${exit} var(--view-transition-duration) var(--ease);
+					animation-delay: ${delay ?? 0}s;
+					animation-fill-mode: both;
+				}
+			`
+			document.head.appendChild(style)
 		}
 	})
 </script>
