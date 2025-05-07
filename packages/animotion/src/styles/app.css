@@ -48,9 +48,10 @@
 		0.9949 89.15%,
 		1 100%
 	);
+	--view-transition-duration: 0.6s;
 }
 
-/* code block */
+/* code block background */
 div:has(> pre) {
 	padding: --spacing(4) --spacing(8);
 	background-color: oklch(24% 0.02 272);
@@ -58,34 +59,42 @@ div:has(> pre) {
 	border-radius: var(--radius-lg);
 }
 
+/* for animations */
+.hidden {
+	display: none;
+}
+
 /* view transitions */
 html {
 	view-transition-name: none;
 }
 
+/* all view transitions */
 ::view-transition-group(*) {
-	animation-duration: 0.6s;
+	animation-duration: var(--view-transition-duration);
 	animation-timing-function: var(--ease);
 }
 
-/* animations */
-.enter {
-	animation: enter 0.6s var(--ease);
+/* entry transition */
+::view-transition-new(*):only-child {
+	animation: scale-in var(--view-transition-duration) var(--ease);
 }
 
-.rotate {
-	animation: rotate 0.6s var(--ease);
+/* exit transition */
+::view-transition-old(*):only-child {
+	animation: scale-out var(--view-transition-duration) var(--ease);
 }
 
-@keyframes enter {
+@keyframes scale-in {
 	from {
 		scale: 0;
+		opacity: 0;
 	}
 }
 
-@keyframes rotate {
-	from {
-		scale: 2;
-		rotate: -1turn;
+@keyframes scale-out {
+	to {
+		scale: 0;
+		opacity: 0;
 	}
 }

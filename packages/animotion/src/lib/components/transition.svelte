@@ -12,7 +12,6 @@
 		order?: number
 		stepDuration?: number
 		name?: string
-		enter?: string
 		visible?: boolean
 		hidden?: boolean
 		transitions?: Array<() => void>
@@ -25,7 +24,6 @@
 		order,
 		stepDuration,
 		name,
-		enter = 'enter',
 		visible = false,
 		transitions,
 		hidden,
@@ -63,8 +61,6 @@
 
 		viewTransition(() => {
 			props?.do?.() ?? noop()
-			el?.classList.remove(enter)
-			el?.classList.add(enter)
 			el?.classList.remove('hidden')
 		})
 	}
@@ -74,18 +70,11 @@
 
 		viewTransition(() => {
 			props?.undo?.() ?? noop()
-			el?.classList.remove(enter)
 		})
 	}
 
 	$effect(() => {
 		if (!el) return
-
-		// if element should be visible animate it
-		if (visible) {
-			el.classList.add(enter)
-			return
-		}
 
 		el.addEventListener('current', enterTransition)
 		el.addEventListener('out', leaveTransition)
