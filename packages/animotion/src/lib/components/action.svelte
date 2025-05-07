@@ -9,7 +9,7 @@
 	}
 
 	let { order, actions, ...props }: ActionProps = $props()
-	let el: HTMLDivElement = $state()!
+	let el = $state<HTMLDivElement>()
 
 	const noop = () => {}
 	const action = () => props?.do?.() ?? noop()
@@ -28,7 +28,8 @@
 
 {#if actions}
 	{#each actions as action, i}
-		<Action do={action} undo={i === 0 ? undo : actions[i - 1]} />
+		{@const previousAction = i === 0 ? undo : actions[i - 1]}
+		<Action do={action} undo={previousAction} />
 	{/each}
 {:else}
 	<div bind:this={el} class="fragment hidden" data-fragment-index={order}></div>
