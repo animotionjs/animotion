@@ -72,41 +72,37 @@
 		</Transition>
 
 		<Action
-			do={async () => {
-				await code.update`
-					async function animate() {
-						await circle.to({ x: 400, fill: '#ffff00' })
-					}
-				`
-				await code.selectLines`2`
-				await circle.to({ x: 400, fill: '#ffff00' })
-			}}
-		/>
-
-		<Action
-			do={async () => {
-				await code.update`
-					async function animate() {
-						await circle.to({ x: 400, fill: '#ffff00' })
-						await circle.to({ x: 0, fill: '#00ffff' })
-					}
-				`
-				await code.selectLines`3`
-				await circle.to({ x: 0, fill: '#00ffff' })
-			}}
-		/>
-
-		<Action
-			do={async () => {
-				await code.selectLines`*`
-				await code.update`
-				async function animate() {
+			actions={[
+				async () => {
+					await code.update`
+						async function animate() {
+							await circle.to({ x: 400, fill: '#ffff00' })
+						}
+					`
+					await code.selectLines`2`
 					await circle.to({ x: 400, fill: '#ffff00' })
+				},
+				async () => {
+					await code.update`
+						async function animate() {
+							await circle.to({ x: 400, fill: '#ffff00' })
+							await circle.to({ x: 0, fill: '#00ffff' })
+						}
+					`
+					await code.selectLines`3`
+					await circle.to({ x: 0, fill: '#00ffff' })
+				},
+				async () => {
+					await code.selectLines`*`
+					await code.update`
+						async function animate() {
+							await circle.to({ x: 400, fill: '#ffff00' })
+							await circle.to({ x: 0, fill: '#00ffff' })
+						}
+					`
 					await circle.to({ x: 0, fill: '#00ffff' })
 				}
-			`
-				await circle.to({ x: 0, fill: '#00ffff' })
-			}}
+			]}
 		/>
 	</Slide>
 
@@ -123,10 +119,12 @@
 			class="mt-16"
 		>
 			<div class={layout}>
-				{#each items as item (item)}
+				{#each items as item, i (item)}
 					<Transition
 						class="grid h-[180px] w-[180px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 text-6xl font-semibold text-black shadow-2xl"
-						enter="rotate"
+						entry="rotate"
+						duration={2}
+						delay={i * 0.1}
 						visible
 					>
 						{item}
@@ -136,30 +134,26 @@
 		</Transition>
 
 		<Transition
-			do={() => {
-				layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-				items = [4, 3, 2, 1]
-			}}
+			transitions={[
+				() => {
+					layout = 'grid grid-cols-2 grid-rows-2 gap-4'
+					items = [4, 3, 2, 1]
+				},
+				() => {
+					layout = 'grid grid-cols-2 grid-rows-2 gap-4'
+					items = [2, 1, 4, 3]
+				},
+				() => {
+					layout = 'grid grid-cols-2 grid-rows-2 gap-4'
+					items = [4, 3, 2, 1]
+				},
+				() => {
+					layout = 'grid grid-cols-2 grid-rows-2 gap-4'
+					items = [1, 2, 3, 4]
+				},
+				() => (layout = 'flex gap-4')
+			]}
 		/>
-		<Transition
-			do={() => {
-				layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-				items = [2, 1, 4, 3]
-			}}
-		/>
-		<Transition
-			do={() => {
-				layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-				items = [4, 3, 2, 1]
-			}}
-		/>
-		<Transition
-			do={() => {
-				layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-				items = [1, 2, 3, 4]
-			}}
-		/>
-		<Transition do={() => (layout = 'flex gap-4')} />
 	</Slide>
 
 	<Slide class="h-full place-content-center place-items-center">
