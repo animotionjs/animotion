@@ -93,33 +93,42 @@
 		}
 	})
 
-	$effect(() => {
-		if (entry) {
-			const style = document.createElement('style')
-			style.textContent = `
-				::view-transition-new(${viewTransitionName}):only-child {
-					${duration ? `--view-transition-duration: ${duration}s;` : null} 
-					animation: ${entry} var(--view-transition-duration) var(--ease);
-					animation-delay: ${delay ?? 0}s;
-					animation-fill-mode: both;
-				}
-			`
-			document.head.appendChild(style)
-		}
-	})
+	$effect.pre(() => {
+		const viewTransitions = document.querySelector<HTMLStyleElement>(`[data-id='view-transitions']`)
 
-	$effect(() => {
-		if (exit) {
+		if (!viewTransitions) {
 			const style = document.createElement('style')
-			style.textContent = `
-				::view-transition-old(${viewTransitionName}):only-child {
-					${duration ? `--view-transition-duration: ${duration}s;` : null} 
-					animation: ${exit} var(--view-transition-duration) var(--ease);
-					animation-delay: ${delay ?? 0}s;
-					animation-fill-mode: both;
-				}
-			`
+			style.dataset.id = 'view-transitions'
 			document.head.appendChild(style)
+			return
+		}
+
+		if (entry || exit) {
+			let transitions = ''
+
+			if (entry) {
+				transitions += `
+					::view-transition-new(${viewTransitionName}):only-child {
+						${duration ? `--view-transition-duration: ${duration}s;` : ''}
+						animation: ${entry} var(--view-transition-duration) var(--ease);
+						animation-delay: ${delay ?? 0}s;
+						animation-fill-mode: both;
+					}
+				`
+			}
+
+			if (exit) {
+				transitions += `
+					::view-transition-old(${viewTransitionName}):only-child {
+						${duration ? `--view-transition-duration: ${duration}s;` : ''}
+						animation: ${exit} var(--view-transition-duration) var(--ease);
+						animation-delay: ${delay ?? 0}s;
+						animation-fill-mode: both;
+					}
+				`
+			}
+
+			viewTransitions.textContent += transitions
 		}
 	})
 </script>
