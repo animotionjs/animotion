@@ -79,6 +79,7 @@
 
 	.content {
 		margin-block-start: var(--size-5);
+		view-transition-name: content;
 
 		& :global(h2) {
 			margin-block-start: var(--size-5);

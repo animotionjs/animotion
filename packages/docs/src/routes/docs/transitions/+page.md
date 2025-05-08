@@ -23,7 +23,7 @@ You can use the `<Transition>` component to animate changes in your slide like m
 
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
-		<Transition>
+		<Transition visible>
 			<p bind:this={text} class="text-8xl font-bold drop-shadow-sm">
 				🪄 Animotion
 			</p>
@@ -57,7 +57,7 @@ You can use the `<Transition>` component purely as a layout animation trigger wi
 <Transition do={() => /* code that causes DOM change */ } />
 ```
 
-Animotion is going to run the `do` function before animating the layout, and invoke the `startViewTransition()` method on the document.
+Animotion is going to run the function passed to the `do` prop before animating the layout, and invoke the `startViewTransition()` method on the document.
 
 This is very useful for revealing or hiding elements like a code block and its output:
 
@@ -188,7 +188,7 @@ You can use the `order` prop to specify the order in which the elements should t
 			<Transition order={4}>1</Transition>
 			<Transition order={3}>2</Transition>
 			<Transition order={2}>3</Transition>
-			<Transition order={1}>4</Transition>
+			<Transition order={1} visible>4</Transition>
 		</div>
 	</Slide>
 </Presentation>
@@ -210,18 +210,16 @@ You can do impossible layout animations, like animating between a `flex` and `gr
 
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
-		<Transition>
-			<div class={layout}>
-				{#each items as item, i (item)}
-					<Transition
-						class="grid h-[180px] w-[180px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 text-6xl font-semibold text-black shadow-2xl"
-						visible
-					>
-						{item}
-					</Transition>
-				{/each}
-			</div>
-		</Transition>
+		<div class={layout}>
+			{#each items as item (item)}
+				<Transition
+					class="grid h-[180px] w-[180px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 text-6xl font-semibold text-black shadow-2xl"
+					visible
+				>
+					{item}
+				</Transition>
+			{/each}
+		</div>
 
 		<!-- you can pass a transitions array for convenience -->
 		<Transition

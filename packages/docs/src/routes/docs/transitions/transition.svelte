@@ -6,7 +6,7 @@
 
 <Presentation>
 	<Slide class="h-full place-content-center place-items-center">
-		<Transition>
+		<Transition visible>
 			<p bind:this={text} class="text-8xl font-bold drop-shadow-sm">🪄 Animotion</p>
 		</Transition>
 

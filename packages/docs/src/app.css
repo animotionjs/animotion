@@ -33,7 +33,7 @@ h1 {
 
 h2 {
 	border-bottom: 1px solid var(--border);
-	padding-bottom: var(--size-2);
+	padding-bottom: var(--size-1);
 }
 
 a {
@@ -126,7 +126,10 @@ html {
 	font-size: 62.5%;
 
 	/* typography */
-	--font-size-text: 2rem;
+	--font-size-pre: 1.5rem;
+	--font-size-inline: 1.6rem;
+	--font-size-text: 1.8rem;
+
 	--font-size-1: 0.8rem;
 	--font-size-2: 1.6rem;
 	--font-size-3: 1.8rem;
@@ -208,7 +211,7 @@ blockquote {
 }
 
 pre {
-	font-size: var(--font-size-2);
+	font-size: var(--font-size-pre);
 }
 
 .section a {
@@ -329,6 +332,7 @@ pre {
 :not(pre) > code[class*='language-'],
 :not(pre) > code {
 	padding: 0.1em 0.2em;
+	font-size: var(--font-size-inline);
 	color: var(--blue-1);
 	background-color: hsl(200 40% 90%);
 	border-radius: 0.3em;
@@ -371,11 +375,6 @@ pre {
 /* for animations */
 .hidden {
 	display: none;
-}
-
-/* view transitions */
-html {
-	view-transition-name: none;
 }
 
 /* all view transitions */
