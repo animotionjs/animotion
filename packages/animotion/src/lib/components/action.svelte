@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Action } from '$lib/index.js'
+	import Action from '$lib/components/action.svelte'
 
 	type ActionProps = {
 		order?: number

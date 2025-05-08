@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Transition } from '$lib/index.js'
+	import Transition from '$lib/components/transition.svelte'
 	import type { Snippet } from 'svelte'
 
 	type TransitionProps = {

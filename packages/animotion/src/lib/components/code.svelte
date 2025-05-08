@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Action, Code } from '$lib/index.js'
+	import Action from '$lib/components/action.svelte'
+	import Code from '$lib/components/code.svelte'
 	import {
 		type BundledLanguage,
 		type BundledTheme,
