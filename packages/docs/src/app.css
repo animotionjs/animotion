@@ -76,19 +76,6 @@ button {
 	cursor: pointer;
 }
 
-.shiki {
-	padding: var(--size-3);
-	border-radius: var(--radius-1);
-	border: 1px solid hsl(0 0% 0% / 2%);
-	box-shadow: var(--shadow-1);
-	overflow: auto;
-	tab-size: 2;
-
-	.line span {
-		font-style: normal !important;
-	}
-}
-
 code,
 kbd {
 	font-family: var(--font-mono);
@@ -212,6 +199,28 @@ blockquote {
 
 pre {
 	font-size: var(--font-size-pre);
+}
+
+.shiki {
+	padding: var(--size-3);
+	border-radius: var(--radius-1);
+	border: 1px solid hsl(0 0% 0% / 2%);
+	box-shadow: var(--shadow-1);
+	overflow: auto;
+	tab-size: 2;
+
+	.line span {
+		font-style: normal !important;
+	}
+}
+
+.icon-link::before {
+	content: '#';
+	display: inline-block;
+	margin-inline-end: var(--size-1);
+	translate: 0px -2px;
+	font-size: 0.8em;
+	color: var(--brand);
 }
 
 .section a {

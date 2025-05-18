@@ -4,12 +4,15 @@ import toHtmlAST from 'remark-rehype'
 import toHtmlString from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
 import remarkSmartypants from 'remark-smartypants'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeShiki from '@shikijs/rehype'
 
 const markdownPreprocessor = unified()
 	.use(toMarkdownAST)
-	.use([ remarkGfm,	remarkSmartypants ])
+	.use([remarkGfm,	remarkSmartypants])
 	.use(toHtmlAST, { allowDangerousHtml: true })
+	.use([rehypeSlug, rehypeAutolinkHeadings])
 	.use(rehypeShiki, { theme: 'poimandres' })
 	.use(toHtmlString, { allowDangerousHtml: true })
 
