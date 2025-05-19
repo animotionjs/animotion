@@ -105,8 +105,8 @@ importers:
   packages/docs:
     dependencies:
       '@animotion/core':
-        specifier: ^1.1.6
-        version: 1.1.6(svelte@5.25.6)(vite@6.3.5(jiti@2.4.2)(lightningcss@1.29.3))
+        specifier: ^1.1.7
+        version: 1.1.7(svelte@5.25.6)(vite@6.3.5(jiti@2.4.2)(lightningcss@1.29.3))
       '@animotion/motion':
         specifier: ^2.0.1
         version: 2.0.1(svelte@5.25.6)
@@ -217,8 +217,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@animotion/core@1.1.6':
-    resolution: {integrity: sha512-6/n71kd7ZYBqkRgm7MSNeFODwwuFkYgLp9IQK+T1QgvxZOL+vjBuz7vZr2xUv1mdiyQ1ZceGZtS0BL6XDiuohQ==}
+  '@animotion/core@1.1.7':
+    resolution: {integrity: sha512-VDo88g/OG6+3v/GBkjoaUOgu/IWcE9sGvRACx9SCugSP9UOuwwjRrbJN8DpHsuNY92ADtNARrphtr7DM00y10w==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -2575,7 +2575,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@animotion/core@1.1.6(svelte@5.25.6)(vite@6.3.5(jiti@2.4.2)(lightningcss@1.29.3))':
+  '@animotion/core@1.1.7(svelte@5.25.6)(vite@6.3.5(jiti@2.4.2)(lightningcss@1.29.3))':
     dependencies:
       '@animotion/motion': 2.0.1(svelte@5.25.6)
       '@fontsource/atkinson-hyperlegible': 5.2.5

@@ -1,3 +1,16 @@
+<script lang="ts" module>
+	import { browser } from '$app/environment'
+
+	let customViewTransitions = $state<HTMLStyleElement>()
+
+	if (browser) {
+		const style = document.createElement('style')
+		style.dataset.id = 'view-transitions'
+		document.head.appendChild(style)
+		customViewTransitions = style
+	}
+</script>
+
 <script lang="ts">
 	import Transition from '$lib/components/transition.svelte'
 	import type { Snippet } from 'svelte'
@@ -40,7 +53,6 @@
 
 	let el = $state<HTMLDivElement>()
 	let viewTransitionName = name ? `transition-${name}` : `transition-${crypto.randomUUID()}`
-	let customViewTransitions = $state<HTMLStyleElement>()
 
 	function viewTransition(fn: () => void) {
 		if (!document.startViewTransition) {
@@ -95,14 +107,10 @@
 	})
 
 	$effect(() => {
-		const style = document.createElement('style')
-		style.dataset.id = 'view-transitions'
-		document.head.appendChild(style)
-		customViewTransitions = style
-	})
-
-	$effect(() => {
 		if (!customViewTransitions) return
+
+		console.log(customViewTransitions)
+		console.log({ entry, exit })
 
 		if (entry || exit) {
 			let transitions = ''
