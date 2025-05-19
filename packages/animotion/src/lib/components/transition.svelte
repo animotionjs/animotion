@@ -40,6 +40,7 @@
 
 	let el = $state<HTMLDivElement>()
 	let viewTransitionName = name ? `transition-${name}` : `transition-${crypto.randomUUID()}`
+	let customViewTransitions = $state<HTMLStyleElement>()
 
 	function viewTransition(fn: () => void) {
 		if (!document.startViewTransition) {
@@ -93,15 +94,15 @@
 		}
 	})
 
-	$effect.pre(() => {
-		const viewTransitions = document.querySelector<HTMLStyleElement>(`[data-id='view-transitions']`)
+	$effect(() => {
+		const style = document.createElement('style')
+		style.dataset.id = 'view-transitions'
+		document.head.appendChild(style)
+		customViewTransitions = style
+	})
 
-		if (!viewTransitions) {
-			const style = document.createElement('style')
-			style.dataset.id = 'view-transitions'
-			document.head.appendChild(style)
-			return
-		}
+	$effect(() => {
+		if (!customViewTransitions) return
 
 		if (entry || exit) {
 			let transitions = ''
@@ -128,7 +129,7 @@
 				`
 			}
 
-			viewTransitions.textContent += transitions
+			customViewTransitions.textContent += transitions
 		}
 	})
 </script>
