@@ -72,7 +72,7 @@ async function main() {
 	}
 
 	const dependencies = await confirm({
-		message: 'Install dependencies? (requires pnpm)',
+		message: 'Install dependencies? (uses pnpm)',
 	})
 
 	if (isCancel(dependencies)) {

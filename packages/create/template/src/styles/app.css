@@ -8,6 +8,7 @@
 /* tailwind */
 @import 'tailwindcss/theme';
 @import 'tailwindcss/utilities';
+@source '../../node_modules/@animotion/core';
 
 /* reset */
 *,
