@@ -109,9 +109,6 @@
 	$effect(() => {
 		if (!customViewTransitions) return
 
-		console.log(customViewTransitions)
-		console.log({ entry, exit })
-
 		if (entry || exit) {
 			let transitions = ''
 
