@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { Transition } from '@animotion/core'
+	import { Code, Transition, Action } from '@animotion/core'
+	import { tween } from '@animotion/motion'
 
-	let items = $state([1, 2, 3, 4])
-	let layout = $state('flex gap-4')
+	let text: HTMLParagraphElement
+	let code: ReturnType<typeof Code>
+	let circle = tween({ x: 0, y: 80, r: 80, fill: '#00ffff' })
 </script>
 
 <Transition
