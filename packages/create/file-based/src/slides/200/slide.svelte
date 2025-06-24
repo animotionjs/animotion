@@ -20,10 +20,10 @@
 	do={async () => {
 		text.classList.replace('text-8xl', 'text-6xl')
 		await code.update`
-					async function animate() {
-						// ...
-					}
-				`
+			async function animate() {
+				// ...
+			}
+		`
 		await circle.to({ x: 0, fill: '#00ffff' })
 	}}
 	class="mt-16"
@@ -40,10 +40,10 @@
 <Transition
 	do={async () => {
 		await code.update`
-					async function animate() {
-						// ...
-					}
-				`
+			async function animate() {
+				// ...
+			}
+		`
 		await circle.to({ x: 0, fill: '#00ffff' })
 	}}
 	class="mt-16"
@@ -67,31 +67,31 @@
 	actions={[
 		async () => {
 			await code.update`
-						async function animate() {
-							await circle.to({ x: 400, fill: '#ffff00' })
-						}
-					`
+				async function animate() {
+					await circle.to({ x: 400, fill: '#ffff00' })
+				}
+			`
 			await code.selectLines`2`
 			await circle.to({ x: 400, fill: '#ffff00' })
 		},
 		async () => {
 			await code.update`
-						async function animate() {
-							await circle.to({ x: 400, fill: '#ffff00' })
-							await circle.to({ x: 0, fill: '#00ffff' })
-						}
-					`
+				async function animate() {
+					await circle.to({ x: 400, fill: '#ffff00' })
+					await circle.to({ x: 0, fill: '#00ffff' })
+				}
+			`
 			await code.selectLines`3`
 			await circle.to({ x: 0, fill: '#00ffff' })
 		},
 		async () => {
 			await code.selectLines`*`
 			await code.update`
-						async function animate() {
-							await circle.to({ x: 400, fill: '#ffff00' })
-							await circle.to({ x: 0, fill: '#00ffff' })
-						}
-					`
+				async function animate() {
+					await circle.to({ x: 400, fill: '#ffff00' })
+					await circle.to({ x: 0, fill: '#00ffff' })
+				}
+			`
 			await circle.to({ x: 0, fill: '#00ffff' })
 		},
 	]}
