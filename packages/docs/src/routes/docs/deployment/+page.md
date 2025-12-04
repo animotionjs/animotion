@@ -4,8 +4,7 @@ Animotion uses [SvelteKit](https://kit.svelte.dev/) as the template, so you can 
 
 Here is a list of the official adapters:
 
-- [Cloudflare Pages](https://kit.svelte.dev/docs/adapter-cloudflare)
-- [Cloudflare Workers](https://kit.svelte.dev/docs/adapter-cloudflare-workers)
+- [Cloudflare (Pages & Workers)](https://kit.svelte.dev/docs/adapter-cloudflare)
 - [Netlify](https://kit.svelte.dev/docs/adapter-netlify)
 - [Node](https://kit.svelte.dev/docs/adapter-node)
 - [Static site generation (SSG)](https://kit.svelte.dev/docs/adapter-static)
