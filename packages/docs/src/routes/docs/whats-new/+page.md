@@ -5,7 +5,7 @@
 - [@animotion/core](https://www.npmjs.com/package/@animotion/core) standalone package
 - [View Transitions API](https://developer.chrome.com/docs/web-platform/view-transitions) for layout animations
 - [Slide events](slides) are now props
-- [Svelte 5](https://svelte-5-preview.vercel.app/)
+- [Svelte 5](https://svelte.dev/blog/svelte-5-is-alive)
 - [SvelteKit](https://kit.svelte.dev/) template
 - [Tailwind 4](https://tailwindcss.com/blog/tailwindcss-v4-alpha) for styling
 
@@ -65,7 +65,7 @@ The previous `on:in` and `on:out` events are now regular props:
 
 ## Svelte 5
 
-Animotion uses [signals](https://svelte-5-preview.vercel.app/docs/runes) for reactivity:
+Animotion uses [signals](https://svelte.dev/docs/svelte/what-are-runes) for reactivity:
 
 ```svelte
 <script>
