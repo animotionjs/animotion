@@ -9,11 +9,11 @@ import { cancel, confirm, intro, isCancel, outro, spinner, text, select } from '
 
 const execSync = util.promisify(exec)
 
-async function copy(from, to) {
+function copy(from, to) {
 	const modulePath = fileURLToPath(import.meta.url)
 	const templateDir = path.join(path.dirname(modulePath), from)
 	const destinationDir = path.join(process.cwd(), to)
-	await fs.cpSync(templateDir, destinationDir, { recursive: true })
+	fs.cpSync(templateDir, destinationDir, { recursive: true })
 }
 
 async function main() {
@@ -80,10 +80,10 @@ async function main() {
 		return process.exit(0)
 	}
 
-	await copy('../template', cwd)
+	copy('../template', cwd)
 
 	if (template !== 'default') {
-		await copy(`../${template}`, cwd)
+		copy(`../${template}`, cwd)
 	}
 
 	// npm ignores `.gitignore` so rename it
