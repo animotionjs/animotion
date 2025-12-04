@@ -6,7 +6,7 @@
 
 # Transitions
 
-> ⚠️ Animotion uses the [View Transitions API (single document)](https://caniuse.com/view-transitions) which is Baseline newly available since Oct 2025. The core presentations features still work in older browsers, but they might not show all transitions.
+> ⚠️ Animotion uses the [View Transitions API (single document)](https://caniuse.com/view-transitions) which is Baseline newly available since Oct 2025. The core presentation features still work in older browsers, but they might not show all transitions.
 
 ## Animating elements
 
