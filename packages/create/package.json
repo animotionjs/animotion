@@ -20,6 +20,6 @@
 		"reveal"
 	],
 	"dependencies": {
-		"@clack/prompts": "^0.9.1"
+		"@clack/prompts": ""
 	}
 }
