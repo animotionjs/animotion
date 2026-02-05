@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Transition from './transition.svelte'
 	import TransitionOrder from './order.svelte'
-	import LayoutAnimation from './layout.svelte'
+	import LayoutAnimation from './layout-animation.svelte'
 </script>
 
 # Transitions
