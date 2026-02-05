@@ -1,13 +1,79 @@
 {
-	"name": "animotion",
-	"version": "1.0.0",
-	"description": "Animotion monorepo",
+	"name": "@animotion/core",
+	"version": "1.1.8",
+	"description": "Core components for Animotion",
+	"author": "animotionjs",
+	"homepage": "https://animotion.pages.dev/",
+	"bugs": "https://github.com/animotionjs/animotion/issues",
+	"type": "module",
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/animotionjs/animotion.git"
+	},
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"animation",
+		"library"
+	],
 	"scripts": {
-		"animotion:dev": "pnpm -F @animotion/core run dev",
-		"docs:dev": "pnpm -F docs run dev",
-		"docs:build": "pnpm -F docs run build",
-		"docs:preview": "pnpm -F docs run preview",
-		"update": "pnpm -r update -i -L"
+		"dev": "vite dev",
+		"build": "vite build && npm run prepack",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"prepack": "svelte-kit sync && svelte-package && publint",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
+	},
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		},
+		"./theme": "./dist/styles/theme.css"
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^7.0.0",
+		"@sveltejs/kit": "^2.50.2",
+		"@sveltejs/package": "^2.5.7",
+		"@types/eslint": "^9.6.1",
+		"@types/reveal.js": "^5.2.2",
+		"eslint": "^9.39.2",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.14.0",
+		"globals": "^17.3.0",
+		"prettier": "^3.8.1",
+		"prettier-plugin-svelte": "^3.4.1",
+		"prettier-plugin-tailwindcss": "^0.7.2",
+		"publint": "^0.3.17",
+		"svelte": "5.49.2",
+		"svelte-check": "^4.3.6",
+		"tslib": "^2.8.1",
+		"typescript": "^5.9.3",
+		"typescript-eslint": "8.54.0",
+		"vite": "^7.3.1"
+	},
+	"dependencies": {
+		"@animotion/motion": "^2.0.1",
+		"@fontsource/atkinson-hyperlegible": "^5.2.8",
+		"@fontsource/monaspace-neon": "^5.2.5",
+		"@tailwindcss/vite": "4.1.18",
+		"reveal.js": "5.2.1",
+		"shiki": "^3.22.0",
+		"shiki-magic-move": "^1.2.1",
+		"tailwindcss": "4.1.18"
+	},
+	"peerDependencies": {
+		"svelte": "^5.0.0"
 	}
 }

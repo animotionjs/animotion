@@ -1,12 +1,11 @@
 # Contributing
 
-Animotion is a monorepo using [pnpm workspaces](https://pnpm.io/workspaces) for easier organization.
+Thank you for your interest in contributing to Animotion! This repository contains the core Animotion library.
 
-| Package     | Description   |
-| ----------- | ------------- |
-| `create`    | Animotion CLI |
-| `docs`      | Documentation |
-| `animotion` | Animotion     |
+## Related Repositories
+
+- **[Documentation](https://github.com/animotionjs/docs)** - Animotion documentation site
+- **[CLI](https://github.com/animotionjs/cli)** - Animotion project scaffolding tool
 
 ## Clone or Fork the Project
 
@@ -16,30 +15,47 @@ git clone https://github.com/animotionjs/animotion
 
 ## Install Dependencies
 
-If you run this at the root of your project it's going to install the dependecies for every package.
-
 ```sh
 pnpm i
 ```
 
-## Docs
+## Development
 
-The docs use [SvelteKit](https://kit.svelte.dev/) but you don't have to know SvelteKit to contribute. If you find a mistake you can use the GitHub UI or the web editor if you press `.` in the browser for quick edits.
-
-```sh
-pnpm docs:dev
-```
-
-This is going to start the development server for the docs at http://localhost:5173/.
-
-## Animotion
-
-Animotion is just a Svelte project using Vite as the build tool.
+Animotion is a Svelte project using Vite as the build tool. To start the development server:
 
 ```sh
-pnpm animotion:dev
+pnpm dev
 ```
 
-This is going to start the development server for Animotion at http://localhost:5173/.
+This will start the development server at http://localhost:5173/.
 
-These scripts are something I made up but it's the same as using `cd` to navigate into the respective package directory and using `pnpm run dev`, or `pnpm run build` and `pnpm run preview` for the package but it's easier being able to do it from the root of your project.
+## Building
+
+To build the package:
+
+```sh
+pnpm build
+```
+
+## Code Quality
+
+Check types and lint the code:
+
+```sh
+pnpm check
+pnpm lint
+```
+
+Format the code:
+
+```sh
+pnpm format
+```
+
+## Contributing to Documentation
+
+If you want to contribute to the documentation, please visit the [docs repository](https://github.com/animotionjs/docs). The docs use [SvelteKit](https://kit.svelte.dev/) but you don't have to know SvelteKit to contribute. If you find a mistake you can use the GitHub UI or press `.` in the browser to open the web editor for quick edits.
+
+## Contributing to the CLI
+
+If you want to contribute to the CLI tool, please visit the [CLI repository](https://github.com/animotionjs/cli).
