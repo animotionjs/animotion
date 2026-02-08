@@ -56,7 +56,7 @@
 		newLine: (el: HTMLElement) => el.tagName === 'BR'
 	}
 
-	function indent(text: string) {
+	export function indent(text: string) {
 		if (!/\t/.test(text.trim())) {
 			return text
 		}
