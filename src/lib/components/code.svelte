@@ -1,3 +1,17 @@
+<script lang="ts" module>
+	import { createHighlighter } from 'shiki'
+
+	const highlighterCache = new Map<string, Promise<HighlighterCore>>()
+
+	function getHighlighter(theme: Theme, lang: Lang) {
+		const key = `${theme}-${lang}`
+		if (!highlighterCache.has(key)) {
+			highlighterCache.set(key, createHighlighter({ themes: [theme], langs: [lang] }))
+		}
+		return highlighterCache.get(key)!
+	}
+</script>
+
 <script lang="ts">
 	import Action from '$lib/components/action.svelte'
 	import Code from '$lib/components/code.svelte'
@@ -10,7 +24,6 @@
 	import { codeToKeyedTokens, createMagicMoveMachine } from 'shiki-magic-move/core'
 	import { MagicMoveRenderer } from 'shiki-magic-move/renderer'
 	import type { MagicMoveDifferOptions, MagicMoveRenderOptions } from 'shiki-magic-move/types'
-	import { createHighlighter } from 'shiki'
 	import '../styles/shiki.css'
 
 	type Promises = Promise<unknown>[]
@@ -82,10 +95,7 @@
 
 	async function init() {
 		if (!container) return
-		highlighter = await createHighlighter({
-			themes: [theme],
-			langs: [lang]
-		})
+		highlighter = await getHighlighter(theme, lang)
 		machine = createMagicMoveMachine(
 			(code) => codeToKeyedTokens(highlighter, code, { lang, theme }, options.lineNumbers),
 			options
