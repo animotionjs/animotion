@@ -32,10 +32,6 @@
 		return kbps * 1000
 	}
 
-	$effect(() => {
-		getMediaStream()
-	})
-
 	async function getMediaStream() {
 		try {
 			videoStream = await navigator.mediaDevices.getDisplayMedia({
@@ -59,6 +55,7 @@
 	}
 
 	async function startRecording() {
+		await getMediaStream()
 		if (useTimer) {
 			await countdown()
 		}
