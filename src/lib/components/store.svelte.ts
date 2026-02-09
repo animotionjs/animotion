@@ -1,6 +1,6 @@
 import type Reveal from 'reveal.js'
 
-let slides = $state() as Reveal.Api
+let slides = $state() as Reveal.Api | undefined
 
 export function setPresentation(reveal: Reveal.Api) {
 	slides = reveal
