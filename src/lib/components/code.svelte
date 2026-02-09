@@ -136,9 +136,7 @@
 		return Array.from({ length: end - start + 1 }, (_, index) => start + index)
 	}
 
-	function getLines(string: TemplateStringsArray) {
-		let range = string[0]
-
+	function getLines(range: string) {
 		// code.selectLines`1,2`
 		// code.selectLines`1,2,3,4`
 		// code.selectLines`1-4`
@@ -180,10 +178,11 @@
 		return promise
 	}
 
-	export function selectLines(string: TemplateStringsArray) {
+	export function selectLines(string: TemplateStringsArray, ...expressions: string[]) {
 		if (!container) return
 
-		const lines = getLines(string)
+		const range = expressions.length > 0 ? merge(string, expressions) : string[0]
+		const lines = getLines(range)
 		const tokens = container.children
 		const promises: Promises = []
 
@@ -208,10 +207,11 @@
 		return Promise.all(promises)
 	}
 
-	export function selectToken(string: TemplateStringsArray) {
+	export function selectToken(string: TemplateStringsArray, ...expressions: string[]) {
 		if (!container) return
 
-		const selection = string[0].split(' ')
+		const raw = expressions.length > 0 ? merge(string, expressions) : string[0]
+		const selection = raw.split(' ')
 		const isLineNumber = !isNaN(+selection[0])
 		const line = isLineNumber ? +selection[0] : 0
 		const tokens = container.children

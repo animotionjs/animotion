@@ -176,6 +176,34 @@ describe('code highlighting', () => {
 		}
 	})
 
+	it('selectLines selects a range using template literal expressions', async () => {
+		const threeLineCode = `let a = 1\nlet b = 2\nlet c = 3`
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: threeLineCode, lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const pre = await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a') ? el : null
+		})
+
+		const start = '1'
+		const end = '2'
+		await code.selectLines`${start}-${end}`
+
+		const lines = getTokensByLine(pre!)
+		for (const token of lines.get(1)!) {
+			expect(token.classList.contains('selected')).toBe(true)
+		}
+		for (const token of lines.get(2)!) {
+			expect(token.classList.contains('selected')).toBe(true)
+		}
+		for (const token of lines.get(3)!) {
+			expect(token.classList.contains('deselected')).toBe(true)
+		}
+	})
+
 	it('selectLines with * selects all lines', async () => {
 		const code = mount(Code, {
 			target: document.body,
@@ -218,6 +246,30 @@ describe('code highlighting', () => {
 				expect(token.classList.contains('selected')).toBe(true)
 			} else {
 				expect(token.classList.contains('deselected')).toBe(true)
+			}
+		}
+	})
+
+	it('selectToken selects matching tokens using template literal expressions', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const pre = await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let count') ? el : null
+		})
+
+		const token = 'count'
+		await code.selectToken`${token}`
+
+		const tokens = getAllTokens(pre!)
+		for (const t of tokens) {
+			if (t.textContent === 'count') {
+				expect(t.classList.contains('selected')).toBe(true)
+			} else {
+				expect(t.classList.contains('deselected')).toBe(true)
 			}
 		}
 	})
