@@ -25,12 +25,21 @@
 
 	function listeners(el: HTMLElement) {
 		const events = ['in', 'out'] as const
-		events.forEach((event) => el.addEventListener(event, () => props[event]?.()))
+
+		const handlers = events.map((event) => {
+			const handler = () => props[event]?.()
+			el.addEventListener(event, handler)
+			return { event, handler }
+		})
+
+		return () => {
+			handlers.forEach(({ event, handler }) => el.removeEventListener(event, handler))
+		}
 	}
 </script>
 
 <section
-	use:listeners
+	{@attach listeners}
 	data-auto-animate={props.animate}
 	data-auto-animate-easing={props.animateEasing}
 	data-auto-animate-unmatched={props.animateUnmatched}
