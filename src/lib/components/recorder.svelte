@@ -25,7 +25,7 @@
 	let audioStream: MediaStream
 	let mediaRecorder: MediaRecorder
 	let chunks: Blob[] = []
-	let timer: number
+	let timer: ReturnType<typeof setInterval>
 	let seconds = $state(3)
 
 	function kbpsToBits(kbps: number) {
@@ -45,11 +45,13 @@
 				systemAudio: systemAudio ? 'include' : 'exclude'
 			})
 			videoStream.oninactive = stopRecording
-			audioStream = await navigator.mediaDevices.getUserMedia({
-				audio: true
-			})
-			const [microphone] = audioStream.getAudioTracks()
-			videoStream.addTrack(microphone)
+
+			if (useMicrophone) {
+				audioStream = await navigator.mediaDevices.getUserMedia({ audio: true })
+				const [microphone] = audioStream.getAudioTracks()
+				videoStream.addTrack(microphone)
+			}
+
 			audioStream.oninactive = stopRecording
 		} catch (e) {
 			console.error(e)
@@ -87,6 +89,7 @@
 			if (seconds === 0) {
 				clearInterval(timer)
 				resolve(seconds)
+				return
 			}
 			seconds--
 		}, 1000)
