@@ -101,7 +101,7 @@
 		el.addEventListener('out', leaveTransition)
 
 		return () => {
-			el?.addEventListener('current', enterTransition)
+			el?.removeEventListener('current', enterTransition)
 			el?.removeEventListener('out', leaveTransition)
 		}
 	})
