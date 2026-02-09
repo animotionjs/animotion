@@ -12,8 +12,8 @@
 .shiki-magic-move-item {
 	display: inline-block;
 	transition:
-		color var(--smm-duration, 0.5s) var(--smm-easing, 'ease'),
-		opacity 0.5s var(--smm-easing, 'ease');
+		color var(--smm-duration, 0.5s) var(--smm-easing, ease),
+		opacity 0.5s var(--smm-easing, ease);
 }
 
 :where(.shiki-magic-move-item.selected) {
@@ -25,17 +25,17 @@
 }
 
 .shiki-magic-move-move {
-	transition: all var(--smm-duration, 0.5s) var(--smm-easing, 'ease');
+	transition: all var(--smm-duration, 0.5s) var(--smm-easing, ease);
 }
 
 .shiki-magic-move-enter-active,
 .shiki-magic-move-leave-active {
-	transition: all var(--smm-duration, 0.5s) var(--smm-easing, 'ease');
+	transition: all var(--smm-duration, 0.5s) var(--smm-easing, ease);
 }
 
 .shiki-magic-move-container-resize,
 .shiki-magic-move-container-restyle {
-	transition: all var(--smm-duration, 0.5s) var(--smm-easing, 'ease');
+	transition: all var(--smm-duration, 0.5s) var(--smm-easing, ease);
 	transition-delay: calc(var(--smm-duration, 0.5s) * var(--smm-delay-container, 1));
 }
 
