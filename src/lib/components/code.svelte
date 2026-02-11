@@ -207,6 +207,60 @@
 		return Promise.all(promises)
 	}
 
+	export function scrollToLine(string: TemplateStringsArray, ...expressions: string[]) {
+		if (!container) return
+
+		const raw = expressions.length > 0 ? merge(string, expressions) : string[0]
+		const line = parseInt(raw.trim())
+
+		if (isNaN(line) || line < 1) return
+
+		let currentLine = 1
+		let targetElement: HTMLElement | null = null
+
+		for (const token of container.children) {
+			if (!is.htmlEl(token)) continue
+
+			if (currentLine === line && is.token(token)) {
+				targetElement = token
+				break
+			}
+
+			if (is.newLine(token)) {
+				currentLine++
+			}
+		}
+
+		if (!targetElement) return
+
+		const containerRect = container.getBoundingClientRect()
+		const targetRect = targetElement.getBoundingClientRect()
+		const targetOffsetTop = targetRect.top - containerRect.top + container.scrollTop
+		const centerOffset = containerRect.height / 2 - targetRect.height / 2
+		const scrollPosition = Math.max(0, targetOffsetTop - centerOffset)
+
+		return new Promise<void>((resolve) => {
+			const currentScroll = container!.scrollTop
+
+			if (Math.abs(currentScroll - scrollPosition) < 1) {
+				resolve()
+				return
+			}
+
+			container!.scrollTo({ top: scrollPosition, behavior: 'smooth' })
+
+			let resolved = false
+			const done = () => {
+				if (resolved) return
+				resolved = true
+				resolve()
+			}
+
+			container!.addEventListener('scrollend', done, { once: true })
+			setTimeout(done, 1000)
+		})
+	}
+
 	export function selectToken(string: TemplateStringsArray, ...expressions: string[]) {
 		if (!container) return
 
