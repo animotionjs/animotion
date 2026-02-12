@@ -50,17 +50,17 @@ describe('code update', () => {
 			props: { code: `let bool = false`, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let bool = false') ? el : null
-		})
+		})) as HTMLPreElement
 
-		expect(pre!.textContent).toContain('let bool = false')
+		expect(pre.textContent).toContain('let bool = false')
 
 		await code.update`let bool = true`
 
 		await vi.waitFor(() => {
-			expect(pre!.textContent).toContain('let bool = true')
+			expect(pre.textContent).toContain('let bool = true')
 		})
 	})
 
@@ -70,16 +70,16 @@ describe('code update', () => {
 			props: { code: `let bool = false`, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let bool = false') ? el : null
-		})
+		})) as HTMLPreElement
 
 		const expression = 'true'
 		await code.update`let bool = ${expression}`
 
 		await vi.waitFor(() => {
-			expect(pre!.textContent).toContain('let bool = true')
+			expect(pre.textContent).toContain('let bool = true')
 		})
 	})
 })
@@ -97,7 +97,9 @@ describe('code highlighting', () => {
 				currentLine++
 				lines.set(currentLine, [])
 			} else if (child.classList.contains('shiki-magic-move-item')) {
-				lines.get(currentLine)!.push(child as HTMLElement)
+				const lineTokens = lines.get(currentLine) ?? []
+				lineTokens.push(child as HTMLElement)
+				lines.set(currentLine, lineTokens)
 			}
 		}
 
@@ -108,24 +110,28 @@ describe('code highlighting', () => {
 		return [...container.querySelectorAll<HTMLElement>('.shiki-magic-move-item')]
 	}
 
+	function getLine(lines: Map<number, HTMLElement[]>, lineNumber: number) {
+		return lines.get(lineNumber) ?? []
+	}
+
 	it('selectLines selects a single line', async () => {
 		const code = mount(Code, {
 			target: document.body,
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let count') ? el : null
-		})
+		})) as HTMLPreElement
 
 		await code.selectLines`1`
 
-		const lines = getTokensByLine(pre!)
-		for (const token of lines.get(1)!) {
+		const lines = getTokensByLine(pre)
+		for (const token of getLine(lines, 1)) {
 			expect(token.classList.contains('selected')).toBe(true)
 		}
-		for (const token of lines.get(2)!) {
+		for (const token of getLine(lines, 2)) {
 			expect(token.classList.contains('deselected')).toBe(true)
 		}
 	})
@@ -136,14 +142,14 @@ describe('code highlighting', () => {
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let count') ? el : null
-		})
+		})) as HTMLPreElement
 
 		await code.selectLines`1,2`
 
-		const tokens = getAllTokens(pre!)
+		const tokens = getAllTokens(pre)
 		for (const token of tokens) {
 			expect(token.classList.contains('selected')).toBe(true)
 			expect(token.classList.contains('deselected')).toBe(false)
@@ -157,21 +163,21 @@ describe('code highlighting', () => {
 			props: { code: threeLineCode, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let a') ? el : null
-		})
+		})) as HTMLPreElement
 
 		await code.selectLines`1-2`
 
-		const lines = getTokensByLine(pre!)
-		for (const token of lines.get(1)!) {
+		const lines = getTokensByLine(pre)
+		for (const token of getLine(lines, 1)) {
 			expect(token.classList.contains('selected')).toBe(true)
 		}
-		for (const token of lines.get(2)!) {
+		for (const token of getLine(lines, 2)) {
 			expect(token.classList.contains('selected')).toBe(true)
 		}
-		for (const token of lines.get(3)!) {
+		for (const token of getLine(lines, 3)) {
 			expect(token.classList.contains('deselected')).toBe(true)
 		}
 	})
@@ -183,23 +189,23 @@ describe('code highlighting', () => {
 			props: { code: threeLineCode, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let a') ? el : null
-		})
+		})) as HTMLPreElement
 
 		const start = '1'
 		const end = '2'
 		await code.selectLines`${start}-${end}`
 
-		const lines = getTokensByLine(pre!)
-		for (const token of lines.get(1)!) {
+		const lines = getTokensByLine(pre)
+		for (const token of getLine(lines, 1)) {
 			expect(token.classList.contains('selected')).toBe(true)
 		}
-		for (const token of lines.get(2)!) {
+		for (const token of getLine(lines, 2)) {
 			expect(token.classList.contains('selected')).toBe(true)
 		}
-		for (const token of lines.get(3)!) {
+		for (const token of getLine(lines, 3)) {
 			expect(token.classList.contains('deselected')).toBe(true)
 		}
 	})
@@ -210,17 +216,17 @@ describe('code highlighting', () => {
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let count') ? el : null
-		})
+		})) as HTMLPreElement
 
 		// first deselect some lines so we can verify * resets everything
 		await code.selectLines`1`
 		// now select all
 		await code.selectLines`*`
 
-		const tokens = getAllTokens(pre!)
+		const tokens = getAllTokens(pre)
 		for (const token of tokens) {
 			expect(token.classList.contains('selected')).toBe(true)
 			expect(token.classList.contains('deselected')).toBe(false)
@@ -233,14 +239,14 @@ describe('code highlighting', () => {
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let count') ? el : null
-		})
+		})) as HTMLPreElement
 
 		await code.selectToken`count`
 
-		const tokens = getAllTokens(pre!)
+		const tokens = getAllTokens(pre)
 		for (const token of tokens) {
 			if (token.textContent === 'count') {
 				expect(token.classList.contains('selected')).toBe(true)
@@ -256,15 +262,15 @@ describe('code highlighting', () => {
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let count') ? el : null
-		})
+		})) as HTMLPreElement
 
 		const token = 'count'
 		await code.selectToken`${token}`
 
-		const tokens = getAllTokens(pre!)
+		const tokens = getAllTokens(pre)
 		for (const t of tokens) {
 			if (t.textContent === 'count') {
 				expect(t.classList.contains('selected')).toBe(true)
@@ -280,33 +286,33 @@ describe('code highlighting', () => {
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let count') ? el : null
-		})
+		})) as HTMLPreElement
 
 		// `count` appears on line 1 (`let count = 0`) and line 2 (`let double = count * 2`)
 		// selecting `2 count` targets line 2 — the selection array is ['2', 'count']
 		// so tokens with text 'count' or '2' on line 2 get selected
 		await code.selectToken`2 count`
 
-		const lines = getTokensByLine(pre!)
+		const lines = getTokensByLine(pre)
 
 		// line 1 tokens should all be deselected
-		for (const token of lines.get(1)!) {
+		for (const token of getLine(lines, 1)) {
 			expect(token.classList.contains('deselected')).toBe(true)
 		}
 
 		// on line 2, `count` should be selected
-		const countTokensOnLine2 = lines
-			.get(2)!
-			.filter((t) => t.textContent === 'count' && t.classList.contains('selected'))
+		const countTokensOnLine2 = getLine(lines, 2).filter(
+			(t) => t.textContent === 'count' && t.classList.contains('selected')
+		)
 		expect(countTokensOnLine2.length).toBeGreaterThan(0)
 
 		// tokens on line 2 that are not in the selection should be deselected
-		const deselectedOnLine2 = lines
-			.get(2)!
-			.filter((t) => t.textContent !== 'count' && t.textContent !== '2')
+		const deselectedOnLine2 = getLine(lines, 2).filter(
+			(t) => t.textContent !== 'count' && t.textContent !== '2'
+		)
 		for (const token of deselectedOnLine2) {
 			expect(token.classList.contains('deselected')).toBe(true)
 		}
@@ -318,14 +324,14 @@ describe('code highlighting', () => {
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = await vi.waitUntil(() => {
+		const pre = (await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
 			return el?.textContent?.includes('let count') ? el : null
-		})
+		})) as HTMLPreElement
 
 		await code.selectToken`count double`
 
-		const tokens = getAllTokens(pre!)
+		const tokens = getAllTokens(pre)
 		for (const token of tokens) {
 			if (token.textContent === 'count' || token.textContent === 'double') {
 				expect(token.classList.contains('selected')).toBe(true)
