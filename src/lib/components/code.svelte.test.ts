@@ -335,3 +335,168 @@ describe('code highlighting', () => {
 		}
 	})
 })
+
+describe('code scrolling', () => {
+	const longCode = Array.from({ length: 50 }, (_, i) => `let line${i + 1} = ${i + 1}`).join('\n')
+
+	it('scrollToLine scrolls to a specific line', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: longCode, lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector<HTMLElement>('.shiki-magic-move-container')
+			return el?.textContent?.includes('let line1') ? el : null
+		})) as HTMLElement
+
+		Object.assign(pre.style, {
+			height: '200px',
+			overflow: 'auto'
+		})
+
+		expect(pre.scrollTop).toBe(0)
+		await code.scrollToLine`25`
+		expect(pre.scrollTop).toBeGreaterThan(0)
+	})
+
+	it('scrollToLine scrolls to line using template literal expressions', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: longCode, lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector<HTMLElement>('.shiki-magic-move-container')
+			return el?.textContent?.includes('let line1') ? el : null
+		})) as HTMLElement
+
+		Object.assign(pre.style, {
+			height: '200px',
+			overflow: 'auto'
+		})
+
+		const lineNumber = '30'
+		await code.scrollToLine`${lineNumber}`
+
+		expect(pre.scrollTop).toBeGreaterThan(0)
+	})
+
+	it('scrollToLine handles invalid line numbers', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: longCode, lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector<HTMLElement>('.shiki-magic-move-container')
+			return el?.textContent?.includes('let line1') ? el : null
+		})) as HTMLElement
+
+		Object.assign(pre.style, {
+			height: '200px',
+			overflow: 'auto'
+		})
+
+		const initialScroll = pre.scrollTop
+
+		await code.scrollToLine`0`
+		expect(pre.scrollTop).toBe(initialScroll)
+
+		await code.scrollToLine`-5`
+		expect(pre.scrollTop).toBe(initialScroll)
+
+		await code.scrollToLine`not a number`
+		expect(pre.scrollTop).toBe(initialScroll)
+	})
+
+	it('scrollToLine handles line numbers beyond the code length', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1\nlet b = 2', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector<HTMLElement>('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a') ? el : null
+		})) as HTMLElement
+
+		Object.assign(pre.style, {
+			height: '200px',
+			overflow: 'auto'
+		})
+
+		const initialScroll = pre.scrollTop
+		await code.scrollToLine`100`
+		expect(pre.scrollTop).toBe(initialScroll)
+	})
+
+	it('scrollToLine resolves immediately if already at target position', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: longCode, lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector<HTMLElement>('.shiki-magic-move-container')
+			return el?.textContent?.includes('let line1') ? el : null
+		})) as HTMLElement
+
+		Object.assign(pre.style, {
+			height: '200px',
+			overflow: 'auto'
+		})
+
+		const startTime = Date.now()
+		await code.scrollToLine`1`
+		const endTime = Date.now()
+
+		expect(endTime - startTime).toBeLessThan(500)
+	})
+
+	it('scrollToLine centers the target line in viewport', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: longCode, lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector<HTMLElement>('.shiki-magic-move-container')
+			return el?.textContent?.includes('let line1') ? el : null
+		})) as HTMLElement
+
+		const containerHeight = 400
+		Object.assign(pre.style, {
+			height: `${containerHeight}px`,
+			overflow: 'auto'
+		})
+
+		await code.scrollToLine`25`
+
+		const scrollPosition = pre.scrollTop
+		expect(scrollPosition).toBeGreaterThan(0)
+
+		const maxScroll = pre.scrollHeight - pre.clientHeight
+		expect(scrollPosition).toBeLessThan(maxScroll)
+	})
+
+	it('scrollToLine handles whitespace in template literal', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: longCode, lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector<HTMLElement>('.shiki-magic-move-container')
+			return el?.textContent?.includes('let line1') ? el : null
+		})) as HTMLElement
+
+		Object.assign(pre.style, {
+			height: '200px',
+			overflow: 'auto'
+		})
+
+		await code.scrollToLine`  20  `
+		expect(pre.scrollTop).toBeGreaterThan(0)
+	})
+})
