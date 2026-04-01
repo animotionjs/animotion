@@ -1,5 +1,8 @@
 <script lang="ts" module>
 	import { createHighlighter } from 'shiki'
+	import type { KeyedToken, KeyedTokensInfo } from 'shiki-magic-move/types'
+
+	type KeyedTokenWithLine = KeyedToken & { line: number }
 
 	const highlighterCache = new Map<string, Promise<HighlighterCore>>()
 
@@ -9,6 +12,67 @@
 			highlighterCache.set(key, createHighlighter({ themes: [theme], langs: [lang] }))
 		}
 		return highlighterCache.get(key)!
+	}
+
+	function splitPunctuationTokens(result: KeyedTokensInfo): KeyedTokensInfo {
+		// only split bracket characters and operators like =>, +=, === should stay together
+		const brackets = /[{}\[\]()]/g
+		const newTokens: KeyedToken[] = []
+		let tokenIndex = 0
+
+		for (const token of result.tokens) {
+			if (token.content === '\n') {
+				newTokens.push(token)
+				tokenIndex++
+				continue
+			}
+
+			const matches = [...token.content.matchAll(brackets)]
+			if (matches.length === 0) {
+				newTokens.push(token)
+				tokenIndex++
+				continue
+			}
+
+			const splitPositions = matches.map((m) => m.index!)
+
+			// collect split positions as [start, end] pairs
+			let lastEnd = 0
+			const splits: { content: string; offset: number }[] = []
+
+			for (const pos of splitPositions) {
+				if (pos > lastEnd) {
+					splits.push({
+						content: token.content.slice(lastEnd, pos),
+						offset: token.offset + lastEnd
+					})
+				}
+				splits.push({
+					content: token.content.slice(pos, pos + 1),
+					offset: token.offset + pos
+				})
+				lastEnd = pos + 1
+			}
+
+			if (lastEnd < token.content.length) {
+				splits.push({
+					content: token.content.slice(lastEnd),
+					offset: token.offset + lastEnd
+				})
+			}
+
+			for (let i = 0; i < splits.length; i++) {
+				newTokens.push({
+					...token,
+					content: splits[i].content,
+					offset: splits[i].offset,
+					key: i === 0 ? token.key : `${token.key}-${i}`
+				})
+			}
+			tokenIndex++
+		}
+
+		return { ...result, tokens: newTokens }
 	}
 </script>
 
@@ -63,6 +127,9 @@
 	let renderer: MagicMoveRenderer
 	let ready = false
 
+	let currentCode: string = ''
+	let currentTokens: (KeyedToken & { line: number })[] = []
+
 	const is = {
 		htmlEl: (el: Element): el is HTMLElement => el instanceof HTMLElement,
 		token: (el: HTMLElement) => el.className.includes('shiki-magic-move-item'),
@@ -93,25 +160,66 @@
 		return code.map((line) => line.replace(tabs, '')).join('\n')
 	}
 
+	function parseSelection(raw: string): {
+		line: number | null
+		index: number | null
+		pattern: string
+	} {
+		let line: number | null = null
+		let index: number | null = null
+		let pattern = raw.trim()
+
+		const indexMatch = pattern.match(/:(\d+)$/)
+		if (indexMatch) {
+			index = parseInt(indexMatch[1], 10)
+			pattern = pattern.slice(0, -indexMatch[0].length).trim()
+		}
+
+		const parts = pattern.split(/\s+/)
+		if (parts.length > 0 && /^\d+$/.test(parts[0])) {
+			line = parseInt(parts[0], 10)
+			pattern = parts.slice(1).join(' ')
+		}
+
+		return { line, index, pattern }
+	}
+
 	async function init() {
 		if (!container) return
 		highlighter = await getHighlighter(theme, lang)
-		machine = createMagicMoveMachine(
-			(code) => codeToKeyedTokens(highlighter, code, { lang, theme }, options.lineNumbers),
-			options
-		)
+		machine = createMagicMoveMachine((code) => {
+			const result = codeToKeyedTokens(highlighter, code, { lang, theme }, options.lineNumbers)
+			return splitPunctuationTokens(result)
+		}, options)
 		renderer = new MagicMoveRenderer(container)
 		Object.assign(renderer.options, options)
-		const result = machine.commit(autoIndent ? indent(code!) : code!)
+		const indentedCode = autoIndent ? indent(code!) : code!
+		currentCode = indentedCode
+		const result = machine.commit(indentedCode)
+		currentTokens = addLineNumbers(result.current.tokens)
 		renderer.render(result.current)
 		ready = true
 	}
 
 	async function render(code: string) {
 		if (!ready) return
-		const result = machine.commit(autoIndent ? indent(code) : code)
+		const indentedCode = autoIndent ? indent(code) : code
+		currentCode = indentedCode
+		const result = machine.commit(indentedCode)
 		if (result.previous) renderer.replace(result.previous)
+		currentTokens = addLineNumbers(result.current.tokens)
 		await renderer.render(result.current)
+	}
+
+	function addLineNumbers(tokens: KeyedToken[]): (KeyedToken & { line: number })[] {
+		let line = 1
+		return tokens.map((token) => {
+			const tokenWithLine = { ...token, line }
+			if (token.content === '\n') {
+				line++
+			}
+			return tokenWithLine
+		})
 	}
 
 	function merge(strings: TemplateStringsArray, expressions: string[]) {
@@ -137,12 +245,6 @@
 	}
 
 	function getLines(range: string) {
-		// code.selectLines`1,2`
-		// code.selectLines`1,2,3,4`
-		// code.selectLines`1-4`
-		// code.selectLines`1-4,8`
-		// code.selectLines`*`
-
 		if (range === '*') {
 			return []
 		}
@@ -261,40 +363,212 @@
 		})
 	}
 
-	export function selectToken(string: TemplateStringsArray, ...expressions: string[]) {
-		if (!container) return
+	export function select(string: TemplateStringsArray, ...expressions: string[]) {
+		if (!container || !currentCode) return
 
 		const raw = expressions.length > 0 ? merge(string, expressions) : string[0]
-		const selection = raw.split(' ')
-		const isLineNumber = !isNaN(+selection[0])
-		const line = isLineNumber ? +selection[0] : 0
+		const { line, index, pattern } = parseSelection(raw)
+
+		if (!pattern) return
+
+		// strip whitespace from pattern for matching
+		const strippedPattern = pattern.replace(/\s+/g, '')
+
+		// remove whitespace from source but keep track of character position mapping
+		const sourceChars = currentCode.split('')
+		const strippedChars: string[] = []
+		const originalPositions: number[] = []
+
+		for (let i = 0; i < sourceChars.length; i++) {
+			if (!/\s/.test(sourceChars[i])) {
+				strippedChars.push(sourceChars[i])
+				originalPositions.push(i)
+			}
+		}
+		const strippedSource = strippedChars.join('')
+
+		// find all occurrences of stripped pattern in stripped source
+		const occurrences: { start: number; end: number }[] = []
+		let searchPosition = 0
+		while (searchPosition < strippedSource.length) {
+			const found = strippedSource.indexOf(strippedPattern, searchPosition)
+			if (found === -1) break
+			// map back to original positions
+			const originStart = originalPositions[found]
+			const originEnd = originalPositions[found + strippedPattern.length - 1] + 1
+			occurrences.push({ start: originStart, end: originEnd })
+			searchPosition = found + 1
+		}
+
+		if (occurrences.length === 0) return
+
+		// filter by line if specified
+		let filteredOccurrences = occurrences
+		if (line !== null) {
+			const lines = currentCode.split('\n')
+			let charPosition = 0
+			const lineRanges: { start: number; end: number }[] = []
+			for (let i = 0; i < lines.length; i++) {
+				lineRanges.push({ start: charPosition, end: charPosition + lines[i].length })
+				charPosition += lines[i].length + 1 // +1 for newline
+			}
+			const targetRange = lineRanges[line - 1]
+			if (targetRange) {
+				filteredOccurrences = occurrences.filter(
+					(occ) => occ.start >= targetRange.start && occ.end <= targetRange.end
+				)
+			}
+		}
+
+		// apply index if specified
+		const selectedOccurrences =
+			index !== null ? [filteredOccurrences[index]].filter(Boolean) : filteredOccurrences
+
+		if (selectedOccurrences.length === 0) return
+
+		// build set of token offsets to select
+		const selectedOffsets = new Set<number>()
+		for (const occ of selectedOccurrences) {
+			for (const token of currentTokens) {
+				const tokenStart = token.offset
+				const tokenEnd = token.offset + token.content.length
+				// token overlaps with occurrence?
+				if (tokenEnd > occ.start && tokenStart < occ.end) {
+					selectedOffsets.add(token.offset)
+				}
+			}
+		}
+
+		// apply selection/deselection to DOM and match tokens to DOM elements by order
 		const tokens = container.children
 		const promises: Promises = []
+		let tokenIndex = 0
 
-		let currentLine = 1
+		for (const tokenEl of tokens) {
+			if (!is.htmlEl(tokenEl)) continue
 
-		for (const token of tokens) {
-			if (!is.htmlEl(token)) return
-
-			if (is.token(token)) {
-				let selected = false
-
-				if (isLineNumber && line === currentLine) {
-					selected = selection.includes(token.textContent!)
+			if (is.token(tokenEl)) {
+				const storedToken = currentTokens[tokenIndex]
+				tokenIndex++
+				if (storedToken) {
+					const isSelected = selectedOffsets.has(storedToken.offset)
+					promises.push(transition(tokenEl, isSelected))
 				}
-				if (!isLineNumber) {
-					selected = selection.includes(token.textContent!)
-				}
-
-				promises.push(transition(token, selected))
 			}
 
-			if (is.newLine(token)) {
-				currentLine++
+			if (is.newLine(tokenEl)) {
+				// newlines are `<br>` elements, so track them in `currentTokens`
+				tokenIndex++
 			}
 		}
 
 		return Promise.all(promises)
+	}
+
+	export function selectAdd(string: TemplateStringsArray, ...expressions: string[]) {
+		if (!container || !currentCode) return
+
+		const raw = expressions.length > 0 ? merge(string, expressions) : string[0]
+		const { line, index, pattern } = parseSelection(raw)
+
+		if (!pattern) return
+
+		// strip whitespace from pattern for matching
+		const strippedPattern = pattern.replace(/\s+/g, '')
+
+		// remove whitespace from source to search in
+		const sourceChars = currentCode.split('')
+		const strippedChars: string[] = []
+		const originalPositions: number[] = []
+
+		for (let i = 0; i < sourceChars.length; i++) {
+			if (!/\s/.test(sourceChars[i])) {
+				strippedChars.push(sourceChars[i])
+				originalPositions.push(i)
+			}
+		}
+		const strippedSource = strippedChars.join('')
+
+		// find all occurrences of stripped pattern in stripped source
+		const occurrences: { start: number; end: number }[] = []
+		let searchPosition = 0
+		while (searchPosition < strippedSource.length) {
+			const found = strippedSource.indexOf(strippedPattern, searchPosition)
+			if (found === -1) break
+			const origStart = originalPositions[found]
+			const origEnd = originalPositions[found + strippedPattern.length - 1] + 1
+			occurrences.push({ start: origStart, end: origEnd })
+			searchPosition = found + 1
+		}
+
+		if (occurrences.length === 0) return
+
+		// filter by line if specified
+		let filteredOccurrences = occurrences
+		if (line !== null) {
+			const lines = currentCode.split('\n')
+			let charPosition = 0
+			const lineRanges: { start: number; end: number }[] = []
+			for (let i = 0; i < lines.length; i++) {
+				lineRanges.push({ start: charPosition, end: charPosition + lines[i].length })
+				charPosition += lines[i].length + 1
+			}
+			const targetRange = lineRanges[line - 1]
+			if (targetRange) {
+				filteredOccurrences = occurrences.filter(
+					(occ) => occ.start >= targetRange.start && occ.end <= targetRange.end
+				)
+			}
+		}
+
+		// apply index if specified
+		const selectedOccurrences =
+			index !== null ? [filteredOccurrences[index]].filter(Boolean) : filteredOccurrences
+
+		if (selectedOccurrences.length === 0) return
+
+		// build set of token offsets to select
+		const selectedOffsets = new Set<number>()
+		for (const occ of selectedOccurrences) {
+			for (const token of currentTokens) {
+				const tokenStart = token.offset
+				const tokenEnd = token.offset + token.content.length
+				if (tokenEnd > occ.start && tokenStart < occ.end) {
+					selectedOffsets.add(token.offset)
+				}
+			}
+		}
+
+		// apply selection only
+		const tokens = container.children
+		const promises: Promises = []
+		let tokenIndex = 0
+
+		for (const tokenEl of tokens) {
+			if (!is.htmlEl(tokenEl)) continue
+
+			if (is.token(tokenEl)) {
+				const storedToken = currentTokens[tokenIndex]
+				tokenIndex++
+				if (storedToken && selectedOffsets.has(storedToken.offset)) {
+					promises.push(transition(tokenEl, true))
+				}
+			}
+
+			if (is.newLine(tokenEl)) {
+				tokenIndex++
+			}
+		}
+
+		return Promise.all(promises)
+	}
+
+	/**
+	 * @deprecated Use `select` instead. This function will be removed in a future version.
+	 */
+	export function selectToken(string: TemplateStringsArray, ...expressions: string[]) {
+		console.warn('selectToken is deprecated, use select instead')
+		return select(string, ...expressions)
 	}
 
 	$effect(() => {

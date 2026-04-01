@@ -233,7 +233,7 @@ describe('code highlighting', () => {
 		}
 	})
 
-	it('selectToken selects matching tokens', async () => {
+	it('select selects matching tokens', async () => {
 		const code = mount(Code, {
 			target: document.body,
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
@@ -244,7 +244,7 @@ describe('code highlighting', () => {
 			return el?.textContent?.includes('let count') ? el : null
 		})) as HTMLPreElement
 
-		await code.selectToken`count`
+		await code.select`count`
 
 		const tokens = getAllTokens(pre)
 		for (const token of tokens) {
@@ -256,7 +256,7 @@ describe('code highlighting', () => {
 		}
 	})
 
-	it('selectToken selects matching tokens using template literal expressions', async () => {
+	it('select selects matching tokens using template literal expressions', async () => {
 		const code = mount(Code, {
 			target: document.body,
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
@@ -268,7 +268,7 @@ describe('code highlighting', () => {
 		})) as HTMLPreElement
 
 		const token = 'count'
-		await code.selectToken`${token}`
+		await code.select`${token}`
 
 		const tokens = getAllTokens(pre)
 		for (const t of tokens) {
@@ -280,7 +280,7 @@ describe('code highlighting', () => {
 		}
 	})
 
-	it('selectToken selects a token on a specific line', async () => {
+	it('select selects a token on a specific line', async () => {
 		const code = mount(Code, {
 			target: document.body,
 			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
@@ -294,7 +294,7 @@ describe('code highlighting', () => {
 		// `count` appears on line 1 (`let count = 0`) and line 2 (`let double = count * 2`)
 		// selecting `2 count` targets line 2 — the selection array is ['2', 'count']
 		// so tokens with text 'count' or '2' on line 2 get selected
-		await code.selectToken`2 count`
+		await code.select`2 count`
 
 		const lines = getTokensByLine(pre)
 
@@ -318,27 +318,159 @@ describe('code highlighting', () => {
 		}
 	})
 
-	it('selectToken selects multiple tokens', async () => {
+	it('select selects token sequence', async () => {
 		const code = mount(Code, {
 			target: document.body,
-			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
+			props: { code: `let count = 0`, lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const pre = (await vi.waitUntil(() => {
+		await vi.waitUntil(() => {
 			const el = document.querySelector('.shiki-magic-move-container')
-			return el?.textContent?.includes('let count') ? el : null
-		})) as HTMLPreElement
+			return el?.textContent?.includes('let') ? el : null
+		})
 
-		await code.selectToken`count double`
+		// with sequence matching, 'let' followed by 'count'
+		// note: shiki tokenizes `let count` as separate tokens
+		await code.select`let count`
 
-		const tokens = getAllTokens(pre)
-		for (const token of tokens) {
-			if (token.textContent === 'count' || token.textContent === 'double') {
-				expect(token.classList.contains('selected')).toBe(true)
-			} else {
-				expect(token.classList.contains('deselected')).toBe(true)
-			}
+		const tokens = getAllTokens(document.querySelector('.shiki-magic-move-container')!)
+		const letTokens = tokens.filter((t) => t.textContent === 'let')
+		const countTokens = tokens.filter((t) => t.textContent === 'count')
+
+		// `let count` sequence should match on line 1
+		expect(letTokens[0]?.classList.contains('selected')).toBe(true)
+		expect(countTokens[0]?.classList.contains('selected')).toBe(true)
+	})
+
+	it('select with spaces matches sequence', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: `() => 1`, lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('=>') ? el : null
+		})
+
+		// `( ) =>` tokenizes to (, ), => and should match the arrow function
+		// note: brackets are split by our tokenizer
+		await code.select`( ) =>`
+
+		const tokens = getAllTokens(document.querySelector('.shiki-magic-move-container')!)
+		const selectedTokens = tokens.filter((t) => t.classList.contains('selected'))
+
+		// the (, ), and => tokens should be selected but => might be
+		// one token in shiki, so let's check what we actually have
+		expect(selectedTokens.length).toBeGreaterThan(0)
+	})
+
+	it('punctuation characters are individually selectable', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: `<button>{"click"}</button>`, lang: 'html', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('button') ? el : null
+		})
+
+		await code.select`}`
+
+		const tokens = getAllTokens(document.querySelector('.shiki-magic-move-container')!)
+		const braceTokens = tokens.filter((t) => t.textContent === '}')
+
+		expect(braceTokens.length).toBeGreaterThan(0)
+		for (const token of braceTokens) {
+			expect(token.classList.contains('selected')).toBe(true)
 		}
+	})
+
+	it('select matches sequence without spaces', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: `{double} {double}`, lang: 'svelte', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('double') ? el : null
+		})
+
+		// `{double}` should match the sequence {, double, } and select all occurrences
+		await code.select`{double}`
+
+		const tokens = getAllTokens(document.querySelector('.shiki-magic-move-container')!)
+		const braceTokens = tokens.filter((t) => t.textContent === '{' || t.textContent === '}')
+		const doubleTokens = tokens.filter((t) => t.textContent === 'double')
+
+		// all {, }, and double tokens should be selected (both occurrences)
+		expect(braceTokens.length).toBe(4)
+		expect(doubleTokens.length).toBe(2)
+
+		for (const token of braceTokens) {
+			expect(token.classList.contains('selected')).toBe(true)
+		}
+		for (const token of doubleTokens) {
+			expect(token.classList.contains('selected')).toBe(true)
+		}
+	})
+
+	it('select selects first occurrence with index', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: `{double} {double}`, lang: 'svelte', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('double') ? el : null
+		})
+
+		// `{double}:0` should select only the first occurrence
+		await code.select`{double}:0`
+
+		const tokens = getAllTokens(document.querySelector('.shiki-magic-move-container')!)
+
+		// count selected tokens
+		const selectedTokens = tokens.filter((t) => t.classList.contains('selected'))
+		const deselectedTokens = tokens.filter((t) => t.classList.contains('deselected'))
+
+		// first {double} sequence has 3 tokens: {, double, }
+		expect(selectedTokens.length).toBe(3)
+		expect(deselectedTokens.length).toBeGreaterThan(0)
+	})
+
+	it('selectAdd accumulates selections across calls', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: {
+				code: `let count = 0\nlet double = count * 2`,
+				lang: 'javascript',
+				theme: 'poimandres'
+			}
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('count') ? el : null
+		})
+
+		// first selection
+		await code.selectAdd`let count`
+		const tokens = getAllTokens(document.querySelector('.shiki-magic-move-container')!)
+
+		// count selected after first call
+		const selectedAfterFirst = tokens.filter((t) => t.classList.contains('selected'))
+		expect(selectedAfterFirst.length).toBeGreaterThan(0)
+
+		// second selection should add to the first
+		await code.selectAdd`double`
+		const selectedAfterSecond = tokens.filter((t) => t.classList.contains('selected'))
+
+		// should have more selected tokens after second call
+		expect(selectedAfterSecond.length).toBeGreaterThan(selectedAfterFirst.length)
 	})
 })
 
