@@ -7,15 +7,16 @@ afterEach(() => {
 })
 
 describe('code indentation', () => {
-	it('returns original code if no tabs present', () => {
+	it('removes common leading spaces from single-indent code', () => {
 		const code = mount(Code, {
 			target: document.body,
 			props: { code: '', lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const input = `function hello() {\n  console.log('hi)\n}`
+		const input = `function hello() {\n  console.log('hi')\n}`
+		const expected = `function hello() {\nconsole.log('hi')\n}`
 
-		expect(code.indent(input)).toBe(input)
+		expect(code.indent(input)).toBe(expected)
 	})
 
 	it('removes common leading tabs from multi-line code', () => {
@@ -36,10 +37,57 @@ describe('code indentation', () => {
 			props: { code: '', lang: 'javascript', theme: 'poimandres' }
 		})
 
-		const input = `\t\t\tfunction hello() {\n\t\t\t\tconsole.log('hi')\n\t\t\t}`
-		const expected = `function hello() {\n\tconsole.log('hi')\n}`
+		const input = "\t\t\tfunction hello() {\n\t\t\t\tconsole.log('hi')\n\t\t\t}"
+		const expected = "function hello() {\n\tconsole.log('hi')\n}"
 
 		expect(code.indent(input)).toBe(expected)
+	})
+
+	it('removes common leading spaces from multi-line code', () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: '', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const input = "    function hello() {\n        console.log('hi')\n    }"
+		const expected = "function hello() {\n    console.log('hi')\n}"
+
+		expect(code.indent(input)).toBe(expected)
+	})
+
+	it('handles space indentation with inline whitespace', () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: '', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const input = '    let count = 0\n    let double = count * 2'
+		const expected = 'let count = 0\nlet double = count * 2'
+
+		expect(code.indent(input)).toBe(expected)
+	})
+
+	it('handles space indentation with varying levels', () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: '', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const input = "        function hello() {\n            console.log('hi')\n        }"
+		const expected = "function hello() {\n    console.log('hi')\n}"
+
+		expect(code.indent(input)).toBe(expected)
+	})
+
+	it('returns original code if only single space of indentation', () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: '', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		const input = " function hello() {\n  console.log('hi')\n }"
+
+		expect(code.indent(input)).toBe(input.trim())
 	})
 })
 
