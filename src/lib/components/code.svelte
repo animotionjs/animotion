@@ -126,20 +126,34 @@
 	 * removes common leading indentation from code
 	 */
 	export function indent(text: string) {
-		if (!/\t/.test(text.trim())) return text
+		const trimmed = text.trim()
+		const lines = trimmed.split('\n')
+		if (lines.length === 1) return trimmed
 
-		const lines = text.trim().split('\n')
-		if (lines.length === 1) return text.trim()
+		const firstIndented = lines.find((line) => /^[\t ]/.test(line))
+		if (!firstIndented) return trimmed
 
-		const commonTabs = lines
-			.map((line) => line.split('').filter((char) => char === '\t'))
-			.filter((tabs) => tabs.length > 0)
-			.sort((a, b) => a.length - b.length)[0]
-			?.join('')
+		const isTabs = firstIndented[0] === '\t'
 
-		if (!commonTabs || commonTabs === '\t') return text.trim()
+		if (isTabs) {
+			const common = lines
+				.map((line) => line.match(/^(\t+)/)?.[1] || '')
+				.filter((tabs) => tabs.length > 0)
+				.sort((a, b) => a.length - b.length)[0]
 
-		return lines.map((line) => line.replace(commonTabs, '')).join('\n')
+			if (!common || common === '\t') return trimmed
+
+			return lines.map((line) => line.replace(common, '')).join('\n')
+		} else {
+			const common = lines
+				.map((line) => line.match(/^( +)/)?.[1] || '')
+				.filter((spaces) => spaces.length > 0)
+				.sort((a, b) => a.length - b.length)[0]
+
+			if (!common || common === ' ') return trimmed
+
+			return lines.map((line) => line.replace(common, '')).join('\n')
+		}
 	}
 
 	function parseSelection(raw: string): {
