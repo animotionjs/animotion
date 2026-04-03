@@ -392,6 +392,83 @@
 	}
 
 	/**
+	 * appends code to the current code with animation
+	 */
+	export function append(strings: TemplateStringsArray, ...expressions: string[]) {
+		const newCode = expressions.length > 0 ? merge(strings, expressions) : strings[0]
+		const dedentedCode = autoIndent ? indent(newCode) : newCode
+		return render(currentCode + '\n\n' + dedentedCode)
+	}
+
+	/**
+	 * removes lines by line number with animation
+	 * supports: single line (5), range (5-7), multiple (5,7,9), or combinations (5,7-10)
+	 */
+	export function remove(strings: TemplateStringsArray, ...expressions: string[]) {
+		const input = expressions.length > 0 ? merge(strings, expressions) : strings[0]
+		const lineNumbers = getLines(input.trim())
+		if (lineNumbers.length === 0) {
+			console.warn('remove: invalid line range')
+			return Promise.resolve()
+		}
+		const lines = currentCode.split('\n')
+		const sortedLines = [...lineNumbers].sort((a, b) => b - a)
+		for (const lineNum of sortedLines) {
+			if (lineNum >= 1 && lineNum <= lines.length) {
+				lines.splice(lineNum - 1, 1)
+			}
+		}
+		return render(lines.join('\n'))
+	}
+
+	function detectIndentStyle(lines: string[]): { char: string; size: number } {
+		for (const line of lines) {
+			const match = line.match(/^(\s+)/)
+			if (match) {
+				const whitespace = match[1]
+				if (whitespace.includes('\t')) {
+					return { char: '\t', size: 1 }
+				}
+				const spaces = whitespace.length
+				return { char: ' ', size: spaces <= 2 ? 2 : 4 }
+			}
+		}
+		return { char: ' ', size: 2 }
+	}
+
+	/**
+	 * inserts code at a specific line with animation
+	 * format: `<lineNumber>:<indentLevel> <code>` where line number is 1-indexed
+	 * indentLevel is optional (defaults to 0)
+	 */
+	export function insert(strings: TemplateStringsArray, ...expressions: string[]) {
+		const input = expressions.length > 0 ? merge(strings, expressions) : strings[0]
+		const match = input.match(/^(\d+)(?::(\d+))?\s*/)
+		if (!match) {
+			console.warn('insert: line number required at start of code')
+			return Promise.resolve()
+		}
+		const lineNumber = parseInt(match[1], 10)
+		const indentLevel = match[2] ? parseInt(match[2], 10) : 0
+		const codeFragment = input.slice(match[0].length)
+		const dedentedCode = autoIndent ? indent(codeFragment) : codeFragment
+		const lines = currentCode.split('\n')
+		const { char, size } = detectIndentStyle(lines)
+		const actualIndent = char === '\t' ? '\t'.repeat(indentLevel) : ' '.repeat(indentLevel * size)
+		lines.splice(lineNumber - 1, 0, actualIndent + dedentedCode)
+		return render(lines.join('\n'))
+	}
+
+	/**
+	 * replaces matching code with new code with animation
+	 */
+	export function replace(from: string, to: string) {
+		const dedentedFrom = autoIndent ? indent(from) : from
+		const dedentedTo = autoIndent ? indent(to) : to
+		return render(currentCode.replace(dedentedFrom, dedentedTo))
+	}
+
+	/**
 	 * highlights specific lines, or all lines if `*` is passed
 	 */
 	export function selectLines(strings: TemplateStringsArray, ...expressions: string[]) {

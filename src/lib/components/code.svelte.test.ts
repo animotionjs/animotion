@@ -686,3 +686,354 @@ describe('code scrolling', () => {
 		expect(pre.scrollTop).toBeGreaterThan(0)
 	})
 })
+
+describe('code append', () => {
+	it('appends code to the end', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a = 1') ? el : null
+		})
+
+		await code.append`let b = 2`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let b = 2')
+		})
+	})
+
+	it('appends code with blank line separation', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a = 1') ? el : null
+		})
+
+		await code.append`let b = 2`
+
+		const content = document.querySelector('.shiki-magic-move-container')?.textContent
+		expect(content).toContain('let a = 1')
+		expect(content).toContain('let b = 2')
+	})
+
+	it('appends multiple times', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a = 1') ? el : null
+		})
+
+		await code.append`let b = 2`
+		await code.append`let c = 3`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let b = 2')
+			expect(el?.textContent).toContain('let c = 3')
+		})
+	})
+
+	it('dedents appended code', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a = 1') ? el : null
+		})
+
+		await code.append`
+			let b = 2
+		`
+
+		const el = document.querySelector('.shiki-magic-move-container')
+		expect(el?.textContent).toContain('let b = 2')
+	})
+})
+
+describe('code insert', () => {
+	it('inserts code at a specific line', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1\nlet c = 3', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a = 1') ? el : null
+		})
+
+		await code.insert`2 let b = 2`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let b = 2')
+			expect(el?.textContent).toContain('let c = 3')
+		})
+	})
+
+	it('inserts code with indent level', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'function test() {\n}', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('function') ? el : null
+		})
+
+		await code.insert`2:1 let x = 1`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('function')
+			expect(el?.textContent).toContain('let x = 1')
+		})
+	})
+
+	it('inserts at first line', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let b = 2', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let b = 2') ? el : null
+		})
+
+		await code.insert`1 let a = 1`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let b = 2')
+		})
+	})
+
+	it('handles invalid line number gracefully', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a = 1') ? el : null
+		})
+
+		const consoleSpy = vi.spyOn(console, 'warn')
+		await code.insert`invalid line number`
+
+		expect(consoleSpy).toHaveBeenCalledWith('insert: line number required at start of code')
+		consoleSpy.mockRestore()
+	})
+})
+
+describe('code remove', () => {
+	it('removes a single line', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1\nlet b = 2\nlet c = 3', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let b = 2') ? el : null
+		})
+
+		await code.remove`2`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let c = 3')
+			expect(el?.textContent).not.toContain('let b = 2')
+		})
+	})
+
+	it('removes a range of lines', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: {
+				code: 'let a = 1\nlet b = 2\nlet c = 3\nlet d = 4',
+				lang: 'javascript',
+				theme: 'poimandres'
+			}
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let d = 4') ? el : null
+		})
+
+		await code.remove`2-3`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let d = 4')
+			expect(el?.textContent).not.toContain('let b = 2')
+			expect(el?.textContent).not.toContain('let c = 3')
+		})
+	})
+
+	it('removes multiple lines', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: {
+				code: 'let a = 1\nlet b = 2\nlet c = 3\nlet d = 4',
+				lang: 'javascript',
+				theme: 'poimandres'
+			}
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let d = 4') ? el : null
+		})
+
+		await code.remove`2,4`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let c = 3')
+			expect(el?.textContent).not.toContain('let b = 2')
+			expect(el?.textContent).not.toContain('let d = 4')
+		})
+	})
+
+	it('removes combination of lines and ranges', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: {
+				code: 'let a = 1\nlet b = 2\nlet c = 3\nlet d = 4\nlet e = 5',
+				lang: 'javascript',
+				theme: 'poimandres'
+			}
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let e = 5') ? el : null
+		})
+
+		await code.remove`2,4-5`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let c = 3')
+			expect(el?.textContent).not.toContain('let b = 2')
+			expect(el?.textContent).not.toContain('let d = 4')
+			expect(el?.textContent).not.toContain('let e = 5')
+		})
+	})
+})
+
+describe('code replace', () => {
+	it('replaces text with new text', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let count = 0', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let count = 0') ? el : null
+		})
+
+		await code.replace('count = 0', 'count = 10')
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let count = 10')
+			expect(el?.textContent).not.toContain('let count = 0')
+		})
+	})
+
+	it('replaces multiline text', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1\nlet b = 2', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let b = 2') ? el : null
+		})
+
+		await code.replace('let b = 2', 'let c = 3\nlet d = 4')
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let c = 3')
+			expect(el?.textContent).toContain('let d = 4')
+			expect(el?.textContent).not.toContain('let b = 2')
+		})
+	})
+
+	it('dedents replaced text', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let x = 1', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let x = 1') ? el : null
+		})
+
+		await code.replace(
+			'x = 1',
+			`
+			y = 2
+		`
+		)
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let y = 2')
+		})
+	})
+
+	it('handles nonexistent text gracefully', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a = 1') ? el : null
+		})
+
+		await code.replace('nonexistent', 'replacement')
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+		})
+	})
+})
