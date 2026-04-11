@@ -847,6 +847,80 @@ describe('code insert', () => {
 		expect(consoleSpy).toHaveBeenCalledWith('insert: line number required at start of code')
 		consoleSpy.mockRestore()
 	})
+
+	it('inserts multi-line code correctly', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1\nlet d = 4', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a = 1') ? el : null
+		})
+
+		await code.insert`2 let b = 2
+let c = 3`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let b = 2')
+			expect(el?.textContent).toContain('let c = 3')
+			expect(el?.textContent).toContain('let d = 4')
+		})
+	})
+
+	it('inserts multi-line code with indentation', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'function test() {\n}', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('function') ? el : null
+		})
+
+		await code.insert`2:1 let x = 1
+let y = 2`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let x = 1')
+			expect(el?.textContent).toContain('let y = 2')
+		})
+	})
+
+	it('preserves blank lines before code', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: 'let a = 1\nlet d = 4', lang: 'javascript', theme: 'poimandres' }
+		})
+
+		await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			return el?.textContent?.includes('let a = 1') ? el : null
+		})
+
+		await code.insert`2
+
+let b = 2`
+
+		await vi.waitFor(() => {
+			const el = document.querySelector('.shiki-magic-move-container')
+			expect(el?.textContent).toContain('let a = 1')
+			expect(el?.textContent).toContain('let b = 2')
+			expect(el?.textContent).toContain('let d = 4')
+			// Verify blank lines exist by counting <br> elements (newlines)
+			const brElements = el?.querySelectorAll('br')
+			// Original: 1 newline (2 lines)
+			// After insert at line 2 with 2 leading newlines:
+			// let a = 1\n\n\n\nlet b = 2\nlet d = 4
+			// 5 lines total = 4 <br> elements
+			expect(brElements?.length).toBe(5)
+		})
+	})
 })
 
 describe('code remove', () => {

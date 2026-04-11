@@ -443,7 +443,7 @@
 	 */
 	export function insert(strings: TemplateStringsArray, ...expressions: string[]) {
 		const input = expressions.length > 0 ? merge(strings, expressions) : strings[0]
-		const match = input.match(/^(\d+)(?::(\d+))?\s*/)
+		const match = input.match(/^(\d+)(?::(\d+))?[ \t]*/)
 		if (!match) {
 			console.warn('insert: line number required at start of code')
 			return Promise.resolve()
@@ -451,11 +451,21 @@
 		const lineNumber = parseInt(match[1], 10)
 		const indentLevel = match[2] ? parseInt(match[2], 10) : 0
 		const codeFragment = input.slice(match[0].length)
-		const dedentedCode = autoIndent ? indent(codeFragment) : codeFragment
+
+		// Preserve leading newlines before dedenting
+		const leadingNewlines = codeFragment.match(/^\n*/)?.[0].length ?? 0
+		const codeWithoutLeadingNewlines = codeFragment.slice(leadingNewlines)
+		const dedentedCode = autoIndent
+			? indent(codeWithoutLeadingNewlines)
+			: codeWithoutLeadingNewlines
+
 		const lines = currentCode.split('\n')
 		const { char, size } = detectIndentStyle(lines)
 		const actualIndent = char === '\t' ? '\t'.repeat(indentLevel) : ' '.repeat(indentLevel * size)
-		lines.splice(lineNumber - 1, 0, actualIndent + dedentedCode)
+		const codeLines = dedentedCode.split('\n')
+		const indentedLines = codeLines.map((line) => (line ? actualIndent + line : line))
+		const blankLines = Array(leadingNewlines).fill('')
+		lines.splice(lineNumber - 1, 0, ...blankLines, ...indentedLines)
 		return render(lines.join('\n'))
 	}
 
