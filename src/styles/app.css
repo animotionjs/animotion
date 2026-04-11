@@ -16,6 +16,7 @@
 	padding: 0px;
 	margin: 0px;
 	box-sizing: border-box;
+	text-box: trim-both cap alphabetic;
 }
 
 /* defaults */
@@ -111,5 +112,26 @@ html {
 	}
 	to {
 		rotate: 360deg;
+	}
+}
+
+.reveal .slides > section {
+	transition:
+		transform 0.6s ease,
+		opacity 0.6s ease !important;
+
+	&.past {
+		transform: translateY(100%) !important;
+		opacity: 0;
+	}
+
+	&.present {
+		transform: translateY(0) !important;
+		opacity: 1;
+	}
+
+	&.future {
+		transform: translateY(100%) !important;
+		opacity: 0;
 	}
 }
