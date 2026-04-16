@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Action, Code, Path, Presentation, Preview, Slide } from '$lib/index.js'
+	import { tween } from '@animotion/motion'
 
 	const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
 
@@ -7,9 +8,69 @@
 	let preview: ReturnType<typeof Preview>
 	let outerPath: ReturnType<typeof Path>
 	let innerPath: ReturnType<typeof Path>
+
+	let example: Code
+	let example2: Code
+	let count = tween(0)
+	// setTimeout(() => count.to(10), 2000)
 </script>
 
 <Presentation options={{ history: true, transition: 'slide', controls: true, progress: true }}>
+	<Slide class="h-full place-content-center place-items-center">
+		<div>
+			<Code
+				bind:this={example2}
+				lang="css"
+				theme="poimandres"
+				code={`
+					.item {
+						transition:
+							opacity 0.5s,
+							translate 0.5s;
+						transition-duration 2s;
+					}
+				`}
+				options={{ duration: 600, stagger: 0.3, containerStyle: false }}
+			/>
+		</div>
+
+		<Action
+			actions={[
+				() => {
+					example2.replace(`.item`, `.items`)
+				},
+				() => {
+					example2.replace(
+						`translate 0.5s;`,
+						`
+							translate 0.5s,
+							display 0.5s,
+							allow-disecrete;
+						`
+					)
+				}
+			]}
+		/>
+	</Slide>
+
+	<Slide class="h-full place-content-center place-items-center">
+		<div>
+			<Code
+				bind:this={example}
+				lang="svelte"
+				theme="poimandres"
+				code={`
+					<script lang="ts">
+						let count = $state(${count.current.toFixed(0)})
+					<\/script>
+				`}
+				options={{ duration: 600, stagger: 0.3, containerStyle: false }}
+			/>
+		</div>
+
+		<Action actions={[() => example.insert`3:1 let double = $derived(count * 2)`]} />
+	</Slide>
+
 	<Slide class="h-full place-content-center place-items-center">
 		<svg viewBox="0 0 110 130" width="300" height="350">
 			<Path
