@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { tick, type Snippet } from 'svelte'
+	import type { ClassValue } from 'svelte/elements'
 	import { setPresentation } from './store.svelte.js'
 	import 'reveal.js/dist/reveal.css'
 
@@ -11,7 +12,7 @@
 		[key: string]: any
 		children?: Snippet
 		options?: Reveal.Options & Options
-		class?: string
+		class?: ClassValue
 	}
 
 	let { children, options, ...props }: PresentationProps = $props()

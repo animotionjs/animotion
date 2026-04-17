@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { tween } from '@animotion/motion'
 	import Action from '$lib/components/action.svelte'
+	import type { ClassValue } from 'svelte/elements'
 
 	type PathProps = {
 		data: string | string[]
@@ -17,7 +18,7 @@
 		width?: string | number
 		height?: string | number
 		manual?: boolean
-		class?: string
+		class?: ClassValue
 		style?: string
 		ref?: (self: PathComponent) => void
 	}

@@ -28,6 +28,8 @@
 	} from 'shiki-magic-move/types'
 	import '../styles/shiki.css'
 
+	import type { ClassValue } from 'svelte/elements'
+
 	type Promises = Promise<unknown>[]
 	type Lang = BundledLanguage | SpecialLanguage
 	type CodeProp = { code: string; codes?: never }
@@ -37,7 +39,7 @@
 		theme: BundledTheme
 		options?: MagicMoveRenderOptions & MagicMoveDifferOptions
 		autoIndent?: boolean
-		class?: string
+		class?: ClassValue
 		ref?: (self: ReturnType<typeof Code>) => void
 	}
 

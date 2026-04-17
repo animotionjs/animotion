@@ -13,6 +13,7 @@
 
 <script lang="ts">
 	import Transition from '$lib/components/transition.svelte'
+	import type { ClassValue } from 'svelte/elements'
 	import type { Snippet } from 'svelte'
 
 	type TransitionProps = {
@@ -20,7 +21,7 @@
 		children?: Snippet
 		do?: () => void
 		undo?: () => void
-		class?: string
+		class?: ClassValue
 		style?: string
 		order?: number
 		stepDuration?: number

@@ -2,6 +2,7 @@
 	import { untrack } from 'svelte'
 	import { fade } from 'svelte/transition'
 	import { on } from 'svelte/events'
+	import type { ClassValue } from 'svelte/elements'
 
 	type LogMessage = {
 		type: 'console'
@@ -12,7 +13,7 @@
 	type Props = {
 		code: { markup: string; styles: string; script: string }
 		imports?: Record<string, string>
-		class?: string
+		class?: ClassValue
 		title?: string
 		onmessage?: (message: LogMessage) => void
 		showConsole?: boolean
