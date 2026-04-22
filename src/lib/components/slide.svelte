@@ -1,40 +1,40 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
+	import type { Snippet } from 'svelte';
 
 	type SlideProps = {
-		children?: Snippet
-		in?: () => void
-		out?: () => void
-		animate?: boolean
-		animateEasing?: string
-		animateUnmatched?: boolean
-		animateId?: string
-		animateRestart?: boolean
-		stepDuration?: number
-		background?: string
-		gradient?: string
-		image?: string
-		video?: string
-		iframe?: string
-		interactive?: boolean
-		transition?: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom'
-		class?: string
-	}
+		children?: Snippet;
+		in?: () => void;
+		out?: () => void;
+		animate?: boolean;
+		animateEasing?: string;
+		animateUnmatched?: boolean;
+		animateId?: string;
+		animateRestart?: boolean;
+		stepDuration?: number;
+		background?: string;
+		gradient?: string;
+		image?: string;
+		video?: string;
+		iframe?: string;
+		interactive?: boolean;
+		transition?: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom';
+		class?: string;
+	};
 
-	let { children, ...props }: SlideProps = $props()
+	let { children, ...props }: SlideProps = $props();
 
 	function listeners(el: HTMLElement) {
-		const events = ['in', 'out'] as const
+		const events = ['in', 'out'] as const;
 
 		const handlers = events.map((event) => {
-			const handler = () => props[event]?.()
-			el.addEventListener(event, handler)
-			return { event, handler }
-		})
+			const handler = () => props[event]?.();
+			el.addEventListener(event, handler);
+			return { event, handler };
+		});
 
 		return () => {
-			handlers.forEach(({ event, handler }) => el.removeEventListener(event, handler))
-		}
+			handlers.forEach(({ event, handler }) => el.removeEventListener(event, handler));
+		};
 	}
 </script>
 

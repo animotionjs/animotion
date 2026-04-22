@@ -1,40 +1,40 @@
 <script lang="ts" module>
-	import { browser } from '$app/environment'
+	import { browser } from '$app/environment';
 
-	let customViewTransitions = $state<HTMLStyleElement>()
+	let customViewTransitions = $state<HTMLStyleElement>();
 
 	if (browser) {
-		const style = document.createElement('style')
-		style.dataset.id = 'view-transitions'
-		document.head.appendChild(style)
-		customViewTransitions = style
+		const style = document.createElement('style');
+		style.dataset.id = 'view-transitions';
+		document.head.appendChild(style);
+		customViewTransitions = style;
 	}
 </script>
 
 <script lang="ts">
-	import Transition from '$lib/components/transition.svelte'
-	import type { Snippet } from 'svelte'
+	import Transition from '$lib/components/transition.svelte';
+	import type { Snippet } from 'svelte';
 
 	type TransitionProps = {
-		[key: string]: unknown
-		children?: Snippet
-		do?: () => void
-		undo?: () => void
-		class?: string
-		style?: string
-		order?: number
-		stepDuration?: number
-		name?: string
-		visible?: boolean
-		hidden?: boolean
-		transitions?: Array<() => void>
-		entry?: string
-		exit?: string
-		duration?: number
-		delay?: number
-	}
+		[key: string]: unknown;
+		children?: Snippet;
+		do?: () => void;
+		undo?: () => void;
+		class?: string;
+		style?: string;
+		order?: number;
+		stepDuration?: number;
+		name?: string;
+		visible?: boolean;
+		hidden?: boolean;
+		transitions?: Array<() => void>;
+		entry?: string;
+		exit?: string;
+		duration?: number;
+		delay?: number;
+	};
 
-	const noop = () => {}
+	const noop = () => {};
 
 	let {
 		children,
@@ -49,18 +49,18 @@
 		duration,
 		delay,
 		...props
-	}: TransitionProps = $props()
+	}: TransitionProps = $props();
 
-	let el = $state<HTMLDivElement>()
-	let viewTransitionName = name ? `transition-${name}` : `transition-${crypto.randomUUID()}`
+	let el = $state<HTMLDivElement>();
+	let viewTransitionName = name ? `transition-${name}` : `transition-${crypto.randomUUID()}`;
 
 	function viewTransition(fn: () => void) {
 		if (!document.startViewTransition) {
-			console.warn('The View Transitions API is not supported by your browser')
-			fn()
-			return
+			console.warn('The View Transitions API is not supported by your browser');
+			fn();
+			return;
 		}
-		document.startViewTransition(fn)
+		document.startViewTransition(fn);
 	}
 
 	/**
@@ -69,48 +69,48 @@
 	 * so this checks for fragments that aren't visible and hides them.
 	 */
 	function prepareTransition() {
-		const currentSlide = el?.closest('section')!
+		const currentSlide = el?.closest('section')!;
 		currentSlide.querySelectorAll('.fragment').forEach((fragment) => {
 			if (!fragment.classList.contains('visible')) {
-				fragment.classList.add('hidden')
+				fragment.classList.add('hidden');
 			}
-		})
+		});
 	}
 
 	function enterTransition() {
-		prepareTransition()
+		prepareTransition();
 
 		viewTransition(() => {
-			props?.do?.() ?? noop()
-			el?.classList.remove('hidden')
-		})
+			props?.do?.() ?? noop();
+			el?.classList.remove('hidden');
+		});
 	}
 
 	function leaveTransition() {
-		prepareTransition()
+		prepareTransition();
 
 		viewTransition(() => {
-			props?.undo?.() ?? noop()
-		})
+			props?.undo?.() ?? noop();
+		});
 	}
 
 	$effect(() => {
-		if (!el) return
+		if (!el) return;
 
-		el.addEventListener('current', enterTransition)
-		el.addEventListener('out', leaveTransition)
+		el.addEventListener('current', enterTransition);
+		el.addEventListener('out', leaveTransition);
 
 		return () => {
-			el?.removeEventListener('current', enterTransition)
-			el?.removeEventListener('out', leaveTransition)
-		}
-	})
+			el?.removeEventListener('current', enterTransition);
+			el?.removeEventListener('out', leaveTransition);
+		};
+	});
 
 	$effect(() => {
-		if (!customViewTransitions) return
+		if (!customViewTransitions) return;
 
 		if (entry || exit) {
-			let transitions = ''
+			let transitions = '';
 
 			if (entry) {
 				transitions += `
@@ -120,7 +120,7 @@
 						animation-delay: ${delay ?? 0}s;
 						animation-fill-mode: both;
 					}
-				`
+				`;
 			}
 
 			if (exit) {
@@ -131,12 +131,12 @@
 						animation-delay: ${delay ?? 0}s;
 						animation-fill-mode: both;
 					}
-				`
+				`;
 			}
 
-			customViewTransitions.textContent += transitions
+			customViewTransitions.textContent += transitions;
 		}
-	})
+	});
 </script>
 
 {#if transitions}

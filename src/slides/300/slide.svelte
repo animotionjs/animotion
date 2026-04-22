@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Transition } from '$lib/index.js'
+	import { Transition } from '$lib/index.js';
 
-	let items = $state([1, 2, 3, 4])
-	let layout = $state('flex gap-4')
+	let items = $state([1, 2, 3, 4]);
+	let layout = $state('flex gap-4');
 </script>
 
 <Transition>
@@ -11,8 +11,8 @@
 
 <Transition
 	do={() => {
-		items = [1, 2, 3, 4]
-		layout = 'flex gap-4'
+		items = [1, 2, 3, 4];
+		layout = 'flex gap-4';
 	}}
 	class="mt-16"
 >
@@ -34,20 +34,20 @@
 <Transition
 	transitions={[
 		() => {
-			layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-			items = [4, 3, 2, 1]
+			layout = 'grid grid-cols-2 grid-rows-2 gap-4';
+			items = [4, 3, 2, 1];
 		},
 		() => {
-			layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-			items = [2, 1, 4, 3]
+			layout = 'grid grid-cols-2 grid-rows-2 gap-4';
+			items = [2, 1, 4, 3];
 		},
 		() => {
-			layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-			items = [4, 3, 2, 1]
+			layout = 'grid grid-cols-2 grid-rows-2 gap-4';
+			items = [4, 3, 2, 1];
 		},
 		() => {
-			layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-			items = [1, 2, 3, 4]
+			layout = 'grid grid-cols-2 grid-rows-2 gap-4';
+			items = [1, 2, 3, 4];
 		},
 		() => (layout = 'flex gap-4')
 	]}

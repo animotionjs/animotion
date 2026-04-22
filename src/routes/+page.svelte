@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Presentation, Slide, Code, Transition, Action } from '$lib/index.js'
-	import { tween } from '@animotion/motion'
+	import { Presentation, Slide, Code, Transition, Action } from '$lib/index.js';
+	import { tween } from '@animotion/motion';
 
-	let text: HTMLParagraphElement
-	let code: ReturnType<typeof Code>
-	let circle = tween({ x: 0, y: 80, r: 80, fill: '#00ffff' })
-	let items = $state([1, 2, 3, 4])
-	let layout = $state('flex gap-4')
+	let text: HTMLParagraphElement;
+	let code: Code;
+	let circle = tween({ x: 0, y: 80, r: 80, fill: '#00ffff' });
+	let items = $state([1, 2, 3, 4]);
+	let layout = $state('flex gap-4');
 </script>
 
 <Presentation options={{ history: true, transition: 'slide', controls: true, progress: true }}>
@@ -17,8 +17,8 @@
 	<Slide class="h-full place-content-center place-items-center">
 		<Transition
 			do={async () => {
-				text.classList.replace('text-6xl', 'text-8xl')
-				await code.update``
+				text.classList.replace('text-6xl', 'text-8xl');
+				await code.update``;
 			}}
 		>
 			<p bind:this={text} class="text-8xl font-bold drop-shadow-sm">🪄 Animotion</p>
@@ -26,13 +26,13 @@
 
 		<Transition
 			do={async () => {
-				text.classList.replace('text-8xl', 'text-6xl')
+				text.classList.replace('text-8xl', 'text-6xl');
 				await code.update`
 					async function animate() {
 						// ...
 					}
-				`
-				await circle.to({ x: 0, fill: '#00ffff' })
+				`;
+				await circle.to({ x: 0, fill: '#00ffff' });
 			}}
 			class="mt-16"
 		>
@@ -51,8 +51,8 @@
 					async function animate() {
 						// ...
 					}
-				`
-				await circle.to({ x: 0, fill: '#00ffff' })
+				`;
+				await circle.to({ x: 0, fill: '#00ffff' });
 			}}
 			class="mt-16"
 		>
@@ -78,9 +78,9 @@
 						async function animate() {
 							await circle.to({ x: 400, fill: '#ffff00' })
 						}
-					`
-					await code.selectLines`2`
-					await circle.to({ x: 400, fill: '#ffff00' })
+					`;
+					await code.selectLines`2`;
+					await circle.to({ x: 400, fill: '#ffff00' });
 				},
 				async () => {
 					await code.update`
@@ -88,19 +88,19 @@
 							await circle.to({ x: 400, fill: '#ffff00' })
 							await circle.to({ x: 0, fill: '#00ffff' })
 						}
-					`
-					await code.selectLines`3`
-					await circle.to({ x: 0, fill: '#00ffff' })
+					`;
+					await code.selectLines`3`;
+					await circle.to({ x: 0, fill: '#00ffff' });
 				},
 				async () => {
-					await code.selectLines`*`
+					await code.selectLines`*`;
 					await code.update`
 						async function animate() {
 							await circle.to({ x: 400, fill: '#ffff00' })
 							await circle.to({ x: 0, fill: '#00ffff' })
 						}
-					`
-					await circle.to({ x: 0, fill: '#00ffff' })
+					`;
+					await circle.to({ x: 0, fill: '#00ffff' });
 				}
 			]}
 		/>
@@ -113,15 +113,15 @@
 
 		<Transition
 			do={() => {
-				items = [1, 2, 3, 4]
-				layout = 'flex gap-4'
+				items = [1, 2, 3, 4];
+				layout = 'flex gap-4';
 			}}
 			class="mt-16"
 		>
 			<div class={layout}>
 				{#each items as item, i (item)}
 					<Transition
-						class="grid h-[180px] w-[180px] place-content-center rounded-2xl border-t-2 border-white bg-gray-200 text-6xl font-semibold text-black shadow-2xl"
+						class="grid h-45 w-45 place-content-center rounded-2xl border-t-2 border-white bg-gray-200 text-6xl font-semibold text-black shadow-2xl"
 						entry="rotate"
 						duration={2}
 						delay={i * 0.1}
@@ -136,20 +136,20 @@
 		<Transition
 			transitions={[
 				() => {
-					layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-					items = [4, 3, 2, 1]
+					layout = 'grid grid-cols-2 grid-rows-2 gap-4';
+					items = [4, 3, 2, 1];
 				},
 				() => {
-					layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-					items = [2, 1, 4, 3]
+					layout = 'grid grid-cols-2 grid-rows-2 gap-4';
+					items = [2, 1, 4, 3];
 				},
 				() => {
-					layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-					items = [4, 3, 2, 1]
+					layout = 'grid grid-cols-2 grid-rows-2 gap-4';
+					items = [4, 3, 2, 1];
 				},
 				() => {
-					layout = 'grid grid-cols-2 grid-rows-2 gap-4'
-					items = [1, 2, 3, 4]
+					layout = 'grid grid-cols-2 grid-rows-2 gap-4';
+					items = [1, 2, 3, 4];
 				},
 				() => (layout = 'flex gap-4')
 			]}

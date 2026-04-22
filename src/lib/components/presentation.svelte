@@ -1,27 +1,27 @@
 <script lang="ts">
-	import { tick, type Snippet } from 'svelte'
-	import { setPresentation } from './store.svelte.js'
-	import 'reveal.js/dist/reveal.css'
+	import { tick, type Snippet } from 'svelte';
+	import { setPresentation } from './store.svelte.js';
+	import 'reveal.js/dist/reveal.css';
 
 	type Options = {
-		reload?: boolean
-	}
+		reload?: boolean;
+	};
 
 	type PresentationProps = {
-		[key: string]: any
-		children?: Snippet
-		options?: Reveal.Options & Options
-		class?: string
-	}
+		[key: string]: any;
+		children?: Snippet;
+		options?: Reveal.Options & Options;
+		class?: string;
+	};
 
-	let { children, options, ...props }: PresentationProps = $props()
+	let { children, options, ...props }: PresentationProps = $props();
 
 	async function init() {
-		const Reveal = (await import('reveal.js')).default
-		const Markdown = (await import('reveal.js/plugin/markdown/markdown')).default
-		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default
-		const Math = (await import('reveal.js/plugin/math/math')).default
-		const Notes = (await import('reveal.js/plugin/notes/notes')).default
+		const Reveal = (await import('reveal.js')).default;
+		const Markdown = (await import('reveal.js/plugin/markdown/markdown')).default;
+		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default;
+		const Math = (await import('reveal.js/plugin/math/math')).default;
+		const Notes = (await import('reveal.js/plugin/notes/notes')).default;
 
 		const defaults: Reveal.Options = {
 			// presentation size respecting aspect ratio
@@ -58,95 +58,95 @@
 			hideCursorTime: 5000,
 			// show current slide
 			hash: false
-		}
+		};
 
 		// create deck instance
-		const deck = new Reveal({ ...defaults, ...options })
+		const deck = new Reveal({ ...defaults, ...options });
 
 		// expose reveal instance
-		setPresentation(deck)
+		setPresentation(deck);
 
 		// custom event listeners
-		const inEvent = new CustomEvent('in')
-		const outEvent = new CustomEvent('out')
-		const currentEvent = new CustomEvent('current')
+		const inEvent = new CustomEvent('in');
+		const outEvent = new CustomEvent('out');
+		const currentEvent = new CustomEvent('current');
 
 		// dispatch event for current active fragment
 		// so `do` works in both directions
 		async function dispatchFocused() {
-			await tick()
-			let currentFragmentEl = document.querySelector('.current-fragment')
+			await tick();
+			let currentFragmentEl = document.querySelector('.current-fragment');
 			if (currentFragmentEl) {
-				currentFragmentEl.dispatchEvent(currentEvent)
+				currentFragmentEl.dispatchEvent(currentEvent);
 			}
 		}
 
 		// keep track of current slide
 		deck.on('slidechanged', (event) => {
 			if ('currentSlide' in event) {
-				const currentSlideEl = event.currentSlide as HTMLElement
-				currentSlideEl?.dispatchEvent(inEvent)
+				const currentSlideEl = event.currentSlide as HTMLElement;
+				currentSlideEl?.dispatchEvent(inEvent);
 			}
 
 			if ('previousSlide' in event) {
-				const currentPreviousEl = event.previousSlide as HTMLElement
-				currentPreviousEl?.dispatchEvent(outEvent)
+				const currentPreviousEl = event.previousSlide as HTMLElement;
+				currentPreviousEl?.dispatchEvent(outEvent);
 			}
 
-			dispatchFocused()
-		})
+			dispatchFocused();
+		});
 
 		deck.on('slidetransitionend', (event) => {
-			dispatchFocused()
-		})
+			dispatchFocused();
+		});
 
 		deck.on('fragmentshown', (event) => {
 			if ('fragment' in event) {
-				const el = event.fragment as HTMLElement
-				let eventType: Event
+				const el = event.fragment as HTMLElement;
+				let eventType: Event;
 
 				if (el.tagName === 'CODE') {
 					const codeEvent = new CustomEvent('change', {
 						bubbles: true,
 						detail: { step: el.dataset.lineNumbers }
-					})
-					eventType = codeEvent
+					});
+					eventType = codeEvent;
 				} else {
-					eventType = inEvent
+					eventType = inEvent;
 				}
 
-				el?.dispatchEvent(eventType)
-				dispatchFocused()
+				el?.dispatchEvent(eventType);
+				dispatchFocused();
 			}
-		})
+		});
 
 		deck.on('fragmenthidden', (event) => {
 			if ('fragment' in event) {
-				const fragmentEl = event.fragment as HTMLElement
-				fragmentEl?.dispatchEvent(outEvent)
-				dispatchFocused()
+				const fragmentEl = event.fragment as HTMLElement;
+				fragmentEl?.dispatchEvent(outEvent);
+				dispatchFocused();
 			}
-		})
+		});
 
-		deck.initialize()
+		deck.initialize();
 
 		if (options?.reload) {
 			// reload page after update to avoid HMR issues
-			reloadPageAfterUpdate()
+			reloadPageAfterUpdate();
 		}
 	}
 
 	function reloadPageAfterUpdate() {
 		if (import.meta.hot) {
 			import.meta.hot.on('vite:afterUpdate', () => {
-				location.reload()
-			})
+				location.reload();
+			});
 		}
 	}
 
 	$effect(() => {
-		init()
-	})
+		init();
+	});
 </script>
 
 <div class="reveal">

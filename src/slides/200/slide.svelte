@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { Code, Transition, Action } from '$lib/index.js'
-	import { tween } from '@animotion/motion'
+	import { Code, Transition, Action } from '$lib/index.js';
+	import { tween } from '@animotion/motion';
 
-	let text: HTMLParagraphElement
-	let code: ReturnType<typeof Code>
-	let circle = tween({ x: 0, y: 80, r: 80, fill: '#00ffff' })
+	let text: HTMLParagraphElement;
+	let code: ReturnType<typeof Code>;
+	let circle = tween({ x: 0, y: 80, r: 80, fill: '#00ffff' });
 </script>
 
 <Transition
 	do={async () => {
-		text.classList.replace('text-6xl', 'text-8xl')
-		await code.update``
+		text.classList.replace('text-6xl', 'text-8xl');
+		await code.update``;
 	}}
 >
 	<p bind:this={text} class="text-8xl font-bold drop-shadow-sm">🪄 Animotion</p>
@@ -18,13 +18,13 @@
 
 <Transition
 	do={async () => {
-		text.classList.replace('text-8xl', 'text-6xl')
+		text.classList.replace('text-8xl', 'text-6xl');
 		await code.update`
 					async function animate() {
 						// ...
 					}
-				`
-		await circle.to({ x: 0, fill: '#00ffff' })
+				`;
+		await circle.to({ x: 0, fill: '#00ffff' });
 	}}
 	class="mt-16"
 >
@@ -43,8 +43,8 @@
 					async function animate() {
 						// ...
 					}
-				`
-		await circle.to({ x: 0, fill: '#00ffff' })
+				`;
+		await circle.to({ x: 0, fill: '#00ffff' });
 	}}
 	class="mt-16"
 >
@@ -70,9 +70,9 @@
 						async function animate() {
 							await circle.to({ x: 400, fill: '#ffff00' })
 						}
-					`
-			await code.selectLines`2`
-			await circle.to({ x: 400, fill: '#ffff00' })
+					`;
+			await code.selectLines`2`;
+			await circle.to({ x: 400, fill: '#ffff00' });
 		},
 		async () => {
 			await code.update`
@@ -80,19 +80,19 @@
 							await circle.to({ x: 400, fill: '#ffff00' })
 							await circle.to({ x: 0, fill: '#00ffff' })
 						}
-					`
-			await code.selectLines`3`
-			await circle.to({ x: 0, fill: '#00ffff' })
+					`;
+			await code.selectLines`3`;
+			await circle.to({ x: 0, fill: '#00ffff' });
 		},
 		async () => {
-			await code.selectLines`*`
+			await code.selectLines`*`;
 			await code.update`
 						async function animate() {
 							await circle.to({ x: 400, fill: '#ffff00' })
 							await circle.to({ x: 0, fill: '#00ffff' })
 						}
-					`
-			await circle.to({ x: 0, fill: '#00ffff' })
+					`;
+			await circle.to({ x: 0, fill: '#00ffff' });
 		}
 	]}
 />

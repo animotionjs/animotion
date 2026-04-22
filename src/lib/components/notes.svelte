@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
+	import type { Snippet } from 'svelte';
 
 	type NotesProps = {
-		children: Snippet
-	}
+		children: Snippet;
+	};
 
-	let { children }: NotesProps = $props()
+	let { children }: NotesProps = $props();
 </script>
 
 <aside class="notes">

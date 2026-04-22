@@ -1,14 +1,14 @@
 <script lang="ts">
 	type Props = {
-		codec?: string
-		fps?: number
-		videoBitrate?: number
-		audioBitrate?: number
-		systemAudio?: boolean
-		useMicrophone?: boolean
-		useTimer?: boolean
-	}
-	type State = 'ready' | 'ready.countdown' | 'recording'
+		codec?: string;
+		fps?: number;
+		videoBitrate?: number;
+		audioBitrate?: number;
+		systemAudio?: boolean;
+		useMicrophone?: boolean;
+		useTimer?: boolean;
+	};
+	type State = 'ready' | 'ready.countdown' | 'recording';
 
 	let {
 		codec = 'video/mp4;codecs="vp9,opus"',
@@ -18,18 +18,18 @@
 		systemAudio = true,
 		useMicrophone = true,
 		useTimer = true
-	}: Props = $props()
+	}: Props = $props();
 
-	let recorder: State = $state('ready')
-	let videoStream: MediaStream
-	let audioStream: MediaStream
-	let mediaRecorder: MediaRecorder
-	let chunks: Blob[] = []
-	let timer: ReturnType<typeof setInterval>
-	let seconds = $state(3)
+	let recorder: State = $state('ready');
+	let videoStream: MediaStream;
+	let audioStream: MediaStream;
+	let mediaRecorder: MediaRecorder;
+	let chunks: Blob[] = [];
+	let timer: ReturnType<typeof setInterval>;
+	let seconds = $state(3);
 
 	function kbpsToBits(kbps: number) {
-		return kbps * 1000
+		return kbps * 1000;
 	}
 
 	async function getMediaStream() {
@@ -39,78 +39,78 @@
 				audio: true,
 				selfBrowserSurface: 'include',
 				systemAudio: systemAudio ? 'include' : 'exclude'
-			})
-			videoStream.oninactive = stopRecording
+			});
+			videoStream.oninactive = stopRecording;
 
 			if (useMicrophone) {
-				audioStream = await navigator.mediaDevices.getUserMedia({ audio: true })
-				const [microphone] = audioStream.getAudioTracks()
-				videoStream.addTrack(microphone)
+				audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+				const [microphone] = audioStream.getAudioTracks();
+				videoStream.addTrack(microphone);
 			}
 
-			audioStream.oninactive = stopRecording
+			audioStream.oninactive = stopRecording;
 		} catch (e) {
-			console.error(e)
+			console.error(e);
 		}
 	}
 
 	async function startRecording() {
-		await getMediaStream()
+		await getMediaStream();
 		if (useTimer) {
-			await countdown()
+			await countdown();
 		}
-		recorder = 'recording'
+		recorder = 'recording';
 		mediaRecorder = new MediaRecorder(videoStream, {
 			mimeType: codec,
 			videoBitsPerSecond: kbpsToBits(videoBitrate),
 			audioBitsPerSecond: kbpsToBits(audioBitrate)
-		})
+		});
 		mediaRecorder.ondataavailable = (e) => {
-			chunks.push(e.data)
-			download()
-		}
-		mediaRecorder.start()
+			chunks.push(e.data);
+			download();
+		};
+		mediaRecorder.start();
 	}
 
 	function stopRecording() {
-		recorder = 'ready'
-		mediaRecorder?.stop()
-		clearInterval(timer)
-		seconds = 3
+		recorder = 'ready';
+		mediaRecorder?.stop();
+		clearInterval(timer);
+		seconds = 3;
 	}
 
 	function countdown() {
-		recorder = 'ready.countdown'
-		let { promise, resolve } = Promise.withResolvers()
+		recorder = 'ready.countdown';
+		let { promise, resolve } = Promise.withResolvers();
 		timer = setInterval(() => {
 			if (seconds === 0) {
-				clearInterval(timer)
-				resolve(seconds)
-				return
+				clearInterval(timer);
+				resolve(seconds);
+				return;
 			}
-			seconds--
-		}, 1000)
-		return promise
+			seconds--;
+		}, 1000);
+		return promise;
 	}
 
 	function download() {
-		const blob = new Blob(chunks, { type: codec })
-		const a = document.createElement('a')
-		a.href = URL.createObjectURL(blob)
-		a.download = 'video.mp4'
-		a.click()
-		URL.revokeObjectURL(a.href)
-		chunks = []
+		const blob = new Blob(chunks, { type: codec });
+		const a = document.createElement('a');
+		a.href = URL.createObjectURL(blob);
+		a.download = 'video.mp4';
+		a.click();
+		URL.revokeObjectURL(a.href);
+		chunks = [];
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
 		switch (event.key) {
 			case 'R':
-				recorder === 'ready' && startRecording()
-				break
+				recorder === 'ready' && startRecording();
+				break;
 			case 'S':
-				recorder !== 'ready' && stopRecording()
-				break
+				recorder !== 'ready' && stopRecording();
+				break;
 		}
 	}
 </script>

@@ -1,24 +1,24 @@
 <script lang="ts">
-	import { tick, type Snippet } from 'svelte'
-	import type Reveal from 'reveal.js'
+	import { tick, type Snippet } from 'svelte';
+	import type Reveal from 'reveal.js';
 
-	import 'reveal.js/dist/reveal.css'
-	import '../styles/theme.css'
+	import 'reveal.js/dist/reveal.css';
+	import '../styles/theme.css';
 
 	type PresentationProps = {
-		[key: string]: any
-		children: Snippet
-		options?: Reveal.Options
-		class?: string
-	}
+		[key: string]: any;
+		children: Snippet;
+		options?: Reveal.Options;
+		class?: string;
+	};
 
-	let { children, options, ...props }: PresentationProps = $props()
+	let { children, options, ...props }: PresentationProps = $props();
 
 	async function init() {
-		const Reveal = (await import('reveal.js')).default
-		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default
-		const Math = (await import('reveal.js/plugin/math/math')).default
-		const Notes = (await import('reveal.js/plugin/notes/notes')).default
+		const Reveal = (await import('reveal.js')).default;
+		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default;
+		const Math = (await import('reveal.js/plugin/math/math')).default;
+		const Notes = (await import('reveal.js/plugin/notes/notes')).default;
 
 		/*
 			to have multiple slides we pass the new reference
@@ -31,79 +31,79 @@
 			keyboardCondition: 'focused',
 			embedded: true,
 			...options
-		})
+		});
 
 		// custom event listeners
-		const inEvent = new CustomEvent('in')
-		const outEvent = new CustomEvent('out')
-		const currentEvent = new CustomEvent('current')
+		const inEvent = new CustomEvent('in');
+		const outEvent = new CustomEvent('out');
+		const currentEvent = new CustomEvent('current');
 
 		// dispatch event for current active fragment
 		// so `do` works in both directions
 		async function dispatchFocused(event: Event) {
-			await tick()
-			const currentEmbedEl = event.target as HTMLElement
-			const currentFragmentEl = currentEmbedEl.querySelector('.current-fragment')
+			await tick();
+			const currentEmbedEl = event.target as HTMLElement;
+			const currentFragmentEl = currentEmbedEl.querySelector('.current-fragment');
 			if (currentFragmentEl) {
-				currentFragmentEl.dispatchEvent(currentEvent)
+				currentFragmentEl.dispatchEvent(currentEvent);
 			}
 		}
 
 		// keep track of current slide
 		deck.on('slidechanged', (event) => {
 			if ('currentSlide' in event) {
-				const currentSlideEl = event.currentSlide as HTMLElement
-				currentSlideEl?.dispatchEvent(inEvent)
+				const currentSlideEl = event.currentSlide as HTMLElement;
+				currentSlideEl?.dispatchEvent(inEvent);
 			}
 
 			if ('previousSlide' in event) {
-				const currentPreviousEl = event.previousSlide as HTMLElement
-				currentPreviousEl?.dispatchEvent(outEvent)
+				const currentPreviousEl = event.previousSlide as HTMLElement;
+				currentPreviousEl?.dispatchEvent(outEvent);
 			}
 
-			dispatchFocused(event)
-		})
+			dispatchFocused(event);
+		});
 
 		deck.on('slidetransitionend', (event) => {
-			dispatchFocused(event)
-		})
+			dispatchFocused(event);
+		});
 
 		deck.on('fragmentshown', (event) => {
 			if ('fragment' in event) {
-				const el = event.fragment as HTMLElement
-				let eventType: Event
+				const el = event.fragment as HTMLElement;
+				let eventType: Event;
 
 				if (el.tagName === 'CODE') {
 					const codeEvent = new CustomEvent('change', {
 						bubbles: true,
 						detail: { step: el.dataset.lineNumbers }
-					})
-					eventType = codeEvent
+					});
+					eventType = codeEvent;
 				} else {
-					eventType = inEvent
+					eventType = inEvent;
 				}
 
-				el?.dispatchEvent(eventType)
-				dispatchFocused(event)
+				el?.dispatchEvent(eventType);
+				dispatchFocused(event);
 			}
-		})
+		});
 
 		deck.on('fragmenthidden', (event) => {
 			if ('fragment' in event) {
-				const fragmentEl = event.fragment as HTMLElement
-				fragmentEl?.dispatchEvent(outEvent)
-				dispatchFocused(event)
+				const fragmentEl = event.fragment as HTMLElement;
+				fragmentEl?.dispatchEvent(outEvent);
+				dispatchFocused(event);
 			}
-		})
+		});
 
-		deck.initialize()
+		deck.initialize();
 	}
 
 	$effect(() => {
-		init()
-	})
+		init();
+	});
 
-	let animotion: HTMLElement
+	let animotion: HTMLElement;
 </script>
 
 <div bind:this={animotion} class="reveal">
