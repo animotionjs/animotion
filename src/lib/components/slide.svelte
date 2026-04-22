@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import type { ClassValue } from 'svelte/elements';
 
 	type SlideProps = {
 		children?: Snippet;
@@ -18,7 +19,7 @@
 		iframe?: string;
 		interactive?: boolean;
 		transition?: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom';
-		class?: string;
+		class?: ClassValue;
 	};
 
 	let { children, ...props }: SlideProps = $props();

@@ -16,6 +16,7 @@
 </script>
 
 <script lang="ts">
+	import type { ClassValue } from 'svelte/elements';
 	import Action from '$lib/components/action.svelte';
 	import Code from '$lib/components/code.svelte';
 	import { codeToKeyedTokens, createMagicMoveMachine } from 'shiki-magic-move/core';
@@ -37,7 +38,7 @@
 		theme: BundledTheme;
 		options?: MagicMoveRenderOptions & MagicMoveDifferOptions;
 		autoIndent?: boolean;
-		class?: string;
+		class?: ClassValue;
 		ref?: (self: ReturnType<typeof Code>) => void;
 	};
 

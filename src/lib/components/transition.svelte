@@ -12,15 +12,16 @@
 </script>
 
 <script lang="ts">
-	import Transition from '$lib/components/transition.svelte';
 	import type { Snippet } from 'svelte';
+	import type { ClassValue } from 'svelte/elements';
+	import Transition from '$lib/components/transition.svelte';
 
 	type TransitionProps = {
 		[key: string]: unknown;
 		children?: Snippet;
 		do?: () => void;
 		undo?: () => void;
-		class?: string;
+		class?: ClassValue;
 		style?: string;
 		order?: number;
 		stepDuration?: number;
