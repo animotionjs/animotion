@@ -156,6 +156,34 @@
 		}
 	}
 
+	/**
+	 * modified indent mostly used by replace
+	 */
+	function dedent(text: string) {
+		const lines = text.split('\n');
+
+		let baseIndent = '';
+
+		for (const line of lines) {
+			if (line.trim() === '') continue;
+			baseIndent = line.match(/^(\s*)/)?.[1] ?? '';
+			break;
+		}
+
+		if (!baseIndent) return text.trim();
+
+		const result = lines.map((line) => {
+			if (line.trim() === '') return '';
+			if (line.startsWith(baseIndent)) return line.slice(baseIndent.length);
+			return line.trimStart();
+		});
+
+		while (result.length && result[0].trim() === '') result.shift();
+		while (result.length && result[result.length - 1].trim() === '') result.pop();
+
+		return result.join('\n');
+	}
+
 	function parseSelection(raw: string): {
 		line: number | null;
 		index: number | null;
@@ -473,9 +501,24 @@
 	 * replaces matching code with new code with animation
 	 */
 	export function replace(from: string, to: string) {
-		const dedentedFrom = autoIndent ? indent(from) : from;
-		const dedentedTo = autoIndent ? indent(to) : to;
-		return render(currentCode.replace(dedentedFrom, dedentedTo));
+		const dedentedFrom = autoIndent ? dedent(from) : from;
+		const dedentedTo = autoIndent ? dedent(to) : to;
+
+		const [occ] = findOccurrences(currentCode, dedentedFrom, null, 0);
+		if (!occ) {
+			console.warn('replace: pattern not found');
+			return Promise.resolve();
+		}
+
+		const lineStart = currentCode.lastIndexOf('\n', occ.start - 1) + 1;
+		const lineIndent = currentCode.slice(lineStart).match(/^\s*/)?.[0] ?? '';
+
+		const toLines = dedentedTo.split('\n');
+		const reindentedTo = toLines
+			.map((line, i) => (i === 0 ? line : line ? lineIndent + line : line))
+			.join('\n');
+
+		return render(currentCode.slice(0, occ.start) + reindentedTo + currentCode.slice(occ.end));
 	}
 
 	/**
