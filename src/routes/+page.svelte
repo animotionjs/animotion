@@ -76,7 +76,7 @@
 				async () => {
 					await code.update`
 						async function animate() {
-							await circle.to({ x: 400, fill: '#ffff00' })
+							await circle.to({ x: 400, fill: '#ffff00' });
 						}
 					`;
 					await code.selectLines`2`;
@@ -85,8 +85,8 @@
 				async () => {
 					await code.update`
 						async function animate() {
-							await circle.to({ x: 400, fill: '#ffff00' })
-							await circle.to({ x: 0, fill: '#00ffff' })
+							await circle.to({ x: 400, fill: '#ffff00' });
+							await circle.to({ x: 0, fill: '#00ffff' });
 						}
 					`;
 					await code.selectLines`3`;
@@ -96,8 +96,8 @@
 					await code.selectLines`*`;
 					await code.update`
 						async function animate() {
-							await circle.to({ x: 400, fill: '#ffff00' })
-							await circle.to({ x: 0, fill: '#00ffff' })
+							await circle.to({ x: 400, fill: '#ffff00' });
+							await circle.to({ x: 0, fill: '#00ffff' });
 						}
 					`;
 					await circle.to({ x: 0, fill: '#00ffff' });
