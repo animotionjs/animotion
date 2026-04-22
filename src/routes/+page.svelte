@@ -34,7 +34,7 @@
 				`;
 				await circle.to({ x: 0, fill: '#00ffff' });
 			}}
-			class="mt-16"
+			class="mt-16 rounded-lg border-t border-t-zinc-800 bg-zinc-900 px-8 py-4"
 		>
 			<Code
 				bind:this={code}
