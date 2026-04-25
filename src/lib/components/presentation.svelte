@@ -2,7 +2,8 @@
 	import { tick, type Snippet } from 'svelte';
 	import type { ClassValue } from 'svelte/elements';
 	import { setPresentation } from './store.svelte.js';
-	import 'reveal.js/dist/reveal.css';
+	import type { RevealConfig } from 'reveal.js';
+	import 'reveal.js/reveal.css';
 
 	type Options = {
 		reload?: boolean;
@@ -11,7 +12,7 @@
 	type PresentationProps = {
 		[key: string]: any;
 		children?: Snippet;
-		options?: Reveal.Options & Options;
+		options?: RevealConfig & Options;
 		class?: ClassValue;
 	};
 
@@ -19,12 +20,12 @@
 
 	async function init() {
 		const Reveal = (await import('reveal.js')).default;
-		const Markdown = (await import('reveal.js/plugin/markdown/markdown')).default;
-		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default;
-		const Math = (await import('reveal.js/plugin/math/math')).default;
-		const Notes = (await import('reveal.js/plugin/notes/notes')).default;
+		const Markdown = (await import('reveal.js/plugin/markdown')).default;
+		const Highlight = (await import('reveal.js/plugin/highlight')).default;
+		const Math = (await import('reveal.js/plugin/math')).default;
+		const Notes = (await import('reveal.js/plugin/notes')).default;
 
-		const defaults: Reveal.Options = {
+		const defaults: RevealConfig = {
 			// presentation size respecting aspect ratio
 			width: 960,
 			height: 700,

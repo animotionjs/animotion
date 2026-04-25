@@ -1,8 +1,8 @@
-import type Reveal from 'reveal.js';
+import type { RevealApi } from 'reveal.js';
 
-let slides = $state() as Reveal.Api | undefined;
+let slides = $state() as RevealApi | undefined;
 
-export function setPresentation(reveal: Reveal.Api) {
+export function setPresentation(reveal: RevealApi) {
 	slides = reveal;
 }
 

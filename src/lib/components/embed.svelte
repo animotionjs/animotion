@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { tick, type Snippet } from 'svelte';
 	import type { ClassValue } from 'svelte/elements';
-	import type Reveal from 'reveal.js';
+	import type { RevealConfig } from 'reveal.js';
 
-	import 'reveal.js/dist/reveal.css';
+	import 'reveal.js/reveal.css';
 	import '../styles/theme.css';
 
 	type PresentationProps = {
 		[key: string]: any;
 		children: Snippet;
-		options?: Reveal.Options;
+		options?: RevealConfig;
 		class?: ClassValue;
 	};
 
@@ -17,9 +17,9 @@
 
 	async function init() {
 		const Reveal = (await import('reveal.js')).default;
-		const Highlight = (await import('reveal.js/plugin/highlight/highlight')).default;
-		const Math = (await import('reveal.js/plugin/math/math')).default;
-		const Notes = (await import('reveal.js/plugin/notes/notes')).default;
+		const Highlight = (await import('reveal.js/plugin/highlight')).default;
+		const Math = (await import('reveal.js/plugin/math')).default;
+		const Notes = (await import('reveal.js/plugin/notes')).default;
 
 		/*
 			to have multiple slides we pass the new reference
