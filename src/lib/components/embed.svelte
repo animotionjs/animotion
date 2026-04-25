@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { tick, type Snippet } from 'svelte';
 	import type { ClassValue } from 'svelte/elements';
-	import type { RevealConfig } from 'reveal.js';
+	import type { RevealConfig, RevealApi } from 'reveal.js';
 
 	import 'reveal.js/reveal.css';
 	import '../styles/theme.css';
@@ -15,6 +15,8 @@
 
 	let { children, options, ...props }: PresentationProps = $props();
 
+	let deck: RevealApi | undefined;
+
 	async function init() {
 		const Reveal = (await import('reveal.js')).default;
 		const Highlight = (await import('reveal.js/plugin/highlight')).default;
@@ -25,7 +27,7 @@
 			to have multiple slides we pass the new reference
 			to animotion and have to set `embedded: true`
 		*/
-		const deck = new Reveal(animotion, {
+		deck = new Reveal(animotion, {
 			display: 'grid',
 			disableLayout: true,
 			plugins: [Highlight, Math.KaTeX, Notes],
@@ -102,6 +104,9 @@
 
 	$effect(() => {
 		init();
+		return () => {
+			deck?.destroy();
+		};
 	});
 
 	let animotion: HTMLElement;

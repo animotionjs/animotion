@@ -2,7 +2,7 @@
 	import { tick, type Snippet } from 'svelte';
 	import type { ClassValue } from 'svelte/elements';
 	import { setPresentation } from './store.svelte.js';
-	import type { RevealConfig } from 'reveal.js';
+	import type { RevealConfig, RevealApi } from 'reveal.js';
 	import 'reveal.js/reveal.css';
 
 	type Options = {
@@ -17,6 +17,8 @@
 	};
 
 	let { children, options, ...props }: PresentationProps = $props();
+
+	let deck: RevealApi | undefined;
 
 	async function init() {
 		const Reveal = (await import('reveal.js')).default;
@@ -63,7 +65,7 @@
 		};
 
 		// create deck instance
-		const deck = new Reveal({ ...defaults, ...options });
+		deck = new Reveal({ ...defaults, ...options });
 
 		// expose reveal instance
 		setPresentation(deck);
@@ -148,6 +150,9 @@
 
 	$effect(() => {
 		init();
+		return () => {
+			deck?.destroy();
+		};
 	});
 </script>
 
