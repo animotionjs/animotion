@@ -559,37 +559,48 @@
 
 		if (isNaN(line) || line < 1) return;
 
-		let currentLine = 1;
+		let tokenIndex = 0;
 		let targetElement: HTMLElement | null = null;
 
-		for (const el of container.children) {
+		/*
+		 * shiki inserts an anchor span at index 0, then renders
+		 * every token (including \n as <br>) as a direct child.
+		 * we skip the anchor and map each remaining child 1:1 with currentTokens
+		 * to find the first token element on the target line.
+		 */
+		for (let i = 1; i < container.children.length; i++) {
+			const el = container.children[i];
 			if (!is.htmlEl(el)) continue;
+			if (tokenIndex >= currentTokens.length) break;
 
-			if (currentLine === line && is.token(el)) {
+			const token = currentTokens[tokenIndex];
+			tokenIndex++;
+
+			if (is.token(el) && token.line === line) {
 				targetElement = el;
 				break;
 			}
-
-			if (is.newLine(el)) currentLine++;
 		}
 
 		if (!targetElement) return;
 
-		const containerRect = container.getBoundingClientRect();
-		const targetRect = targetElement.getBoundingClientRect();
-		const targetOffsetTop = targetRect.top - containerRect.top + container.scrollTop;
-		const centerOffset = containerRect.height / 2 - targetRect.height / 2;
-		const scrollPosition = Math.max(0, targetOffsetTop - centerOffset);
-
 		return new Promise<void>((resolve) => {
-			const currentScroll = container!.scrollTop;
+			/*
+			 * calculate where the target would be when centered so we can
+			 * skip the animation if we're already there
+			 */
+			const containerRect = container!.getBoundingClientRect();
+			const targetRect = targetElement!.getBoundingClientRect();
+			const targetOffsetTop = targetRect.top - containerRect.top + container!.scrollTop;
+			const centerOffset = containerRect.height / 2 - targetRect.height / 2;
+			const scrollPosition = Math.max(0, targetOffsetTop - centerOffset);
 
-			if (Math.abs(currentScroll - scrollPosition) < 1) {
+			if (Math.abs(container!.scrollTop - scrollPosition) < 1) {
 				resolve();
 				return;
 			}
 
-			container!.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+			targetElement!.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
 			let resolved = false;
 			const done = () => {
@@ -599,7 +610,7 @@
 			};
 
 			container!.addEventListener('scrollend', done, { once: true });
-			setTimeout(done, 1000);
+			setTimeout(done, 500);
 		});
 	}
 
