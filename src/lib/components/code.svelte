@@ -49,6 +49,7 @@
 		theme = 'poimandres',
 		options = {},
 		autoIndent = true,
+		ref,
 		...props
 	}: CodeProps = $props();
 
@@ -688,11 +689,9 @@
 		init();
 	});
 
-	if (props.ref) {
-		$effect(() => {
-			props.ref?.(self!);
-		});
-	}
+	$effect(() => {
+		ref?.(self!);
+	});
 </script>
 
 {#if codes}

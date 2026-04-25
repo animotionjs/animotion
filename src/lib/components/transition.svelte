@@ -53,7 +53,9 @@
 	}: TransitionProps = $props();
 
 	let el = $state<HTMLDivElement>();
-	let viewTransitionName = name ? `transition-${name}` : `transition-${crypto.randomUUID()}`;
+	let viewTransitionName = $derived(
+		name ? `transition-${name}` : `transition-${crypto.randomUUID()}`
+	);
 
 	function viewTransition(fn: () => void) {
 		if (!document.startViewTransition) {
