@@ -549,6 +549,34 @@
 	}
 
 	/**
+	 * adds specific lines to the current selection without deselecting others
+	 */
+	export function selectLinesAdd(strings: TemplateStringsArray, ...expressions: string[]) {
+		if (!container) return;
+
+		const range = expressions.length > 0 ? merge(strings, expressions) : strings[0];
+		const lines = getLines(range);
+		const children = container.children;
+		const promises: Promises = [];
+		let currentLine = 1;
+
+		for (const el of children) {
+			if (!is.htmlEl(el)) return;
+
+			if (is.token(el)) {
+				const shouldSelect = lines.length === 0 ? true : lines.includes(currentLine);
+				if (shouldSelect) {
+					promises.push(transition(el, true));
+				}
+			}
+
+			if (is.newLine(el)) currentLine++;
+		}
+
+		return Promise.all(promises);
+	}
+
+	/**
 	 * scrolls to make a specific line visible
 	 */
 	export function scrollToLine(strings: TemplateStringsArray, ...expressions: string[]) {

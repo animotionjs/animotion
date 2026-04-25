@@ -281,6 +281,84 @@ describe('code highlighting', () => {
 		}
 	});
 
+	it('selectLinesAdd adds lines without deselecting others', async () => {
+		const threeLineCode = `let a = 1\nlet b = 2\nlet c = 3`;
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: threeLineCode, lang: 'javascript', theme: 'poimandres' }
+		});
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container');
+			return el?.textContent?.includes('let a') ? el : null;
+		})) as HTMLPreElement;
+
+		await code.selectLines`1`;
+		await code.selectLinesAdd`3`;
+
+		const lines = getTokensByLine(pre);
+		for (const token of getLine(lines, 1)) {
+			expect(token.classList.contains('selected')).toBe(true);
+		}
+		for (const token of getLine(lines, 2)) {
+			expect(token.classList.contains('deselected')).toBe(true);
+		}
+		for (const token of getLine(lines, 3)) {
+			expect(token.classList.contains('selected')).toBe(true);
+		}
+	});
+
+	it('selectLinesAdd with range adds multiple lines', async () => {
+		const fourLineCode = `let a = 1\nlet b = 2\nlet c = 3\nlet d = 4`;
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: fourLineCode, lang: 'javascript', theme: 'poimandres' }
+		});
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container');
+			return el?.textContent?.includes('let a') ? el : null;
+		})) as HTMLPreElement;
+
+		await code.selectLines`1`;
+		await code.selectLinesAdd`3-4`;
+
+		const lines = getTokensByLine(pre);
+		for (const token of getLine(lines, 1)) {
+			expect(token.classList.contains('selected')).toBe(true);
+		}
+		for (const token of getLine(lines, 2)) {
+			expect(token.classList.contains('deselected')).toBe(true);
+		}
+		for (const token of getLine(lines, 3)) {
+			expect(token.classList.contains('selected')).toBe(true);
+		}
+		for (const token of getLine(lines, 4)) {
+			expect(token.classList.contains('selected')).toBe(true);
+		}
+	});
+
+	it('selectLinesAdd with * selects all lines', async () => {
+		const code = mount(Code, {
+			target: document.body,
+			props: { code: multiLineCode, lang: 'javascript', theme: 'poimandres' }
+		});
+
+		const pre = (await vi.waitUntil(() => {
+			const el = document.querySelector('.shiki-magic-move-container');
+			return el?.textContent?.includes('let count') ? el : null;
+		})) as HTMLPreElement;
+
+		await code.selectLines`1`;
+		await code.selectLinesAdd`*`;
+
+		const tokens = getAllTokens(pre);
+		for (const token of tokens) {
+			expect(token.classList.contains('selected')).toBe(true);
+			expect(token.classList.contains('deselected')).toBe(false);
+		}
+	});
+
 	it('select selects matching tokens', async () => {
 		const code = mount(Code, {
 			target: document.body,
