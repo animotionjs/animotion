@@ -29,7 +29,7 @@
 		*/
 		deck = new Reveal(animotion, {
 			display: 'grid',
-			disableLayout: true,
+			disableLayout: false,
 			plugins: [Highlight, Math.KaTeX, Notes],
 			keyboardCondition: 'focused',
 			embedded: true,

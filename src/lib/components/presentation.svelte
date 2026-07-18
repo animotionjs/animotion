@@ -45,7 +45,7 @@
 			// slide transition
 			transition: 'slide',
 			// bring your own layout
-			disableLayout: true,
+			disableLayout: false,
 			// display mode used to show slides
 			display: 'grid',
 			// center slides on the screen
