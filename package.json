@@ -75,7 +75,7 @@
 		"@tailwindcss/vite": "4.3.3",
 		"reveal.js": "6.0.1",
 		"shiki": "^4.3.1",
-		"shiki-magic-move": "^1.4.0",
+		"@shikijs/magic-move": "^4.3.1",
 		"tailwindcss": "4.3.3"
 	},
 	"peerDependencies": {

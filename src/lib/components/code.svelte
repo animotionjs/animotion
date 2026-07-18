@@ -19,14 +19,14 @@
 	import type { ClassValue } from 'svelte/elements';
 	import Action from '$lib/components/action.svelte';
 	import Code from '$lib/components/code.svelte';
-	import { codeToKeyedTokens, createMagicMoveMachine } from 'shiki-magic-move/core';
-	import { MagicMoveRenderer } from 'shiki-magic-move/renderer';
+	import { codeToKeyedTokens, createMagicMoveMachine } from '@shikijs/magic-move/core';
+	import { MagicMoveRenderer } from '@shikijs/magic-move/renderer';
 	import type {
 		KeyedToken,
 		KeyedTokensInfo,
 		MagicMoveDifferOptions,
 		MagicMoveRenderOptions
-	} from 'shiki-magic-move/types';
+	} from '@shikijs/magic-move/types';
 	import '../styles/shiki.css';
 
 	type Promises = Promise<unknown>[];

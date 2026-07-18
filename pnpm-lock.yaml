@@ -17,6 +17,9 @@ importers:
       '@fontsource/monaspace-neon':
         specifier: ^5.2.5
         version: 5.2.5
+      '@shikijs/magic-move':
+        specifier: ^4.3.1
+        version: 4.3.1(shiki@4.3.1)(svelte@5.56.6(@typescript-eslint/types@8.64.0))
       '@tailwindcss/vite':
         specifier: 4.3.3
         version: 4.3.3(vite@8.1.5(@types/node@26.1.1)(esbuild@0.27.2)(jiti@2.7.0))
@@ -26,9 +29,6 @@ importers:
       shiki:
         specifier: ^4.3.1
         version: 4.3.1
-      shiki-magic-move:
-        specifier: ^1.4.0
-        version: 1.4.0(shiki@4.3.1)(svelte@5.56.6(@typescript-eslint/types@8.64.0))
       tailwindcss:
         specifier: 4.3.3
         version: 4.3.3
@@ -1753,28 +1753,6 @@ packages:
   shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
-
-  shiki-magic-move@1.4.0:
-    resolution: {integrity: sha512-DDEv7khyBMAQghQEfQ6Ab3KZxT5ub6tVNe8+NcvglWauKVV9jxiRYC055DoiFLgvs6Hd9+LuBndeaSPNOSxgSg==}
-    engines: {node: '>=20'}
-    deprecated: shiki-magic-move is now @shikijs/magic-move, please migrate by renaming the package
-    peerDependencies:
-      react: ^18.2.0 || ^19.0.0
-      shiki: ^4.0.0
-      solid-js: ^1.9.1
-      svelte: ^5.0.0-0
-      vue: ^3.4.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      shiki:
-        optional: true
-      solid-js:
-        optional: true
-      svelte:
-        optional: true
-      vue:
-        optional: true
 
   shiki@4.3.1:
     resolution: {integrity: sha512-oR+qDVi2OjX1tmDpyv+3KviX01KzO6Af+0NNnKnsp9491UEGz2YpxTuJboS/6VhYpTdqzmuJBuiTlrAWWJAssw==}
@@ -3544,13 +3522,6 @@ snapshots:
       shebang-regex: 3.0.0
 
   shebang-regex@3.0.0: {}
-
-  shiki-magic-move@1.4.0(shiki@4.3.1)(svelte@5.56.6(@typescript-eslint/types@8.64.0)):
-    dependencies:
-      '@shikijs/magic-move': 4.3.1(shiki@4.3.1)(svelte@5.56.6(@typescript-eslint/types@8.64.0))
-    optionalDependencies:
-      shiki: 4.3.1
-      svelte: 5.56.6(@typescript-eslint/types@8.64.0)
 
   shiki@4.3.1:
     dependencies:
