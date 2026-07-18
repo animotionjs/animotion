@@ -2,6 +2,7 @@
 	import { tick, type Snippet } from 'svelte';
 	import type { ClassValue } from 'svelte/elements';
 	import type { RevealConfig, RevealApi } from 'reveal.js';
+	import { setPresentation } from './store.svelte.js';
 
 	import 'reveal.js/reveal.css';
 	import '../styles/theme.css';
@@ -35,6 +36,8 @@
 			embedded: true,
 			...options
 		});
+
+		setPresentation(deck);
 
 		// custom event listeners
 		const inEvent = new CustomEvent('in');

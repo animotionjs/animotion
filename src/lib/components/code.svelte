@@ -27,6 +27,7 @@
 		MagicMoveDifferOptions,
 		MagicMoveRenderOptions
 	} from '@shikijs/magic-move/types';
+	import { getPresentation } from './store.svelte.js';
 	import '../styles/shiki.css';
 
 	type Promises = Promise<unknown>[];
@@ -68,6 +69,11 @@
 		token: (el: HTMLElement) => el.className.includes('shiki-magic-move-item'),
 		newLine: (el: HTMLElement) => el.tagName === 'BR'
 	};
+
+	function getRevealScale() {
+		const deck = getPresentation().slides;
+		return deck?.getScale?.() ?? 1;
+	}
 
 	// splits bracket characters for finer-grained selection
 	function splitPunctuationTokens(result: KeyedTokensInfo): KeyedTokensInfo {
@@ -395,7 +401,7 @@
 			return splitPunctuationTokens(result);
 		}, options);
 		renderer = new MagicMoveRenderer(container);
-		Object.assign(renderer.options, options);
+		Object.assign(renderer.options, { ...options, globalScale: getRevealScale() });
 		const indentedCode = autoIndent ? indent(code!) : code!;
 		currentCode = indentedCode;
 		const result = machine.commit(indentedCode);
@@ -411,6 +417,7 @@
 		const result = machine.commit(indentedCode);
 		if (result.previous) renderer.replace(result.previous);
 		currentTokens = addLineNumbers(result.current.tokens);
+		renderer.options.globalScale = getRevealScale();
 		await renderer.render(result.current);
 	}
 
