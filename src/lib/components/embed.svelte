@@ -1,28 +1,47 @@
 <script lang="ts">
 	import { tick, type Snippet } from 'svelte';
 	import type { ClassValue } from 'svelte/elements';
-	import type { RevealConfig, RevealApi } from 'reveal.js';
+	import type { RevealConfig, RevealApi, RevealPluginFactory } from 'reveal.js';
 	import { setPresentation } from './store.svelte.js';
 
 	import 'reveal.js/reveal.css';
 	import '../styles/theme.css';
 
+	type BuiltInPlugin = 'markdown' | 'highlight' | 'math' | 'notes';
+
 	type PresentationProps = {
 		[key: string]: any;
 		children: Snippet;
 		options?: RevealConfig;
+		plugins?: Partial<Record<BuiltInPlugin, boolean>>;
 		class?: ClassValue;
 	};
 
-	let { children, options, ...props }: PresentationProps = $props();
+	let { children, options, plugins, ...props }: PresentationProps = $props();
 
 	let deck: RevealApi | undefined;
 
 	async function init() {
 		const Reveal = (await import('reveal.js')).default;
+		const Markdown = (await import('reveal.js/plugin/markdown')).default;
 		const Highlight = (await import('reveal.js/plugin/highlight')).default;
 		const Math = (await import('reveal.js/plugin/math')).default;
 		const Notes = (await import('reveal.js/plugin/notes')).default;
+
+		const pluginDefaults: Record<BuiltInPlugin, boolean> = {
+			markdown: false,
+			highlight: false,
+			math: false,
+			notes: false
+		};
+
+		const enabled = { ...pluginDefaults, ...plugins };
+
+		const activePlugins: RevealPluginFactory[] = [];
+		if (enabled.markdown) activePlugins.push(Markdown);
+		if (enabled.highlight) activePlugins.push(Highlight);
+		if (enabled.math) activePlugins.push(Math.KaTeX);
+		if (enabled.notes) activePlugins.push(Notes);
 
 		/*
 			to have multiple slides we pass the new reference
@@ -31,7 +50,7 @@
 		deck = new Reveal(animotion, {
 			display: 'grid',
 			disableLayout: false,
-			plugins: [Highlight, Math.KaTeX, Notes],
+			plugins: activePlugins,
 			keyboardCondition: 'focused',
 			embedded: true,
 			...options

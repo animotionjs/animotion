@@ -2,8 +2,10 @@
 	import { tick, type Snippet } from 'svelte';
 	import type { ClassValue } from 'svelte/elements';
 	import { setPresentation } from './store.svelte.js';
-	import type { RevealConfig, RevealApi } from 'reveal.js';
+	import type { RevealConfig, RevealApi, RevealPluginFactory } from 'reveal.js';
 	import 'reveal.js/reveal.css';
+
+	type BuiltInPlugin = 'markdown' | 'highlight' | 'math' | 'notes';
 
 	type Options = {
 		reload?: boolean;
@@ -13,10 +15,11 @@
 		[key: string]: any;
 		children?: Snippet;
 		options?: RevealConfig & Options;
+		plugins?: Partial<Record<BuiltInPlugin, boolean>>;
 		class?: ClassValue;
 	};
 
-	let { children, options, ...props }: PresentationProps = $props();
+	let { children, options, plugins, ...props }: PresentationProps = $props();
 
 	let deck: RevealApi | undefined;
 
@@ -26,6 +29,21 @@
 		const Highlight = (await import('reveal.js/plugin/highlight')).default;
 		const Math = (await import('reveal.js/plugin/math')).default;
 		const Notes = (await import('reveal.js/plugin/notes')).default;
+
+		const pluginDefaults: Record<BuiltInPlugin, boolean> = {
+			markdown: false,
+			highlight: false,
+			math: false,
+			notes: false
+		};
+
+		const enabled = { ...pluginDefaults, ...plugins };
+
+		const activePlugins: RevealPluginFactory[] = [];
+		if (enabled.markdown) activePlugins.push(Markdown);
+		if (enabled.highlight) activePlugins.push(Highlight);
+		if (enabled.math) activePlugins.push(Math.KaTeX);
+		if (enabled.notes) activePlugins.push(Notes);
 
 		const defaults: RevealConfig = {
 			// presentation size respecting aspect ratio
@@ -37,7 +55,7 @@
 			minScale: 0.2,
 			maxScale: 2.0,
 			// plugins
-			plugins: [Markdown, Highlight, Math.KaTeX, Notes],
+			plugins: activePlugins,
 			// slide controls
 			controls: true,
 			// slide progress bar
