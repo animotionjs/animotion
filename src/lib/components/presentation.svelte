@@ -25,10 +25,6 @@
 
 	async function init() {
 		const Reveal = (await import('reveal.js')).default;
-		const Markdown = (await import('reveal.js/plugin/markdown')).default;
-		const Highlight = (await import('reveal.js/plugin/highlight')).default;
-		const Math = (await import('reveal.js/plugin/math')).default;
-		const Notes = (await import('reveal.js/plugin/notes')).default;
 
 		const pluginDefaults: Record<BuiltInPlugin, boolean> = {
 			markdown: false,
@@ -40,10 +36,22 @@
 		const enabled = { ...pluginDefaults, ...plugins };
 
 		const activePlugins: RevealPluginFactory[] = [];
-		if (enabled.markdown) activePlugins.push(Markdown);
-		if (enabled.highlight) activePlugins.push(Highlight);
-		if (enabled.math) activePlugins.push(Math.KaTeX);
-		if (enabled.notes) activePlugins.push(Notes);
+		if (enabled.markdown) {
+			const Markdown = (await import('reveal.js/plugin/markdown')).default;
+			activePlugins.push(Markdown);
+		}
+		if (enabled.highlight) {
+			const Highlight = (await import('reveal.js/plugin/highlight')).default;
+			activePlugins.push(Highlight);
+		}
+		if (enabled.math) {
+			const Math = (await import('reveal.js/plugin/math')).default;
+			activePlugins.push(Math.KaTeX);
+		}
+		if (enabled.notes) {
+			const Notes = (await import('reveal.js/plugin/notes')).default;
+			activePlugins.push(Notes);
+		}
 
 		const defaults: RevealConfig = {
 			// presentation size respecting aspect ratio
